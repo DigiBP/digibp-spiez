@@ -25,14 +25,14 @@
       <bpmn:outgoing>SequenceFlow_0nzfndj</bpmn:outgoing>
     </bpmn:task>
     <bpmn:sequenceFlow id="SequenceFlow_08w8sn9" name="Yes" sourceRef="ExclusiveGateway_18o3o22" targetRef="Task_1d3v844">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">test</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:task id="Task_0eybybf" name="Rejected">
       <bpmn:incoming>SequenceFlow_0tqrwnd</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_029ualj</bpmn:outgoing>
     </bpmn:task>
     <bpmn:sequenceFlow id="SequenceFlow_0tqrwnd" name="No" sourceRef="ExclusiveGateway_18o3o22" targetRef="Task_0eybybf">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Test</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${false}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:endEvent id="EndEvent_0akavxk">
       <bpmn:incoming>SequenceFlow_029ualj</bpmn:incoming>

@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_0eukvy0" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_0eukvy0" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.2.4">
   <bpmn:process id="HealthInsuranceProcess_Trial" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1" name="Receive Application">
       <bpmn:outgoing>SequenceFlow_0bfhupo</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="SequenceFlow_0bfhupo" sourceRef="StartEvent_1" targetRef="Task_117icai" />
-    <bpmn:endEvent id="EndEvent_0lkutq8">
-      <bpmn:incoming>SequenceFlow_0m8iub5</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:sequenceFlow id="SequenceFlow_0m8iub5" sourceRef="Task_117icai" targetRef="EndEvent_0lkutq8" />
     <bpmn:serviceTask id="Task_117icai" name="Check Data" camunda:expression="Test" camunda:resultVariable="Test">
       <bpmn:incoming>SequenceFlow_0bfhupo</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0m8iub5</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_0g015kr</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_0g015kr" sourceRef="Task_117icai" targetRef="Task_017eow5" />
+    <bpmn:businessRuleTask id="Task_017eow5" name="Assess Case" camunda:expression="Test" camunda:resultVariable="Test">
+      <bpmn:incoming>SequenceFlow_0g015kr</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_04cq7s4</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:endEvent id="EndEvent_1p5o1mk">
+      <bpmn:incoming>SequenceFlow_04cq7s4</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_04cq7s4" sourceRef="Task_017eow5" targetRef="EndEvent_1p5o1mk" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="HealthInsuranceProcess_Trial">
@@ -26,16 +31,23 @@
         <di:waypoint x="209" y="120" />
         <di:waypoint x="259" y="120" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="EndEvent_0lkutq8_di" bpmnElement="EndEvent_0lkutq8">
-        <dc:Bounds x="409" y="102" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_0m8iub5_di" bpmnElement="SequenceFlow_0m8iub5">
-        <di:waypoint x="359" y="120" />
-        <di:waypoint x="409" y="120" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ServiceTask_1frm3e4_di" bpmnElement="Task_117icai">
         <dc:Bounds x="259" y="80" width="100" height="80" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0g015kr_di" bpmnElement="SequenceFlow_0g015kr">
+        <di:waypoint x="359" y="120" />
+        <di:waypoint x="411" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BusinessRuleTask_0kt8443_di" bpmnElement="Task_017eow5">
+        <dc:Bounds x="411" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1p5o1mk_di" bpmnElement="EndEvent_1p5o1mk">
+        <dc:Bounds x="572" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_04cq7s4_di" bpmnElement="SequenceFlow_04cq7s4">
+        <di:waypoint x="511" y="120" />
+        <di:waypoint x="572" y="120" />
+      </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>

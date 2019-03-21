@@ -96,7 +96,7 @@
       <bpmn:outgoing>SequenceFlow_1pkfo0w</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_00pop5o</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:userTask id="Task_0bwwbpw" name="Propose alternative offers">
+    <bpmn:userTask id="Task_0bwwbpw" name="Propose of alternative offers">
       <bpmn:incoming>SequenceFlow_1cr7dwi</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_12eaxtt</bpmn:outgoing>
     </bpmn:userTask>
@@ -172,7 +172,7 @@
               <camunda:map />
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">
-              <camunda:script scriptFormat="javascript"></camunda:script>
+              <camunda:script scriptFormat="javascript" />
             </camunda:inputParameter>
           </camunda:inputOutput>
           <camunda:connectorId>http-connector</camunda:connectorId>

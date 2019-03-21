@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_0z51br2" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_0z51br2" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.2.4">
   <bpmn:collaboration id="HealthInsuranceProcess">
     <bpmn:participant id="Participant_11arpnk" name="Customer Support" processRef="Process_healthinsurance_customersupport_workflow" />
     <bpmn:participant id="Participant_17bhftx" name="Customer" />
@@ -32,6 +32,7 @@
         <bpmn:flowNodeRef>Task_02nu5zm</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_1s5pmc3</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_0u7kpyv</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_0v0afuk</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0ghhit6" name="Consultant">
         <bpmn:flowNodeRef>Task_0bwwbpw</bpmn:flowNodeRef>
@@ -89,6 +90,7 @@
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_06pwdm5</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_0qkobpc</bpmn:outgoing>
       <bpmn:messageEventDefinition messageRef="Message_1agemhc" />
     </bpmn:startEvent>
     <bpmn:exclusiveGateway id="ExclusiveGateway_1qlhpxp" name="Complete data?">
@@ -213,12 +215,16 @@
       <bpmn:outgoing>SequenceFlow_0q9rb4q</bpmn:outgoing>
     </bpmn:task>
     <bpmn:dataStoreReference id="DataStoreReference_1ggj3lc" name="case database" />
+    <bpmn:task id="Task_0v0afuk">
+      <bpmn:incoming>SequenceFlow_0qkobpc</bpmn:incoming>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_0qkobpc" sourceRef="StartEvent_1" targetRef="Task_0v0afuk" />
   </bpmn:process>
   <bpmn:message id="Message_1agemhc" name="Message_healthinsurance_customer support_workflow_applicationreceived" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="HealthInsuranceProcess">
       <bpmndi:BPMNShape id="Participant_11arpnk_di" bpmnElement="Participant_11arpnk" isHorizontal="true">
-        <dc:Bounds x="156" y="416" width="1890" height="729" />
+        <dc:Bounds x="156" y="416" width="1890" height="812" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_1wbjrzx_di" bpmnElement="Participant_17bhftx" isHorizontal="true">
         <dc:Bounds x="156" y="81" width="1891" height="188" />
@@ -268,7 +274,7 @@
         <dc:Bounds x="186" y="536" width="1860" height="425" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1x5uilt_di" bpmnElement="Lane_1x5uilt" isHorizontal="true">
-        <dc:Bounds x="186" y="961" width="1860" height="184" />
+        <dc:Bounds x="186" y="961" width="1860" height="267" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0ghhit6_di" bpmnElement="Lane_0ghhit6" isHorizontal="true">
         <dc:Bounds x="186" y="416" width="1860" height="120" />
@@ -485,6 +491,15 @@
       <bpmndi:BPMNEdge id="DataOutputAssociation_1efpgg5_di" bpmnElement="DataOutputAssociation_1efpgg5">
         <di:waypoint x="667" y="754" />
         <di:waypoint x="679" y="841" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Task_0v0afuk_di" bpmnElement="Task_0v0afuk">
+        <dc:Bounds x="363" y="1088" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0qkobpc_di" bpmnElement="SequenceFlow_0qkobpc">
+        <di:waypoint x="280" y="1018" />
+        <di:waypoint x="322" y="1018" />
+        <di:waypoint x="322" y="1128" />
+        <di:waypoint x="363" y="1128" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_0z51br2" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
-  <bpmn:collaboration id="HealthInsuranceProcess">
+  <bpmn:collaboration id="HealthInsuranceProcessDavid">
     <bpmn:participant id="Participant_11arpnk" name="Customer Support" processRef="Process_1fktq2r" />
     <bpmn:participant id="Participant_17bhftx" name="Customer" />
     <bpmn:messageFlow id="MessageFlow_17zf0ro" sourceRef="Participant_17bhftx" targetRef="StartEvent_1" />
@@ -13,7 +13,7 @@
     <bpmn:messageFlow id="MessageFlow_0bqgbbp" sourceRef="EndEvent_1gxxze8" targetRef="Participant_17bhftx" />
     <bpmn:messageFlow id="MessageFlow_0bnmkvc" sourceRef="Task_1erucnw" targetRef="Participant_17bhftx" />
   </bpmn:collaboration>
-  <bpmn:process id="Process_1fktq2r" isExecutable="true">
+  <bpmn:process id="Process_1fktq2r" name="Health Insurance Process (current)" isExecutable="true">
     <bpmn:laneSet id="LaneSet_1wkwfu0">
       <bpmn:lane id="Lane_0bltqy3" name="Underwriters">
         <bpmn:flowNodeRef>ExclusiveGateway_10qbl19</bpmn:flowNodeRef>
@@ -183,7 +183,7 @@
   <bpmn:message id="Message_0qbnllw" name="Message_0gi9a73" />
   <bpmn:message id="Message_1dj4s63" name="Message_1eea03e" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="HealthInsuranceProcess">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="HealthInsuranceProcessDavid">
       <bpmndi:BPMNShape id="Participant_11arpnk_di" bpmnElement="Participant_11arpnk" isHorizontal="true">
         <dc:Bounds x="156" y="416" width="1890" height="729" />
       </bpmndi:BPMNShape>

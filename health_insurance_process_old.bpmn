@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_0z51br2" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0z51br2" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.2.4">
   <bpmn:collaboration id="HealthInsuranceProcess">
-    <bpmn:participant id="Participant_11arpnk" name="Customer Support" processRef="Process_healthinsurance_customersupport_workflow" />
+    <bpmn:participant id="Participant_11arpnk" name="Customer Support" processRef="Process_1fktq2r" />
     <bpmn:participant id="Participant_17bhftx" name="Customer" />
     <bpmn:messageFlow id="MessageFlow_17zf0ro" sourceRef="Participant_17bhftx" targetRef="StartEvent_1" />
     <bpmn:messageFlow id="MessageFlow_0id0k09" sourceRef="EndEvent_0n4326m" targetRef="Participant_17bhftx" />
@@ -13,9 +13,9 @@
     <bpmn:messageFlow id="MessageFlow_0bqgbbp" sourceRef="EndEvent_1gxxze8" targetRef="Participant_17bhftx" />
     <bpmn:messageFlow id="MessageFlow_0bnmkvc" sourceRef="Task_1erucnw" targetRef="Participant_17bhftx" />
   </bpmn:collaboration>
-  <bpmn:process id="Process_healthinsurance_customersupport_workflow" isExecutable="true">
+  <bpmn:process id="Process_1fktq2r" isExecutable="true">
     <bpmn:laneSet id="LaneSet_1wkwfu0">
-      <bpmn:lane id="Lane_0bltqy3" name="Underwriter">
+      <bpmn:lane id="Lane_0bltqy3" name="Underwriters">
         <bpmn:flowNodeRef>ExclusiveGateway_10qbl19</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_1erucnw</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_0wyv6r0</bpmn:flowNodeRef>
@@ -53,43 +53,8 @@
       <bpmn:outgoing>SequenceFlow_0x9nwir</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:startEvent id="StartEvent_1" name="Receive application">
-      <bpmn:extensionElements>
-        <camunda:formData businessKey="Business key">
-          <camunda:formField id="First Name " label="First name" type="string" />
-          <camunda:formField id="Last name " label="Last name" type="string" />
-          <camunda:formField id="Gender" label="Gender" type="string" />
-          <camunda:formField id="Age" label="Age" type="long" />
-          <camunda:formField id="Date of birth" label="Date of birth" type="string" />
-          <camunda:formField id="Street" label="Street" type="string" />
-          <camunda:formField id="House number" label="House number" type="long" />
-          <camunda:formField id="Postal code" label="postal code" type="long" />
-          <camunda:formField id="City" label="City" type="string" />
-          <camunda:formField id="Telephone" type="long" />
-          <camunda:formField id="E-mail" label="email" type="string" />
-          <camunda:formField id="Height" label="Height" type="string" />
-          <camunda:formField id="Weight" label="Weight" type="string" />
-          <camunda:formField id="Employment" label="Employment" type="string" />
-          <camunda:formField id="Disability" label="Disability" type="string" />
-          <camunda:formField id="Disability details" label="Disability details" type="string" />
-          <camunda:formField id="Health conditions" label="Health conditions" type="boolean" />
-          <camunda:formField id="Specify health conditions" label="specify the type of health ailment" type="string" />
-          <camunda:formField id="Planned Treatment" label="Planned treatment" type="string" />
-          <camunda:formField id="Terminal illness" label="Specify terminal illnesses if any" type="string" />
-          <camunda:formField id="psychological Illness" label="specify psychological illness" type="string" />
-          <camunda:formField id="Marital status" type="string" defaultValue="Marital status" />
-          <camunda:formField id="Children" label="Children" type="boolean" />
-          <camunda:formField id="Smoking" label="Smoking" type="boolean" />
-          <camunda:formField id="Body mass index" label="Body mass index" type="long" />
-          <camunda:formField id="Specify terminal Illness type" label="Specify terminal illness type" type="string" />
-          <camunda:formField id="specify Planned treatment details" label="specify planned illness treatment" type="string" />
-          <camunda:formField id="Business key" label="Business key" type="long" />
-          <camunda:formField id="Offer " label="Offer" type="string" />
-          <camunda:formField id="Offer amount" label="Offer amount" type="long" />
-          <camunda:formField id="Accept offer" label="Do yoi a" type="string" />
-        </camunda:formData>
-      </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_06pwdm5</bpmn:outgoing>
-      <bpmn:messageEventDefinition messageRef="Message_1agemhc" />
+      <bpmn:messageEventDefinition />
     </bpmn:startEvent>
     <bpmn:exclusiveGateway id="ExclusiveGateway_1qlhpxp" name="Complete data?">
       <bpmn:incoming>SequenceFlow_0x9nwir</bpmn:incoming>
@@ -121,7 +86,7 @@
     <bpmn:sequenceFlow id="SequenceFlow_00pop5o" name="No" sourceRef="ExclusiveGateway_1qlhpxp" targetRef="Task_02nu5zm" />
     <bpmn:sequenceFlow id="SequenceFlow_01ahr1r" sourceRef="IntermediateThrowEvent_06ewv1a" targetRef="Task_0cpoqzd" />
     <bpmn:sequenceFlow id="SequenceFlow_1doq5i6" sourceRef="Task_02nu5zm" targetRef="IntermediateThrowEvent_06ewv1a" />
-    <bpmn:businessRuleTask id="Task_0wyv6r0" name="Assess case" camunda:resultVariable="Eligibility" camunda:decisionRef="Assesstheapplication" camunda:mapDecisionResult="singleEntry">
+    <bpmn:businessRuleTask id="Task_0wyv6r0" name="Assess case">
       <bpmn:incoming>SequenceFlow_1pkfo0w</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1yuu9ma</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1efpgg5">
@@ -163,21 +128,6 @@
       <bpmn:messageEventDefinition />
     </bpmn:endEvent>
     <bpmn:serviceTask id="Task_02nu5zm" name="Ask for missing information">
-      <bpmn:extensionElements>
-        <camunda:connector>
-          <camunda:inputOutput>
-            <camunda:inputParameter name="method" />
-            <camunda:inputParameter name="url" />
-            <camunda:inputParameter name="headers">
-              <camunda:map />
-            </camunda:inputParameter>
-            <camunda:inputParameter name="payload">
-              <camunda:script scriptFormat="javascript"></camunda:script>
-            </camunda:inputParameter>
-          </camunda:inputOutput>
-          <camunda:connectorId>http-connector</camunda:connectorId>
-        </camunda:connector>
-      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_00pop5o</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1doq5i6</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -214,7 +164,6 @@
     </bpmn:task>
     <bpmn:dataStoreReference id="DataStoreReference_1ggj3lc" name="case database" />
   </bpmn:process>
-  <bpmn:message id="Message_1agemhc" name="Message_healthinsurance_customer support_workflow_applicationreceived" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="HealthInsuranceProcess">
       <bpmndi:BPMNShape id="Participant_11arpnk_di" bpmnElement="Participant_11arpnk" isHorizontal="true">

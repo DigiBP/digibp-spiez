@@ -75,19 +75,25 @@
     <bpmn:sequenceFlow id="SequenceFlow_06pwdm5" sourceRef="StartEvent_1" targetRef="Task_0cpoqzd" />
     <bpmn:sequenceFlow id="SequenceFlow_0x9nwir" sourceRef="Task_0cpoqzd" targetRef="ExclusiveGateway_1qlhpxp" />
     <bpmn:sequenceFlow id="SequenceFlow_1pkfo0w" name="Yes" sourceRef="ExclusiveGateway_1qlhpxp" targetRef="Task_0wyv6r0">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">$(true)</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1yuu9ma" sourceRef="Task_0wyv6r0" targetRef="ExclusiveGateway_10qbl19" />
-    <bpmn:sequenceFlow id="SequenceFlow_1o6jn2x" name="reject" sourceRef="ExclusiveGateway_10qbl19" targetRef="Task_14bxa3i" />
+    <bpmn:sequenceFlow id="SequenceFlow_1o6jn2x" name="reject" sourceRef="ExclusiveGateway_10qbl19" targetRef="Task_14bxa3i">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1otr561" name="accept" sourceRef="ExclusiveGateway_10qbl19" targetRef="Task_05k3x6f">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">$(true)</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_1cr7dwi" name="alternative" sourceRef="ExclusiveGateway_10qbl19" targetRef="Task_0bwwbpw" />
+    <bpmn:sequenceFlow id="SequenceFlow_1cr7dwi" name="alternative" sourceRef="ExclusiveGateway_10qbl19" targetRef="Task_0bwwbpw">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_0q9rb4q" sourceRef="Task_14bxa3i" targetRef="EndEvent_0n4326m" />
     <bpmn:sequenceFlow id="SequenceFlow_0dodatt" sourceRef="Task_05k3x6f" targetRef="Task_1erucnw" />
     <bpmn:sequenceFlow id="SequenceFlow_0it35zf" sourceRef="Task_1erucnw" targetRef="IntermediateThrowEvent_08dlca9" />
     <bpmn:sequenceFlow id="SequenceFlow_075u5a4" sourceRef="Task_0u7kpyv" targetRef="EndEvent_1s5pmc3" />
-    <bpmn:sequenceFlow id="SequenceFlow_00pop5o" name="No" sourceRef="ExclusiveGateway_1qlhpxp" targetRef="Task_02nu5zm" />
+    <bpmn:sequenceFlow id="SequenceFlow_00pop5o" name="No" sourceRef="ExclusiveGateway_1qlhpxp" targetRef="Task_02nu5zm">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_01ahr1r" sourceRef="IntermediateThrowEvent_06ewv1a" targetRef="Task_0cpoqzd" />
     <bpmn:sequenceFlow id="SequenceFlow_1doq5i6" sourceRef="Task_02nu5zm" targetRef="IntermediateThrowEvent_06ewv1a" />
     <bpmn:businessRuleTask id="Task_0wyv6r0" name="Assess case" camunda:expression="$(test)">
@@ -106,7 +112,9 @@
     <bpmn:sequenceFlow id="SequenceFlow_12x7ozm" name="yes" sourceRef="ExclusiveGateway_1tcpkzi" targetRef="Task_05k3x6f" />
     <bpmn:sequenceFlow id="SequenceFlow_1r490y5" sourceRef="IntermediateThrowEvent_0yuxpid" targetRef="ExclusiveGateway_1tcpkzi" />
     <bpmn:sequenceFlow id="SequenceFlow_1gl0l84" sourceRef="Task_06o8dgl" targetRef="EndEvent_1gxxze8" />
-    <bpmn:sequenceFlow id="SequenceFlow_0ds8v4x" name="no" sourceRef="ExclusiveGateway_1tcpkzi" targetRef="Task_06o8dgl" />
+    <bpmn:sequenceFlow id="SequenceFlow_0ds8v4x" name="no" sourceRef="ExclusiveGateway_1tcpkzi" targetRef="Task_06o8dgl">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_0yuxpid" name="Receive answer">
       <bpmn:incoming>SequenceFlow_12eaxtt</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1r490y5</bpmn:outgoing>

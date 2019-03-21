@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0z51br2" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.2.4">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_0z51br2" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
   <bpmn:collaboration id="HealthInsuranceProcess">
     <bpmn:participant id="Participant_11arpnk" name="Customer Support" processRef="Process_1fktq2r" />
     <bpmn:participant id="Participant_17bhftx" name="Customer" />
@@ -37,8 +37,8 @@
         <bpmn:flowNodeRef>Task_0bwwbpw</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_1tcpkzi</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IntermediateThrowEvent_0yuxpid</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>EndEvent_1gxxze8</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_06o8dgl</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_1gxxze8</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:exclusiveGateway id="ExclusiveGateway_10qbl19" name="Result of asessment">
@@ -47,14 +47,14 @@
       <bpmn:outgoing>SequenceFlow_1otr561</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_1cr7dwi</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:serviceTask id="Task_0cpoqzd" name="Check data">
+    <bpmn:serviceTask id="Task_0cpoqzd" name="Check data" camunda:expression="$(test)">
       <bpmn:incoming>SequenceFlow_06pwdm5</bpmn:incoming>
       <bpmn:incoming>SequenceFlow_01ahr1r</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0x9nwir</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:startEvent id="StartEvent_1" name="Receive application">
       <bpmn:outgoing>SequenceFlow_06pwdm5</bpmn:outgoing>
-      <bpmn:messageEventDefinition />
+      <bpmn:messageEventDefinition messageRef="Message_0vsfji7" />
     </bpmn:startEvent>
     <bpmn:exclusiveGateway id="ExclusiveGateway_1qlhpxp" name="Complete data?">
       <bpmn:incoming>SequenceFlow_0x9nwir</bpmn:incoming>
@@ -74,10 +74,14 @@
     </bpmn:task>
     <bpmn:sequenceFlow id="SequenceFlow_06pwdm5" sourceRef="StartEvent_1" targetRef="Task_0cpoqzd" />
     <bpmn:sequenceFlow id="SequenceFlow_0x9nwir" sourceRef="Task_0cpoqzd" targetRef="ExclusiveGateway_1qlhpxp" />
-    <bpmn:sequenceFlow id="SequenceFlow_1pkfo0w" name="Yes" sourceRef="ExclusiveGateway_1qlhpxp" targetRef="Task_0wyv6r0" />
+    <bpmn:sequenceFlow id="SequenceFlow_1pkfo0w" name="Yes" sourceRef="ExclusiveGateway_1qlhpxp" targetRef="Task_0wyv6r0">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">$(true)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1yuu9ma" sourceRef="Task_0wyv6r0" targetRef="ExclusiveGateway_10qbl19" />
     <bpmn:sequenceFlow id="SequenceFlow_1o6jn2x" name="reject" sourceRef="ExclusiveGateway_10qbl19" targetRef="Task_14bxa3i" />
-    <bpmn:sequenceFlow id="SequenceFlow_1otr561" name="accept" sourceRef="ExclusiveGateway_10qbl19" targetRef="Task_05k3x6f" />
+    <bpmn:sequenceFlow id="SequenceFlow_1otr561" name="accept" sourceRef="ExclusiveGateway_10qbl19" targetRef="Task_05k3x6f">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">$(true)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1cr7dwi" name="alternative" sourceRef="ExclusiveGateway_10qbl19" targetRef="Task_0bwwbpw" />
     <bpmn:sequenceFlow id="SequenceFlow_0q9rb4q" sourceRef="Task_14bxa3i" targetRef="EndEvent_0n4326m" />
     <bpmn:sequenceFlow id="SequenceFlow_0dodatt" sourceRef="Task_05k3x6f" targetRef="Task_1erucnw" />
@@ -86,7 +90,7 @@
     <bpmn:sequenceFlow id="SequenceFlow_00pop5o" name="No" sourceRef="ExclusiveGateway_1qlhpxp" targetRef="Task_02nu5zm" />
     <bpmn:sequenceFlow id="SequenceFlow_01ahr1r" sourceRef="IntermediateThrowEvent_06ewv1a" targetRef="Task_0cpoqzd" />
     <bpmn:sequenceFlow id="SequenceFlow_1doq5i6" sourceRef="Task_02nu5zm" targetRef="IntermediateThrowEvent_06ewv1a" />
-    <bpmn:businessRuleTask id="Task_0wyv6r0" name="Assess case">
+    <bpmn:businessRuleTask id="Task_0wyv6r0" name="Assess case" camunda:expression="$(test)">
       <bpmn:incoming>SequenceFlow_1pkfo0w</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1yuu9ma</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1efpgg5">
@@ -106,35 +110,31 @@
     <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_0yuxpid" name="Receive answer">
       <bpmn:incoming>SequenceFlow_12eaxtt</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1r490y5</bpmn:outgoing>
-      <bpmn:messageEventDefinition />
+      <bpmn:messageEventDefinition messageRef="Message_0m6nu6i" />
     </bpmn:intermediateCatchEvent>
     <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_06ewv1a" name="Receive missing data">
       <bpmn:incoming>SequenceFlow_1doq5i6</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_01ahr1r</bpmn:outgoing>
-      <bpmn:messageEventDefinition />
+      <bpmn:messageEventDefinition messageRef="Message_016opmc" />
     </bpmn:intermediateCatchEvent>
-    <bpmn:endEvent id="EndEvent_1gxxze8">
-      <bpmn:incoming>SequenceFlow_1gl0l84</bpmn:incoming>
-      <bpmn:messageEventDefinition />
-    </bpmn:endEvent>
     <bpmn:sequenceFlow id="SequenceFlow_1ov1ks7" sourceRef="IntermediateThrowEvent_08dlca9" targetRef="Task_0u7kpyv" />
     <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_08dlca9" name="Receive signed contract">
       <bpmn:incoming>SequenceFlow_0it35zf</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1ov1ks7</bpmn:outgoing>
-      <bpmn:messageEventDefinition />
+      <bpmn:messageEventDefinition messageRef="Message_1dj4s63" />
     </bpmn:intermediateCatchEvent>
     <bpmn:endEvent id="EndEvent_0n4326m">
       <bpmn:incoming>SequenceFlow_0q9rb4q</bpmn:incoming>
-      <bpmn:messageEventDefinition />
+      <bpmn:messageEventDefinition messageRef="Message_0qbnllw" />
     </bpmn:endEvent>
-    <bpmn:serviceTask id="Task_02nu5zm" name="Ask for missing information">
+    <bpmn:serviceTask id="Task_02nu5zm" name="Ask for missing information" camunda:expression="$(test)">
       <bpmn:incoming>SequenceFlow_00pop5o</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1doq5i6</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:endEvent id="EndEvent_1s5pmc3">
       <bpmn:incoming>SequenceFlow_075u5a4</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:serviceTask id="Task_0u7kpyv" name="Update contract database">
+    <bpmn:serviceTask id="Task_0u7kpyv" name="Update contract database" camunda:expression="$(test)">
       <bpmn:incoming>SequenceFlow_1ov1ks7</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_075u5a4</bpmn:outgoing>
       <bpmn:property id="Property_0apppuk" name="__targetRef_placeholder" />
@@ -149,7 +149,7 @@
     <bpmn:dataStoreReference id="DataStoreReference_1201ia2" name="customer data" />
     <bpmn:dataObjectReference id="DataObjectReference_01zbefm" name="contract" dataObjectRef="DataObject_0sbpkil" />
     <bpmn:dataObject id="DataObject_0sbpkil" />
-    <bpmn:serviceTask id="Task_06o8dgl" name="Close case">
+    <bpmn:serviceTask id="Task_06o8dgl" name="Close case" camunda:expression="$(test)">
       <bpmn:incoming>SequenceFlow_0ds8v4x</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1gl0l84</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -163,7 +163,17 @@
       <bpmn:outgoing>SequenceFlow_0q9rb4q</bpmn:outgoing>
     </bpmn:task>
     <bpmn:dataStoreReference id="DataStoreReference_1ggj3lc" name="case database 1" />
+    <bpmn:endEvent id="EndEvent_1gxxze8">
+      <bpmn:incoming>SequenceFlow_1gl0l84</bpmn:incoming>
+      <bpmn:messageEventDefinition messageRef="Message_0qhxvl8" />
+    </bpmn:endEvent>
   </bpmn:process>
+  <bpmn:message id="Message_0vsfji7" name="Message_0e7eoe9" />
+  <bpmn:message id="Message_016opmc" name="Message_17nu932" />
+  <bpmn:message id="Message_0m6nu6i" name="Message_2vl7cue" />
+  <bpmn:message id="Message_0qhxvl8" name="Message_220cs7l" />
+  <bpmn:message id="Message_0qbnllw" name="Message_0gi9a73" />
+  <bpmn:message id="Message_1dj4s63" name="Message_1eea03e" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="HealthInsuranceProcess">
       <bpmndi:BPMNShape id="Participant_11arpnk_di" bpmnElement="Participant_11arpnk" isHorizontal="true">
@@ -207,7 +217,7 @@
       <bpmndi:BPMNShape id="ExclusiveGateway_10qbl19_di" bpmnElement="ExclusiveGateway_10qbl19" isMarkerVisible="true">
         <dc:Bounds x="799" y="689" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="758.5" y="735.5" width="55" height="27" />
+          <dc:Bounds x="759" y="736" width="55" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Task_14bxa3i_di" bpmnElement="Task_14bxa3i">
@@ -238,7 +248,7 @@
         <di:waypoint x="836" y="727" />
         <di:waypoint x="1139" y="727" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="916.0000000000002" y="730" width="34" height="14" />
+          <dc:Bounds x="916" y="730" width="34" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1cr7dwi_di" bpmnElement="SequenceFlow_1cr7dwi">

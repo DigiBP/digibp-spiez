@@ -53,6 +53,48 @@
       <bpmn:outgoing>SequenceFlow_0x9nwir</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:startEvent id="StartEvent_1" name="Receive application">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="firstName" label="First Name" type="string">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="lastName" label="Last Name" type="string">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="gender" label="Gender" type="enum">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+            <camunda:value id="m" name="male" />
+            <camunda:value id="f" name="female" />
+          </camunda:formField>
+          <camunda:formField id="age" label="Age" type="long">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="dateOfBirth" label="Date of Birth" type="date" />
+          <camunda:formField id="addressStreet" label="Street + No." type="string" />
+          <camunda:formField id="addressZipCode" label="ZipCode" type="string" />
+          <camunda:formField id="addressCity" label="City" type="string" />
+          <camunda:formField id="email" label="Email" type="string" />
+          <camunda:formField id="employment" label="Employment" type="enum">
+            <camunda:value id="ue" name="unemployed" />
+            <camunda:value id="ep" name="employed" />
+            <camunda:value id="sp" name="self-employed" />
+          </camunda:formField>
+          <camunda:formField id="maritalStatus" label="Marital Status" type="enum">
+            <camunda:value id="si" name="single" />
+            <camunda:value id="ma" name="married" />
+            <camunda:value id="di" name="divorced" />
+            <camunda:value id="wi" name="widowed" />
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_06pwdm5</bpmn:outgoing>
       <bpmn:messageEventDefinition messageRef="Message_0vsfji7" />
     </bpmn:startEvent>

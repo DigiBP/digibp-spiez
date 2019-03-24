@@ -93,6 +93,11 @@
             <camunda:value id="di" name="divorced" />
             <camunda:value id="wi" name="widowed" />
           </camunda:formField>
+          <camunda:formField id="citizenShip" label="Citzienship" type="enum">
+            <camunda:value id="CH" name="Switzerland" />
+            <camunda:value id="DE" name="Germany" />
+            <camunda:value id="OT" name="Other Countries" />
+          </camunda:formField>
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_06pwdm5</bpmn:outgoing>
@@ -138,7 +143,14 @@
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_01ahr1r" sourceRef="IntermediateThrowEvent_06ewv1a" targetRef="Task_0cpoqzd" />
     <bpmn:sequenceFlow id="SequenceFlow_1doq5i6" sourceRef="Task_02nu5zm" targetRef="IntermediateThrowEvent_06ewv1a" />
-    <bpmn:businessRuleTask id="Task_0wyv6r0" name="Assess case" camunda:expression="$(test)">
+    <bpmn:businessRuleTask id="Task_0wyv6r0" name="Assess case" camunda:resultVariable="Decision_assessment" camunda:decisionRef="Decision_assessment" camunda:mapDecisionResult="singleResult">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="citizenShip">${citizenShip}</camunda:inputParameter>
+          <camunda:inputParameter name="maritalStatus">${maritalStatus}</camunda:inputParameter>
+          <camunda:outputParameter name="assessmentDecision">${assessmentDecision}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1pkfo0w</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1yuu9ma</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1efpgg5">

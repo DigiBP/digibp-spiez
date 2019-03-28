@@ -21,6 +21,11 @@
           <text>"si","ma","di","wi"</text>
         </inputValues>
       </input>
+      <input id="InputClause_0bydqjk">
+        <inputExpression id="LiteralExpression_1qpjy7b" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
       <output id="output_1" label="Assessment Decision" name="assessmentDecision" typeRef="string">
         <outputValues id="UnaryTests_1fiayzs">
           <text>"accept","reject","alternative"</text>
@@ -31,6 +36,9 @@
           <text>"CH"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_09c182l">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1942x63">
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1w89kpc">
@@ -44,6 +52,9 @@
         <inputEntry id="UnaryTests_0t73cno">
           <text>"si"</text>
         </inputEntry>
+        <inputEntry id="UnaryTests_00foj9d">
+          <text></text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_1jb3s9g">
           <text>"accept"</text>
         </outputEntry>
@@ -54,6 +65,9 @@
         </inputEntry>
         <inputEntry id="UnaryTests_0ol3xvw">
           <text>"ma"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_031s62v">
+          <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0j6xxly">
           <text>"reject"</text>
@@ -66,6 +80,9 @@
         <inputEntry id="UnaryTests_1ewzjsk">
           <text>"di"</text>
         </inputEntry>
+        <inputEntry id="UnaryTests_191vovc">
+          <text></text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_1p61i5y">
           <text>"reject"</text>
         </outputEntry>
@@ -76,6 +93,9 @@
         </inputEntry>
         <inputEntry id="UnaryTests_14wrj4w">
           <text>"wi"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19yuc7t">
+          <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0muzh6g">
           <text>"alternative"</text>
@@ -88,6 +108,9 @@
         <inputEntry id="UnaryTests_1n9wubb">
           <text>"si"</text>
         </inputEntry>
+        <inputEntry id="UnaryTests_1j54agz">
+          <text></text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_0bwgjo2">
           <text>"accept"</text>
         </outputEntry>
@@ -98,6 +121,9 @@
         </inputEntry>
         <inputEntry id="UnaryTests_04e1f0p">
           <text>"ma"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qr01pf">
+          <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0fm2eo4">
           <text>"accept"</text>
@@ -110,6 +136,9 @@
         <inputEntry id="UnaryTests_0ow4rgq">
           <text>"di"</text>
         </inputEntry>
+        <inputEntry id="UnaryTests_1pmmdbs">
+          <text></text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_134o0t3">
           <text>"alternative"</text>
         </outputEntry>
@@ -120,6 +149,9 @@
         </inputEntry>
         <inputEntry id="UnaryTests_1600ypb">
           <text>"wi"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0087gri">
+          <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1v7wo4l">
           <text>"alternative"</text>

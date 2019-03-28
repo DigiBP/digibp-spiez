@@ -17,12 +17,12 @@
       <bpmn:lane id="Lane_0bltqy3" name="Underwriters">
         <bpmn:flowNodeRef>IntermediateThrowEvent_receiveSignedContract</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_emailRejectApplication</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>StartEvent_receiveApplication</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_resultAssessment</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_assesCase</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>T_issuePolicy</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_sendContractToCustomer</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_rejectCase</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_receiveApplication</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1x5uilt" name="IT System">
         <bpmn:flowNodeRef>IntermediateThrowEvent_receiveMissingData</bpmn:flowNodeRef>
@@ -113,84 +113,6 @@
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="SequenceFlow_1v41auc" sourceRef="StartEvent_receiveApplication" targetRef="Task_assesCase" />
     <bpmn:dataStoreReference id="DataStoreReference_1ggj3lc" name="case database" />
-    <bpmn:startEvent id="StartEvent_receiveApplication" name="Receive application">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="firstName" label="First Name" type="string">
-            <camunda:validation>
-              <camunda:constraint name="required" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="lastName" label="Last Name" type="string">
-            <camunda:validation>
-              <camunda:constraint name="required" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="gender" label="Gender" type="enum">
-            <camunda:validation>
-              <camunda:constraint name="required" />
-            </camunda:validation>
-            <camunda:value id="m" name="male" />
-            <camunda:value id="f" name="female" />
-          </camunda:formField>
-          <camunda:formField id="age" label="Age" type="long">
-            <camunda:validation>
-              <camunda:constraint name="required" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="dateOfBirth" label="Date of Birth" type="date" />
-          <camunda:formField id="addressStreet" label="Street + No." type="string" />
-          <camunda:formField id="addressZipCode" label="ZipCode" type="string" />
-          <camunda:formField id="addressCity" label="City" type="string" />
-          <camunda:formField id="email" label="Email" type="string" />
-          <camunda:formField id="employment" label="Employment" type="enum">
-            <camunda:value id="ue" name="unemployed" />
-            <camunda:value id="ep" name="employed" />
-            <camunda:value id="sp" name="self-employed" />
-          </camunda:formField>
-          <camunda:formField id="maritalStatus" label="Marital Status" type="enum">
-            <camunda:value id="si" name="single" />
-            <camunda:value id="ma" name="married" />
-            <camunda:value id="di" name="divorced" />
-            <camunda:value id="wi" name="widowed" />
-          </camunda:formField>
-          <camunda:formField id="citizenShip" label="Citzienship" type="enum">
-            <camunda:value id="CH" name="Switzerland" />
-            <camunda:value id="DE" name="Germany" />
-            <camunda:value id="OT" name="Other Countries" />
-          </camunda:formField>
-		   <camunda:formField id="Date of birth" label="Date of birth" type="string" />
-          <camunda:formField id="Street" label="Street" type="string" />
-          <camunda:formField id="House number" label="House number" type="long" />
-          <camunda:formField id="Postal code" label="postal code" type="long" />
-          <camunda:formField id="City" label="City" type="string" />
-          <camunda:formField id="Telephone" type="long" />
-          <camunda:formField id="E-mail" label="email" type="string" />
-          <camunda:formField id="Height" label="Height" type="string" />
-          <camunda:formField id="Weight" label="Weight" type="string" />
-          <camunda:formField id="Employment" label="Employment" type="string" />
-          <camunda:formField id="Disability" label="Disability" type="string" />
-          <camunda:formField id="Disability details" label="Disability details" type="string" />
-          <camunda:formField id="Health conditions" label="Health conditions" type="boolean" />
-          <camunda:formField id="Specify health conditions" label="specify the type of health ailment" type="string" />
-          <camunda:formField id="Planned Treatment" label="Planned treatment" type="string" />
-          <camunda:formField id="Terminal illness" label="Specify terminal illnesses if any" type="string" />
-          <camunda:formField id="psychological Illness" label="specify psychological illness" type="string" />
-          <camunda:formField id="Marital status" type="string" defaultValue="Marital status" />
-          <camunda:formField id="Children" label="Children" type="boolean" />
-          <camunda:formField id="Smoking" label="Smoking" type="boolean" />
-          <camunda:formField id="Body mass index" label="Body mass index" type="long" />
-          <camunda:formField id="Specify terminal Illness type" label="Specify terminal illness type" type="string" />
-          <camunda:formField id="specify Planned treatment details" label="specify planned illness treatment" type="string" />
-          <camunda:formField id="Business key" label="Business key" type="long" />
-          <camunda:formField id="Offer " label="Offer" type="string" />
-          <camunda:formField id="Offer amount" label="Offer amount" type="long" />
-          <camunda:formField id="Accept offer" label="Do yoi a" type="string" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:outgoing>SequenceFlow_1v41auc</bpmn:outgoing>
-      <bpmn:messageEventDefinition messageRef="Message_0vsfji7" />
-    </bpmn:startEvent>
     <bpmn:exclusiveGateway id="ExclusiveGateway_resultAssessment" name="Result of asessment">
       <bpmn:incoming>SequenceFlow_1yuu9ma</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1o6jn2x</bpmn:outgoing>
@@ -227,6 +149,82 @@
       <bpmn:incoming>SequenceFlow_1o6jn2x</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0q9rb4q</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:startEvent id="StartEvent_receiveApplication" name="Receive application">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="firstName" label="First Name" type="string">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="lastName" label="Last Name" type="string">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="age" label="Age" type="long">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="dateOfBirth" label="Date of Birth" type="date" />
+          <camunda:formField id="addressStreet" label="Street + No." type="string" />
+          <camunda:formField id="addressZipCode" label="ZipCode" type="string" />
+          <camunda:formField id="addressCity" label="City" type="string" />
+          <camunda:formField id="email" label="Email" type="string" />
+          <camunda:formField id="employment" label="Employment" type="enum">
+            <camunda:value id="ue" name="unemployed" />
+            <camunda:value id="ep" name="employed" />
+            <camunda:value id="sp" name="self-employed" />
+          </camunda:formField>
+          <camunda:formField id="maritalStatus" label="Marital Status" type="enum">
+            <camunda:value id="si" name="single" />
+            <camunda:value id="ma" name="married" />
+            <camunda:value id="di" name="divorced" />
+            <camunda:value id="wi" name="widowed" />
+          </camunda:formField>
+          <camunda:formField id="citizenShip" label="Citzienship" type="enum">
+            <camunda:value id="CH" name="Switzerland" />
+            <camunda:value id="DE" name="Germany" />
+            <camunda:value id="OT" name="Other Countries" />
+          </camunda:formField>
+          <camunda:formField id="Date of birth" label="Date of birth" type="string" />
+          <camunda:formField id="Street" label="Street" type="string" />
+          <camunda:formField id="House number" label="House number" type="long" />
+          <camunda:formField id="Postal code" label="postal code" type="long" />
+          <camunda:formField id="City" label="City" type="string" />
+          <camunda:formField id="Telephone" type="long" />
+          <camunda:formField id="E-mail" label="email" type="string" />
+          <camunda:formField id="Height" label="Height" type="string" />
+          <camunda:formField id="Weight" label="Weight" type="string" />
+          <camunda:formField id="Employment" label="Employment" type="string" />
+          <camunda:formField id="Disability" label="Disability" type="string" />
+          <camunda:formField id="Disability details" label="Disability details" type="string" />
+          <camunda:formField id="Health conditions" label="Health conditions" type="boolean" />
+          <camunda:formField id="Specify health conditions" label="specify the type of health ailment" type="string" />
+          <camunda:formField id="Planned Treatment" label="Planned treatment" type="string" />
+          <camunda:formField id="Terminal illness" label="Specify terminal illnesses if any" type="string" />
+          <camunda:formField id="psychological Illness" label="specify psychological illness" type="string" />
+          <camunda:formField id="Marital status" type="string" defaultValue="Marital status" />
+          <camunda:formField id="Children" label="Children" type="boolean" />
+          <camunda:formField id="Smoking" label="Smoking" type="boolean" />
+          <camunda:formField id="Body mass index" label="Body mass index" type="long" />
+          <camunda:formField id="Specify terminal Illness type" label="Specify terminal illness type" type="string" />
+          <camunda:formField id="specify Planned treatment details" label="specify planned illness treatment" type="string" />
+          <camunda:formField id="Business key" label="Business key" type="long" />
+          <camunda:formField id="Offer " label="Offer" type="string" />
+          <camunda:formField id="Offer amount" label="Offer amount" type="long" />
+          <camunda:formField id="Accept offer" label="Do yoi a" type="string" />
+          <camunda:formField id="gender" label="Gender" type="enum" defaultValue="m">
+            <camunda:value id="m" name="male" />
+            <camunda:value id="f" name="female" />
+            <camunda:value id="d" name="Diverse" />
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>SequenceFlow_1v41auc</bpmn:outgoing>
+      <bpmn:messageEventDefinition messageRef="Message_0vsfji7" />
+    </bpmn:startEvent>
   </bpmn:process>
   <bpmn:message id="Message_0vsfji7" name="Message_0e7eoe9" />
   <bpmn:message id="Message_016opmc" name="Message_17nu932" />
@@ -243,14 +241,14 @@
         <dc:Bounds x="156" y="81" width="1891" height="188" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="StartEvent_1c4x6xz_di" bpmnElement="StartEvent_receiveApplication">
-        <dc:Bounds x="287" y="727" width="36" height="36" />
+        <dc:Bounds x="287" y="723" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="279" y="770" width="53" height="27" />
+          <dc:Bounds x="279" y="766" width="53" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="MessageFlow_17zf0ro_di" bpmnElement="MessageFlow_17zf0ro">
         <di:waypoint x="305" y="269" />
-        <di:waypoint x="305" y="727" />
+        <di:waypoint x="305" y="723" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ExclusiveGateway_10qbl19_di" bpmnElement="ExclusiveGateway_resultAssessment" isMarkerVisible="true">
         <dc:Bounds x="696" y="740" width="50" height="50" />
@@ -460,8 +458,8 @@
         <di:waypoint x="502" y="875" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1v41auc_di" bpmnElement="SequenceFlow_1v41auc">
-        <di:waypoint x="323" y="745" />
-        <di:waypoint x="413" y="745" />
+        <di:waypoint x="323" y="741" />
+        <di:waypoint x="413" y="741" />
         <di:waypoint x="413" y="765" />
         <di:waypoint x="460" y="765" />
       </bpmndi:BPMNEdge>

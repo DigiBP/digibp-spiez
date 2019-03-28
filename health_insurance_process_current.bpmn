@@ -159,6 +159,33 @@
             <camunda:value id="DE" name="Germany" />
             <camunda:value id="OT" name="Other Countries" />
           </camunda:formField>
+		   <camunda:formField id="Date of birth" label="Date of birth" type="string" />
+          <camunda:formField id="Street" label="Street" type="string" />
+          <camunda:formField id="House number" label="House number" type="long" />
+          <camunda:formField id="Postal code" label="postal code" type="long" />
+          <camunda:formField id="City" label="City" type="string" />
+          <camunda:formField id="Telephone" type="long" />
+          <camunda:formField id="E-mail" label="email" type="string" />
+          <camunda:formField id="Height" label="Height" type="string" />
+          <camunda:formField id="Weight" label="Weight" type="string" />
+          <camunda:formField id="Employment" label="Employment" type="string" />
+          <camunda:formField id="Disability" label="Disability" type="string" />
+          <camunda:formField id="Disability details" label="Disability details" type="string" />
+          <camunda:formField id="Health conditions" label="Health conditions" type="boolean" />
+          <camunda:formField id="Specify health conditions" label="specify the type of health ailment" type="string" />
+          <camunda:formField id="Planned Treatment" label="Planned treatment" type="string" />
+          <camunda:formField id="Terminal illness" label="Specify terminal illnesses if any" type="string" />
+          <camunda:formField id="psychological Illness" label="specify psychological illness" type="string" />
+          <camunda:formField id="Marital status" type="string" defaultValue="Marital status" />
+          <camunda:formField id="Children" label="Children" type="boolean" />
+          <camunda:formField id="Smoking" label="Smoking" type="boolean" />
+          <camunda:formField id="Body mass index" label="Body mass index" type="long" />
+          <camunda:formField id="Specify terminal Illness type" label="Specify terminal illness type" type="string" />
+          <camunda:formField id="specify Planned treatment details" label="specify planned illness treatment" type="string" />
+          <camunda:formField id="Business key" label="Business key" type="long" />
+          <camunda:formField id="Offer " label="Offer" type="string" />
+          <camunda:formField id="Offer amount" label="Offer amount" type="long" />
+          <camunda:formField id="Accept offer" label="Do yoi a" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_1v41auc</bpmn:outgoing>

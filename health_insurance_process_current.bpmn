@@ -3,75 +3,75 @@
   <bpmn:collaboration id="HealthInsuranceProcessDavid">
     <bpmn:participant id="Participant_11arpnk" name="Customer Support" processRef="Process_1fktq2r" />
     <bpmn:participant id="Participant_17bhftx" name="Customer" />
-    <bpmn:messageFlow id="MessageFlow_17zf0ro" sourceRef="Participant_17bhftx" targetRef="StartEvent_1" />
+    <bpmn:messageFlow id="MessageFlow_17zf0ro" sourceRef="Participant_17bhftx" targetRef="StartEvent_receiveApplication" />
     <bpmn:messageFlow id="MessageFlow_0id0k09" sourceRef="EndEvent_0n4326m" targetRef="Participant_17bhftx" />
-    <bpmn:messageFlow id="MessageFlow_1na8gav" sourceRef="Task_0bwwbpw" targetRef="Participant_17bhftx" />
-    <bpmn:messageFlow id="MessageFlow_1rhs2bg" sourceRef="Participant_17bhftx" targetRef="IntermediateThrowEvent_08dlca9" />
-    <bpmn:messageFlow id="MessageFlow_0rohzv9" sourceRef="Participant_17bhftx" targetRef="IntermediateThrowEvent_06ewv1a" />
+    <bpmn:messageFlow id="MessageFlow_1na8gav" sourceRef="Task_proposeAlternativeOffers" targetRef="Participant_17bhftx" />
+    <bpmn:messageFlow id="MessageFlow_1rhs2bg" sourceRef="Participant_17bhftx" targetRef="IntermediateThrowEvent_receiveSignedContract" />
+    <bpmn:messageFlow id="MessageFlow_0rohzv9" sourceRef="Participant_17bhftx" targetRef="IntermediateThrowEvent_receiveMissingData" />
     <bpmn:messageFlow id="MessageFlow_1p8tb7o" sourceRef="Participant_17bhftx" targetRef="IntermediateThrowEvent_0yuxpid" />
     <bpmn:messageFlow id="MessageFlow_0bqgbbp" sourceRef="EndEvent_1gxxze8" targetRef="Participant_17bhftx" />
-    <bpmn:messageFlow id="MessageFlow_0bnmkvc" sourceRef="Task_1erucnw" targetRef="Participant_17bhftx" />
+    <bpmn:messageFlow id="MessageFlow_0bnmkvc" sourceRef="Task_sendContractToCustomer" targetRef="Participant_17bhftx" />
   </bpmn:collaboration>
   <bpmn:process id="Process_1fktq2r" name="Health Insurance Process (current)" isExecutable="true">
     <bpmn:laneSet id="LaneSet_1wkwfu0">
       <bpmn:lane id="Lane_0bltqy3" name="Underwriters">
-        <bpmn:flowNodeRef>Task_1erucnw</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>IntermediateThrowEvent_08dlca9</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_sendContractToCustomer</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IntermediateThrowEvent_receiveSignedContract</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_0n4326m</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_05k3x6f</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_14bxa3i</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>ExclusiveGateway_10qbl19</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_0wyv6r0</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_rejectCase</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_receiveApplication</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ExclusiveGateway_resultAssessment</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_assesCase</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_issuePolicy</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1x5uilt" name="IT System">
-        <bpmn:flowNodeRef>IntermediateThrowEvent_06ewv1a</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>EndEvent_1s5pmc3</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_0u7kpyv</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IntermediateThrowEvent_receiveMissingData</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_applicationClosed</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_updateContractDatabase</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0ghhit6" name="Consultant">
-        <bpmn:flowNodeRef>Task_0bwwbpw</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_proposeAlternativeOffers</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_1tcpkzi</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IntermediateThrowEvent_0yuxpid</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_06o8dgl</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_closeCase</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_1gxxze8</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:userTask id="Task_0bwwbpw" name="Propose alternative offers">
+    <bpmn:userTask id="Task_proposeAlternativeOffers" name="Propose alternative offers">
       <bpmn:incoming>SequenceFlow_1cr7dwi</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_12eaxtt</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:task id="Task_1erucnw" name="Send contract to customer">
+    <bpmn:task id="Task_sendContractToCustomer" name="Send contract to customer">
       <bpmn:incoming>SequenceFlow_0dodatt</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0it35zf</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1u7vsgk">
-        <bpmn:targetRef>DataObjectReference_01zbefm</bpmn:targetRef>
+        <bpmn:targetRef>DataObjectReference_contract</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:task>
-    <bpmn:sequenceFlow id="SequenceFlow_1yuu9ma" sourceRef="Task_0wyv6r0" targetRef="ExclusiveGateway_10qbl19" />
-    <bpmn:sequenceFlow id="SequenceFlow_1o6jn2x" name="reject" sourceRef="ExclusiveGateway_10qbl19" targetRef="Task_14bxa3i">
+    <bpmn:sequenceFlow id="SequenceFlow_1yuu9ma" sourceRef="Task_assesCase" targetRef="ExclusiveGateway_resultAssessment" />
+    <bpmn:sequenceFlow id="SequenceFlow_1o6jn2x" name="reject" sourceRef="ExclusiveGateway_resultAssessment" targetRef="Task_rejectCase">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${assessmentDecision== "reject"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_1otr561" name="accept" sourceRef="ExclusiveGateway_10qbl19" targetRef="Task_05k3x6f">
+    <bpmn:sequenceFlow id="SequenceFlow_1otr561" name="accept" sourceRef="ExclusiveGateway_resultAssessment" targetRef="T_issuePolicy">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${assessmentDecision== "accept"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_1cr7dwi" name="alternative" sourceRef="ExclusiveGateway_10qbl19" targetRef="Task_0bwwbpw">
+    <bpmn:sequenceFlow id="SequenceFlow_1cr7dwi" name="alternative" sourceRef="ExclusiveGateway_resultAssessment" targetRef="Task_proposeAlternativeOffers">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${assessmentDecision== "alternative"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_0q9rb4q" sourceRef="Task_14bxa3i" targetRef="EndEvent_0n4326m" />
-    <bpmn:sequenceFlow id="SequenceFlow_0dodatt" sourceRef="Task_05k3x6f" targetRef="Task_1erucnw" />
-    <bpmn:sequenceFlow id="SequenceFlow_0it35zf" sourceRef="Task_1erucnw" targetRef="IntermediateThrowEvent_08dlca9" />
-    <bpmn:sequenceFlow id="SequenceFlow_075u5a4" sourceRef="Task_0u7kpyv" targetRef="EndEvent_1s5pmc3" />
-    <bpmn:sequenceFlow id="SequenceFlow_12eaxtt" sourceRef="Task_0bwwbpw" targetRef="IntermediateThrowEvent_0yuxpid" />
+    <bpmn:sequenceFlow id="SequenceFlow_0q9rb4q" sourceRef="Task_rejectCase" targetRef="EndEvent_0n4326m" />
+    <bpmn:sequenceFlow id="SequenceFlow_0dodatt" sourceRef="T_issuePolicy" targetRef="Task_sendContractToCustomer" />
+    <bpmn:sequenceFlow id="SequenceFlow_0it35zf" sourceRef="Task_sendContractToCustomer" targetRef="IntermediateThrowEvent_receiveSignedContract" />
+    <bpmn:sequenceFlow id="SequenceFlow_075u5a4" sourceRef="Task_updateContractDatabase" targetRef="EndEvent_applicationClosed" />
+    <bpmn:sequenceFlow id="SequenceFlow_12eaxtt" sourceRef="Task_proposeAlternativeOffers" targetRef="IntermediateThrowEvent_0yuxpid" />
     <bpmn:exclusiveGateway id="ExclusiveGateway_1tcpkzi" name="accepted?">
       <bpmn:incoming>SequenceFlow_1r490y5</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_12x7ozm</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_0ds8v4x</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="SequenceFlow_12x7ozm" name="yes" sourceRef="ExclusiveGateway_1tcpkzi" targetRef="Task_05k3x6f" />
+    <bpmn:sequenceFlow id="SequenceFlow_12x7ozm" name="yes" sourceRef="ExclusiveGateway_1tcpkzi" targetRef="T_issuePolicy" />
     <bpmn:sequenceFlow id="SequenceFlow_1r490y5" sourceRef="IntermediateThrowEvent_0yuxpid" targetRef="ExclusiveGateway_1tcpkzi" />
-    <bpmn:sequenceFlow id="SequenceFlow_1gl0l84" sourceRef="Task_06o8dgl" targetRef="EndEvent_1gxxze8" />
-    <bpmn:sequenceFlow id="SequenceFlow_0ds8v4x" name="no" sourceRef="ExclusiveGateway_1tcpkzi" targetRef="Task_06o8dgl">
+    <bpmn:sequenceFlow id="SequenceFlow_1gl0l84" sourceRef="Task_closeCase" targetRef="EndEvent_1gxxze8" />
+    <bpmn:sequenceFlow id="SequenceFlow_0ds8v4x" name="no" sourceRef="ExclusiveGateway_1tcpkzi" targetRef="Task_closeCase">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${false}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_0yuxpid" name="Receive answer">
@@ -79,11 +79,11 @@
       <bpmn:outgoing>SequenceFlow_1r490y5</bpmn:outgoing>
       <bpmn:messageEventDefinition messageRef="Message_0m6nu6i" />
     </bpmn:intermediateCatchEvent>
-    <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_06ewv1a" name="Receive missing data">
+    <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_receiveMissingData" name="Receive missing data">
       <bpmn:messageEventDefinition messageRef="Message_016opmc" />
     </bpmn:intermediateCatchEvent>
-    <bpmn:sequenceFlow id="SequenceFlow_1ov1ks7" sourceRef="IntermediateThrowEvent_08dlca9" targetRef="Task_0u7kpyv" />
-    <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_08dlca9" name="Receive signed contract">
+    <bpmn:sequenceFlow id="SequenceFlow_1ov1ks7" sourceRef="IntermediateThrowEvent_receiveSignedContract" targetRef="Task_updateContractDatabase" />
+    <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_receiveSignedContract" name="Receive signed contract">
       <bpmn:incoming>SequenceFlow_0it35zf</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1ov1ks7</bpmn:outgoing>
       <bpmn:messageEventDefinition messageRef="Message_1dj4s63" />
@@ -92,34 +92,29 @@
       <bpmn:incoming>SequenceFlow_0q9rb4q</bpmn:incoming>
       <bpmn:messageEventDefinition messageRef="Message_0qbnllw" />
     </bpmn:endEvent>
-    <bpmn:endEvent id="EndEvent_1s5pmc3">
+    <bpmn:endEvent id="EndEvent_applicationClosed" name="Application closed">
       <bpmn:incoming>SequenceFlow_075u5a4</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:serviceTask id="Task_0u7kpyv" name="Update contract database" camunda:expression="$(test)">
+    <bpmn:serviceTask id="Task_updateContractDatabase" name="Update contract database" camunda:expression="$(test)">
       <bpmn:incoming>SequenceFlow_1ov1ks7</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_075u5a4</bpmn:outgoing>
       <bpmn:property id="Property_0apppuk" name="__targetRef_placeholder" />
       <bpmn:dataInputAssociation id="DataInputAssociation_10u0hay">
-        <bpmn:sourceRef>DataStoreReference_1201ia2</bpmn:sourceRef>
+        <bpmn:sourceRef>DataStoreReference_customerData</bpmn:sourceRef>
         <bpmn:targetRef>Property_0apppuk</bpmn:targetRef>
       </bpmn:dataInputAssociation>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_0bedaj4">
-        <bpmn:targetRef>DataStoreReference_1201ia2</bpmn:targetRef>
+        <bpmn:targetRef>DataStoreReference_customerData</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:serviceTask>
-    <bpmn:dataStoreReference id="DataStoreReference_1201ia2" name="customer data" />
-    <bpmn:dataObjectReference id="DataObjectReference_01zbefm" name="contract" dataObjectRef="DataObject_0sbpkil" />
+    <bpmn:dataStoreReference id="DataStoreReference_customerData" name="customer data" />
+    <bpmn:dataObjectReference id="DataObjectReference_contract" name="contract" dataObjectRef="DataObject_0sbpkil" />
     <bpmn:dataObject id="DataObject_0sbpkil" />
-    <bpmn:serviceTask id="Task_06o8dgl" name="Close case" camunda:expression="$(test)">
+    <bpmn:serviceTask id="Task_closeCase" name="Close case" camunda:expression="$(test)">
       <bpmn:incoming>SequenceFlow_0ds8v4x</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1gl0l84</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:subProcess id="Task_05k3x6f" name="Issue policy">
-      <bpmn:incoming>SequenceFlow_1otr561</bpmn:incoming>
-      <bpmn:incoming>SequenceFlow_12x7ozm</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0dodatt</bpmn:outgoing>
-    </bpmn:subProcess>
-    <bpmn:task id="Task_14bxa3i" name="Reject case">
+    <bpmn:task id="Task_rejectCase" name="Reject case">
       <bpmn:incoming>SequenceFlow_1o6jn2x</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0q9rb4q</bpmn:outgoing>
     </bpmn:task>
@@ -127,9 +122,9 @@
       <bpmn:incoming>SequenceFlow_1gl0l84</bpmn:incoming>
       <bpmn:messageEventDefinition messageRef="Message_0qhxvl8" />
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="SequenceFlow_1v41auc" sourceRef="StartEvent_1" targetRef="Task_0wyv6r0" />
-    <bpmn:dataStoreReference id="DataStoreReference_1ggj3lc" name="case database 1" />
-    <bpmn:startEvent id="StartEvent_1" name="Receive application">
+    <bpmn:sequenceFlow id="SequenceFlow_1v41auc" sourceRef="StartEvent_receiveApplication" targetRef="Task_assesCase" />
+    <bpmn:dataStoreReference id="DataStoreReference_1ggj3lc" name="case database" />
+    <bpmn:startEvent id="StartEvent_receiveApplication" name="Receive application">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="firstName" label="First Name" type="string">
@@ -154,39 +149,107 @@
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="dateOfBirth" label="Date of Birth" type="date" />
-          <camunda:formField id="addressStreet" label="Street + No." type="string" />
-          <camunda:formField id="addressZipCode" label="ZipCode" type="string" />
-          <camunda:formField id="addressCity" label="City" type="string" />
+          <camunda:formField id="dateOfBirth" label="Date of Birth" type="date">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="addressStreet" label="Street + No." type="string">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="addressZipCode" label="ZipCode" type="string">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="addressCity" label="City" type="string">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
           <camunda:formField id="email" label="Email" type="string" />
           <camunda:formField id="employment" label="Employment" type="enum">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
             <camunda:value id="ue" name="unemployed" />
             <camunda:value id="ep" name="employed" />
-            <camunda:value id="sp" name="self-employed" />
           </camunda:formField>
           <camunda:formField id="maritalStatus" label="Marital Status" type="enum">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
             <camunda:value id="si" name="single" />
             <camunda:value id="ma" name="married" />
             <camunda:value id="di" name="divorced" />
             <camunda:value id="wi" name="widowed" />
           </camunda:formField>
-          <camunda:formField id="citizenShip" label="Citzienship" type="enum">
+          <camunda:formField id="citizenship" label="Citzienship" type="enum">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
             <camunda:value id="CH" name="Switzerland" />
-            <camunda:value id="DE" name="Germany" />
+            <camunda:value id="EU" name="European union" />
             <camunda:value id="OT" name="Other Countries" />
+          </camunda:formField>
+          <camunda:formField id="telephone" type="long">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="disability" label="Disability" type="boolean">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="disabilityType" label="Disability details" type="enum">
+            <camunda:validation>
+              <camunda:constraint />
+            </camunda:validation>
+            <camunda:value id="vi" name="visual Impairment" />
+            <camunda:value id="dh" name="deaf or hard of hearing" />
+            <camunda:value id="mh" name="mental health conditions" />
+            <camunda:value id="id" name="intellectual disability" />
+            <camunda:value id="abi" name="acquired brain injury" />
+            <camunda:value id="asd" name="autism spectrum disorder" />
+            <camunda:value id="pd" name="physical disability" />
+          </camunda:formField>
+          <camunda:formField id="healthconditions" label="Health conditions" type="boolean">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="specify_health_conditions" label="type of health condition" type="enum">
+            <camunda:value id="db" name="diabetes" />
+            <camunda:value id="ht" name="hypertension" />
+            <camunda:value id="hd" name="heartdisease" />
+            <camunda:value id="Value_35ijkbh" />
+          </camunda:formField>
+          <camunda:formField id="terminal_illness" type="boolean" />
+          <camunda:formField id="Specify_terminal_ Illness_ type" label="Specify terminal illness type" type="string">
+            <camunda:validation>
+              <camunda:constraint />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="planned_treatment" label="Planned Treatment" type="boolean">
+            <camunda:validation>
+              <camunda:constraint />
+            </camunda:validation>
           </camunda:formField>
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_1v41auc</bpmn:outgoing>
       <bpmn:messageEventDefinition messageRef="Message_0vsfji7" />
     </bpmn:startEvent>
-    <bpmn:exclusiveGateway id="ExclusiveGateway_10qbl19" name="Result of asessment">
+    <bpmn:exclusiveGateway id="ExclusiveGateway_resultAssessment" name="Result of asessment">
       <bpmn:incoming>SequenceFlow_1yuu9ma</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1o6jn2x</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_1otr561</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_1cr7dwi</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:businessRuleTask id="Task_0wyv6r0" name="Assess case" camunda:resultVariable="decision" camunda:decisionRef="Decision_assessment" camunda:mapDecisionResult="singleResult">
+    <bpmn:businessRuleTask id="Task_assesCase" name="Assess case" camunda:resultVariable="decision" camunda:decisionRef="Decision_assessment" camunda:mapDecisionResult="singleResult">
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:inputParameter name="citizenShip">${citizenShip}</camunda:inputParameter>
@@ -200,6 +263,11 @@
         <bpmn:targetRef>DataStoreReference_1ggj3lc</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:businessRuleTask>
+    <bpmn:userTask id="T_issuePolicy" name="Issue Policy">
+      <bpmn:incoming>SequenceFlow_1otr561</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_12x7ozm</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0dodatt</bpmn:outgoing>
+    </bpmn:userTask>
   </bpmn:process>
   <bpmn:message id="Message_0vsfji7" name="Message_0e7eoe9" />
   <bpmn:message id="Message_016opmc" name="Message_17nu932" />
@@ -215,7 +283,7 @@
       <bpmndi:BPMNShape id="Participant_1wbjrzx_di" bpmnElement="Participant_17bhftx" isHorizontal="true">
         <dc:Bounds x="156" y="81" width="1891" height="188" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="StartEvent_1c4x6xz_di" bpmnElement="StartEvent_1">
+      <bpmndi:BPMNShape id="StartEvent_1c4x6xz_di" bpmnElement="StartEvent_receiveApplication">
         <dc:Bounds x="287" y="727" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="279" y="770" width="53" height="27" />
@@ -225,13 +293,13 @@
         <di:waypoint x="305" y="269" />
         <di:waypoint x="305" y="727" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ExclusiveGateway_10qbl19_di" bpmnElement="ExclusiveGateway_10qbl19" isMarkerVisible="true">
+      <bpmndi:BPMNShape id="ExclusiveGateway_10qbl19_di" bpmnElement="ExclusiveGateway_resultAssessment" isMarkerVisible="true">
         <dc:Bounds x="696" y="740" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="656" y="787" width="55" height="27" />
+          <dc:Bounds x="657" y="787" width="54" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_14bxa3i_di" bpmnElement="Task_14bxa3i">
+      <bpmndi:BPMNShape id="Task_14bxa3i_di" bpmnElement="Task_rejectCase">
         <dc:Bounds x="1094" y="826" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0bltqy3_di" bpmnElement="Lane_0bltqy3" isHorizontal="true">
@@ -261,7 +329,7 @@
         <di:waypoint x="943" y="727" />
         <di:waypoint x="1139" y="727" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="783" y="781" width="34" height="14" />
+          <dc:Bounds x="784" y="781" width="33" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1cr7dwi_di" bpmnElement="SequenceFlow_1cr7dwi">
@@ -284,16 +352,16 @@
         <di:waypoint x="824" y="445" />
         <di:waypoint x="824" y="269" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="UserTask_1w3mv6s_di" bpmnElement="Task_0bwwbpw">
+      <bpmndi:BPMNShape id="UserTask_1w3mv6s_di" bpmnElement="Task_proposeAlternativeOffers">
         <dc:Bounds x="774" y="445" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_1erucnw_di" bpmnElement="Task_1erucnw">
+      <bpmndi:BPMNShape id="Task_1erucnw_di" bpmnElement="Task_sendContractToCustomer">
         <dc:Bounds x="1357" y="674" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_01zbefm_di" bpmnElement="DataObjectReference_01zbefm">
+      <bpmndi:BPMNShape id="DataObjectReference_01zbefm_di" bpmnElement="DataObjectReference_contract">
         <dc:Bounds x="1389" y="802" width="36" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1387" y="859" width="41" height="14" />
+          <dc:Bounds x="1388" y="859" width="40" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1u7vsgk_di" bpmnElement="DataOutputAssociation_1u7vsgk">
@@ -308,8 +376,11 @@
         <di:waypoint x="1457" y="714" />
         <di:waypoint x="1560" y="714" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="EndEvent_1s5pmc3_di" bpmnElement="EndEvent_1s5pmc3">
+      <bpmndi:BPMNShape id="EndEvent_1s5pmc3_di" bpmnElement="EndEvent_applicationClosed">
         <dc:Bounds x="1778" y="1047" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1752" y="1090" width="89" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_075u5a4_di" bpmnElement="SequenceFlow_075u5a4">
         <di:waypoint x="1628" y="1065" />
@@ -319,7 +390,7 @@
         <di:waypoint x="1578" y="269" />
         <di:waypoint x="1578" y="696" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="DataStoreReference_1201ia2_di" bpmnElement="DataStoreReference_1201ia2">
+      <bpmndi:BPMNShape id="DataStoreReference_1201ia2_di" bpmnElement="DataStoreReference_customerData">
         <dc:Bounds x="1382" y="1040" width="50" height="50" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1372" y="1097" width="70" height="14" />
@@ -340,10 +411,10 @@
       <bpmndi:BPMNShape id="DataStoreReference_1ggj3lc_di" bpmnElement="DataStoreReference_1ggj3lc">
         <dc:Bounds x="476" y="875" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="461" y="932" width="81" height="14" />
+          <dc:Bounds x="466" y="932" width="72" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BusinessRuleTask_1e3w1uw_di" bpmnElement="Task_0wyv6r0">
+      <bpmndi:BPMNShape id="BusinessRuleTask_1e3w1uw_di" bpmnElement="Task_assesCase">
         <dc:Bounds x="460" y="725" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_12eaxtt_di" bpmnElement="SequenceFlow_12eaxtt">
@@ -361,7 +432,7 @@
         <di:waypoint x="1085" y="714" />
         <di:waypoint x="1139" y="714" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1092" y="609" width="17" height="14" />
+          <dc:Bounds x="1092" y="609" width="18" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1r490y5_di" bpmnElement="SequenceFlow_1r490y5">
@@ -389,10 +460,10 @@
         <di:waypoint x="982" y="269" />
         <di:waypoint x="982" y="467" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="IntermediateCatchEvent_1lxwz69_di" bpmnElement="IntermediateThrowEvent_06ewv1a">
+      <bpmndi:BPMNShape id="IntermediateCatchEvent_1lxwz69_di" bpmnElement="IntermediateThrowEvent_receiveMissingData">
         <dc:Bounds x="872" y="1000" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="917.5" y="1004" width="81" height="27" />
+          <dc:Bounds x="918" y="1004" width="81" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="EndEvent_0djnlku_di" bpmnElement="EndEvent_0n4326m">
@@ -409,7 +480,7 @@
         <di:waypoint x="1578" y="732" />
         <di:waypoint x="1578" y="1025" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="IntermediateCatchEvent_1yy8rpz_di" bpmnElement="IntermediateThrowEvent_08dlca9">
+      <bpmndi:BPMNShape id="IntermediateCatchEvent_1yy8rpz_di" bpmnElement="IntermediateThrowEvent_receiveSignedContract">
         <dc:Bounds x="1560" y="696" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1606" y="700" width="76" height="27" />
@@ -419,14 +490,11 @@
         <di:waypoint x="1443" y="674" />
         <di:waypoint x="1443" y="269" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ServiceTask_1o8p59f_di" bpmnElement="Task_0u7kpyv">
+      <bpmndi:BPMNShape id="ServiceTask_1o8p59f_di" bpmnElement="Task_updateContractDatabase">
         <dc:Bounds x="1528" y="1025" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ServiceTask_1agaj13_di" bpmnElement="Task_06o8dgl">
+      <bpmndi:BPMNShape id="ServiceTask_1agaj13_di" bpmnElement="Task_closeCase">
         <dc:Bounds x="1182" y="445" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="SubProcess_00xbogy_di" bpmnElement="Task_05k3x6f">
-        <dc:Bounds x="1139" y="674" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1efpgg5_di" bpmnElement="DataOutputAssociation_1efpgg5">
         <di:waypoint x="507" y="805" />
@@ -438,6 +506,9 @@
         <di:waypoint x="413" y="765" />
         <di:waypoint x="460" y="765" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_0c1insi_di" bpmnElement="T_issuePolicy">
+        <dc:Bounds x="1139" y="674" width="100" height="80" />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>

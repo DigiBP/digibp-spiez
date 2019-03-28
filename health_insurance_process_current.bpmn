@@ -170,7 +170,7 @@
             <camunda:value id="DE" name="Germany" />
             <camunda:value id="OT" name="Other Countries" />
           </camunda:formField>
-		   <camunda:formField id="Date of birth" label="Date of birth" type="string" />
+		   <camunda:formField id="Date of birth" label="Date of birth" type="string"  />
           <camunda:formField id="Street" label="Street" type="string" />
           <camunda:formField id="House number" label="House number" type="long" />
           <camunda:formField id="Postal code" label="postal code" type="long" />

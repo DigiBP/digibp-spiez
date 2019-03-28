@@ -4,25 +4,25 @@
     <bpmn:participant id="Participant_11arpnk" name="Customer Support" processRef="Process_1fktq2r" />
     <bpmn:participant id="Participant_17bhftx" name="Customer" />
     <bpmn:messageFlow id="MessageFlow_17zf0ro" sourceRef="Participant_17bhftx" targetRef="StartEvent_receiveApplication" />
-    <bpmn:messageFlow id="MessageFlow_0id0k09" sourceRef="EndEvent_0n4326m" targetRef="Participant_17bhftx" />
+    <bpmn:messageFlow id="MessageFlow_0id0k09" sourceRef="EndEvent_emailRejectApplication" targetRef="Participant_17bhftx" />
     <bpmn:messageFlow id="MessageFlow_1na8gav" sourceRef="Task_proposeAlternativeOffers" targetRef="Participant_17bhftx" />
     <bpmn:messageFlow id="MessageFlow_1rhs2bg" sourceRef="Participant_17bhftx" targetRef="IntermediateThrowEvent_receiveSignedContract" />
     <bpmn:messageFlow id="MessageFlow_0rohzv9" sourceRef="Participant_17bhftx" targetRef="IntermediateThrowEvent_receiveMissingData" />
     <bpmn:messageFlow id="MessageFlow_1p8tb7o" sourceRef="Participant_17bhftx" targetRef="IntermediateThrowEvent_0yuxpid" />
-    <bpmn:messageFlow id="MessageFlow_0bqgbbp" sourceRef="EndEvent_1gxxze8" targetRef="Participant_17bhftx" />
+    <bpmn:messageFlow id="MessageFlow_0bqgbbp" sourceRef="EndEvent_emailcCoseCase" targetRef="Participant_17bhftx" />
     <bpmn:messageFlow id="MessageFlow_0bnmkvc" sourceRef="Task_sendContractToCustomer" targetRef="Participant_17bhftx" />
   </bpmn:collaboration>
   <bpmn:process id="Process_1fktq2r" name="Health Insurance Process (current)" isExecutable="true">
     <bpmn:laneSet id="LaneSet_1wkwfu0">
       <bpmn:lane id="Lane_0bltqy3" name="Underwriters">
-        <bpmn:flowNodeRef>Task_sendContractToCustomer</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IntermediateThrowEvent_receiveSignedContract</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>EndEvent_0n4326m</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_rejectCase</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_emailRejectApplication</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>StartEvent_receiveApplication</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_resultAssessment</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_assesCase</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>T_issuePolicy</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_sendContractToCustomer</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_rejectCase</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1x5uilt" name="IT System">
         <bpmn:flowNodeRef>IntermediateThrowEvent_receiveMissingData</bpmn:flowNodeRef>
@@ -34,20 +34,13 @@
         <bpmn:flowNodeRef>ExclusiveGateway_1tcpkzi</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IntermediateThrowEvent_0yuxpid</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_closeCase</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>EndEvent_1gxxze8</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_emailcCoseCase</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:userTask id="Task_proposeAlternativeOffers" name="Propose alternative offers">
       <bpmn:incoming>SequenceFlow_1cr7dwi</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_12eaxtt</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:task id="Task_sendContractToCustomer" name="Send contract to customer">
-      <bpmn:incoming>SequenceFlow_0dodatt</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0it35zf</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_1u7vsgk">
-        <bpmn:targetRef>DataObjectReference_contract</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-    </bpmn:task>
     <bpmn:sequenceFlow id="SequenceFlow_1yuu9ma" sourceRef="Task_assesCase" targetRef="ExclusiveGateway_resultAssessment" />
     <bpmn:sequenceFlow id="SequenceFlow_1o6jn2x" name="reject" sourceRef="ExclusiveGateway_resultAssessment" targetRef="Task_rejectCase">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${assessmentDecision== "reject"}</bpmn:conditionExpression>
@@ -58,7 +51,7 @@
     <bpmn:sequenceFlow id="SequenceFlow_1cr7dwi" name="alternative" sourceRef="ExclusiveGateway_resultAssessment" targetRef="Task_proposeAlternativeOffers">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${assessmentDecision== "alternative"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_0q9rb4q" sourceRef="Task_rejectCase" targetRef="EndEvent_0n4326m" />
+    <bpmn:sequenceFlow id="SequenceFlow_0q9rb4q" sourceRef="Task_rejectCase" targetRef="EndEvent_emailRejectApplication" />
     <bpmn:sequenceFlow id="SequenceFlow_0dodatt" sourceRef="T_issuePolicy" targetRef="Task_sendContractToCustomer" />
     <bpmn:sequenceFlow id="SequenceFlow_0it35zf" sourceRef="Task_sendContractToCustomer" targetRef="IntermediateThrowEvent_receiveSignedContract" />
     <bpmn:sequenceFlow id="SequenceFlow_075u5a4" sourceRef="Task_updateContractDatabase" targetRef="EndEvent_applicationClosed" />
@@ -70,7 +63,7 @@
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="SequenceFlow_12x7ozm" name="yes" sourceRef="ExclusiveGateway_1tcpkzi" targetRef="T_issuePolicy" />
     <bpmn:sequenceFlow id="SequenceFlow_1r490y5" sourceRef="IntermediateThrowEvent_0yuxpid" targetRef="ExclusiveGateway_1tcpkzi" />
-    <bpmn:sequenceFlow id="SequenceFlow_1gl0l84" sourceRef="Task_closeCase" targetRef="EndEvent_1gxxze8" />
+    <bpmn:sequenceFlow id="SequenceFlow_1gl0l84" sourceRef="Task_closeCase" targetRef="EndEvent_emailcCoseCase" />
     <bpmn:sequenceFlow id="SequenceFlow_0ds8v4x" name="no" sourceRef="ExclusiveGateway_1tcpkzi" targetRef="Task_closeCase">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${false}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -88,7 +81,7 @@
       <bpmn:outgoing>SequenceFlow_1ov1ks7</bpmn:outgoing>
       <bpmn:messageEventDefinition messageRef="Message_1dj4s63" />
     </bpmn:intermediateCatchEvent>
-    <bpmn:endEvent id="EndEvent_0n4326m">
+    <bpmn:endEvent id="EndEvent_emailRejectApplication" name="Email Reject Application">
       <bpmn:incoming>SequenceFlow_0q9rb4q</bpmn:incoming>
       <bpmn:messageEventDefinition messageRef="Message_0qbnllw" />
     </bpmn:endEvent>
@@ -114,11 +107,7 @@
       <bpmn:incoming>SequenceFlow_0ds8v4x</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1gl0l84</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:task id="Task_rejectCase" name="Reject case">
-      <bpmn:incoming>SequenceFlow_1o6jn2x</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0q9rb4q</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:endEvent id="EndEvent_1gxxze8">
+    <bpmn:endEvent id="EndEvent_emailcCoseCase" name="Email Close Case">
       <bpmn:incoming>SequenceFlow_1gl0l84</bpmn:incoming>
       <bpmn:messageEventDefinition messageRef="Message_0qhxvl8" />
     </bpmn:endEvent>
@@ -200,6 +189,17 @@
       <bpmn:incoming>SequenceFlow_12x7ozm</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0dodatt</bpmn:outgoing>
     </bpmn:userTask>
+    <bpmn:userTask id="Task_sendContractToCustomer" name="Send contract to customer">
+      <bpmn:incoming>SequenceFlow_0dodatt</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0it35zf</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1u7vsgk">
+        <bpmn:targetRef>DataObjectReference_contract</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Task_rejectCase" name="Reject case" camunda:expression="$(test)">
+      <bpmn:incoming>SequenceFlow_1o6jn2x</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0q9rb4q</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmn:message id="Message_0vsfji7" name="Message_0e7eoe9" />
   <bpmn:message id="Message_016opmc" name="Message_17nu932" />
@@ -231,9 +231,6 @@
           <dc:Bounds x="657" y="787" width="54" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_14bxa3i_di" bpmnElement="Task_rejectCase">
-        <dc:Bounds x="1094" y="826" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0bltqy3_di" bpmnElement="Lane_0bltqy3" isHorizontal="true">
         <dc:Bounds x="186" y="536" width="1860" height="425" />
       </bpmndi:BPMNShape>
@@ -252,7 +249,7 @@
         <di:waypoint x="721" y="866" />
         <di:waypoint x="1094" y="866" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="855" y="871" width="28" height="14" />
+          <dc:Bounds x="856" y="871" width="27" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1otr561_di" bpmnElement="SequenceFlow_1otr561">
@@ -286,9 +283,6 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_1w3mv6s_di" bpmnElement="Task_proposeAlternativeOffers">
         <dc:Bounds x="774" y="445" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_1erucnw_di" bpmnElement="Task_sendContractToCustomer">
-        <dc:Bounds x="1357" y="674" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="DataObjectReference_01zbefm_di" bpmnElement="DataObjectReference_contract">
         <dc:Bounds x="1389" y="802" width="36" height="50" />
@@ -398,11 +392,17 @@
           <dc:Bounds x="918" y="1004" width="81" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="EndEvent_0djnlku_di" bpmnElement="EndEvent_0n4326m">
+      <bpmndi:BPMNShape id="EndEvent_0djnlku_di" bpmnElement="EndEvent_emailRejectApplication">
         <dc:Bounds x="1257" y="848" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1245" y="891" width="62" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="EndEvent_07wtadp_di" bpmnElement="EndEvent_1gxxze8">
+      <bpmndi:BPMNShape id="EndEvent_07wtadp_di" bpmnElement="EndEvent_emailcCoseCase">
         <dc:Bounds x="1332" y="467" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1309" y="510" width="88" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="MessageFlow_0bqgbbp_di" bpmnElement="MessageFlow_0bqgbbp">
         <di:waypoint x="1350" y="467" />
@@ -440,6 +440,12 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_0c1insi_di" bpmnElement="T_issuePolicy">
         <dc:Bounds x="1139" y="674" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_0bmy0yh_di" bpmnElement="Task_sendContractToCustomer">
+        <dc:Bounds x="1357" y="674" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_0dfyjmg_di" bpmnElement="Task_rejectCase">
+        <dc:Bounds x="1094" y="826" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

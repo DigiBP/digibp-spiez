@@ -21,8 +21,8 @@
         <bpmn:flowNodeRef>Task_rejectCase</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>StartEvent_receiveApplication</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_resultAssessment</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_assesCase</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>T_issuePolicy</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_assesCase</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1x5uilt" name="IT System">
         <bpmn:flowNodeRef>IntermediateThrowEvent_receiveMissingData</bpmn:flowNodeRef>
@@ -176,6 +176,7 @@
             </camunda:validation>
             <camunda:value id="ue" name="unemployed" />
             <camunda:value id="ep" name="employed" />
+            <camunda:value id="pe" name="pensioner" />
           </camunda:formField>
           <camunda:formField id="maritalStatus" label="Marital Status" type="enum">
             <camunda:validation>
@@ -225,7 +226,6 @@
             <camunda:value id="db" name="diabetes" />
             <camunda:value id="ht" name="hypertension" />
             <camunda:value id="hd" name="heartdisease" />
-            <camunda:value id="Value_35ijkbh" />
           </camunda:formField>
           <camunda:formField id="terminal_illness" type="boolean" />
           <camunda:formField id="Specify_terminal_ Illness_ type" label="Specify terminal illness type" type="string">
@@ -249,6 +249,11 @@
       <bpmn:outgoing>SequenceFlow_1otr561</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_1cr7dwi</bpmn:outgoing>
     </bpmn:exclusiveGateway>
+    <bpmn:userTask id="T_issuePolicy" name="Issue Policy">
+      <bpmn:incoming>SequenceFlow_1otr561</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_12x7ozm</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0dodatt</bpmn:outgoing>
+    </bpmn:userTask>
     <bpmn:businessRuleTask id="Task_assesCase" name="Assess case" camunda:resultVariable="decision" camunda:decisionRef="Decision_assessment" camunda:mapDecisionResult="singleResult">
       <bpmn:extensionElements>
         <camunda:inputOutput>
@@ -263,11 +268,6 @@
         <bpmn:targetRef>DataStoreReference_1ggj3lc</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:businessRuleTask>
-    <bpmn:userTask id="T_issuePolicy" name="Issue Policy">
-      <bpmn:incoming>SequenceFlow_1otr561</bpmn:incoming>
-      <bpmn:incoming>SequenceFlow_12x7ozm</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0dodatt</bpmn:outgoing>
-    </bpmn:userTask>
   </bpmn:process>
   <bpmn:message id="Message_0vsfji7" name="Message_0e7eoe9" />
   <bpmn:message id="Message_016opmc" name="Message_17nu932" />
@@ -312,7 +312,9 @@
         <dc:Bounds x="186" y="416" width="1860" height="120" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1yuu9ma_di" bpmnElement="SequenceFlow_1yuu9ma">
-        <di:waypoint x="560" y="765" />
+        <di:waypoint x="568" y="745" />
+        <di:waypoint x="628" y="745" />
+        <di:waypoint x="628" y="765" />
         <di:waypoint x="696" y="765" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1o6jn2x_di" bpmnElement="SequenceFlow_1o6jn2x">
@@ -415,7 +417,7 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BusinessRuleTask_1e3w1uw_di" bpmnElement="Task_assesCase">
-        <dc:Bounds x="460" y="725" width="100" height="80" />
+        <dc:Bounds x="468" y="705" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_12eaxtt_di" bpmnElement="SequenceFlow_12eaxtt">
         <di:waypoint x="874" y="485" />
@@ -497,14 +499,12 @@
         <dc:Bounds x="1182" y="445" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1efpgg5_di" bpmnElement="DataOutputAssociation_1efpgg5">
-        <di:waypoint x="507" y="805" />
-        <di:waypoint x="502" y="875" />
+        <di:waypoint x="513" y="785" />
+        <di:waypoint x="503" y="875" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1v41auc_di" bpmnElement="SequenceFlow_1v41auc">
         <di:waypoint x="323" y="745" />
-        <di:waypoint x="413" y="745" />
-        <di:waypoint x="413" y="765" />
-        <di:waypoint x="460" y="765" />
+        <di:waypoint x="468" y="745" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_0c1insi_di" bpmnElement="T_issuePolicy">
         <dc:Bounds x="1139" y="674" width="100" height="80" />

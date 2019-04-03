@@ -126,7 +126,7 @@
     <bpmn:dataStoreReference id="DataStoreReference_1ggj3lc" name="case database" />
     <bpmn:startEvent id="StartEvent_receiveApplication" name="Receive application">
       <bpmn:extensionElements>
-        <camunda:formData>
+        <camunda:formData businessKey="FormField_1gb19q4">
           <camunda:formField id="firstName" label="First Name" type="string">
             <camunda:validation>
               <camunda:constraint name="required" />
@@ -238,6 +238,7 @@
               <camunda:constraint />
             </camunda:validation>
           </camunda:formField>
+          <camunda:formField id="business_key" label="Business key" type="" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_1v41auc</bpmn:outgoing>

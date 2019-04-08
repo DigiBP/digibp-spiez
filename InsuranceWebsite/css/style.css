@@ -6,6 +6,11 @@
 	width:100%;
 	position:fixed
 }
+
+.nooutline * {
+	outline:none !important;
+}
+
 .address {
 	color:#6f8aa6;
 	font-size:13px
@@ -518,6 +523,7 @@ li, ul {
 	box-shadow:none;
 	outline:0
 }
+
 .btn-secondary {
 	background-color:#a6a6a6;
 	line-height:40px;

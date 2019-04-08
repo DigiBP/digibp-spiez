@@ -24,6 +24,8 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+
 </head>
 
 <body data-spy="scroll" data-target=".navbar-fixed-top">
@@ -85,11 +87,11 @@
         <section class="flexslider">
             <ul class="slides">
                 <li>
-                    <img src="images/slider-img.jpg" />
+                    <img src="images/slider-img3.jpg" />
                     <div class="slide-info">
                         <div class="slide-con">
                             <b>Healthcare</b>
-                            <h3>Health Insurance</h3>
+                            <h3>Basic Health Insurance</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris hendrerit fringilla ligula, nec congue leo pharetra in.</p>
                             <a href="#" class="ti-arrow-right"></a>
                         </div>
@@ -99,8 +101,19 @@
                     <img src="images/slider-img1.jpg" />
                     <div class="slide-info">
                         <div class="slide-con">
-                            <b>Lifecare</b>
-                            <h3>Life Insurance</h3>
+                            <b>Healthcare</b>
+                            <h3>Alternative</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris hendrerit fringilla ligula, nec congue leo pharetra in.</p>
+                            <a href="#" class="ti-arrow-right"></a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <img src="images/slider-img.jpg" />
+                    <div class="slide-info">
+                        <div class="slide-con">
+                            <b>Healthcare</b>
+                            <h3>Dental treatment</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris hendrerit fringilla ligula, nec congue leo pharetra in.</p>
                             <a href="#" class="ti-arrow-right"></a>
                         </div>
@@ -111,7 +124,7 @@
                     <div class="slide-info">
                         <div class="slide-con">
                             <b>Healthcare</b>
-                            <h3>Travel Insurance</h3>
+                            <h3>Life Insurance</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris hendrerit fringilla ligula, nec congue leo pharetra in.</p>
                             <a href="#" class="ti-arrow-right"></a>
                         </div>
@@ -146,20 +159,34 @@
                 </section>
                 <section class="col-sm-5 col-md-4 col-lg-4">
                     <div class="get-quote-form">
-                        <h2>Get a free quote form</h2>
-                        <form id="get-quote">
+                        <h2>Get now your free offer</h2>
+                        <form id="get-offer"  action="insurance-offering.html" >
                             <div>
                                 <input type="date" name="birthdate" placeholder="Your Name" />
                             </div>
 							
-							<div>
-                               <label for="gender_male" style="padding:1em"> <input type="radio" id="gender_male" name="gender" value="male" /> Male</label>
-								<label for="gender_female" style="padding:1em"><input type="radio" id="gender_female" name="gender" value="female" /> Female</label>
+							<!--<div>
+                               <label for="gender_male" class="radio-inline"> <input type="radio" id="gender_male" name="gender" value="male" /> Male</label>
+								<label for="gender_female" class="radio-inline"><input type="radio" id="gender_female" name="gender" value="female" /> Female</label>
 								
-                            </div>
+                            </div>-->
+                            
+                            <input type="hidden" id="gender" name="gender" value="" />
+                            
 							<div class="btn-group" role="group" aria-label="genders">
-								  <button type="button" class="btn btn-default">Male</button>
-								  <button type="button" class="btn btn-default">Female</button>
+								
+                                 		 <button type="button" class="btn btn-default" id="gender_male">
+                                  			<i class="fa fa-male">&nbsp;</i> Male
+                                           
+                                         </button>
+                                  
+								                              
+                                  		<button type="button" class="btn btn-default" id="gender_female">
+                                        
+                                        		<i class="fa fa-female">&nbsp;</i> Female
+                                                 
+                                         </button>
+                                
 								
 								</div>
 							
@@ -582,6 +609,24 @@
     <script src="js/easyResponsiveTabs.js"></script>
     <script src="js/owl.carousel.js"></script>
     <script src="js/custom.js"></script>
+    
+     <script language="javascript">
+ 
+ $(function() {
+    $( "#gender_female" ).click(function() {
+		$("#gender").attr("value","female");
+		$("#gender_female").addClass("btn-active");
+		$("#gender_male").removeClass("btn-active");
+	});
+	
+	 $( "#gender_male" ).click(function() {
+		$("#gender").attr("value","male");
+		$("#gender_male").addClass("btn-active");
+		$("#gender_female").removeClass("btn-active");
+	});
+});
+ 
+ </script>
 </body>
 
 </html>

@@ -176,60 +176,57 @@ state=object.state;</camunda:script>
     <bpmn:startEvent id="StartEvent_receiveApplication" name="Receive application">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="firstName" label="First Name" type="string">
+          <camunda:formField id="sFirstName" label="First Name" type="string">
             <camunda:validation>
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="lastName" label="Last Name" type="string">
+          <camunda:formField id="sLastName" label="Last Name" type="string">
             <camunda:validation>
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="age" label="Age" type="long">
+          <camunda:formField id="dtBirthDate" label="Birthdate" type="date">
             <camunda:validation>
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="addressStreet" label="Street + No." type="string" />
-          <camunda:formField id="addressZipCode" label="ZipCode" type="string" />
-          <camunda:formField id="addressCity" label="City" type="string" />
-          <camunda:formField id="email" label="Email" type="string" />
-          <camunda:formField id="employment" label="Employment" type="enum">
-            <camunda:value id="ue" name="unemployed" />
-            <camunda:value id="ep" name="employed" />
-            <camunda:value id="sp" name="self-employed" />
-          </camunda:formField>
-          <camunda:formField id="maritalStatus" label="Marital Status" type="enum">
-            <camunda:value id="si" name="single" />
-            <camunda:value id="ma" name="married" />
-            <camunda:value id="di" name="divorced" />
-            <camunda:value id="wi" name="widowed" />
-          </camunda:formField>
-          <camunda:formField id="citizenShip" label="Citzienship" type="enum">
+          <camunda:formField id="nAge" label="Age" type="long" />
+          <camunda:formField id="sCitizenShip" label="Citzienship" type="enum">
             <camunda:value id="CH" name="Switzerland" />
             <camunda:value id="DE" name="Germany" />
             <camunda:value id="OT" name="Other Countries" />
           </camunda:formField>
-          <camunda:formField id="street" label="Street" type="string" />
-          <camunda:formField id="houseNumber" label="House number" type="long" />
-          <camunda:formField id="zipCode" label="Zip Code" type="long" />
-          <camunda:formField id="city" label="City" type="string" />
-          <camunda:formField id="telephone" label="Telephone" type="long" />
-          <camunda:formField id="eMail" label="Email" type="string" />
-          <camunda:formField id="height" label="Height" type="string" />
-          <camunda:formField id="weight" label="Weight" type="string" />
-          <camunda:formField id="disability" label="Disability" type="string" />
-          <camunda:formField id="disabilityDetails" label="Disability details" type="string" />
-          <camunda:formField id="healthCondition" label="Health conditions" type="boolean" />
-          <camunda:formField id="plannedTreatment" label="Planned treatment" type="string" />
-          <camunda:formField id="children" label="Children" type="boolean" />
-          <camunda:formField id="smoking" label="Smoking" type="boolean" />
-          <camunda:formField id="bmi" label="Body mass index" type="long" />
-          <camunda:formField id="gender" label="Gender" type="enum" defaultValue="m">
-            <camunda:value id="m" name="male" />
-            <camunda:value id="f" name="female" />
-            <camunda:value id="d" name="Diverse" />
+          <camunda:formField id="sStreet" label="Street" type="string" />
+          <camunda:formField id="nZipCode" label="Zip Code" type="long" />
+          <camunda:formField id="sCity" label="City" type="string" />
+          <camunda:formField id="sEmail" label="Email" type="string" />
+          <camunda:formField id="eGender" label="Gender" type="enum">
+            <camunda:value id="_m" name="male" />
+            <camunda:value id="_f" name="female" />
+          </camunda:formField>
+          <camunda:formField id="eBaseInsuranceType" label="Base insurance type" type="enum">
+            <camunda:value id="_hmo" name="HMO Model" />
+            <camunda:value id="_telmed" name="Telmed Model" />
+            <camunda:value id="_familyDoctor" name="Familiy Doctor Model" />
+            <camunda:value id="_standard" name="Standard Model" />
+          </camunda:formField>
+          <camunda:formField id="bBasicInsurance" label="Basic insurance only" type="boolean" defaultValue="1" />
+          <camunda:formField id="bAlternativeInsurance" label="Select alternative insurance" type="boolean" />
+          <camunda:formField id="eAlternativeInsuranceType" label="Alternative insurance type" type="enum">
+            <camunda:value id="eChinese" name="Chinese medicine" />
+            <camunda:value id="eAccupuncture" name="Accupuncture" />
+            <camunda:value id="eChineseAccupuncture" name="Chinese medicine and accupuncture" />
+          </camunda:formField>
+          <camunda:formField id="bDentalTreatment" label="Select dental treatment" type="boolean" />
+          <camunda:formField id="eDentalTreatmentCoverage" label="Coverage for dental treatment " type="enum">
+            <camunda:value id="_2000" name="CHF 2&#39;000" />
+            <camunda:value id="_5000" name="CHF 5&#39;000" />
+          </camunda:formField>
+          <camunda:formField id="bLifeInsurance" label="Select life insurance" type="boolean" />
+          <camunda:formField id="eLifeInsuranceCoverage" label="Coverage by death" type="enum">
+            <camunda:value id="_100000" name="CHF 100&#39;000" />
+            <camunda:value id="_050000" name="CHF 50&#39;000" />
           </camunda:formField>
         </camunda:formData>
       </bpmn:extensionElements>

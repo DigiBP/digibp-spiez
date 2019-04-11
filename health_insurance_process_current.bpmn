@@ -214,9 +214,9 @@ state=object.state;</camunda:script>
           <camunda:formField id="bBasicInsurance" label="Basic insurance only" type="boolean" defaultValue="1" />
           <camunda:formField id="bAlternativeInsurance" label="Select alternative insurance" type="boolean" />
           <camunda:formField id="eAlternativeInsuranceType" label="Alternative insurance type" type="enum">
-            <camunda:value id="eChinese" name="Chinese medicine" />
-            <camunda:value id="eAccupuncture" name="Accupuncture" />
-            <camunda:value id="eChineseAccupuncture" name="Chinese medicine and accupuncture" />
+            <camunda:value id="_chinese" name="Chinese medicine" />
+            <camunda:value id="_accupuncture" name="Accupuncture" />
+            <camunda:value id="_chineseAccupuncture" name="Chinese medicine and accupuncture" />
           </camunda:formField>
           <camunda:formField id="bDentalTreatment" label="Select dental treatment" type="boolean" />
           <camunda:formField id="eDentalTreatmentCoverage" label="Coverage for dental treatment " type="enum">

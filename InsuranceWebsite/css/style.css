@@ -431,7 +431,7 @@ a:focus, a:hover {
 	text-decoration:none;
 	background-color:transparent
 }
-input[type=password], input[type=text], input[type=date]
+input[type=password], input[type=text], input[type=date], input[type=email]
 ,input[type=number], select, textarea {
 	border:none;
 	width:100%;
@@ -768,6 +768,7 @@ height:50px
 }
 .get-quote-form form input[type=text]
 , .get-quote-form form input[type=date]
+, .get-quote-form form input[type=email]
 ,.get-quote-form form input[type=number]
 , .get-quote-form form select
 .get-quote-form form input[type=radio]

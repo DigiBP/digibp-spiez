@@ -4,11 +4,11 @@
     <extensionElements>
       <biodi:bounds x="353" y="255" width="180" height="80" />
       <biodi:edge source="Decision_Test">
-        <biodi:waypoints x="374" y="137" />
+        <biodi:waypoints x="315" y="187" />
         <biodi:waypoints x="382" y="255" />
       </biodi:edge>
       <biodi:edge source="Decision_PersonData">
-        <biodi:waypoints x="590" y="157" />
+        <biodi:waypoints x="593" y="182" />
         <biodi:waypoints x="523" y="255" />
       </biodi:edge>
     </extensionElements>
@@ -133,7 +133,7 @@
   </decision>
   <decision id="Decision_Test" name="calculate area">
     <extensionElements>
-      <biodi:bounds x="244" y="57" width="180" height="80" />
+      <biodi:bounds x="185" y="107" width="180" height="80" />
     </extensionElements>
     <decisionTable id="DecisionTable_1o1us56">
       <input id="InputClause_0095j6a">
@@ -218,7 +218,7 @@
   </decision>
   <decision id="Decision_PersonData" name="calculate person data">
     <extensionElements>
-      <biodi:bounds x="527" y="77" width="180" height="80" />
+      <biodi:bounds x="530" y="102" width="180" height="80" />
     </extensionElements>
     <decisionTable id="DecisionTable_0a1gmyl">
       <input id="InputClause_09jw414">

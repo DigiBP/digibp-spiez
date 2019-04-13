@@ -1,466 +1,391 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_05gasgb" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
-  <decision id="calculate_personas" name="calculate personas">
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="Definitions_Calculate_Factor3" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
+  <decision id="Decision_CalculatePerson" name="calculate person factor">
     <extensionElements>
-      <biodi:bounds x="362" y="315" width="180" height="80" />
-      <biodi:edge source="Decision_calculateArea">
-        <biodi:waypoints x="284" y="161" />
-        <biodi:waypoints x="431" y="315" />
+      <biodi:bounds x="353" y="255" width="180" height="80" />
+      <biodi:edge source="Decision_Test">
+        <biodi:waypoints x="374" y="137" />
+        <biodi:waypoints x="382" y="255" />
       </biodi:edge>
-      <biodi:edge source="Decision_calculatePersonData">
-        <biodi:waypoints x="502" y="165" />
-        <biodi:waypoints x="447" y="315" />
+      <biodi:edge source="Decision_PersonData">
+        <biodi:waypoints x="590" y="157" />
+        <biodi:waypoints x="523" y="255" />
       </biodi:edge>
     </extensionElements>
     <informationRequirement>
-      <requiredDecision href="#Decision_calculateArea" />
+      <requiredDecision href="#Decision_Test" />
     </informationRequirement>
     <informationRequirement>
-      <requiredDecision href="#Decision_calculatePersonData" />
+      <requiredDecision href="#Decision_PersonData" />
     </informationRequirement>
-    <decisionTable id="decisionTable_1">
-      <input id="input_1" label="Area Type" camunda:inputVariable="areaType">
-        <inputExpression id="inputExpression_1" typeRef="string">
-          <text>areaType</text>
+    <decisionTable id="DecisionTable_10lbf8f">
+      <input id="InputClause_0deexug">
+        <inputExpression id="LiteralExpression_1yt4mjj" typeRef="string">
+          <text>sAreaType</text>
         </inputExpression>
-        <inputValues id="UnaryTests_03n7fxl">
-          <text>"lowPriceArea","mediumPriceArea","highPriceArea"</text>
-        </inputValues>
       </input>
-      <input id="InputClause_0xkj91i" label="Person Profile" camunda:inputVariable="personProfile">
-        <inputExpression id="LiteralExpression_0y53w0f" typeRef="string">
-          <text>personProfile</text>
+      <input id="InputClause_0ien04p">
+        <inputExpression id="LiteralExpression_1nn6dxa" typeRef="string">
+          <text>sPersonProfile</text>
         </inputExpression>
-        <inputValues id="UnaryTests_0t9ew2q">
-          <text>"lowPricePerson","mediumPricePerson","highPricePerson"</text>
-        </inputValues>
       </input>
-      <output id="output_1" label="Score" name="score" typeRef="double" />
-      <rule id="DecisionRule_0f7q8h7">
-        <inputEntry id="UnaryTests_085azkl">
+      <output id="OutputClause_0q471wp" name="sPersonFactor" typeRef="integer" />
+      <rule id="DecisionRule_0xtp3k7">
+        <inputEntry id="UnaryTests_0qedkp3">
           <text>"lowPriceArea"</text>
         </inputEntry>
-        <inputEntry id="UnaryTests_1ny9km8">
+        <inputEntry id="UnaryTests_1p1b4tw">
           <text>"lowPricePerson"</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_0qmb59s">
-          <text>0.5</text>
-        </outputEntry>
-      </rule>
-      <rule id="DecisionRule_1ipukca">
-        <inputEntry id="UnaryTests_00w4052">
-          <text>"mediumPriceArea"</text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_1t5ousr">
-          <text>"lowPricePerson"</text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_0qb2cve">
+        <outputEntry id="LiteralExpression_07oyulh">
           <text>1</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_1qwaqg0">
-        <inputEntry id="UnaryTests_15fyep2">
+      <rule id="DecisionRule_0zeleay">
+        <inputEntry id="UnaryTests_0pvajwt">
+          <text>"lowPriceArea"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0cd8u02">
+          <text>"mediumPricePerson"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1yr9805">
+          <text>1.2</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0yqveco">
+        <inputEntry id="UnaryTests_1ib97pd">
+          <text>"lowPriceArea"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15e3sps">
+          <text>"highPricePerson"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0eixsqv">
+          <text>1.1</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_17pzzbz">
+        <inputEntry id="UnaryTests_0zqzt4m">
+          <text>"mediumPriceArea"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_041agka">
+          <text>"lowPricePerson"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_05ho64p">
+          <text>0.8</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0nxo96i">
+        <inputEntry id="UnaryTests_1nopazl">
+          <text>"mediumPriceArea"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wlzyq7">
+          <text>"mediumPricePerson"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0e7woqn">
+          <text>0.9</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_07jq9xw">
+        <inputEntry id="UnaryTests_1nblkhq">
+          <text>"mediumPriceArea"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vvqv9t">
+          <text>"highPricePerson"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0umz6fm">
+          <text>1.05</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0mbycl3">
+        <inputEntry id="UnaryTests_1f5mt0a">
           <text>"highPriceArea"</text>
         </inputEntry>
-        <inputEntry id="UnaryTests_0c1hfih">
+        <inputEntry id="UnaryTests_00hgoq1">
           <text>"lowPricePerson"</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_0ps0wmr">
-          <text>1.3</text>
+        <outputEntry id="LiteralExpression_026uuuu">
+          <text>1.2</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_01f6twm">
-        <inputEntry id="UnaryTests_0n4i6zz">
-          <text>"lowPriceArea"</text>
+      <rule id="DecisionRule_1lrqo01">
+        <inputEntry id="UnaryTests_13h8qrf">
+          <text>"highPriceArea"</text>
         </inputEntry>
-        <inputEntry id="UnaryTests_1rh7zqp">
+        <inputEntry id="UnaryTests_12jzmm9">
           <text>"mediumPricePerson"</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_0o2n7si">
+        <outputEntry id="LiteralExpression_0396cku">
           <text>1</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_1wgmx05">
-        <inputEntry id="UnaryTests_0av5hzq">
-          <text>"mediumPriceArea"</text>
+      <rule id="DecisionRule_0eovt4b">
+        <inputEntry id="UnaryTests_1hh5ave">
+          <text>"highPriceArea"</text>
         </inputEntry>
-        <inputEntry id="UnaryTests_0lna09r">
-          <text>"mediumPricePerson"</text>
+        <inputEntry id="UnaryTests_1mcmhca">
+          <text>"highPricePerson"</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_1abkz56">
+        <outputEntry id="LiteralExpression_1kfkhp2">
           <text>1.5</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_0m65ixj">
-        <inputEntry id="UnaryTests_161vaq7">
-          <text>"highPriceArea"</text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_1mc3bw0">
-          <text>"mediumPricePerson"</text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_12vm3kt">
-          <text>1.8</text>
-        </outputEntry>
-      </rule>
-      <rule id="DecisionRule_0gr9fvj">
-        <inputEntry id="UnaryTests_1eq25wg">
-          <text>"lowPriceArea"</text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_1a71476">
-          <text>"highPricePerson"</text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_0vjpt55">
-          <text>1.3</text>
-        </outputEntry>
-      </rule>
-      <rule id="DecisionRule_1kf6060">
-        <inputEntry id="UnaryTests_08g9e6o">
-          <text>"mediumPriceArea"</text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0nbi3cr">
-          <text>"highPricePerson"</text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_1v5lahs">
-          <text>1.8</text>
-        </outputEntry>
-      </rule>
-      <rule id="DecisionRule_038655l">
-        <inputEntry id="UnaryTests_1b9insa">
-          <text>"highPriceArea"</text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0vg14ea">
-          <text>"highPricePerson"</text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_1s2qk54">
-          <text>2</text>
-        </outputEntry>
-      </rule>
     </decisionTable>
   </decision>
-  <decision id="Decision_calculateArea" name="calculate area">
+  <decision id="Decision_Test" name="calculate area">
     <extensionElements>
-      <biodi:bounds x="156" y="81" width="180" height="80" />
+      <biodi:bounds x="244" y="57" width="180" height="80" />
     </extensionElements>
-    <decisionTable id="DecisionTable_0bh390c">
-      <input id="InputClause_0ob3ant" label="Zip Code">
-        <inputExpression id="LiteralExpression_0v57zos" typeRef="integer">
-          <text>zipCode</text>
+    <decisionTable id="DecisionTable_1o1us56">
+      <input id="InputClause_0095j6a">
+        <inputExpression id="LiteralExpression_0djhpmm" typeRef="integer">
+          <text>nZipCode</text>
         </inputExpression>
       </input>
-      <output id="OutputClause_04pog4r" label="Area Type" name="areaType" typeRef="string">
-        <outputValues id="UnaryTests_1uxph9c">
-          <text>"highPriceArea","mediumPriceArea","lowPriceArea"</text>
-        </outputValues>
-      </output>
-      <rule id="DecisionRule_01xp0kp">
-        <inputEntry id="UnaryTests_08dy9x4">
+      <output id="OutputClause_06lokbn" name="sAreaType" typeRef="string" />
+      <rule id="DecisionRule_0gzypsx">
+        <inputEntry id="UnaryTests_05ce853">
           <text>[1000..1999]</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_0n6sf4i">
+        <outputEntry id="LiteralExpression_0kekjhb">
           <text>"lowPriceArea"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_1klyc0q">
-        <inputEntry id="UnaryTests_1iuonod">
+      <rule id="DecisionRule_032o62u">
+        <inputEntry id="UnaryTests_0sllnkw">
           <text>[2000..2999]</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_0m3xsf0">
+        <outputEntry id="LiteralExpression_1394vsi">
           <text>"mediumPriceArea"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_0s2t9a3">
-        <inputEntry id="UnaryTests_0eqetjf">
+      <rule id="DecisionRule_0mwvg5o">
+        <inputEntry id="UnaryTests_1g1uee1">
           <text>[3000..3999]</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_009ir7d">
+        <outputEntry id="LiteralExpression_0ql6auo">
           <text>"highPriceArea"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_15qp5ww">
-        <inputEntry id="UnaryTests_1sjiyy1">
+      <rule id="DecisionRule_0xkxcgr">
+        <inputEntry id="UnaryTests_03eum50">
           <text>[4000..4999]</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_1u6xw5a">
+        <outputEntry id="LiteralExpression_0lp556e">
           <text>"lowPriceArea"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_070y97r">
-        <inputEntry id="UnaryTests_0ex0q6c">
+      <rule id="DecisionRule_0hqjzqq">
+        <inputEntry id="UnaryTests_188v9t6">
           <text>[5000..5999]</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_0xhso43">
+        <outputEntry id="LiteralExpression_15b6qtg">
           <text>"lowPriceArea"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_088136p">
-        <inputEntry id="UnaryTests_06hoobq">
+      <rule id="DecisionRule_0x18hnj">
+        <inputEntry id="UnaryTests_0z08lgv">
           <text>[6000..6999]</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_0h4pa5b">
+        <outputEntry id="LiteralExpression_0o1jbaf">
           <text>"highPriceArea"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_1klbam3">
-        <inputEntry id="UnaryTests_1eprhp7">
+      <rule id="DecisionRule_1mvcg5t">
+        <inputEntry id="UnaryTests_0rfa44o">
           <text>[7000..7999]</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_1ie8786">
+        <outputEntry id="LiteralExpression_1wukyw3">
           <text>"mediumPriceArea"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_0zctz3q">
-        <inputEntry id="UnaryTests_1af2xh8">
+      <rule id="DecisionRule_1esv9xy">
+        <inputEntry id="UnaryTests_1s885yp">
           <text>[8000..8999]</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_0f5423g">
+        <outputEntry id="LiteralExpression_0rtbhfw">
           <text>"highPriceArea"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_1yznghz">
-        <inputEntry id="UnaryTests_1s8yz57">
-          <text>[1000..1999]</text>
+      <rule id="DecisionRule_08hoq9b">
+        <inputEntry id="UnaryTests_0l0xj4g">
+          <text>[9000..9999]</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_0g2a7ab">
+        <outputEntry id="LiteralExpression_0i9ix32">
           <text>"mediumPriceArea"</text>
         </outputEntry>
       </rule>
     </decisionTable>
   </decision>
-  <decision id="Decision_calculatePersonData" name="calculate person data">
+  <decision id="Decision_PersonData" name="calculate person data">
     <extensionElements>
-      <biodi:bounds x="454" y="85" width="180" height="80" />
+      <biodi:bounds x="527" y="77" width="180" height="80" />
     </extensionElements>
-    <decisionTable id="DecisionTable_0jhwkab">
-      <input id="InputClause_0jtziik" label="Age">
-        <inputExpression id="LiteralExpression_0xmatw1" typeRef="integer">
-          <text>age</text>
+    <decisionTable id="DecisionTable_0a1gmyl">
+      <input id="InputClause_09jw414">
+        <inputExpression id="LiteralExpression_0s3nksw" typeRef="integer">
+          <text>nAge</text>
         </inputExpression>
       </input>
-      <input id="InputClause_1d8hcaa" label="Gender">
-        <inputExpression id="LiteralExpression_0t456ny" typeRef="string">
-          <text>gender</text>
+      <input id="InputClause_1dq7lq2">
+        <inputExpression id="LiteralExpression_0wqzsb3" typeRef="string">
+          <text>eGender</text>
         </inputExpression>
-        <inputValues id="UnaryTests_1ywwojp">
-          <text>"m","w"</text>
-        </inputValues>
       </input>
-      <output id="OutputClause_1ff9hxb" label="Person Profile" name="personProfile" typeRef="string">
-        <outputValues id="UnaryTests_0n9i1vy">
-          <text>"highPricePerson","mediumPricePerson","lowPricePerson"</text>
-        </outputValues>
-      </output>
-      <rule id="DecisionRule_0r0ojex">
-        <inputEntry id="UnaryTests_0xac5a8">
+      <output id="OutputClause_0kp6sqs" name="sPersonProfile" typeRef="string" />
+      <rule id="DecisionRule_010p4e7">
+        <inputEntry id="UnaryTests_0orsje2">
           <text>[0..7]</text>
         </inputEntry>
-        <inputEntry id="UnaryTests_13k0hcw">
+        <inputEntry id="UnaryTests_0xix4by">
           <text>"m"</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_08gqvie">
+        <outputEntry id="LiteralExpression_1hsbb6j">
           <text>"highPricePerson"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_0z6h1sw">
-        <inputEntry id="UnaryTests_0ilgf13">
+      <rule id="DecisionRule_0wxsttq">
+        <inputEntry id="UnaryTests_1r8ebud">
           <text>[0..7]</text>
         </inputEntry>
-        <inputEntry id="UnaryTests_1r3rb0m">
+        <inputEntry id="UnaryTests_057ccn2">
           <text>"w"</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_1h1qe0c">
+        <outputEntry id="LiteralExpression_0402cqu">
           <text>"highPricePerson"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_137zoie">
-        <inputEntry id="UnaryTests_17cyuez">
+      <rule id="DecisionRule_0z612uo">
+        <inputEntry id="UnaryTests_1nlaxgs">
           <text>[8..16]</text>
         </inputEntry>
-        <inputEntry id="UnaryTests_0vnb0to">
+        <inputEntry id="UnaryTests_1moibr4">
           <text>"m"</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_1b6lqtz">
+        <outputEntry id="LiteralExpression_1si7jj5">
           <text>"mediumPricePerson"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_198f64m">
-        <inputEntry id="UnaryTests_1db4zqy">
+      <rule id="DecisionRule_1jmiay1">
+        <inputEntry id="UnaryTests_088bcnc">
           <text>[8..16]</text>
         </inputEntry>
-        <inputEntry id="UnaryTests_0ti7lar">
+        <inputEntry id="UnaryTests_18dre4v">
           <text>"w"</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_1fnjrlc">
+        <outputEntry id="LiteralExpression_1yx9xyp">
           <text>"highPricePerson"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_1swadz9">
-        <inputEntry id="UnaryTests_02ndix5">
+      <rule id="DecisionRule_08zn2ce">
+        <inputEntry id="UnaryTests_1m5dzc8">
           <text>[17..26]</text>
         </inputEntry>
-        <inputEntry id="UnaryTests_159534a">
+        <inputEntry id="UnaryTests_087phiu">
           <text>"m"</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_1rdx2ml">
+        <outputEntry id="LiteralExpression_10i6e6p">
           <text>"lowPricePerson"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_04fu7ul">
-        <inputEntry id="UnaryTests_19vhsxt">
+      <rule id="DecisionRule_0xrush7">
+        <inputEntry id="UnaryTests_1cirjgr">
           <text>[17..26]</text>
         </inputEntry>
-        <inputEntry id="UnaryTests_1cg8tn8">
+        <inputEntry id="UnaryTests_0vmxhsr">
           <text>"w"</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_1bsn8ks">
+        <outputEntry id="LiteralExpression_14sgumr">
           <text>"mediumPricePerson"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_16aw0zt">
-        <inputEntry id="UnaryTests_1jd8dqd">
+      <rule id="DecisionRule_0ug3hoq">
+        <inputEntry id="UnaryTests_02pjxss">
           <text>[27..40]</text>
         </inputEntry>
-        <inputEntry id="UnaryTests_1tg2dpj">
+        <inputEntry id="UnaryTests_0u6oo25">
           <text>"m"</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_01ht65d">
+        <outputEntry id="LiteralExpression_1hm7d0h">
           <text>"lowPricePerson"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_156mo45">
-        <inputEntry id="UnaryTests_00zhp3j">
+      <rule id="DecisionRule_1kkmuxa">
+        <inputEntry id="UnaryTests_1dqttjq">
           <text>[27..40]</text>
         </inputEntry>
-        <inputEntry id="UnaryTests_1p7kidn">
+        <inputEntry id="UnaryTests_0egzjed">
           <text>"w"</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_0qnuimt">
+        <outputEntry id="LiteralExpression_0a341qg">
           <text>"mediumPricePerson"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_058278i">
-        <inputEntry id="UnaryTests_104le4n">
+      <rule id="DecisionRule_1i4ompc">
+        <inputEntry id="UnaryTests_0pwev73">
           <text>[41..60]</text>
         </inputEntry>
-        <inputEntry id="UnaryTests_0dkp1wi">
+        <inputEntry id="UnaryTests_07ukwla">
           <text>"m"</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_1etve13">
+        <outputEntry id="LiteralExpression_0qubs9b">
           <text>"mediumPricePerson"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_1jifb68">
-        <inputEntry id="UnaryTests_1jrqed9">
+      <rule id="DecisionRule_179odre">
+        <inputEntry id="UnaryTests_1a8sha8">
           <text>[41..60]</text>
         </inputEntry>
-        <inputEntry id="UnaryTests_1n2brx0">
+        <inputEntry id="UnaryTests_0y69xyl">
           <text>"w"</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_1y7vqz5">
+        <outputEntry id="LiteralExpression_1g3zczs">
           <text>"highPricePerson"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_08y9upu">
-        <inputEntry id="UnaryTests_0asoa8l">
+      <rule id="DecisionRule_1hfl4q3">
+        <inputEntry id="UnaryTests_1el1qz2">
           <text>[61..80]</text>
         </inputEntry>
-        <inputEntry id="UnaryTests_09tcmzp">
+        <inputEntry id="UnaryTests_0dl9zha">
           <text>"m"</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_1a268gd">
+        <outputEntry id="LiteralExpression_0l1av6i">
           <text>"mediumPricePerson"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_0mvvoe4">
-        <inputEntry id="UnaryTests_1m2a1x1">
+      <rule id="DecisionRule_1ustnrg">
+        <inputEntry id="UnaryTests_0gl96j6">
           <text>[61..80]</text>
         </inputEntry>
-        <inputEntry id="UnaryTests_1rr8ek0">
+        <inputEntry id="UnaryTests_0noamjj">
           <text>"w"</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_18bwd33">
+        <outputEntry id="LiteralExpression_0dxe2y4">
           <text>"highPricePerson"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_16rzvku">
-        <inputEntry id="UnaryTests_0ewssqz">
+      <rule id="DecisionRule_0y6i71h">
+        <inputEntry id="UnaryTests_18zc4i4">
           <text>&gt; 80</text>
         </inputEntry>
-        <inputEntry id="UnaryTests_0rzzm19">
+        <inputEntry id="UnaryTests_02xi4y4">
           <text>"m"</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_1awy4o6">
+        <outputEntry id="LiteralExpression_19yb7o0">
           <text>"highPricePerson"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_0gvo2wf">
-        <inputEntry id="UnaryTests_03tg9wx">
+      <rule id="DecisionRule_1bkmh1y">
+        <inputEntry id="UnaryTests_1gc8ylo">
           <text>&gt; 80</text>
         </inputEntry>
-        <inputEntry id="UnaryTests_0dunk2r">
+        <inputEntry id="UnaryTests_0ccc12n">
           <text>"w"</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_01tjv23">
+        <outputEntry id="LiteralExpression_1ppsdfc">
           <text>"highPricePerson"</text>
         </outputEntry>
       </rule>
-    </decisionTable>
-  </decision>
-  <decision id="Decision_15wfeye" name="calculate price">
-    <extensionElements>
-      <biodi:bounds x="720" y="309" width="180" height="80" />
-      <biodi:edge source="calculate_personas">
-        <biodi:waypoints x="542" y="354" />
-        <biodi:waypoints x="720" y="350" />
-      </biodi:edge>
-      <biodi:edge source="Decision_0v5zn6b">
-        <biodi:waypoints x="817" y="164" />
-        <biodi:waypoints x="825" y="309" />
-      </biodi:edge>
-    </extensionElements>
-    <informationRequirement>
-      <requiredDecision href="#calculate_personas" />
-    </informationRequirement>
-    <informationRequirement>
-      <requiredDecision href="#Decision_0v5zn6b" />
-    </informationRequirement>
-    <decisionTable id="DecisionTable_11o01hc">
-      <input id="InputClause_1863rje" label="score" camunda:inputVariable="score">
-        <inputExpression id="LiteralExpression_06gj5r9" typeRef="string">
-          <text>Score</text>
-        </inputExpression>
-      </input>
-      <input id="InputClause_0natkwz" label="basicInsurance">
-        <inputExpression id="LiteralExpression_068wkha" typeRef="string">
-          <text>Basic Insurance</text>
-        </inputExpression>
-      </input>
-      <input id="InputClause_1k7qpa1">
-        <inputExpression id="LiteralExpression_0xntc20" typeRef="string">
-          <text>Dental</text>
-        </inputExpression>
-      </input>
-      <input id="InputClause_1sxbqip">
-        <inputExpression id="LiteralExpression_1t3ae5m" typeRef="string">
-          <text>Life</text>
-        </inputExpression>
-      </input>
-      <input id="InputClause_1fkersh">
-        <inputExpression id="LiteralExpression_0qhoh6u" typeRef="string">
-          <text>Alternative</text>
-        </inputExpression>
-      </input>
-      <output id="OutputClause_131vy6q" name="Price" typeRef="string" />
-    </decisionTable>
-  </decision>
-  <decision id="Decision_0v5zn6b">
-    <extensionElements>
-      <biodi:bounds x="725" y="84" width="180" height="80" />
-    </extensionElements>
-    <decisionTable id="DecisionTable_0a4fjr0">
-      <input id="InputClause_0tb5wf1">
-        <inputExpression id="LiteralExpression_0qzm6x7" typeRef="string" />
-      </input>
-      <output id="OutputClause_13wqoun" typeRef="string" />
     </decisionTable>
   </decision>
 </definitions>

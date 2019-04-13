@@ -175,7 +175,7 @@ state=object.state;</camunda:script>
     </bpmn:serviceTask>
     <bpmn:startEvent id="StartEvent_receiveApplication" name="Receive application">
       <bpmn:extensionElements>
-        <camunda:formData>
+        <camunda:formData businessKey="_businessKey">
           <camunda:formField id="sFirstName" label="First Name" type="string">
             <camunda:validation>
               <camunda:constraint name="required" />
@@ -186,16 +186,16 @@ state=object.state;</camunda:script>
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="dtBirthDate" label="Birthdate" type="date">
+          <camunda:formField id="dBirthDate" label="Birthdate" type="date">
             <camunda:validation>
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
           <camunda:formField id="nAge" label="Age" type="long" />
-          <camunda:formField id="sCitizenShip" label="Citzienship" type="enum">
-            <camunda:value id="CH" name="Switzerland" />
-            <camunda:value id="DE" name="Germany" />
-            <camunda:value id="OT" name="Other Countries" />
+          <camunda:formField id="eCitizenShip" label="Citzienship" type="enum">
+            <camunda:value id="_CH" name="Switzerland" />
+            <camunda:value id="_DE" name="Germany" />
+            <camunda:value id="_OT" name="Other Countries" />
           </camunda:formField>
           <camunda:formField id="sStreet" label="Street" type="string" />
           <camunda:formField id="nZipCode" label="Zip Code" type="long" />
@@ -211,7 +211,7 @@ state=object.state;</camunda:script>
             <camunda:value id="_familyDoctor" name="Familiy Doctor Model" />
             <camunda:value id="_standard" name="Standard Model" />
           </camunda:formField>
-          <camunda:formField id="bBasicInsurance" label="Basic insurance only" type="boolean" defaultValue="1" />
+          <camunda:formField id="bBasicInsuranceOnly" label="Basic insurance only" type="boolean" defaultValue="1" />
           <camunda:formField id="bAlternativeInsurance" label="Select alternative insurance" type="boolean" />
           <camunda:formField id="eAlternativeInsuranceType" label="Alternative insurance type" type="enum">
             <camunda:value id="_chinese" name="Chinese medicine" />
@@ -228,6 +228,13 @@ state=object.state;</camunda:script>
             <camunda:value id="_100000" name="CHF 100&#39;000" />
             <camunda:value id="_050000" name="CHF 50&#39;000" />
           </camunda:formField>
+          <camunda:formField id="eFranchise" type="enum">
+            <camunda:value id="_0500" name="CHF 300" />
+            <camunda:value id="_1000" name="CHF 1&#39;000" />
+            <camunda:value id="_2500" name="CHF 2&#39;500" />
+          </camunda:formField>
+          <camunda:formField id="bAccidentCoverage" type="boolean" />
+          <camunda:formField id="_businessKey" type="string" defaultValue="thisIsMyDefaultBusinessKey" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_1v41auc</bpmn:outgoing>

@@ -27,7 +27,7 @@
   <div class="top-bar">
     <div class="container">
       <div class="row">
-        <div class="col-sm-6 address"> <i class="ti-location-pin"></i> 2109 WS 09 Oxford Rd #127 ParkVilla Hills, MI 48334 </div>
+        <div class="col-sm-6 address"> <i class="ti-location-pin"></i> Aarauerstrasse 35, CH-4600 Olten </div>
         <div class="col-sm-6 social">
           <ul>
             <li><a href="#"><i class="fab fa-twitter"></i></a></li>
@@ -45,16 +45,13 @@
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse"> <i class="fa fa-bars"></i> </button>
-        <a class="navbar-brand" href="index.html"> Insurance<span>Press</span> </a>
-        <p>Call Us Now <b>+215 (362) 4579</b></p>
+        <a class="navbar-brand" href="index.html"> Health<span>Insurance </span></a>
+        <p>Call Us Now <b>+41 44 888 99 11</b></p>
       </div>
       <div class="collapse navbar-collapse navbar-main-collapse">
         <ul class="nav navbar-nav navbar-right">
           <li> <a href="index.html">Home</a> </li>
-          <li> <a href="blog.html">Blog</a> </li>
-          <li> <a href="blog-details.html">Blog Details</a> </li>
           <li> <a href="contact-us.html">Contact</a> </li>
-          <li> <a href="#" class="btn-default">Buy Pro Version</a> </li>
         </ul>
       </div>
     </div>
@@ -67,12 +64,12 @@
     <h2>Get Health Insurance Offer</h2>
     <ul>
       <li><a href="index.html">Home</a> ></li>
-      <li><a href="#">Contact Us</a></li>
+      <li><a href="#">Get Health Insurance Offer</a></li>
     </ul>
   </div>
 </section>
 <section class="contact-us">
-  <form class="nooutline">
+  <form class="nooutline" name="HealthInsuranceForm" id="HealthInsuranceForm" action="#" >
     <div class="container">
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -80,22 +77,22 @@
             <h2>Personal Data</h2>
             <div class="row" style="padding:.5em;">
               <div class="col-md-3">
-                <input type="text" name="firstName" placeholder="First name" />
+                <input type="text" name="sFirstName" placeholder="First name" />
               </div>
               <div class="col-md-3">
-                <input type="text" name="lastName" placeholder="Last name" />
+                <input type="text" name="sLastName" placeholder="Last name" />
               </div>
               <div class="col-md-3">
-                <input type="date" name="birthdate" placeholder="Birth date" />
+                <input type="date" name="dBirthdate" placeholder="Birth date" />
               </div>
               <div class="col-md-2">
-                <input type="number" name="zip" placeholder="ZIP" min="1000" max="9999" />
+                <input type="number" name="nZip" placeholder="ZIP" min="1000" max="9999" />
               </div>
               <div class="col-md-1">
-                <input type="hidden" id="gender" name="gender" value="" />
+                <input type="hidden" id="eGender" name="eGender" value="" />
                 <div class="btn-group btn-group-xs" role="group" aria-label="genders">
-                  <button type="button" class="btn btn-primary" style="padding:0.3em .5em;margin-top:.5em" id="gender_male"> <i class="fa fa-lg fa-male"></i></button>
-                  <button type="button" class="btn btn-primary" style="padding:0.3em .5em;margin-top:.5em" id="gender_female"> <i class="fa fa-lg fa-female"></i></button>
+                  <button type="button" class="btn btn-primary" style="padding:0.3em .5em;margin-top:.5em" id="eGender_male"> <i class="fa fa-lg fa-male"></i></button>
+                  <button type="button" class="btn btn-primary" style="padding:0.3em .5em;margin-top:.5em" id="eGender_female"> <i class="fa fa-lg fa-female"></i></button>
                 </div>
               </div>
             </div>
@@ -110,21 +107,21 @@
           <div class="form-box">
             <h2>Basic Insurance</h2>
             <div class="row" style="padding:.5em;">
-              <input type="hidden" id="basicInsuranceOption" value="" />
+              <input type="hidden" id="eBasicInsuranceType" name="eBasicInsuranceType" value="_telmed" />
               <div class="col-md-12 text-center">
-                <input type="hidden" id="basicInsurance" name="basicInsurance" value="" />
+                <input type="hidden" id="bBasicInsuranceOnly" name="bBasicInsuranceOnly" value="1" />
                 <div class="btn-group" role="group" aria-label="basicInsurance">
-                  <button type="button" class="btn btn-primary btn-lg basicInsuranceOption" id="basicInsurance_telMedicine"                                      						                                                 data-toggle="tooltip" data-placement="bottom" 
+                  <button type="button" class="btn btn-primary btn-lg active basicInsuranceOption" id="eBasicInsuranceType_telmed" value="_telmed"                                      						                                                 data-toggle="tooltip" data-placement="bottom" 
                                                  title="In the event of health problems, always call the independent Centre for Telemedicine first. If further investigations or treatment are necessary, you will be immediately referred to a doctor to a hospital."> <i class="fa fa-phone fa-flip-horizontal"></i> Telmedicine </button>
-                  <button type="button" class="btn btn-primary btn-lg basicInsuranceOption" id="basicInsurance_generalPraciticer"
+                  <button type="button" class="btn btn-primary btn-lg basicInsuranceOption" id="eBasicInsuranceType_hmo" value="_hmo"
                                                   data-toggle="tooltip" data-placement="bottom"                                                
                                                 title="If you fall ill, always contact your GP (or group medical practice) in the first instance. You and your doctor will then discuss the next steps and, where necessary, he or she will refer you to a specialist or send you to hospital."
                                                 > <i class="fa fa-user-md"></i> General Practitioner (GP) </button>
-                  <button type="button" class="btn btn-primary btn-lg basicInsuranceOption" id="basicInsurance_family"
+                  <button type="button" class="btn btn-primary btn-lg basicInsuranceOption" id="eBasicInsuranceType_familiyDoctor" value="_familyDoctor"
                                                  data-toggle="tooltip" data-placement="bottom"                                                   
                                                   title="If you fall ill, you decide who should provide you with the required treatment, i.e. your GP, a specialist, a chiropractor, or other recognised medical service providers."
                                                   > <i class="fa fa-users"></i> Family doctor model </button>
-                  <button type="button" class="btn btn-primary btn-lg basicInsuranceOption" id="basicInsurance_standard"
+                  <button type="button" class="btn btn-primary btn-lg basicInsuranceOption" id="eBasicInsuranceType_standard" value="_standard"
                                                  data-toggle="tooltip" data-placement="bottom"                                                   
                                                   title="If you fall ill, you decide who should provide you with the required treatment, i.e. your GP, a specialist, a chiropractor, or other recognised medical service providers."
                                                   > <i class="fas fa-hospital"></i> Standard model </button>
@@ -136,10 +133,10 @@
               <div class="col-md-4 text-center">
                 <label for="franchise">Franchise</label>
                 <p>
-                  <select name="franchise" id="franchise" >
-                    <option>500 CHF</option>
-                    <option>1'000 CHF</option>
-                    <option>2'500 CHF</option>
+                  <select name="eFranchise" id="eFranchise" >
+                    <option value="_0500">500 CHF</option>
+                    <option value="_1000">1'000 CHF</option>
+                    <option value="_2500">2'500 CHF</option>
                   </select>
                 </p>
               </div>
@@ -147,7 +144,7 @@
                 <div class="checkbox">
                   <p><!--style="padding:.3em 0 0 4em;"-->
                     <label>
-                      <input type="checkbox" name="accidentCoverage" id="accidentCoverage" />
+                      <input type="checkbox" name="bAccidentCoverage" id="bAccidentCoverage" />
                       Yes</label>
                   </p>
                 </div>
@@ -170,17 +167,17 @@
           <div class="form-box">
             <h2>Additional Health Insurances</h2>
             <div class="row text-center" style="padding:.5em;">
-              <input type="hidden" id="alternativeInsurance" name="basicInsurance" value="" />
-              <input type="hidden" id="toothInsurance" name="basicInsurance" value="" />
-              <input type="hidden" id="lifeInsurance" name="basicInsurance" value="" />
+              <input type="hidden" id="bAlternativeInsurance" name="bAlternativeInsurance" value="0" />
+              <input type="hidden" id="bDentalTreatment" name="bDentaltTreatment" value="0" />
+              <input type="hidden" id="bLifeInsurance" name="bLifeInsurance" value="0" />
               <div class="col-md-4">
-                <button type="button" style="width:90%; height:101px" class="btn btn-success" id="alternativeButton"                                      						                                                 data-toggle="tooltip" data-placement="bottom" 
-                                                 title="Contribution towards the cost of recognised alternative remedies and treatment methods such as:<ul><li>Osteopathy</li><li>Kinesiology</li><li>Acupuncture massage</li><li>Bach flower therapy</li></ul>"> <i class="fas fa-5x fa-seedling"></i>Alternative </button>
+                <button type="button" style="width:90%; height:101px" class="btn btn-success supplementInsurance" id="alternativeButton"                                      						                                                 data-toggle="tooltip" data-placement="bottom" 
+                                                 title="Contribution towards the cost of recognised alternative remedies and treatment methods such as:<ul><li>Osteopathy</li><li>Kinesiology</li><li>Acupuncture massage</li><li>Bach flower therapy</li></ul>"> <i class="fas fa-5x fa-seedling"></i>Alternative <i id="alternativeInsuranceCheck" class="fa fa-check hidden"></i></button>
                 <div class="hidden" id="alternativeOptions">
                   <hr />
                   <strong>Alternative options</strong>
                   <p>
-                    <select id="supplementInsuranceDentalTreatmentCoverage" name="supplementInsuranceDentalTreatmentCoverage" >
+                    <select id="eAlternativeInsuranceType" name="eAlternativeInsuranceCoverage" >
                       <option>accupuncture</option>
                       <option>chinese medicine</option>
                       <option>accupucnture and chinese medicine</option>
@@ -189,7 +186,7 @@
                 </div>
               </div>
               <div class="col-md-4">
-                <button type="button" style="width:90%; height:101px" class="btn btn-info" id="dentalTreatmentButton"
+                <button type="button" style="width:90%; height:101px" class="btn btn-info supplementInsurance" id="dentalTreatmentButton"
                                                   data-toggle="tooltip" data-placement="bottom"                                                
                                                 title="Contribution towards the cost of:
 
@@ -197,30 +194,30 @@
     Orthodontics and maxillofacial surgery
     Braces
 
-Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment </button>
+Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment <i id="dentalTreatmentCheck" class="fa fa-check hidden"></i></button>
                 <div id = "dentalTreatmentOptions" class="hidden">
                   <hr />
                   <strong>Maximal coverage</strong>
                   <p>
-                    <select id="supplementInsuranceDentalTreatmentCoverage" name="supplementInsuranceDentalTreatmentCoverage" >
-                      <option>2'000 CHF</option>
-                      <option>5'000 CHF</option>
+                    <select id="eDentalTreatmentType" name="eDentalTreatmentType" >
+                      <option value="_2000">2'000 CHF</option>
+                      <option value="_5000">5'000 CHF</option>
                     </select>
                   </p>
                 </div>
               </div>
               <div class="col-md-4">
-                <button type="button" style="width:90%; height:101px" class="btn btn-primary" id="lifeInsuranceButton"
+                <button type="button" style="width:90%; height:101px" class="btn btn-primary supplementInsurance" id="lifeInsuranceButton"
                                                  data-toggle="tooltip" data-placement="bottom"                                                   
                                                   title="If you fall ill, you decide who should provide you with the required treatment, i.e. your GP, a specialist, a chiropractor, or other recognised medical service providers."
-                                                  > <i class="fa  fa-5x fa-heartbeat"></i> Life insurance</button>
+                                                  > <i class="fa  fa-5x fa-heartbeat"></i> Life insurance <i id="lifeInsuranceCheck" class="fa fa-check hidden"></i></button>
                 <div id="lifeInsuranceOptions" class="hidden">
                   <hr />
                   <strong>Coverage by death</strong>
                   <p>
-                    <select id="supplementInsuranceDentalTreatmentCoverage" name="supplementInsuranceDentalTreatmentCoverage" >
-                      <option>50'000 CHF</option>
-                      <option>100'000 CHF</option>
+                    <select id="e" name="eLifeInsuranceCoverage" >
+                      <option value="_050000">50'000 CHF</option>
+                      <option value="_100000">100'000 CHF</option>
                     </select>
                   </p>
                 </div>
@@ -287,7 +284,7 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
             <div class="col-md-4">
            
    				 <label for="exampleInputEmail1">Start date of contract</label>
-   				 <input type="date" id="startDate" placeholder="Start date">
+   				 <input type="date" id="dStartDate" placeholder="Start date">
  			
             </div>
            <div class="col-md-4">
@@ -299,19 +296,19 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
             <div class="col-md-4">
              <div class="form-group">
    				 <label for="exampleInputEmail1">Phone</label>
-   				 <input type="text"  id="phone" placeholder="Phone">
+   				 <input type="text"  id="sPhone" placeholder="Phone">
  			 </div>
             </div>
             <div class="col-md-4">
              <div class="form-group">
    				 <label for="exampleInputEmail1">Street</label>
-   				 <input type="text"  id="street" placeholder="Street">
+   				 <input type="text"  id="sStreet" placeholder="Street">
  			 </div>
             </div>
             <div class="col-md-4">
              <div class="form-group">
    				 <label for="exampleInputEmail1">Nationality</label>
-   				 <input type="text"  id="nationality" placeholder="Nationality">
+   				 <input type="text"  id="sNationality" placeholder="Nationality">
  			 </div>
             </div>
             
@@ -411,16 +408,16 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
 		
 		})
 		
-    $( "#gender_female" ).click(function() {
-		$("#gender").attr("value","female");
-		$("#gender_female").addClass("active");
-		$("#gender_male").removeClass("active");
+    $( "#eGender_female" ).click(function() {
+		$("#eGender").attr("value","_f");
+		$("#eGender_female").addClass("active");
+		$("#eGender_male").removeClass("active");
 	});
 	
-	 $( "#gender_male" ).click(function() {
-		$("#gender").attr("value","male");
-		$("#gender_male").addClass("active");
-		$("#gender_female").removeClass("active");
+	 $( "#eGender_male" ).click(function() {
+		$("#eGender").attr("value","_m");
+		$("#eGender_male").addClass("active");
+		$("#eGender_female").removeClass("active");
 
 	});
 	
@@ -434,8 +431,8 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
 	$( ".basicInsuranceOption" ).click(function(o) {
 		$(".basicInsuranceOption").removeClass("active");
 		$(o.currentTarget).addClass("active");
-		$("#basicInsuranceOption").attr("value",$(o.currentTarget).attr("id"));
-		console.log($(o.currentTarget));
+		$("#eBasicInsuranceType").attr("value",$(o.currentTarget).attr("value"));
+		console.log($(o.currentTarget).attr("value"));
 
 	});
 	
@@ -445,10 +442,13 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
 		if($(o.currentTarget).hasClass("active")) {
 			$(o.currentTarget).removeClass("active");
 			$("#alternativeOptions").addClass("hidden");
+			$("#alternativeInsuranceCheck").addClass("hidden");
+			$("#bAlternativeInsurance").attr("value","0");
 		} else {
 			$(o.currentTarget).addClass("active");
-			$("#alternativeButton").attr("value",$(o.currentTarget).attr("id"));
+			$("#bAlternativeInsurance").attr("value","1");
 			$("#alternativeOptions").removeClass("hidden");
+			$("#alternativeInsuranceCheck").removeClass("hidden");
 			console.log($(o.currentTarget));
 		}
 	});
@@ -457,10 +457,13 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
 		if($(o.currentTarget).hasClass("active")) {
 			$(o.currentTarget).removeClass("active");
 			$("#dentalTreatmentOptions").addClass("hidden");
+			$("#dentalTreatmentCheck").addClass("hidden");
+			$("#bDentalTreatment").attr("value","0");
 		} else {
 			$(o.currentTarget).addClass("active");
-			$("#dentalTreatment").attr("value",$(o.currentTarget).attr("id"));
+			$("#bDentalTreatment").attr("value","1");
 			$("#dentalTreatmentOptions").removeClass("hidden");
+			$("#dentalTreatmentCheck").removeClass("hidden");
 			console.log($(o.currentTarget));
 		}
 	});
@@ -469,12 +472,41 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
 		if($(o.currentTarget).hasClass("active")) {
 			$(o.currentTarget).removeClass("active");
 			$("#lifeInsuranceOptions").addClass("hidden");
+			$("#lifeInsuranceCheck").addClass("hidden");
+			$("#bLifeInsurance").attr("value","0");
 		} else {
 			$(o.currentTarget).addClass("active");
-			$("#lifeInsurance").attr("value",$(o.currentTarget).attr("id"));
+			$("#bLifeInsurance").attr("value","1");
 			$("#lifeInsuranceOptions").removeClass("hidden");
+			$("#lifeInsuranceCheck").removeClass("hidden");
 			console.log($(o.currentTarget));
 		}
+		
+		
+		
+		$( "#HealthInsuranceForm" ).submit(function( event ) {
+		 
+		 
+			var request = $.ajax({
+			  url: "script.php",
+			  method: "POST",
+			  data: { id : menuId },
+			  dataType: "html"
+			});
+			 
+			request.done(function( msg ) {
+			  $( "#log" ).html( msg );
+			});
+			 
+			request.fail(function( jqXHR, textStatus ) {
+			  alert( "Request failed: " + textStatus );
+			});
+		 
+		 
+		 
+		 
+		  event.preventDefault();
+		});
 		
 	});
 	
@@ -485,6 +517,10 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
         basicInsurance_family
         basicInsurance_standard
 	*/
+	
+	
+	
+	
 	
 	
     </script> 

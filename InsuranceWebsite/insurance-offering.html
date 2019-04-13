@@ -69,7 +69,7 @@
   </div>
 </section>
 <section class="contact-us">
-  <form class="nooutline" name="HealthInsuranceForm" id="HealthInsuranceForm" action="#" >
+  <form class="nooutline" name="HealthInsuranceForm" id="HealthInsuranceForm" onsubmit="false" method="POST" >
     <div class="container">
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -406,7 +406,7 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
 		$("#startDate").attr("min",  new Date().toJSON().split('T')[0]+"");
 		$("#startDate").attr("value",  new Date().toJSON().split('T')[0]+"");
 		
-		})
+		
 		
     $( "#eGender_female" ).click(function() {
 		$("#eGender").attr("value","_f");
@@ -481,32 +481,53 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
 			$("#lifeInsuranceCheck").removeClass("hidden");
 			console.log($(o.currentTarget));
 		}
-		
+			});
 		
 		
 		$( "#HealthInsuranceForm" ).submit(function( event ) {
+		 event.preventDefault();
 		 
+				var request = $.ajax({
+				  url: "script.php",
+				  method: "POST",
+				  data: {
+						"variables": {
+								"sFirstName" : {"value" : "sFirstName", "type": "String"},
+								"sLastName" : {"value" : "sLastName", "type": "String"},
+								"dBirthDate" : {"value" : "01/01/2019", "type": "String"},
+								"eGender" : {"value" : "_f", "type": "String"},
+								"nAge" : {"value" : 18, "type": "Long"},
+								"eCitizenShip" : {"value" : "_CH", "type": "String"},
+								"sStreet" : {"value" : "sStreet", "type": "String"},
+								"nZipCode" : {"value" : 4000, "type": "Long"},
+								"sCity" : {"value" : "sCity", "type": "String"},
+								"sEmail" : {"value" : "sEmail", "type": "String"},
+								"eBaseInsuranceType" : {"value" : "_telmed", "type": "String"},
+								"eFranchise" : {"value" : "_0500", "type": "String"},
+								"bAccidentCoverage" : {"value" : true, "type": "Boolean"},
+								"bBasicInsuranceOnly" : {"value" :true, "type": "Boolean"},
+								"bAlternativeInsurance" : {"value" :true, "type": "Boolean"},
+								"eAlternativeInsuranceType" : {"value" : "_chinese", "type": "String"},
+								"bDentalTreatment" : {"value": true, "type": "Boolean"},
+								"eDentalTreatmentCoverage" : {"value" : "_5000", "type": "String"},
+								"bLifeInsurance" : {"value" : true, "type": "Boolean"},
+								"eLifeInsuranceCoverage" : {"value" : "_100000", "type": "String"}
+							},
+						 "businessKey" : "thisIsMyDefaultBusinessKey"
+						},
+				  dataType: "json"
+				});
+				 
+				request.done(function( msg ) {
+				  alert( msg );
+				});
+				 
+				request.fail(function( jqXHR, textStatus, errorThrown  ) {
+				  alert( "Request failed: " + textStatus+", "+errorThrown  );
+				  console.log(jqXHR);
+				});
 		 
-			var request = $.ajax({
-			  url: "script.php",
-			  method: "POST",
-			  data: { id : menuId },
-			  dataType: "html"
-			});
-			 
-			request.done(function( msg ) {
-			  $( "#log" ).html( msg );
-			});
-			 
-			request.fail(function( jqXHR, textStatus ) {
-			  alert( "Request failed: " + textStatus );
-			});
-		 
-		 
-		 
-		 
-		  event.preventDefault();
-		});
+		 	}); 
 		
 	});
 	

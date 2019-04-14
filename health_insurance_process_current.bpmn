@@ -18,11 +18,12 @@
         <bpmn:flowNodeRef>IntermediateThrowEvent_receiveSignedContract</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_emailRejectApplication</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_resultAssessment</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_assesCase</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>T_issuePolicy</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_sendContractToCustomer</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_rejectCase</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_assesCase</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>StartEvent_receiveApplication</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_calculatePrices</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1x5uilt" name="IT System">
         <bpmn:flowNodeRef>IntermediateThrowEvent_receiveMissingData</bpmn:flowNodeRef>
@@ -111,28 +112,13 @@
       <bpmn:incoming>SequenceFlow_1gl0l84</bpmn:incoming>
       <bpmn:messageEventDefinition messageRef="Message_0qhxvl8" />
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="SequenceFlow_1v41auc" sourceRef="StartEvent_receiveApplication" targetRef="Task_assesCase" />
-    <bpmn:dataStoreReference id="DataStoreReference_1ggj3lc" name="case database" />
+    <bpmn:sequenceFlow id="SequenceFlow_1v41auc" sourceRef="StartEvent_receiveApplication" targetRef="Task_calculatePrices" />
     <bpmn:exclusiveGateway id="ExclusiveGateway_resultAssessment" name="Result of asessment">
       <bpmn:incoming>SequenceFlow_1yuu9ma</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1o6jn2x</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_1otr561</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_1cr7dwi</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:businessRuleTask id="Task_assesCase" name="Assess case" camunda:resultVariable="decision" camunda:decisionRef="Decision_assessment" camunda:mapDecisionResult="singleResult">
-      <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:inputParameter name="citizenShip">${citizenShip}</camunda:inputParameter>
-          <camunda:inputParameter name="maritalStatus">${maritalStatus}</camunda:inputParameter>
-          <camunda:outputParameter name="assessmentDecision">${decision.assessmentDecision}</camunda:outputParameter>
-        </camunda:inputOutput>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_1v41auc</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1yuu9ma</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_1efpgg5">
-        <bpmn:targetRef>DataStoreReference_1ggj3lc</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-    </bpmn:businessRuleTask>
     <bpmn:userTask id="T_issuePolicy" name="Issue Policy">
       <bpmn:incoming>SequenceFlow_1otr561</bpmn:incoming>
       <bpmn:incoming>SequenceFlow_12x7ozm</bpmn:incoming>
@@ -173,6 +159,20 @@ state=object.state;</camunda:script>
       <bpmn:incoming>SequenceFlow_1o6jn2x</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0q9rb4q</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:businessRuleTask id="Task_assesCase" name="Assess case" camunda:resultVariable="decision" camunda:decisionRef="Decision_assessment" camunda:mapDecisionResult="singleResult">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="eCitizenShip">${citizenShip}</camunda:inputParameter>
+          <camunda:outputParameter name="assessmentDecision">${decision.assessmentDecision}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_09v3ctb</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1yuu9ma</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1efpgg5">
+        <bpmn:targetRef>DataStoreReference_1ggj3lc</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:businessRuleTask>
+    <bpmn:dataStoreReference id="DataStoreReference_1ggj3lc" name="case database" />
     <bpmn:startEvent id="StartEvent_receiveApplication" name="Receive application">
       <bpmn:extensionElements>
         <camunda:formData businessKey="_businessKey">
@@ -240,6 +240,23 @@ state=object.state;</camunda:script>
       <bpmn:outgoing>SequenceFlow_1v41auc</bpmn:outgoing>
       <bpmn:messageEventDefinition messageRef="Message_0vsfji7" />
     </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_09v3ctb" sourceRef="Task_calculatePrices" targetRef="Task_assesCase" />
+    <bpmn:businessRuleTask id="Task_calculatePrices" name="Calculate Prices" camunda:resultVariable="decision" camunda:decisionRef="Decision_CalculatePerson" camunda:mapDecisionResult="singleResult">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="nAge">
+            <camunda:script scriptFormat="JavaScript">Number(nAge)</camunda:script>
+          </camunda:inputParameter>
+          <camunda:inputParameter name="eGender">${eGender}</camunda:inputParameter>
+          <camunda:inputParameter name="nZipCode">
+            <camunda:script scriptFormat="JavaScript">Number(nZipCode)</camunda:script>
+          </camunda:inputParameter>
+          <camunda:outputParameter name="nPersonFactor">${nPersonFactor}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1v41auc</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_09v3ctb</bpmn:outgoing>
+    </bpmn:businessRuleTask>
   </bpmn:process>
   <bpmn:message id="Message_0vsfji7" name="Message_0e7eoe9" />
   <bpmn:message id="Message_016opmc" name="Message_17nu932" />
@@ -256,14 +273,14 @@ state=object.state;</camunda:script>
         <dc:Bounds x="156" y="81" width="1891" height="188" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="StartEvent_1c4x6xz_di" bpmnElement="StartEvent_receiveApplication">
-        <dc:Bounds x="287" y="723" width="36" height="36" />
+        <dc:Bounds x="261" y="739" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="279" y="766" width="53" height="27" />
+          <dc:Bounds x="253" y="782" width="53" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="MessageFlow_17zf0ro_di" bpmnElement="MessageFlow_17zf0ro">
-        <di:waypoint x="305" y="269" />
-        <di:waypoint x="305" y="723" />
+        <di:waypoint x="279" y="269" />
+        <di:waypoint x="279" y="739" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ExclusiveGateway_10qbl19_di" bpmnElement="ExclusiveGateway_resultAssessment" isMarkerVisible="true">
         <dc:Bounds x="696" y="740" width="50" height="50" />
@@ -281,7 +298,9 @@ state=object.state;</camunda:script>
         <dc:Bounds x="186" y="416" width="1860" height="120" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1yuu9ma_di" bpmnElement="SequenceFlow_1yuu9ma">
-        <di:waypoint x="560" y="765" />
+        <di:waypoint x="607" y="757" />
+        <di:waypoint x="652" y="757" />
+        <di:waypoint x="652" y="765" />
         <di:waypoint x="696" y="765" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1o6jn2x_di" bpmnElement="SequenceFlow_1o6jn2x">
@@ -375,13 +394,13 @@ state=object.state;</camunda:script>
         <di:waypoint x="890" y="1000" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="DataStoreReference_1ggj3lc_di" bpmnElement="DataStoreReference_1ggj3lc">
-        <dc:Bounds x="476" y="875" width="50" height="50" />
+        <dc:Bounds x="553" y="866" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="466" y="932" width="72" height="14" />
+          <dc:Bounds x="543" y="923" width="72" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BusinessRuleTask_1e3w1uw_di" bpmnElement="Task_assesCase">
-        <dc:Bounds x="460" y="725" width="100" height="80" />
+        <dc:Bounds x="507" y="717" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_12eaxtt_di" bpmnElement="SequenceFlow_12eaxtt">
         <di:waypoint x="874" y="485" />
@@ -469,14 +488,12 @@ state=object.state;</camunda:script>
         <dc:Bounds x="1182" y="445" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1efpgg5_di" bpmnElement="DataOutputAssociation_1efpgg5">
-        <di:waypoint x="507" y="805" />
-        <di:waypoint x="502" y="875" />
+        <di:waypoint x="563" y="797" />
+        <di:waypoint x="573" y="866" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1v41auc_di" bpmnElement="SequenceFlow_1v41auc">
-        <di:waypoint x="323" y="741" />
-        <di:waypoint x="413" y="741" />
-        <di:waypoint x="413" y="765" />
-        <di:waypoint x="460" y="765" />
+        <di:waypoint x="297" y="757" />
+        <di:waypoint x="350" y="757" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_0c1insi_di" bpmnElement="T_issuePolicy">
         <dc:Bounds x="1139" y="674" width="100" height="80" />
@@ -486,6 +503,13 @@ state=object.state;</camunda:script>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_0dfyjmg_di" bpmnElement="Task_rejectCase">
         <dc:Bounds x="1094" y="826" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_09v3ctb_di" bpmnElement="SequenceFlow_09v3ctb">
+        <di:waypoint x="450" y="757" />
+        <di:waypoint x="507" y="757" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BusinessRuleTask_0wbm6h2_di" bpmnElement="Task_calculatePrices">
+        <dc:Bounds x="350" y="717" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

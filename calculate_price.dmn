@@ -3,17 +3,17 @@
   <decision id="Decision_CalculatePerson" name="calculate person factor">
     <extensionElements>
       <biodi:bounds x="353" y="255" width="180" height="80" />
-      <biodi:edge source="Decision_Test">
-        <biodi:waypoints x="315" y="187" />
-        <biodi:waypoints x="382" y="255" />
+      <biodi:edge source="Decision_CalculateArea">
+        <biodi:waypoints x="353" y="156" />
+        <biodi:waypoints x="398" y="255" />
       </biodi:edge>
       <biodi:edge source="Decision_PersonData">
-        <biodi:waypoints x="593" y="182" />
-        <biodi:waypoints x="523" y="255" />
+        <biodi:waypoints x="581" y="182" />
+        <biodi:waypoints x="509" y="255" />
       </biodi:edge>
     </extensionElements>
     <informationRequirement>
-      <requiredDecision href="#Decision_Test" />
+      <requiredDecision href="#Decision_CalculateArea" />
     </informationRequirement>
     <informationRequirement>
       <requiredDecision href="#Decision_PersonData" />
@@ -29,7 +29,7 @@
           <text>sPersonProfile</text>
         </inputExpression>
       </input>
-      <output id="OutputClause_0q471wp" name="sPersonFactor" typeRef="integer" />
+      <output id="OutputClause_0q471wp" name="nPersonFactor" typeRef="integer" />
       <rule id="DecisionRule_0xtp3k7">
         <inputEntry id="UnaryTests_0qedkp3">
           <text>"lowPriceArea"</text>
@@ -131,9 +131,9 @@
       </rule>
     </decisionTable>
   </decision>
-  <decision id="Decision_Test" name="calculate area">
+  <decision id="Decision_CalculateArea" name="calculate area">
     <extensionElements>
-      <biodi:bounds x="185" y="107" width="180" height="80" />
+      <biodi:bounds x="245" y="76" width="180" height="80" />
     </extensionElements>
     <decisionTable id="DecisionTable_1o1us56">
       <input id="InputClause_0095j6a">

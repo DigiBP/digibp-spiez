@@ -23,6 +23,26 @@
 </head>
 
 <body data-spy="scroll" data-target=".navbar-fixed-top">
+<div class="modal fade" tabindex="-1" role="dialog" id="errorMessage">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content --> 
+  </div>
+  <!-- /.modal-dialog --> 
+</div>
+<!-- /.modal -->
+
 <header>
   <div class="top-bar">
     <div class="container">
@@ -254,19 +274,17 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
                 <td style="text-align:right;">10 CHF</td>
                 <td>per month</td>
               </tr>
-               <tr>
+              <tr>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
               </tr>
-               <tr>
+              <tr>
                 <td>Total</td>
                 <td style="text-align:right;">480 CHF</td>
                 <td>per month</td>
               </tr>
             </table>
-            
-            
             <div class=" text-right" style="padding: 0.5em;">
               <input type="submit" name="submitButton" class="btn btn-default" value="Send application" />
             </div>
@@ -281,42 +299,39 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
           <div class="form-box">
             <h2>Personal data</h2>
             <div class="row">
-            <div class="col-md-4">
-           
-   				 <label for="exampleInputEmail1">Start date of contract</label>
-   				 <input type="date" id="dStartDate" placeholder="Start date">
- 			
-            </div>
-           <div class="col-md-4">
-             <div class="form-group">
-   				 <label for="exampleInputEmail1">Email address</label>
-   				 <input type="email"  id="eMail" placeholder="E-mail">
- 			 </div>
-            </div>
-            <div class="col-md-4">
-             <div class="form-group">
-   				 <label for="exampleInputEmail1">Phone</label>
-   				 <input type="text"  id="sPhone" placeholder="Phone">
- 			 </div>
-            </div>
-            <div class="col-md-4">
-             <div class="form-group">
-   				 <label for="exampleInputEmail1">Street</label>
-   				 <input type="text"  id="sStreet" placeholder="Street">
- 			 </div>
-            </div>
-            <div class="col-md-4">
-             <div class="form-group">
-   				 <label for="exampleInputEmail1">Nationality</label>
-   				 <input type="text"  id="sNationality" placeholder="Nationality">
- 			 </div>
-            </div>
-            
-            <div class="col-md-12">
-            <div class=" text-right" style="padding: 0.5em;">
-              <input type="submit" name="submitButton" class="btn btn-default" value="Send application" />
-            </div>
-            </div>
+              <div class="col-md-4">
+                <label for="exampleInputEmail1">Start date of contract</label>
+                <input type="date" id="dStartDate" placeholder="Start date">
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email"  id="eMail" placeholder="E-mail">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Phone</label>
+                  <input type="text"  id="sPhone" placeholder="Phone">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Street</label>
+                  <input type="text"  id="sStreet" placeholder="Street">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Nationality</label>
+                  <input type="text"  id="sNationality" placeholder="Nationality">
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class=" text-right" style="padding: 0.5em;">
+                  <input type="submit" name="submitButton" class="btn btn-default" value="Send application" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -488,42 +503,54 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
 		 event.preventDefault();
 		 
 				var request = $.ajax({
-				  url: "script.php",
+				  url: "https://hook.integromat.com/xxr8vjfrc4sm1kx7spi1y1x3u9nkyiuw",
 				  method: "POST",
 				  data: {
-						"variables": {
-								"sFirstName" : {"value" : "sFirstName", "type": "String"},
-								"sLastName" : {"value" : "sLastName", "type": "String"},
-								"dBirthDate" : {"value" : "01/01/2019", "type": "String"},
-								"eGender" : {"value" : "_f", "type": "String"},
-								"nAge" : {"value" : 18, "type": "Long"},
-								"eCitizenShip" : {"value" : "_CH", "type": "String"},
-								"sStreet" : {"value" : "sStreet", "type": "String"},
-								"nZipCode" : {"value" : 4000, "type": "Long"},
-								"sCity" : {"value" : "sCity", "type": "String"},
-								"sEmail" : {"value" : "sEmail", "type": "String"},
-								"eBaseInsuranceType" : {"value" : "_telmed", "type": "String"},
-								"eFranchise" : {"value" : "_0500", "type": "String"},
-								"bAccidentCoverage" : {"value" : true, "type": "Boolean"},
-								"bBasicInsuranceOnly" : {"value" :true, "type": "Boolean"},
-								"bAlternativeInsurance" : {"value" :true, "type": "Boolean"},
-								"eAlternativeInsuranceType" : {"value" : "_chinese", "type": "String"},
-								"bDentalTreatment" : {"value": true, "type": "Boolean"},
-								"eDentalTreatmentCoverage" : {"value" : "_5000", "type": "String"},
-								"bLifeInsurance" : {"value" : true, "type": "Boolean"},
-								"eLifeInsuranceCoverage" : {"value" : "_100000", "type": "String"}
-							},
-						 "businessKey" : "thisIsMyDefaultBusinessKey"
+					  	"value": 
+							JSON.stringify(
+							{ 
+							"variables": 
+								{
+									"sFirstName" : {"value" : "sFirstName", "type": "String"},
+									"sLastName" : {"value" : "sLastName", "type": "String"},
+									"dBirthDate" : {"value" : "01/01/2019", "type": "String"},
+									"eGender" : {"value" : "_f", "type": "String"},
+									"nAge" : {"value" : 18, "type": "Long"},
+									"eCitizenShip" : {"value" : "_CH", "type": "String"},
+									"sStreet" : {"value" : "sStreet", "type": "String"},
+									"nZipCode" : {"value" : 4000, "type": "Long"},
+									"sCity" : {"value" : "sCity", "type": "String"},
+									"sEmail" : {"value" : "sEmail", "type": "String"},
+									"eBaseInsuranceType" : {"value" : "_telmed", "type": "String"},
+									"eFranchise" : {"value" : "_0500", "type": "String"},
+									"bAccidentCoverage" : {"value" : true, "type": "Boolean"},
+									"bBasicInsuranceOnly" : {"value" :true, "type": "Boolean"},
+									"bAlternativeInsurance" : {"value" :true, "type": "Boolean"},
+									"eAlternativeInsuranceType" : {"value" : "_chinese", "type": "String"},
+									"bDentalTreatment" : {"value": true, "type": "Boolean"},
+									"eDentalTreatmentCoverage" : {"value" : "_5000", "type": "String"},
+									"bLifeInsurance" : {"value" : true, "type": "Boolean"},
+									"eLifeInsuranceCoverage" : {"value" : "_100000", "type": "String"}
+								},
+							 "businessKey" : "thisIsMyDefaultBusinessKey"
+							} )
 						},
 				  dataType: "json"
 				});
 				 
 				request.done(function( msg ) {
 				  alert( msg );
+				  
+				  $("#errorMessage .modal-title").html("Success");
+				  $("#errorMessage .modal-body").html("<pre>"+msg+"</pre>");
+				  $('#errorMessage').modal('show');
+				  
 				});
 				 
 				request.fail(function( jqXHR, textStatus, errorThrown  ) {
-				  alert( "Request failed: " + textStatus+", "+errorThrown  );
+				  $("#errorMessage .modal-title").html("Request failed: " + textStatus+", "+errorThrown);
+				  $("#errorMessage .modal-body").html("<pre>"+JSON.stringify(JSON.parse(jqXHR.responseText), undefined, 4)+"</pre>");
+				  $('#errorMessage').modal('show');
 				  console.log(jqXHR);
 				});
 		 

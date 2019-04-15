@@ -14,18 +14,17 @@
     <bpmn:sequenceFlow id="SequenceFlow_1uoikrd" sourceRef="StartEvent_getPrices" targetRef="Task_calculatePrice" />
     <bpmn:callActivity id="Task_calculatePrice" name="calculate price" calledElement="Process_calculatePrices">
       <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:inputParameter name="eGender">${eGender}</camunda:inputParameter>
-          <camunda:inputParameter name="nAge">${nAge}</camunda:inputParameter>
-          <camunda:inputParameter name="nZipCode">$(nZipCode)</camunda:inputParameter>
-        </camunda:inputOutput>
-        <camunda:in variables="all" />
-        <camunda:out variables="all" />
+        <camunda:in source="eGender" target="eGender" />
+        <camunda:in source="nAge" target="nAge" />
+        <camunda:in source="nZipCode" target="nZipCode" />
+        <camunda:out source="sPersonProfile" target="sPersonProfile" />
+        <camunda:out source="sAreaType" target="sAreaType" />
+        <camunda:out source="nPersonFactor" target="nPersonFactor" />
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1uoikrd</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_15808ot</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:sendTask id="Task_updateData" name="update data" camunda:expression="${null}" camunda:resultVariable="test">
+    <bpmn:sendTask id="Task_updateData" name="update data" camunda:expression="${null}">
       <bpmn:incoming>SequenceFlow_15808ot</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1eny5cs</bpmn:outgoing>
     </bpmn:sendTask>

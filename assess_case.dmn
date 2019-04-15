@@ -10,7 +10,7 @@
           <text>eCitizenShip</text>
         </inputExpression>
         <inputValues id="UnaryTests_0rdh6wd">
-          <text>"CH","DE","OT"</text>
+          <text>"_CH","_OT","_DE"</text>
         </inputValues>
       </input>
       <output id="output_1" name="assessmentDecision" typeRef="string">
@@ -20,7 +20,7 @@
       </output>
       <rule id="DecisionRule_1cjvtdy">
         <inputEntry id="UnaryTests_024k71o">
-          <text>"CH"</text>
+          <text>"_CH"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1w89kpc">
           <text>"accept"</text>
@@ -28,7 +28,7 @@
       </rule>
       <rule id="DecisionRule_0vwintn">
         <inputEntry id="UnaryTests_1wdwchr">
-          <text>"OT"</text>
+          <text>"_OT"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1jb3s9g">
           <text>"reject"</text>
@@ -36,7 +36,7 @@
       </rule>
       <rule id="DecisionRule_18iq2sh">
         <inputEntry id="UnaryTests_1do1nti">
-          <text>"DE"</text>
+          <text>"_DE"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0bwgjo2">
           <text>"alternative"</text>

@@ -162,7 +162,7 @@ state=object.state;</camunda:script>
     <bpmn:businessRuleTask id="Task_assesCase" name="Assess case" camunda:resultVariable="decision" camunda:decisionRef="Decision_assessment" camunda:mapDecisionResult="singleResult">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="eCitizenShip">${citizenShip}</camunda:inputParameter>
+          <camunda:inputParameter name="eCitizenShip">${eCitizenShip}</camunda:inputParameter>
           <camunda:outputParameter name="assessmentDecision">${decision.assessmentDecision}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
@@ -241,9 +241,8 @@ state=object.state;</camunda:script>
       <bpmn:messageEventDefinition messageRef="Message_0vsfji7" />
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="SequenceFlow_09v3ctb" sourceRef="Task_calculatePrices" targetRef="Task_assesCase" />
-    <bpmn:callActivity id="Task_calculatePrices" name="Calculate Prices" calledElement="calculate_prices" camunda:variableMappingClass="">
+    <bpmn:callActivity id="Task_calculatePrices" name="Calculate Prices" calledElement="Process_calculatePrices">
       <bpmn:extensionElements>
-        <camunda:in businessKey="#{execution.processBusinessKey}" />
         <camunda:in source="eGender" target="eGender" />
         <camunda:in source="nAge" target="nAge" />
         <camunda:in source="nZipCode" target="nZipCode" />

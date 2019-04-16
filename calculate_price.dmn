@@ -388,4 +388,318 @@
       </rule>
     </decisionTable>
   </decision>
+  <decision id="Decision_calculateBasicInsurance" name="calculate basic insurance">
+    <extensionElements>
+      <biodi:bounds x="686" y="46" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="DecisionTable_1v134qg">
+      <input id="InputClause_17y1vsg">
+        <inputExpression id="LiteralExpression_1w7rwl0" typeRef="string">
+          <text>eBaseInsuranceType</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1eezi2l">
+        <inputExpression id="LiteralExpression_0vvg81a" typeRef="string">
+          <text>eFranchise</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_0vr0tlr" name="nBasePriceBasicInsurance" typeRef="double" />
+      <rule id="DecisionRule_0v0s2wi">
+        <inputEntry id="UnaryTests_09e7543">
+          <text>_hmo</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10n52y3">
+          <text>_0500</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_07c8o29">
+          <text>180</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1vvqrnl">
+        <inputEntry id="UnaryTests_1niyuhe">
+          <text>_hmo</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0h3avc0">
+          <text>_1000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0fmy3vh">
+          <text>130</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1r68bgk">
+        <inputEntry id="UnaryTests_1uz61wn">
+          <text>_hmo</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0bu7377">
+          <text>_2500</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_00ac7sn">
+          <text>80</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1p0li3f">
+        <inputEntry id="UnaryTests_1kjgcp4">
+          <text>_standard</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1cb813q">
+          <text>_0500</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_121ccp6">
+          <text>200</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0xit4lu">
+        <inputEntry id="UnaryTests_1gmzb6y">
+          <text>_standard</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1i3wfa3">
+          <text>_1000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1lw5t5y">
+          <text>150</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_151i8xg">
+        <inputEntry id="UnaryTests_0qu5i92">
+          <text>_standard</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_11rydbk">
+          <text>_2500</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0iq9092">
+          <text>100</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_02qnpah">
+        <inputEntry id="UnaryTests_1ux82fo">
+          <text>_familyDoctor</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06adkzh">
+          <text>_0500</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_01cknej">
+          <text>190</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1s1t8mr">
+        <inputEntry id="UnaryTests_0k3swr3">
+          <text>_familyDoctor</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_07peq1m">
+          <text>_1000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_00pj02f">
+          <text>140</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0jk0lpg">
+        <inputEntry id="UnaryTests_0ddzso8">
+          <text>_familyDoctor</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1dxd4us">
+          <text>_2500</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_07c1law">
+          <text>90</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_07s5hd0">
+        <inputEntry id="UnaryTests_1m6rpsc">
+          <text>_telmed</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_139qtjg">
+          <text>_0500</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0gjw82t">
+          <text>150</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0kjn7pt">
+        <inputEntry id="UnaryTests_0xep3y8">
+          <text>_telmed</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ea762o">
+          <text>_1000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1w52rtu">
+          <text>100</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0a2nquh">
+        <inputEntry id="UnaryTests_0h39st1">
+          <text>_telmed</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0cstlsp">
+          <text>_2500</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1nw4qt7">
+          <text>50</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="Decision_calculateLifeInsurance" name="calculate life insurance">
+    <extensionElements>
+      <biodi:bounds x="691" y="263" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="DecisionTable_1fjvk5q">
+      <input id="InputClause_1xrzbmp">
+        <inputExpression id="LiteralExpression_021qr3h" typeRef="boolean">
+          <text>bLifeInsurance</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1mt8nic">
+        <inputExpression id="LiteralExpression_0i7j1wt" typeRef="string">
+          <text>eLifeInsuranceCoverage</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_0eds36e" name="nBasePriceLifeInsurance" typeRef="double" />
+      <rule id="DecisionRule_05tijqp">
+        <inputEntry id="UnaryTests_05jaay1">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1akmbmq">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0zhllng">
+          <text>0</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_17sd9ib">
+        <inputEntry id="UnaryTests_1l5dgyt">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0fj1aiy">
+          <text>_100000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1wpugas">
+          <text>15</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0o6u264">
+        <inputEntry id="UnaryTests_0wvpfak">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jpmuat">
+          <text>_050000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1b4ioou">
+          <text>7.5</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="Decision_calculateAlternativeInsurance" name="calculate alternative insurance">
+    <extensionElements>
+      <biodi:bounds x="691" y="365" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="DecisionTable_1tfjnsx">
+      <input id="InputClause_0jupnb7">
+        <inputExpression id="LiteralExpression_06m53kw" typeRef="boolean">
+          <text>bAlternativeInsurance</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_17cffbg">
+        <inputExpression id="LiteralExpression_0bb83xp" typeRef="string">
+          <text>eAlternativeInsuranceType</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_0hfjd4j" name="nBasePriceAlternativeInsurance" typeRef="double" />
+      <rule id="DecisionRule_1wri2zj">
+        <inputEntry id="UnaryTests_1hjvdcp">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_123zji7">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_187umjr">
+          <text>0</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_176t69z">
+        <inputEntry id="UnaryTests_1eoh1vn">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05dtgxe">
+          <text>_chinese</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0w4dab6">
+          <text>18</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1n7hqfh">
+        <inputEntry id="UnaryTests_033tceb">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1b37l8x">
+          <text>_accupuncture</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_11cq4yq">
+          <text>5</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1y4ag6f">
+        <inputEntry id="UnaryTests_07k2ffs">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0zvd8ip">
+          <text>_chineseAccupuncture</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0kt0cns">
+          <text>20</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="Decision_calculateDentalInsurance" name="calculate dental insurance">
+    <extensionElements>
+      <biodi:bounds x="682" y="150" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="DecisionTable_0a9o5o8">
+      <input id="InputClause_0c6ltdj">
+        <inputExpression id="LiteralExpression_0jwc7ib" typeRef="boolean">
+          <text>bDentalTreatment</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_06pxr73">
+        <inputExpression id="LiteralExpression_1gm650b" typeRef="string">
+          <text>eDentalTreatmentCoverage</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_0tomirs" name="nBasePriceDentalInsurance" typeRef="double" />
+      <rule id="DecisionRule_11tz1e3">
+        <inputEntry id="UnaryTests_090e8wp">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04ono5h">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0i578kl">
+          <text>0</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1t5wse5">
+        <inputEntry id="UnaryTests_0fybrmv">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0vxowph">
+          <text>_2000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0qbh1aj">
+          <text>150</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1x21dgb">
+        <inputEntry id="UnaryTests_128brpw">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jasg7v">
+          <text>_5000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1w5dk86">
+          <text>90</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
 </definitions>

@@ -229,7 +229,7 @@ state=object.state;</camunda:script>
             <camunda:value id="_050000" name="CHF 50&#39;000" />
           </camunda:formField>
           <camunda:formField id="eFranchise" type="enum">
-            <camunda:value id="_0500" name="CHF 300" />
+            <camunda:value id="_0500" name="CHF 500" />
             <camunda:value id="_1000" name="CHF 1&#39;000" />
             <camunda:value id="_2500" name="CHF 2&#39;500" />
           </camunda:formField>

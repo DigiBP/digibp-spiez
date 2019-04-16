@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="Definitions_Calculate_Factor3" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
-  <decision id="Decision_CalculatePerson" name="calculate person factor">
+  <decision id="Decision_calculatePersonFactor" name="calculate person factor">
     <extensionElements>
-      <biodi:bounds x="353" y="255" width="180" height="80" />
-      <biodi:edge source="Decision_CalculateArea">
-        <biodi:waypoints x="353" y="156" />
-        <biodi:waypoints x="398" y="255" />
+      <biodi:bounds x="262" y="255" width="180" height="80" />
+      <biodi:edge source="Decision_calculateArea">
+        <biodi:waypoints x="264" y="188" />
+        <biodi:waypoints x="307" y="255" />
       </biodi:edge>
-      <biodi:edge source="Decision_PersonData">
-        <biodi:waypoints x="581" y="182" />
-        <biodi:waypoints x="509" y="255" />
+      <biodi:edge source="Decision_calculatePersonData">
+        <biodi:waypoints x="465" y="190" />
+        <biodi:waypoints x="409" y="255" />
       </biodi:edge>
     </extensionElements>
     <informationRequirement>
-      <requiredDecision href="#Decision_CalculateArea" />
+      <requiredDecision href="#Decision_calculateArea" />
     </informationRequirement>
     <informationRequirement>
-      <requiredDecision href="#Decision_PersonData" />
+      <requiredDecision href="#Decision_calculatePersonData" />
     </informationRequirement>
     <decisionTable id="DecisionTable_10lbf8f">
       <input id="InputClause_0deexug">
@@ -29,7 +29,7 @@
           <text>sPersonProfile</text>
         </inputExpression>
       </input>
-      <output id="OutputClause_0q471wp" name="nPersonFactor" typeRef="integer" />
+      <output id="OutputClause_0q471wp" name="nPersonFactor" typeRef="double" />
       <rule id="DecisionRule_0xtp3k7">
         <inputEntry id="UnaryTests_0qedkp3">
           <text>"lowPriceArea"</text>
@@ -131,9 +131,9 @@
       </rule>
     </decisionTable>
   </decision>
-  <decision id="Decision_CalculateArea" name="calculate area">
+  <decision id="Decision_calculateArea" name="calculate area">
     <extensionElements>
-      <biodi:bounds x="245" y="76" width="180" height="80" />
+      <biodi:bounds x="149" y="108" width="180" height="80" />
     </extensionElements>
     <decisionTable id="DecisionTable_1o1us56">
       <input id="InputClause_0095j6a">
@@ -216,9 +216,9 @@
       </rule>
     </decisionTable>
   </decision>
-  <decision id="Decision_PersonData" name="calculate person data">
+  <decision id="Decision_calculatePersonData" name="calculate person data">
     <extensionElements>
-      <biodi:bounds x="530" y="102" width="180" height="80" />
+      <biodi:bounds x="409" y="110" width="180" height="80" />
     </extensionElements>
     <decisionTable id="DecisionTable_0a1gmyl">
       <input id="InputClause_09jw414">

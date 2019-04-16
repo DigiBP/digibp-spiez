@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1b3rbt1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
+  <bpmn:collaboration id="Collaboration_getPrices">
+    <bpmn:participant id="HealthInsuranceCompany" name="Health Insurance" processRef="Process_getPrices" />
+    <bpmn:participant id="Customer" name="Customer" />
+    <bpmn:messageFlow id="MessageFlow_1296hz9" sourceRef="Task_updateData" targetRef="Customer" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_getPrices" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_1ybdt3i" />
+    <bpmn:endEvent id="EndEvent_getPrices" name="End">
+      <bpmn:incoming>SequenceFlow_1eny5cs</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1eny5cs" sourceRef="Task_updateData" targetRef="EndEvent_getPrices" />
+    <bpmn:sequenceFlow id="SequenceFlow_1uoikrd" sourceRef="StartEvent_getPrices" targetRef="Task_calculatePrice" />
+    <bpmn:callActivity id="Task_calculatePrice" name="calculate price" calledElement="Process_calculatePrices">
+      <bpmn:extensionElements>
+        <camunda:in source="eGender" target="eGender" />
+        <camunda:in source="nAge" target="nAge" />
+        <camunda:in source="nZipCode" target="nZipCode" />
+        <camunda:out source="sPersonProfile" target="sPersonProfile" />
+        <camunda:out source="sAreaType" target="sAreaType" />
+        <camunda:out source="nPersonFactor" target="nPersonFactor" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1uoikrd</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_15808ot</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sendTask id="Task_updateData" name="update data" camunda:expression="${null}">
+      <bpmn:incoming>SequenceFlow_15808ot</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1eny5cs</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:sequenceFlow id="SequenceFlow_15808ot" sourceRef="Task_calculatePrice" targetRef="Task_updateData" />
+    <bpmn:startEvent id="StartEvent_getPrices" name="Start">
+      <bpmn:extensionElements>
+        <camunda:formData businessKey="sBusinessKey">
+          <camunda:formField id="eGender" type="enum" defaultValue="_f">
+            <camunda:value id="_m" name="Male" />
+            <camunda:value id="_f" name="Female" />
+          </camunda:formField>
+          <camunda:formField id="nAge" type="long" defaultValue="18" />
+          <camunda:formField id="nZipCode" type="long" defaultValue="3000" />
+          <camunda:formField id="sBusinessKey" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>SequenceFlow_1uoikrd</bpmn:outgoing>
+      <bpmn:messageEventDefinition messageRef="Message_0z3tbfm" />
+    </bpmn:startEvent>
+  </bpmn:process>
+  <bpmn:message id="Message_1ijp35i" name="Message_3s9572c" />
+  <bpmn:message id="Message_0ta2ltp" />
+  <bpmn:message id="Message_1jl93t7" name="Message_2r7fsta" />
+  <bpmn:message id="Message_0z3tbfm" name="Message_3uodka7" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_getPrices">
+      <bpmndi:BPMNShape id="Participant_150nvxj_di" bpmnElement="HealthInsuranceCompany" isHorizontal="true">
+        <dc:Bounds x="129" y="281" width="678" height="250" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_14ac313_di" bpmnElement="EndEvent_getPrices">
+        <dc:Bounds x="751" y="375" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="759" y="418" width="20" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1eny5cs_di" bpmnElement="SequenceFlow_1eny5cs">
+        <di:waypoint x="631" y="393" />
+        <di:waypoint x="751" y="393" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1uoikrd_di" bpmnElement="SequenceFlow_1uoikrd">
+        <di:waypoint x="215" y="393" />
+        <di:waypoint x="320" y="393" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_1cigutp_di" bpmnElement="Customer" isHorizontal="true">
+        <dc:Bounds x="139" y="81" width="676" height="107" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="CallActivity_0fvwjok_di" bpmnElement="Task_calculatePrice">
+        <dc:Bounds x="320" y="353" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="MessageFlow_1296hz9_di" bpmnElement="MessageFlow_1296hz9">
+        <di:waypoint x="581" y="353" />
+        <di:waypoint x="581" y="188" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SendTask_1c6a39o_di" bpmnElement="Task_updateData">
+        <dc:Bounds x="531" y="353" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_15808ot_di" bpmnElement="SequenceFlow_15808ot">
+        <di:waypoint x="420" y="393" />
+        <di:waypoint x="531" y="393" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="StartEvent_0tbptya_di" bpmnElement="StartEvent_getPrices">
+        <dc:Bounds x="179" y="375" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="185" y="418" width="25" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

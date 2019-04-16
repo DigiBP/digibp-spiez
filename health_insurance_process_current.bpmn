@@ -162,7 +162,7 @@ state=object.state;</camunda:script>
     <bpmn:businessRuleTask id="Task_assesCase" name="Assess case" camunda:resultVariable="decision" camunda:decisionRef="Decision_assessment" camunda:mapDecisionResult="singleResult">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="eCitizenShip">${citizenShip}</camunda:inputParameter>
+          <camunda:inputParameter name="eCitizenShip">${eCitizenShip}</camunda:inputParameter>
           <camunda:outputParameter name="assessmentDecision">${decision.assessmentDecision}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
@@ -241,22 +241,18 @@ state=object.state;</camunda:script>
       <bpmn:messageEventDefinition messageRef="Message_0vsfji7" />
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="SequenceFlow_09v3ctb" sourceRef="Task_calculatePrices" targetRef="Task_assesCase" />
-    <bpmn:businessRuleTask id="Task_calculatePrices" name="Calculate Prices" camunda:resultVariable="decision" camunda:decisionRef="Decision_CalculatePerson" camunda:mapDecisionResult="singleResult">
+    <bpmn:callActivity id="Task_calculatePrices" name="Calculate Prices" calledElement="Process_calculatePrices">
       <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:inputParameter name="nAge">
-            <camunda:script scriptFormat="JavaScript">Number(nAge)</camunda:script>
-          </camunda:inputParameter>
-          <camunda:inputParameter name="eGender">${eGender}</camunda:inputParameter>
-          <camunda:inputParameter name="nZipCode">
-            <camunda:script scriptFormat="JavaScript">Number(nZipCode)</camunda:script>
-          </camunda:inputParameter>
-          <camunda:outputParameter name="nPersonFactor">${nPersonFactor}</camunda:outputParameter>
-        </camunda:inputOutput>
+        <camunda:in source="eGender" target="eGender" />
+        <camunda:in source="nAge" target="nAge" />
+        <camunda:in source="nZipCode" target="nZipCode" />
+        <camunda:out source="sPersonProfile" target="sPersonProfile" />
+        <camunda:out source="sAreaType" target="sAreaType" />
+        <camunda:out source="nPersonFactor" target="nPersonFactor" />
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1v41auc</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_09v3ctb</bpmn:outgoing>
-    </bpmn:businessRuleTask>
+    </bpmn:callActivity>
   </bpmn:process>
   <bpmn:message id="Message_0vsfji7" name="Message_0e7eoe9" />
   <bpmn:message id="Message_016opmc" name="Message_17nu932" />
@@ -508,7 +504,7 @@ state=object.state;</camunda:script>
         <di:waypoint x="450" y="757" />
         <di:waypoint x="507" y="757" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="BusinessRuleTask_0wbm6h2_di" bpmnElement="Task_calculatePrices">
+      <bpmndi:BPMNShape id="CallActivity_0hnq19f_di" bpmnElement="Task_calculatePrices">
         <dc:Bounds x="350" y="717" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>

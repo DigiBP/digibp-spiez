@@ -144,8 +144,10 @@
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">
               <camunda:script scriptFormat="JavaScript">out=JSON.stringify({
-"type":"Pizza",
-"name":"name"
+"nEndPriceBasicInsurance":nEndPriceBasicInsurance,
+"nEndPriceAlternativeInsurance":nEndPriceAlternativeInsurance,
+"nEndPriceDentalInsurance":nEndPriceDentalInsurance,
+"nEndPriceLifeInsurance":nEndPriceLifeInsurance
 });</camunda:script>
             </camunda:inputParameter>
             <camunda:outputParameter name="state">
@@ -172,7 +174,6 @@ state=object.state;</camunda:script>
         <bpmn:targetRef>DataStoreReference_1ggj3lc</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:businessRuleTask>
-    <bpmn:dataStoreReference id="DataStoreReference_1ggj3lc" name="case database" />
     <bpmn:startEvent id="StartEvent_receiveApplication" name="Receive application">
       <bpmn:extensionElements>
         <camunda:formData businessKey="_businessKey">
@@ -243,16 +244,32 @@ state=object.state;</camunda:script>
     <bpmn:sequenceFlow id="SequenceFlow_09v3ctb" sourceRef="Task_calculatePrices" targetRef="Task_assesCase" />
     <bpmn:callActivity id="Task_calculatePrices" name="Calculate Prices" calledElement="Process_calculatePrices">
       <bpmn:extensionElements>
+        <camunda:in source="dBirthDate" target="dBirthDate" />
         <camunda:in source="eGender" target="eGender" />
         <camunda:in source="nAge" target="nAge" />
         <camunda:in source="nZipCode" target="nZipCode" />
+        <camunda:in source="eBaseInsuranceType" target="eBaseInsuranceType" />
+        <camunda:in source="bBasicInsuranceOnly" target="bBasicInsuranceOnly" />
+        <camunda:in source="eFranchise" target="eFranchise" />
+        <camunda:in source="bAccidentCoverage" target="bAccidentCoverage" />
+        <camunda:in source="bAlternativeInsurance" target="bAlternativeInsurance" />
+        <camunda:in source="eAlternativeInsuranceType" target="eAlternativeInsuranceType" />
+        <camunda:in source="bDentalTreatment" target="bDentalTreatment" />
+        <camunda:in source="eDentalTreatmentCoverage" target="eDentalTreatmentCoverage" />
+        <camunda:in source="bLifeInsurance" target="bLifeInsurance" />
+        <camunda:in source="eLifeInsuranceCoverage" target="eLifeInsuranceCoverage" />
         <camunda:out source="sPersonProfile" target="sPersonProfile" />
         <camunda:out source="sAreaType" target="sAreaType" />
         <camunda:out source="nPersonFactor" target="nPersonFactor" />
+        <camunda:out source="nEndPriceDentalInsurance" target="nEndPriceDentalInsurance" />
+        <camunda:out source="nEndPriceBasicInsurance" target="nEndPriceBasicInsurance" />
+        <camunda:out source="nEndPriceAlternativeInsurance" target="nEndPriceAlternativeInsurance" />
+        <camunda:out source="nEndPriceLifeInsurance" target="nEndPriceLifeInsurance" />
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1v41auc</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_09v3ctb</bpmn:outgoing>
     </bpmn:callActivity>
+    <bpmn:dataStoreReference id="DataStoreReference_1ggj3lc" name="case database" />
   </bpmn:process>
   <bpmn:message id="Message_0vsfji7" name="Message_0e7eoe9" />
   <bpmn:message id="Message_016opmc" name="Message_17nu932" />
@@ -390,9 +407,9 @@ state=object.state;</camunda:script>
         <di:waypoint x="890" y="1000" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="DataStoreReference_1ggj3lc_di" bpmnElement="DataStoreReference_1ggj3lc">
-        <dc:Bounds x="553" y="866" width="50" height="50" />
+        <dc:Bounds x="532" y="861" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="543" y="923" width="72" height="14" />
+          <dc:Bounds x="522" y="918" width="72" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BusinessRuleTask_1e3w1uw_di" bpmnElement="Task_assesCase">
@@ -484,8 +501,8 @@ state=object.state;</camunda:script>
         <dc:Bounds x="1182" y="445" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1efpgg5_di" bpmnElement="DataOutputAssociation_1efpgg5">
-        <di:waypoint x="563" y="797" />
-        <di:waypoint x="573" y="866" />
+        <di:waypoint x="557" y="797" />
+        <di:waypoint x="556" y="861" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1v41auc_di" bpmnElement="SequenceFlow_1v41auc">
         <di:waypoint x="297" y="757" />

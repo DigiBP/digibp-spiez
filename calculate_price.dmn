@@ -251,6 +251,9 @@
         <inputExpression id="LiteralExpression_0wqzsb3" typeRef="string">
           <text>eGender</text>
         </inputExpression>
+        <inputValues id="UnaryTests_1hky58c">
+          <text>"_m","_f"</text>
+        </inputValues>
       </input>
       <output id="OutputClause_0kp6sqs" name="sPersonProfile" typeRef="string" />
       <rule id="DecisionRule_010p4e7">
@@ -258,7 +261,7 @@
           <text>[0..7]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0xix4by">
-          <text>"m"</text>
+          <text>"_m"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1hsbb6j">
           <text>"highPricePerson"</text>
@@ -269,7 +272,7 @@
           <text>[0..7]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_057ccn2">
-          <text>"w"</text>
+          <text>"_f"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0402cqu">
           <text>"highPricePerson"</text>
@@ -280,7 +283,7 @@
           <text>[8..16]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1moibr4">
-          <text>"m"</text>
+          <text>"_m"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1si7jj5">
           <text>"mediumPricePerson"</text>
@@ -291,7 +294,7 @@
           <text>[8..16]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_18dre4v">
-          <text>"w"</text>
+          <text>"_f"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1yx9xyp">
           <text>"highPricePerson"</text>
@@ -302,7 +305,7 @@
           <text>[17..26]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_087phiu">
-          <text>"m"</text>
+          <text>"_m"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_10i6e6p">
           <text>"lowPricePerson"</text>
@@ -313,7 +316,7 @@
           <text>[17..26]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0vmxhsr">
-          <text>"w"</text>
+          <text>"_f"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_14sgumr">
           <text>"mediumPricePerson"</text>
@@ -324,7 +327,7 @@
           <text>[27..40]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0u6oo25">
-          <text>"m"</text>
+          <text>"_m"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1hm7d0h">
           <text>"lowPricePerson"</text>
@@ -335,7 +338,7 @@
           <text>[27..40]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0egzjed">
-          <text>"w"</text>
+          <text>"_f"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0a341qg">
           <text>"mediumPricePerson"</text>
@@ -346,7 +349,7 @@
           <text>[41..60]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_07ukwla">
-          <text>"m"</text>
+          <text>"_m"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0qubs9b">
           <text>"mediumPricePerson"</text>
@@ -357,7 +360,7 @@
           <text>[41..60]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0y69xyl">
-          <text>"w"</text>
+          <text>"_f"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1g3zczs">
           <text>"highPricePerson"</text>
@@ -368,7 +371,7 @@
           <text>[61..80]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0dl9zha">
-          <text>"m"</text>
+          <text>"_m"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0l1av6i">
           <text>"mediumPricePerson"</text>
@@ -379,7 +382,7 @@
           <text>[61..80]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0noamjj">
-          <text>"w"</text>
+          <text>"_f"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0dxe2y4">
           <text>"highPricePerson"</text>
@@ -390,7 +393,7 @@
           <text>&gt; 80</text>
         </inputEntry>
         <inputEntry id="UnaryTests_02xi4y4">
-          <text>"m"</text>
+          <text>"_m"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_19yb7o0">
           <text>"highPricePerson"</text>
@@ -401,7 +404,7 @@
           <text>&gt; 80</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0ccc12n">
-          <text>"w"</text>
+          <text>"_f"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1ppsdfc">
           <text>"highPricePerson"</text>
@@ -409,7 +412,7 @@
       </rule>
     </decisionTable>
   </decision>
-  <decision id="Decision_calculateBasicInsurance" name="calculate basic insurance&#10;general fee">
+  <decision id="Decision_calculateBasicInsuranceBasePrice" name="calculate basic insurance&#10;general fee">
     <extensionElements>
       <biodi:bounds x="156" y="607" width="180" height="80" />
       <biodi:edge source="eBasicInsuranceType">
@@ -417,7 +420,7 @@
         <biodi:waypoints x="199" y="687" />
       </biodi:edge>
       <biodi:edge source="eFranchise">
-        <biodi:waypoints x="260" y="784" />
+        <biodi:waypoints x="261" y="780" />
         <biodi:waypoints x="260" y="687" />
       </biodi:edge>
     </extensionElements>
@@ -432,6 +435,9 @@
         <inputExpression id="LiteralExpression_1w7rwl0" typeRef="string">
           <text>eBaseInsuranceType</text>
         </inputExpression>
+        <inputValues id="UnaryTests_1opi437">
+          <text>"_hmo","_standard","_familyDoctor","_telmed"</text>
+        </inputValues>
       </input>
       <input id="InputClause_1eezi2l">
         <inputExpression id="LiteralExpression_0vvg81a" typeRef="string">
@@ -441,10 +447,10 @@
       <output id="OutputClause_0vr0tlr" name="nBasePriceBasicInsurance" typeRef="double" />
       <rule id="DecisionRule_0v0s2wi">
         <inputEntry id="UnaryTests_09e7543">
-          <text>_hmo</text>
+          <text>"_hmo"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_10n52y3">
-          <text>_0500</text>
+          <text>"_0500"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_07c8o29">
           <text>180</text>
@@ -452,10 +458,10 @@
       </rule>
       <rule id="DecisionRule_1vvqrnl">
         <inputEntry id="UnaryTests_1niyuhe">
-          <text>_hmo</text>
+          <text>"_hmo"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0h3avc0">
-          <text>_1000</text>
+          <text>"_1000"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0fmy3vh">
           <text>130</text>
@@ -463,10 +469,10 @@
       </rule>
       <rule id="DecisionRule_1r68bgk">
         <inputEntry id="UnaryTests_1uz61wn">
-          <text>_hmo</text>
+          <text>"_hmo"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0bu7377">
-          <text>_2500</text>
+          <text>"_2500"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_00ac7sn">
           <text>80</text>
@@ -474,10 +480,10 @@
       </rule>
       <rule id="DecisionRule_1p0li3f">
         <inputEntry id="UnaryTests_1kjgcp4">
-          <text>_standard</text>
+          <text>"_standard"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1cb813q">
-          <text>_0500</text>
+          <text>"_0500"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_121ccp6">
           <text>200</text>
@@ -485,10 +491,10 @@
       </rule>
       <rule id="DecisionRule_0xit4lu">
         <inputEntry id="UnaryTests_1gmzb6y">
-          <text>_standard</text>
+          <text>"_standard"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1i3wfa3">
-          <text>_1000</text>
+          <text>"_1000"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1lw5t5y">
           <text>150</text>
@@ -496,10 +502,10 @@
       </rule>
       <rule id="DecisionRule_151i8xg">
         <inputEntry id="UnaryTests_0qu5i92">
-          <text>_standard</text>
+          <text>"_standard"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_11rydbk">
-          <text>_2500</text>
+          <text>"_2500"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0iq9092">
           <text>100</text>
@@ -507,10 +513,10 @@
       </rule>
       <rule id="DecisionRule_02qnpah">
         <inputEntry id="UnaryTests_1ux82fo">
-          <text>_familyDoctor</text>
+          <text>"_familyDoctor"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_06adkzh">
-          <text>_0500</text>
+          <text>"_0500"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_01cknej">
           <text>190</text>
@@ -518,10 +524,10 @@
       </rule>
       <rule id="DecisionRule_1s1t8mr">
         <inputEntry id="UnaryTests_0k3swr3">
-          <text>_familyDoctor</text>
+          <text>"_familyDoctor"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_07peq1m">
-          <text>_1000</text>
+          <text>"_1000"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_00pj02f">
           <text>140</text>
@@ -529,10 +535,10 @@
       </rule>
       <rule id="DecisionRule_0jk0lpg">
         <inputEntry id="UnaryTests_0ddzso8">
-          <text>_familyDoctor</text>
+          <text>"_familyDoctor"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1dxd4us">
-          <text>_2500</text>
+          <text>"_2500"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_07c1law">
           <text>90</text>
@@ -540,10 +546,10 @@
       </rule>
       <rule id="DecisionRule_07s5hd0">
         <inputEntry id="UnaryTests_1m6rpsc">
-          <text>_telmed</text>
+          <text>"_telmed"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_139qtjg">
-          <text>_0500</text>
+          <text>"_0500"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0gjw82t">
           <text>150</text>
@@ -551,10 +557,10 @@
       </rule>
       <rule id="DecisionRule_0kjn7pt">
         <inputEntry id="UnaryTests_0xep3y8">
-          <text>_telmed</text>
+          <text>"_telmed"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1ea762o">
-          <text>_1000</text>
+          <text>"_1000"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1w52rtu">
           <text>100</text>
@@ -562,10 +568,10 @@
       </rule>
       <rule id="DecisionRule_0a2nquh">
         <inputEntry id="UnaryTests_0h39st1">
-          <text>_telmed</text>
+          <text>"_telmed"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0cstlsp">
-          <text>_2500</text>
+          <text>"_2500"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1nw4qt7">
           <text>50</text>
@@ -573,7 +579,7 @@
       </rule>
     </decisionTable>
   </decision>
-  <decision id="Decision_calculateLifeInsurance" name="calculate life insurance">
+  <decision id="Decision_calculateLifeInsuranceBasePrice" name="calculate life insurance">
     <extensionElements>
       <biodi:bounds x="829" y="615" width="180" height="80" />
       <biodi:edge source="bLifeInsurance">
@@ -601,6 +607,9 @@
         <inputExpression id="LiteralExpression_0i7j1wt" typeRef="string">
           <text>eLifeInsuranceCoverage</text>
         </inputExpression>
+        <inputValues id="UnaryTests_14oa2e2">
+          <text>"_100000","_050000"</text>
+        </inputValues>
       </input>
       <output id="OutputClause_0eds36e" name="nBasePriceLifeInsurance" typeRef="double" />
       <rule id="DecisionRule_05tijqp">
@@ -619,7 +628,7 @@
           <text>true</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0fj1aiy">
-          <text>_100000</text>
+          <text>"_100000"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1wpugas">
           <text>15</text>
@@ -630,7 +639,7 @@
           <text>true</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1jpmuat">
-          <text>_050000</text>
+          <text>"_050000"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1b4ioou">
           <text>7.5</text>
@@ -638,7 +647,7 @@
       </rule>
     </decisionTable>
   </decision>
-  <decision id="Decision_calculateAlternativeInsurance" name="calculate alternative insurance">
+  <decision id="Decision_calculateAlternativeInsuranceBasePrice" name="calculate alternative insurance">
     <extensionElements>
       <biodi:bounds x="610" y="613" width="180" height="80" />
       <biodi:edge source="bAlternativeInsurance">
@@ -666,6 +675,9 @@
         <inputExpression id="LiteralExpression_0bb83xp" typeRef="string">
           <text>eAlternativeInsuranceType</text>
         </inputExpression>
+        <inputValues id="UnaryTests_1d3r8a9">
+          <text>"_chinese","_chineseAccupuncture","_accupuncture"</text>
+        </inputValues>
       </input>
       <output id="OutputClause_0hfjd4j" name="nBasePriceAlternativeInsurance" typeRef="double" />
       <rule id="DecisionRule_1wri2zj">
@@ -684,7 +696,7 @@
           <text>true</text>
         </inputEntry>
         <inputEntry id="UnaryTests_05dtgxe">
-          <text>_chinese</text>
+          <text>"_chinese"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0w4dab6">
           <text>18</text>
@@ -695,7 +707,7 @@
           <text>true</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1b37l8x">
-          <text>_accupuncture</text>
+          <text>"_accupuncture"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_11cq4yq">
           <text>5</text>
@@ -706,7 +718,7 @@
           <text>true</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0zvd8ip">
-          <text>_chineseAccupuncture</text>
+          <text>"_chineseAccupuncture"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0kt0cns">
           <text>20</text>
@@ -714,7 +726,7 @@
       </rule>
     </decisionTable>
   </decision>
-  <decision id="Decision_calculateDentalInsurance" name="calculate dental insurance">
+  <decision id="Decision_calculateDentalInsuranceBasePrice" name="calculate dental insurance">
     <extensionElements>
       <biodi:bounds x="374" y="609" width="180" height="80" />
       <biodi:edge source="bDentalTreatment">
@@ -742,6 +754,9 @@
         <inputExpression id="LiteralExpression_1gm650b" typeRef="string">
           <text>eDentalTreatmentCoverage</text>
         </inputExpression>
+        <inputValues id="UnaryTests_0z0qix4">
+          <text>"_2000","_5000"</text>
+        </inputValues>
       </input>
       <output id="OutputClause_0tomirs" name="nBasePriceDentalInsurance" typeRef="double" />
       <rule id="DecisionRule_11tz1e3">
@@ -760,7 +775,7 @@
           <text>true</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0vxowph">
-          <text>_2000</text>
+          <text>"_2000"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0qbh1aj">
           <text>150</text>
@@ -771,7 +786,7 @@
           <text>true</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1jasg7v">
-          <text>_5000</text>
+          <text>"_5000"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1w5dk86">
           <text>90</text>
@@ -779,7 +794,7 @@
       </rule>
     </decisionTable>
   </decision>
-  <decision id="Decision_CalculateBasicInsuranceEndPrice" name="calculate basic insurance &#10;end price">
+  <decision id="Decision_calculateBasicInsuranceEndPrice" name="calculate basic insurance &#10;end price">
     <extensionElements>
       <biodi:bounds x="158" y="481" width="180" height="80" />
       <biodi:edge source="Decision_calculatePersonFactor">
@@ -787,23 +802,23 @@
         <biodi:waypoints x="392" y="371" />
         <biodi:waypoints x="314" y="479" />
       </biodi:edge>
-      <biodi:edge source="Decision_calculateBasicInsurance">
+      <biodi:edge source="Decision_calculateBasicInsuranceBasePrice">
         <biodi:waypoints x="247" y="607" />
         <biodi:waypoints x="247" y="561" />
       </biodi:edge>
     </extensionElements>
-    <variable id="InformationItem_1qrs89x" name="basicInsuranceEndPrice" typeRef="double" />
+    <variable id="InformationItem_1qrs89x" name="nEndPriceBasicInsurance" typeRef="double" />
     <informationRequirement>
       <requiredDecision href="#Decision_calculatePersonFactor" />
     </informationRequirement>
     <informationRequirement>
-      <requiredDecision href="#Decision_calculateBasicInsurance" />
+      <requiredDecision href="#Decision_calculateBasicInsuranceBasePrice" />
     </informationRequirement>
     <literalExpression id="LiteralExpression_0dm5f4t" expressionLanguage="javascript">
-      <text>basicInsurancePrice*personFactor</text>
+      <text>nBasePriceBasicInsurance*nPersonFactor</text>
     </literalExpression>
   </decision>
-  <decision id="Decision_CalculateDentalInsuranceEndPrice" name="calculate dental insurance&#10;end price">
+  <decision id="Decision_calculateDentalInsuranceEndPrice" name="calculate dental insurance&#10;end price">
     <extensionElements>
       <biodi:bounds x="373" y="481" width="180" height="80" />
       <biodi:edge source="Decision_calculatePersonFactor">
@@ -811,23 +826,23 @@
         <biodi:waypoints x="463" y="411" />
         <biodi:waypoints x="463" y="481" />
       </biodi:edge>
-      <biodi:edge source="Decision_calculateDentalInsurance">
+      <biodi:edge source="Decision_calculateDentalInsuranceBasePrice">
         <biodi:waypoints x="464" y="609" />
         <biodi:waypoints x="465" y="561" />
       </biodi:edge>
     </extensionElements>
-    <variable id="InformationItem_0ppxogd" name="dentalInsuranceEndPrice" typeRef="double" />
+    <variable id="InformationItem_0ppxogd" name="nEndPriceDentalInsurance" typeRef="double" />
     <informationRequirement>
       <requiredDecision href="#Decision_calculatePersonFactor" />
     </informationRequirement>
     <informationRequirement>
-      <requiredDecision href="#Decision_calculateDentalInsurance" />
+      <requiredDecision href="#Decision_calculateDentalInsuranceBasePrice" />
     </informationRequirement>
     <literalExpression id="LiteralExpression_1sqn5e7" expressionLanguage="javascript">
-      <text>1.0</text>
+      <text>nBasePriceDentalInsurance*nPersonFactor</text>
     </literalExpression>
   </decision>
-  <decision id="Decision_CalculateAlternativeInsuranceEndPrice" name="calculate alternative insurance&#10;end price">
+  <decision id="Decision_calculateAlternativeInsuranceEndPrice" name="calculate alternative insurance&#10;end price">
     <extensionElements>
       <biodi:bounds x="609" y="482" width="180" height="80" />
       <biodi:edge source="Decision_calculatePersonFactor">
@@ -835,26 +850,26 @@
         <biodi:waypoints x="730" y="402" />
         <biodi:waypoints x="730" y="481" />
       </biodi:edge>
-      <biodi:edge source="Decision_calculateAlternativeInsurance">
+      <biodi:edge source="Decision_calculateAlternativeInsuranceBasePrice">
         <biodi:waypoints x="700" y="613" />
         <biodi:waypoints x="701" y="562" />
       </biodi:edge>
     </extensionElements>
-    <variable id="InformationItem_0270u6t" name="alternativeInsuranceEndPrice" typeRef="long" />
+    <variable id="InformationItem_0270u6t" name="nEndPriceAlternativeInsurance" typeRef="double" />
     <informationRequirement>
       <requiredDecision href="#Decision_calculatePersonFactor" />
     </informationRequirement>
     <informationRequirement>
-      <requiredDecision href="#Decision_calculateAlternativeInsurance" />
+      <requiredDecision href="#Decision_calculateAlternativeInsuranceBasePrice" />
     </informationRequirement>
     <literalExpression id="LiteralExpression_0jww2jp" expressionLanguage="javascript">
-      <text>1</text>
+      <text>nBasePriceAlternativeInsurance*nPersonFactor</text>
     </literalExpression>
   </decision>
-  <decision id="Decision_CalculateLifeInsuranceEndPrice" name="calculate life insurance&#10;end price">
+  <decision id="Decision_calculateLifeInsuranceEndPrice" name="calculate life insurance&#10;end price">
     <extensionElements>
       <biodi:bounds x="826" y="482" width="180" height="80" />
-      <biodi:edge source="Decision_calculateLifeInsurance">
+      <biodi:edge source="Decision_calculateLifeInsuranceBasePrice">
         <biodi:waypoints x="919" y="615" />
         <biodi:waypoints x="921" y="562" />
       </biodi:edge>
@@ -864,15 +879,15 @@
         <biodi:waypoints x="882" y="482" />
       </biodi:edge>
     </extensionElements>
-    <variable id="InformationItem_0x7fh7g" name="lifeInsuranceEndPrice" typeRef="double" />
+    <variable id="InformationItem_0x7fh7g" name="nEndPriceLifeInsurance" typeRef="double" />
     <informationRequirement>
-      <requiredDecision href="#Decision_calculateLifeInsurance" />
+      <requiredDecision href="#Decision_calculateLifeInsuranceBasePrice" />
     </informationRequirement>
     <informationRequirement>
       <requiredDecision href="#Decision_calculatePersonFactor" />
     </informationRequirement>
     <literalExpression id="LiteralExpression_0e4ldfj" expressionLanguage="javascript">
-      <text>1.0</text>
+      <text>nBasePriceLifeInsurance*nPersonFactor</text>
     </literalExpression>
   </decision>
   <inputData id="nZipCode" name="Zip Code">
@@ -912,7 +927,7 @@
   </inputData>
   <inputData id="eFranchise" name="Franchise">
     <extensionElements>
-      <biodi:bounds x="197" y="784" width="125" height="45" />
+      <biodi:bounds x="198" y="780" width="125" height="45" />
     </extensionElements>
   </inputData>
   <inputData id="eBasicInsuranceType" name="Basic Insurance&#10;Type">

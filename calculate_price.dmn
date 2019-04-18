@@ -2,14 +2,14 @@
 <definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="Definitions_Calculate_Factor3" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
   <decision id="Decision_calculatePersonFactor" name="calculate person factor">
     <extensionElements>
-      <biodi:bounds x="262" y="255" width="180" height="80" />
+      <biodi:bounds x="508" y="331" width="180" height="80" />
       <biodi:edge source="Decision_calculateArea">
-        <biodi:waypoints x="264" y="188" />
-        <biodi:waypoints x="307" y="255" />
+        <biodi:waypoints x="510" y="264" />
+        <biodi:waypoints x="553" y="331" />
       </biodi:edge>
       <biodi:edge source="Decision_calculatePersonData">
-        <biodi:waypoints x="465" y="190" />
-        <biodi:waypoints x="409" y="255" />
+        <biodi:waypoints x="711" y="266" />
+        <biodi:waypoints x="655" y="331" />
       </biodi:edge>
     </extensionElements>
     <informationRequirement>
@@ -133,8 +133,15 @@
   </decision>
   <decision id="Decision_calculateArea" name="calculate area">
     <extensionElements>
-      <biodi:bounds x="149" y="108" width="180" height="80" />
+      <biodi:bounds x="395" y="184" width="180" height="80" />
+      <biodi:edge source="nZipCode">
+        <biodi:waypoints x="482" y="126" />
+        <biodi:waypoints x="483" y="184" />
+      </biodi:edge>
     </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#nZipCode" />
+    </informationRequirement>
     <decisionTable id="DecisionTable_1o1us56">
       <input id="InputClause_0095j6a">
         <inputExpression id="LiteralExpression_0djhpmm" typeRef="integer">
@@ -218,8 +225,22 @@
   </decision>
   <decision id="Decision_calculatePersonData" name="calculate person data">
     <extensionElements>
-      <biodi:bounds x="409" y="110" width="180" height="80" />
+      <biodi:bounds x="655" y="186" width="180" height="80" />
+      <biodi:edge source="eGender">
+        <biodi:waypoints x="700" y="130" />
+        <biodi:waypoints x="700" y="186" />
+      </biodi:edge>
+      <biodi:edge source="nAge">
+        <biodi:waypoints x="817" y="130" />
+        <biodi:waypoints x="817" y="186" />
+      </biodi:edge>
     </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#eGender" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#nAge" />
+    </informationRequirement>
     <decisionTable id="DecisionTable_0a1gmyl">
       <input id="InputClause_09jw414">
         <inputExpression id="LiteralExpression_0s3nksw" typeRef="integer">
@@ -388,10 +409,24 @@
       </rule>
     </decisionTable>
   </decision>
-  <decision id="Decision_calculateBasicInsurance" name="calculate basic insurance">
+  <decision id="Decision_calculateBasicInsurance" name="calculate basic insurance&#10;general fee">
     <extensionElements>
-      <biodi:bounds x="686" y="46" width="180" height="80" />
+      <biodi:bounds x="156" y="607" width="180" height="80" />
+      <biodi:edge source="eBasicInsuranceType">
+        <biodi:waypoints x="199" y="726" />
+        <biodi:waypoints x="199" y="687" />
+      </biodi:edge>
+      <biodi:edge source="eFranchise">
+        <biodi:waypoints x="260" y="784" />
+        <biodi:waypoints x="260" y="687" />
+      </biodi:edge>
     </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#eBasicInsuranceType" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#eFranchise" />
+    </informationRequirement>
     <decisionTable id="DecisionTable_1v134qg">
       <input id="InputClause_17y1vsg">
         <inputExpression id="LiteralExpression_1w7rwl0" typeRef="string">
@@ -540,8 +575,22 @@
   </decision>
   <decision id="Decision_calculateLifeInsurance" name="calculate life insurance">
     <extensionElements>
-      <biodi:bounds x="691" y="263" width="180" height="80" />
+      <biodi:bounds x="829" y="615" width="180" height="80" />
+      <biodi:edge source="bLifeInsurance">
+        <biodi:waypoints x="880" y="801" />
+        <biodi:waypoints x="882" y="695" />
+      </biodi:edge>
+      <biodi:edge source="eLifeInsuranceCoverage">
+        <biodi:waypoints x="971" y="744" />
+        <biodi:waypoints x="971" y="695" />
+      </biodi:edge>
     </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#bLifeInsurance" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#eLifeInsuranceCoverage" />
+    </informationRequirement>
     <decisionTable id="DecisionTable_1fjvk5q">
       <input id="InputClause_1xrzbmp">
         <inputExpression id="LiteralExpression_021qr3h" typeRef="boolean">
@@ -591,8 +640,22 @@
   </decision>
   <decision id="Decision_calculateAlternativeInsurance" name="calculate alternative insurance">
     <extensionElements>
-      <biodi:bounds x="691" y="365" width="180" height="80" />
+      <biodi:bounds x="610" y="613" width="180" height="80" />
+      <biodi:edge source="bAlternativeInsurance">
+        <biodi:waypoints x="667" y="795" />
+        <biodi:waypoints x="667" y="693" />
+      </biodi:edge>
+      <biodi:edge source="eAlternativeInsuranceType">
+        <biodi:waypoints x="747" y="739" />
+        <biodi:waypoints x="747" y="693" />
+      </biodi:edge>
     </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#bAlternativeInsurance" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#eAlternativeInsuranceType" />
+    </informationRequirement>
     <decisionTable id="DecisionTable_1tfjnsx">
       <input id="InputClause_0jupnb7">
         <inputExpression id="LiteralExpression_06m53kw" typeRef="boolean">
@@ -653,8 +716,22 @@
   </decision>
   <decision id="Decision_calculateDentalInsurance" name="calculate dental insurance">
     <extensionElements>
-      <biodi:bounds x="682" y="150" width="180" height="80" />
+      <biodi:bounds x="374" y="609" width="180" height="80" />
+      <biodi:edge source="bDentalTreatment">
+        <biodi:waypoints x="416" y="736" />
+        <biodi:waypoints x="417" y="689" />
+      </biodi:edge>
+      <biodi:edge source="eDentalTreamentCoverage">
+        <biodi:waypoints x="482" y="794" />
+        <biodi:waypoints x="481" y="689" />
+      </biodi:edge>
     </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#bDentalTreatment" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#eDentalTreamentCoverage" />
+    </informationRequirement>
     <decisionTable id="DecisionTable_0a9o5o8">
       <input id="InputClause_0c6ltdj">
         <inputExpression id="LiteralExpression_0jwc7ib" typeRef="boolean">
@@ -702,4 +779,155 @@
       </rule>
     </decisionTable>
   </decision>
+  <decision id="Decision_CalculateBasicInsuranceEndPrice" name="calculate basic insurance &#10;end price">
+    <extensionElements>
+      <biodi:bounds x="158" y="481" width="180" height="80" />
+      <biodi:edge source="Decision_calculatePersonFactor">
+        <biodi:waypoints x="507" y="371" />
+        <biodi:waypoints x="392" y="371" />
+        <biodi:waypoints x="314" y="479" />
+      </biodi:edge>
+      <biodi:edge source="Decision_calculateBasicInsurance">
+        <biodi:waypoints x="247" y="607" />
+        <biodi:waypoints x="247" y="561" />
+      </biodi:edge>
+    </extensionElements>
+    <variable id="InformationItem_1qrs89x" name="basicInsuranceEndPrice" typeRef="double" />
+    <informationRequirement>
+      <requiredDecision href="#Decision_calculatePersonFactor" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredDecision href="#Decision_calculateBasicInsurance" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_0dm5f4t" expressionLanguage="javascript">
+      <text>basicInsurancePrice*personFactor</text>
+    </literalExpression>
+  </decision>
+  <decision id="Decision_CalculateDentalInsuranceEndPrice" name="calculate dental insurance&#10;end price">
+    <extensionElements>
+      <biodi:bounds x="373" y="481" width="180" height="80" />
+      <biodi:edge source="Decision_calculatePersonFactor">
+        <biodi:waypoints x="508" y="392" />
+        <biodi:waypoints x="463" y="411" />
+        <biodi:waypoints x="463" y="481" />
+      </biodi:edge>
+      <biodi:edge source="Decision_calculateDentalInsurance">
+        <biodi:waypoints x="464" y="609" />
+        <biodi:waypoints x="465" y="561" />
+      </biodi:edge>
+    </extensionElements>
+    <variable id="InformationItem_0ppxogd" name="dentalInsuranceEndPrice" typeRef="double" />
+    <informationRequirement>
+      <requiredDecision href="#Decision_calculatePersonFactor" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredDecision href="#Decision_calculateDentalInsurance" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_1sqn5e7" expressionLanguage="javascript">
+      <text>1.0</text>
+    </literalExpression>
+  </decision>
+  <decision id="Decision_CalculateAlternativeInsuranceEndPrice" name="calculate alternative insurance&#10;end price">
+    <extensionElements>
+      <biodi:bounds x="609" y="482" width="180" height="80" />
+      <biodi:edge source="Decision_calculatePersonFactor">
+        <biodi:waypoints x="688" y="392" />
+        <biodi:waypoints x="730" y="402" />
+        <biodi:waypoints x="730" y="481" />
+      </biodi:edge>
+      <biodi:edge source="Decision_calculateAlternativeInsurance">
+        <biodi:waypoints x="700" y="613" />
+        <biodi:waypoints x="701" y="562" />
+      </biodi:edge>
+    </extensionElements>
+    <variable id="InformationItem_0270u6t" name="alternativeInsuranceEndPrice" typeRef="long" />
+    <informationRequirement>
+      <requiredDecision href="#Decision_calculatePersonFactor" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredDecision href="#Decision_calculateAlternativeInsurance" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_0jww2jp" expressionLanguage="javascript">
+      <text>1</text>
+    </literalExpression>
+  </decision>
+  <decision id="Decision_CalculateLifeInsuranceEndPrice" name="calculate life insurance&#10;end price">
+    <extensionElements>
+      <biodi:bounds x="826" y="482" width="180" height="80" />
+      <biodi:edge source="Decision_calculateLifeInsurance">
+        <biodi:waypoints x="919" y="615" />
+        <biodi:waypoints x="921" y="562" />
+      </biodi:edge>
+      <biodi:edge source="Decision_calculatePersonFactor">
+        <biodi:waypoints x="688" y="371" />
+        <biodi:waypoints x="845" y="371" />
+        <biodi:waypoints x="882" y="482" />
+      </biodi:edge>
+    </extensionElements>
+    <variable id="InformationItem_0x7fh7g" name="lifeInsuranceEndPrice" typeRef="double" />
+    <informationRequirement>
+      <requiredDecision href="#Decision_calculateLifeInsurance" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredDecision href="#Decision_calculatePersonFactor" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_0e4ldfj" expressionLanguage="javascript">
+      <text>1.0</text>
+    </literalExpression>
+  </decision>
+  <inputData id="nZipCode" name="Zip Code">
+    <extensionElements>
+      <biodi:bounds x="419" y="81" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="eGender" name="Gender">
+    <extensionElements>
+      <biodi:bounds x="637" y="85" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="nAge" name="Age">
+    <extensionElements>
+      <biodi:bounds x="770" y="84" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="bLifeInsurance" name="has Life Insurance?">
+    <extensionElements>
+      <biodi:bounds x="817" y="801" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="eLifeInsuranceCoverage" name="Life Insurance Coverage">
+    <extensionElements>
+      <biodi:bounds x="908" y="744" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="eAlternativeInsuranceType" name="Alternative Insurance&#10;Type">
+    <extensionElements>
+      <biodi:bounds x="684" y="739" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="bAlternativeInsurance" name="has Alternative Insurance?">
+    <extensionElements>
+      <biodi:bounds x="604" y="795" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="eFranchise" name="Franchise">
+    <extensionElements>
+      <biodi:bounds x="197" y="784" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="eBasicInsuranceType" name="Basic Insurance&#10;Type">
+    <extensionElements>
+      <biodi:bounds x="136" y="726" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="bDentalTreatment" name="has Dental Treatment?">
+    <extensionElements>
+      <biodi:bounds x="353" y="736" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="eDentalTreamentCoverage" name="Dental Treatment&#10;Coverage">
+    <extensionElements>
+      <biodi:bounds x="419" y="794" width="125" height="45" />
+    </extensionElements>
+  </inputData>
 </definitions>

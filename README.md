@@ -6,67 +6,14 @@ dMP.dMP     dMP"AMF   dMP.aMP   dMP.aMP     dMP           dP .dMP    dMP        
 VMMMP"     dMP dMP    VMMMP"    VMMMP"     dMP            VMMMP"    dMP        dMP     dMMMMMP     dMMMMMP    
 ```
 
-# DigiBP Camunda Template
-
-[![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
-[![Deploy to Heroku](https://img.shields.io/badge/deploy%20to-Heroku-6762a6.svg?longCache=true)](https://heroku.com/deploy)
 
 ## Maintainer
-- [Digitalisation of Business Processes](https://github.com/digibp)
 
-## License
+- [Digitalisation of Business Processes](https://github.com/digibp)
 
 - [Apache License, Version 2.0](https://github.com/DigiBP/digibp-archetype-camunda-boot/blob/master/LICENSE)
 
-# DigiBP Camunda Template
-2
-​
-3
-[![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
-4
-[![Deploy to Heroku](https://img.shields.io/badge/deploy%20to-Heroku-6762a6.svg?longCache=true)](https://heroku.com/deploy)
-5
-​
-6
-## Maintainer
-7
-- [Digitalisation of Business Processes](https://github.com/digibp)
-8
-​
-9
-## License
-10
-​
-11
-- [Apache License, Version 2.0](https://github.com/DigiBP/digibp-archetype-camunda-boot/blob/master/LICENSE)
-12
-​
-13
-# DigiBP Säntis Incident Management [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
-14
-```
-15
-
- 
-                                                                                                               
-
-________  .__       .______________________    _________  _ _  __  .__        
-16
-\______ \ |__| ____ |__\______   \______   \  /   _____/ _____/  |_|__| ______
-17
- |    |  \|  |/ ___\|  ||    |  _/|     ___/  \_____  \ /    \   __\  |/  ___/
-18
- |    `   \  / /_/  >  ||    |   \|    |      /        \   |  \  | |  |\___ \ 
-19
-/_______  /__\___  /|__||______  /|____|     /_______  /___|  /__| |__/____  >
-20
-        \/  /_____/            \/                    \/     \/             \/ 
-21
-```                                                                       
-22
-                                                                          
-23
-| Summary | Quicklinks |
+# DigiBP Säntis Incident Management [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-| Summary | Quicklinks |
 24
 | ------------------ | - |
 25

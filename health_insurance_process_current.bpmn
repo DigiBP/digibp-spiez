@@ -247,7 +247,7 @@
           <camunda:inputParameter name="Input_2ketn4g" />
           <camunda:outputParameter name="Output_3ud3a2i" />
           <camunda:outputParameter name="Output_0hr2cdv" />
-          <camunda:outputParameter name="Output_1pvr0ub" />
+          <camunda:outputParameter name="Output_1pvr0ub">1</camunda:outputParameter>
           <camunda:outputParameter name="Output_21bt1lu" />
         </camunda:inputOutput>
       </bpmn:extensionElements>

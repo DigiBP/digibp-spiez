@@ -9,6 +9,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ProcessApplication {
 
 	public static void main(String[] args) {
+
+	
+				for (String deploymentId : repositoryService.createDeploymentQuery().withoutTenantId().list()) {
+					repositoryService.deleteDeployment(deploymentId, true);
+				}
+			
+
 		SpringApplication.run(ProcessApplication.class, args);
 	}
 

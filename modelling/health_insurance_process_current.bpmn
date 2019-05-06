@@ -67,11 +67,6 @@
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="dBirthDate" label="Birthdate" type="date">
-            <camunda:validation>
-              <camunda:constraint name="required" />
-            </camunda:validation>
-          </camunda:formField>
           <camunda:formField id="nAge" label="Age" type="long" />
           <camunda:formField id="eCitizenShip" label="Citzienship" type="enum">
             <camunda:value id="_CH" name="Switzerland" />

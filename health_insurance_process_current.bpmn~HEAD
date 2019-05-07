@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_0z51br2" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
+  <bpmn:collaboration id="HealthInsuranceProcessDavid">
+    <bpmn:participant id="Participant_11arpnk" name="Customer Support" processRef="Process_HealthInsurance" />
+    <bpmn:participant id="Participant_17bhftx" name="Customer" />
+    <bpmn:messageFlow id="MessageFlow_17zf0ro" sourceRef="Participant_17bhftx" targetRef="StartEvent_receiveApplication" />
+    <bpmn:messageFlow id="MessageFlow_1rhs2bg" sourceRef="Participant_17bhftx" targetRef="IntermediateThrowEvent_receiveSignedContract" />
+    <bpmn:messageFlow id="MessageFlow_0bnmkvc" sourceRef="Task_sendContractToCustomer" targetRef="Participant_17bhftx" />
+    <bpmn:messageFlow id="MessageFlow_0ygn8rd" sourceRef="Participant_17bhftx" targetRef="StartEvent_1elbdov" />
+    <bpmn:messageFlow id="MessageFlow_0ogch6n" sourceRef="Task_0i44psw" targetRef="Participant_17bhftx" />
+    <bpmn:messageFlow id="MessageFlow_0id0k09" sourceRef="EndEvent_emailRejectApplication" targetRef="Participant_17bhftx" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_HealthInsurance" name="Health Insurance Process (current)" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_1wkwfu0">
+      <bpmn:lane id="Lane_0bltqy3" name="IT-System">
+        <bpmn:flowNodeRef>ExclusiveGateway_resultAssessment</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ExclusiveGateway_SupplementaryInsruanceSelected</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_receiveApplication</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_1elbdov</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_assesCase</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IntermediateThrowEvent_receiveSignedContract</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_InsertContractToDatabase</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_0055xl1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_applicationClosed</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_updateStatusInContractDatabase</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_createContract</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_emailRejectApplication</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_calculatePrices</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_rejectCase</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_0i44psw</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_sendContractToCustomer</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:sequenceFlow id="SequenceFlow_1erw4e2" sourceRef="StartEvent_1elbdov" targetRef="Task_assesCase" />
+    <bpmn:exclusiveGateway id="ExclusiveGateway_resultAssessment" name="Result of asessment">
+      <bpmn:incoming>SequenceFlow_1v49919</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1o6jn2x</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_1otr561</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_1o6jn2x" name="reject" sourceRef="ExclusiveGateway_resultAssessment" targetRef="Task_rejectCase">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${assessmentDecision== "reject"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="SequenceFlow_1otr561" name="accept" sourceRef="ExclusiveGateway_resultAssessment" targetRef="Task_calculatePrices">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${assessmentDecision== "accept"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="SequenceFlow_1vz2tl9" sourceRef="StartEvent_receiveApplication" targetRef="ExclusiveGateway_SupplementaryInsruanceSelected" />
+    <bpmn:sequenceFlow id="SequenceFlow_039mupp" name="yes" sourceRef="ExclusiveGateway_SupplementaryInsruanceSelected" targetRef="Task_0i44psw">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">$(bDentalTreatment||bLifeInsruance||bAlternativeInsurance)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:exclusiveGateway id="ExclusiveGateway_SupplementaryInsruanceSelected" name="Supplementary insurance selected?">
+      <bpmn:incoming>SequenceFlow_1vz2tl9</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_039mupp</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_18y3ey3</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_1v49919" sourceRef="Task_assesCase" targetRef="ExclusiveGateway_resultAssessment" />
+    <bpmn:sequenceFlow id="SequenceFlow_0dy9hm0" sourceRef="Task_calculatePrices" targetRef="Task_createContract" />
+    <bpmn:startEvent id="StartEvent_receiveApplication" name="Receive application">
+      <bpmn:extensionElements>
+        <camunda:formData businessKey="_businessKey">
+          <camunda:formField id="sFirstName" label="First Name" type="string">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="sLastName" label="Last Name" type="string">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="nAge" label="Age" type="long" />
+          <camunda:formField id="eCitizenShip" label="Citzienship" type="enum">
+            <camunda:value id="_CH" name="Switzerland" />
+            <camunda:value id="_DE" name="Germany" />
+            <camunda:value id="_OT" name="Other Countries" />
+          </camunda:formField>
+          <camunda:formField id="sStreet" label="Street" type="string" />
+          <camunda:formField id="nZipCode" label="Zip Code" type="long" />
+          <camunda:formField id="sCity" label="City" type="string" />
+          <camunda:formField id="sEmail" label="Email" type="string" />
+          <camunda:formField id="eGender" label="Gender" type="enum">
+            <camunda:value id="_m" name="male" />
+            <camunda:value id="_f" name="female" />
+          </camunda:formField>
+          <camunda:formField id="eBaseInsuranceType" label="Base insurance type" type="enum">
+            <camunda:value id="_hmo" name="HMO Model" />
+            <camunda:value id="_telmed" name="Telmed Model" />
+            <camunda:value id="_familyDoctor" name="Familiy Doctor Model" />
+            <camunda:value id="_standard" name="Standard Model" />
+          </camunda:formField>
+          <camunda:formField id="bAlternativeInsurance" label="Select alternative insurance" type="boolean" />
+          <camunda:formField id="eAlternativeInsuranceType" label="Alternative insurance type" type="enum">
+            <camunda:value id="_chinese" name="Chinese medicine" />
+            <camunda:value id="_accupuncture" name="Accupuncture" />
+            <camunda:value id="_chineseAccupuncture" name="Chinese medicine and accupuncture" />
+          </camunda:formField>
+          <camunda:formField id="bDentalTreatment" label="Select dental treatment" type="boolean" />
+          <camunda:formField id="eDentalTreatmentCoverage" label="Coverage for dental treatment " type="enum">
+            <camunda:value id="_2000" name="CHF 2&#39;000" />
+            <camunda:value id="_5000" name="CHF 5&#39;000" />
+          </camunda:formField>
+          <camunda:formField id="bLifeInsurance" label="Select life insurance" type="boolean" />
+          <camunda:formField id="eLifeInsuranceCoverage" label="Coverage by death" type="enum">
+            <camunda:value id="_100000" name="CHF 100&#39;000" />
+            <camunda:value id="_050000" name="CHF 50&#39;000" />
+          </camunda:formField>
+          <camunda:formField id="eFranchise" type="enum">
+            <camunda:value id="_0500" name="CHF 500" />
+            <camunda:value id="_1000" name="CHF 1&#39;000" />
+            <camunda:value id="_2500" name="CHF 2&#39;500" />
+          </camunda:formField>
+          <camunda:formField id="bAccidentCoverage" type="boolean" />
+          <camunda:formField id="_businessKey" type="string" defaultValue="thisIsMyDefaultBusinessKey" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>SequenceFlow_1vz2tl9</bpmn:outgoing>
+      <bpmn:messageEventDefinition messageRef="Message_0vsfji7" />
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0tt7isc" sourceRef="Task_0i44psw" targetRef="StartEvent_1elbdov" />
+    <bpmn:intermediateCatchEvent id="StartEvent_1elbdov" name="Recieve answers">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="bDisabilityOrBirthDefect" />
+          <camunda:outputParameter name="bOngoingTreatmentOrSurgery" />
+          <camunda:outputParameter name="bPastRejection" />
+          <camunda:outputParameter name="bDrugTaker" />
+          <camunda:outputParameter name="bHivInfected" />
+          <camunda:outputParameter name="fHeight" />
+          <camunda:outputParameter name="bBodybuilder" />
+          <camunda:outputParameter name="fWeight" />
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0tt7isc</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1erw4e2</bpmn:outgoing>
+      <bpmn:messageEventDefinition messageRef="Message_1mwdi79" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:businessRuleTask id="Task_assesCase" name="Assess case" camunda:resultVariable="decision" camunda:decisionRef="Decision_assessment" camunda:mapDecisionResult="singleResult">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="eCitizenShip">${eCitizenShip}</camunda:inputParameter>
+          <camunda:outputParameter name="assessmentDecision">${decision.assessmentDecision}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1erw4e2</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_18y3ey3</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1v49919</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_receiveSignedContract" name="Receive signed contract">
+      <bpmn:incoming>SequenceFlow_1lr0wo8</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1ov1ks7</bpmn:outgoing>
+      <bpmn:messageEventDefinition messageRef="Message_1dj4s63" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:dataObjectReference id="DataObjectReference_contract" name="contract" dataObjectRef="DataObject_0sbpkil" />
+    <bpmn:dataObject id="DataObject_0sbpkil" />
+    <bpmn:serviceTask id="Task_InsertContractToDatabase" name="Insert contract to database" camunda:expression="$(test)">
+      <bpmn:incoming>SequenceFlow_0it35zf</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1lr0wo8</bpmn:outgoing>
+      <bpmn:property id="Property_0kn8ve6" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0prxc1q">
+        <bpmn:sourceRef>DataObjectReference_contract</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0kn8ve6</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1r0alpl">
+        <bpmn:targetRef>DataStoreReference_customerData</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_1lr0wo8" sourceRef="Task_InsertContractToDatabase" targetRef="IntermediateThrowEvent_receiveSignedContract" />
+    <bpmn:sequenceFlow id="SequenceFlow_1ov1ks7" sourceRef="IntermediateThrowEvent_receiveSignedContract" targetRef="Task_updateStatusInContractDatabase" />
+    <bpmn:sequenceFlow id="SequenceFlow_075u5a4" sourceRef="Task_updateStatusInContractDatabase" targetRef="EndEvent_applicationClosed" />
+    <bpmn:sequenceFlow id="SequenceFlow_0dodatt" sourceRef="Task_createContract" targetRef="Task_sendContractToCustomer" />
+    <bpmn:sequenceFlow id="SequenceFlow_0it35zf" sourceRef="Task_sendContractToCustomer" targetRef="Task_InsertContractToDatabase" />
+    <bpmn:sequenceFlow id="SequenceFlow_0q9rb4q" sourceRef="Task_rejectCase" targetRef="EndEvent_emailRejectApplication" />
+    <bpmn:sequenceFlow id="SequenceFlow_0cbd3i6" sourceRef="EndEvent_emailRejectApplication" targetRef="EndEvent_0055xl1" />
+    <bpmn:endEvent id="EndEvent_0055xl1" name="Application closed">
+      <bpmn:incoming>SequenceFlow_0cbd3i6</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="EndEvent_applicationClosed" name="Application closed">
+      <bpmn:incoming>SequenceFlow_075u5a4</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="Task_updateStatusInContractDatabase" name="Update status in contract data base" camunda:expression="$(test)">
+      <bpmn:incoming>SequenceFlow_1ov1ks7</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_075u5a4</bpmn:outgoing>
+      <bpmn:property id="Property_0apppuk" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_10u0hay">
+        <bpmn:sourceRef>DataStoreReference_customerData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0apppuk</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0bedaj4">
+        <bpmn:targetRef>DataStoreReference_customerData</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:serviceTask>
+    <bpmn:dataStoreReference id="DataStoreReference_customerData" name="contract databse" />
+    <bpmn:serviceTask id="Task_createContract" name="Create contract" camunda:type="external" camunda:topic="$(test)">
+      <bpmn:incoming>SequenceFlow_0dy9hm0</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0dodatt</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1u7vsgk">
+        <bpmn:targetRef>DataObjectReference_contract</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:serviceTask>
+    <bpmn:intermediateThrowEvent id="EndEvent_emailRejectApplication" name="Email Reject Application">
+      <bpmn:incoming>SequenceFlow_0q9rb4q</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0cbd3i6</bpmn:outgoing>
+      <bpmn:messageEventDefinition messageRef="Message_0pyxu08" />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:callActivity id="Task_calculatePrices" name="Calculate Prices" calledElement="Process_calculatePrices">
+      <bpmn:extensionElements>
+        <camunda:in source="dBirthDate" target="dBirthDate" />
+        <camunda:in source="eGender" target="eGender" />
+        <camunda:in source="nAge" target="nAge" />
+        <camunda:in source="nZipCode" target="nZipCode" />
+        <camunda:in source="eBaseInsuranceType" target="eBaseInsuranceType" />
+        <camunda:in source="bBasicInsuranceOnly" target="bBasicInsuranceOnly" />
+        <camunda:in source="eFranchise" target="eFranchise" />
+        <camunda:in source="bAccidentCoverage" target="bAccidentCoverage" />
+        <camunda:in source="bAlternativeInsurance" target="bAlternativeInsurance" />
+        <camunda:in source="eAlternativeInsuranceType" target="eAlternativeInsuranceType" />
+        <camunda:in source="bDentalTreatment" target="bDentalTreatment" />
+        <camunda:in source="eDentalTreatmentCoverage" target="eDentalTreatmentCoverage" />
+        <camunda:in source="bLifeInsurance" target="bLifeInsurance" />
+        <camunda:in source="eLifeInsuranceCoverage" target="eLifeInsuranceCoverage" />
+        <camunda:out source="sPersonProfile" target="sPersonProfile" />
+        <camunda:out source="sAreaType" target="sAreaType" />
+        <camunda:out source="nPersonFactor" target="nPersonFactor" />
+        <camunda:out source="nEndPriceDentalInsurance" target="nEndPriceDentalInsurance" />
+        <camunda:out source="nEndPriceBasicInsurance" target="nEndPriceBasicInsurance" />
+        <camunda:out source="nEndPriceAlternativeInsurance" target="nEndPriceAlternativeInsurance" />
+        <camunda:out source="nEndPriceLifeInsurance" target="nEndPriceLifeInsurance" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1otr561</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0dy9hm0</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:serviceTask id="Task_rejectCase" name="Reject case">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hook.integromat.com/zcnxink8vc0kw11xus5khznjbhl1e1ke</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="JavaScript">out=JSON.stringify({
+"nEndPriceBasicInsurance":nEndPriceBasicInsurance,
+"nEndPriceAlternativeInsurance":nEndPriceAlternativeInsurance,
+"nEndPriceDentalInsurance":nEndPriceDentalInsurance,
+"nEndPriceLifeInsurance":nEndPriceLifeInsurance
+});</camunda:script>
+            </camunda:inputParameter>
+            <camunda:outputParameter name="state">
+              <camunda:script scriptFormat="JavaScript">object=JSON.parse(response);
+state=object.state;</camunda:script>
+            </camunda:outputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1o6jn2x</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0q9rb4q</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sendTask id="Task_0i44psw" name="Ask health questions" camunda:expression="$(test)">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="Input_2ketn4g" />
+          <camunda:outputParameter name="Output_3ud3a2i" />
+          <camunda:outputParameter name="Output_0hr2cdv" />
+          <camunda:outputParameter name="Output_1pvr0ub">1</camunda:outputParameter>
+          <camunda:outputParameter name="Output_21bt1lu" />
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_039mupp</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0tt7isc</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:sendTask id="Task_sendContractToCustomer" name="Send contract to customer" camunda:expression="$(test)">
+      <bpmn:incoming>SequenceFlow_0dodatt</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0it35zf</bpmn:outgoing>
+      <bpmn:property id="Property_1s9wzx6" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_03u6bmu">
+        <bpmn:sourceRef>DataObjectReference_contract</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1s9wzx6</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:sendTask>
+    <bpmn:sequenceFlow id="SequenceFlow_18y3ey3" name="no" sourceRef="ExclusiveGateway_SupplementaryInsruanceSelected" targetRef="Task_assesCase">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">$(!(bDentalTreatment||bLifeInsruance||bAlternativeInsurance))</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+  </bpmn:process>
+  <bpmn:message id="Message_0vsfji7" name="Message_0e7eoe9" />
+  <bpmn:message id="Message_016opmc" name="Message_17nu932" />
+  <bpmn:message id="Message_0m6nu6i" name="Message_2vl7cue" />
+  <bpmn:message id="Message_0qhxvl8" name="Message_220cs7l" />
+  <bpmn:message id="Message_0qbnllw" name="Message_0gi9a73" />
+  <bpmn:message id="Message_1dj4s63" name="Message_1eea03e" />
+  <bpmn:message id="Message_1mwdi79" name="Message_38tpcvo" />
+  <bpmn:message id="Message_0pyxu08" name="Message_307ukjl" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="HealthInsuranceProcessDavid">
+      <bpmndi:BPMNShape id="Participant_11arpnk_di" bpmnElement="Participant_11arpnk" isHorizontal="true">
+        <dc:Bounds x="156" y="416" width="1890" height="729" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Participant_1wbjrzx_di" bpmnElement="Participant_17bhftx" isHorizontal="true">
+        <dc:Bounds x="156" y="81" width="1891" height="188" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1c4x6xz_di" bpmnElement="StartEvent_receiveApplication">
+        <dc:Bounds x="261" y="748" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="253" y="791" width="53" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="MessageFlow_17zf0ro_di" bpmnElement="MessageFlow_17zf0ro">
+        <di:waypoint x="279" y="269" />
+        <di:waypoint x="279" y="748" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ExclusiveGateway_10qbl19_di" bpmnElement="ExclusiveGateway_resultAssessment" isMarkerVisible="true">
+        <dc:Bounds x="832" y="741" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="793" y="788" width="55" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0bltqy3_di" bpmnElement="Lane_0bltqy3" isHorizontal="true">
+        <dc:Bounds x="186" y="416" width="1860" height="729" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1o6jn2x_di" bpmnElement="SequenceFlow_1o6jn2x">
+        <di:waypoint x="857" y="791" />
+        <di:waypoint x="857" y="1003" />
+        <di:waypoint x="932" y="1003" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="881" y="1008" width="28" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1otr561_di" bpmnElement="SequenceFlow_1otr561">
+        <di:waypoint x="857" y="741" />
+        <di:waypoint x="857" y="690" />
+        <di:waypoint x="923" y="690" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="865" y="669" width="34" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="DataObjectReference_01zbefm_di" bpmnElement="DataObjectReference_contract">
+        <dc:Bounds x="1341" y="807" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1340" y="864" width="41" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1u7vsgk_di" bpmnElement="DataOutputAssociation_1u7vsgk">
+        <di:waypoint x="1228" y="730" />
+        <di:waypoint x="1228" y="832" />
+        <di:waypoint x="1341" y="832" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0dodatt_di" bpmnElement="SequenceFlow_0dodatt">
+        <di:waypoint x="1278" y="690" />
+        <di:waypoint x="1309" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0it35zf_di" bpmnElement="SequenceFlow_0it35zf">
+        <di:waypoint x="1409" y="690" />
+        <di:waypoint x="1439" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_1s5pmc3_di" bpmnElement="EndEvent_applicationClosed">
+        <dc:Bounds x="1866" y="672" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1840" y="715" width="89" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_075u5a4_di" bpmnElement="SequenceFlow_075u5a4">
+        <di:waypoint x="1806" y="690" />
+        <di:waypoint x="1866" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MessageFlow_1rhs2bg_di" bpmnElement="MessageFlow_1rhs2bg">
+        <di:waypoint x="1621" y="269" />
+        <di:waypoint x="1621" y="672" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="DataStoreReference_1201ia2_di" bpmnElement="DataStoreReference_customerData">
+        <dc:Bounds x="1587" y="843" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1571" y="900" width="82" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0bedaj4_di" bpmnElement="DataOutputAssociation_0bedaj4">
+        <di:waypoint x="1756" y="730" />
+        <di:waypoint x="1756" y="868" />
+        <di:waypoint x="1637" y="868" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_10u0hay_di" bpmnElement="DataInputAssociation_10u0hay">
+        <di:waypoint x="1637" y="868" />
+        <di:waypoint x="1756" y="868" />
+        <di:waypoint x="1756" y="730" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BusinessRuleTask_1e3w1uw_di" bpmnElement="Task_assesCase">
+        <dc:Bounds x="659" y="726" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1ov1ks7_di" bpmnElement="SequenceFlow_1ov1ks7">
+        <di:waypoint x="1639" y="690" />
+        <di:waypoint x="1706" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="IntermediateCatchEvent_1yy8rpz_di" bpmnElement="IntermediateThrowEvent_receiveSignedContract">
+        <dc:Bounds x="1603" y="672" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1583" y="717.5" width="76" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="MessageFlow_0bnmkvc_di" bpmnElement="MessageFlow_0bnmkvc">
+        <di:waypoint x="1359" y="650" />
+        <di:waypoint x="1359" y="269" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_1o8p59f_di" bpmnElement="Task_updateStatusInContractDatabase">
+        <dc:Bounds x="1706" y="650" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_0dfyjmg_di" bpmnElement="Task_rejectCase">
+        <dc:Bounds x="932" y="963" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="CallActivity_0hnq19f_di" bpmnElement="Task_calculatePrices">
+        <dc:Bounds x="923" y="650" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1erw4e2_di" bpmnElement="SequenceFlow_1erw4e2">
+        <di:waypoint x="650" y="1066" />
+        <di:waypoint x="709" y="1066" />
+        <di:waypoint x="709" y="806" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1vz2tl9_di" bpmnElement="SequenceFlow_1vz2tl9">
+        <di:waypoint x="297" y="766" />
+        <di:waypoint x="338" y="766" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ExclusiveGateway_0g4kkl9_di" bpmnElement="ExclusiveGateway_SupplementaryInsruanceSelected" isMarkerVisible="true">
+        <dc:Bounds x="338" y="741" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="325" y="691" width="75" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_039mupp_di" bpmnElement="SequenceFlow_039mupp">
+        <di:waypoint x="363" y="791" />
+        <di:waypoint x="363" y="1066" />
+        <di:waypoint x="434" y="1066" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="366" y="922" width="17" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1v49919_di" bpmnElement="SequenceFlow_1v49919">
+        <di:waypoint x="759" y="766" />
+        <di:waypoint x="832" y="766" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0dy9hm0_di" bpmnElement="SequenceFlow_0dy9hm0">
+        <di:waypoint x="1023" y="690" />
+        <di:waypoint x="1178" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="IntermediateCatchEvent_110ezri_di" bpmnElement="StartEvent_1elbdov">
+        <dc:Bounds x="614" y="1048" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="591" y="1091" width="84" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0tt7isc_di" bpmnElement="SequenceFlow_0tt7isc">
+        <di:waypoint x="534" y="1066" />
+        <di:waypoint x="614" y="1066" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MessageFlow_0ygn8rd_di" bpmnElement="MessageFlow_0ygn8rd">
+        <di:waypoint x="632" y="269" />
+        <di:waypoint x="632" y="1048" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MessageFlow_0ogch6n_di" bpmnElement="MessageFlow_0ogch6n">
+        <di:waypoint x="490" y="1026" />
+        <di:waypoint x="490" y="269" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_191bv9v_di" bpmnElement="Task_createContract">
+        <dc:Bounds x="1178" y="650" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1lr0wo8_di" bpmnElement="SequenceFlow_1lr0wo8">
+        <di:waypoint x="1539" y="690" />
+        <di:waypoint x="1603" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_1kyyzdm_di" bpmnElement="Task_InsertContractToDatabase">
+        <dc:Bounds x="1439" y="650" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0prxc1q_di" bpmnElement="DataInputAssociation_0prxc1q">
+        <di:waypoint x="1377" y="832" />
+        <di:waypoint x="1463" y="832" />
+        <di:waypoint x="1463" y="742" />
+        <di:waypoint x="1463" y="730" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1r0alpl_di" bpmnElement="DataOutputAssociation_1r0alpl">
+        <di:waypoint x="1489" y="730" />
+        <di:waypoint x="1489" y="868" />
+        <di:waypoint x="1587" y="868" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MessageFlow_0id0k09_di" bpmnElement="MessageFlow_0id0k09">
+        <di:waypoint x="1111" y="985" />
+        <di:waypoint x="1111" y="269" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0q9rb4q_di" bpmnElement="SequenceFlow_0q9rb4q">
+        <di:waypoint x="1032" y="1003" />
+        <di:waypoint x="1093" y="1003" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="IntermediateThrowEvent_0j4avj6_di" bpmnElement="EndEvent_emailRejectApplication">
+        <dc:Bounds x="1093" y="985" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1079.5" y="1030.5" width="63" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0055xl1_di" bpmnElement="EndEvent_0055xl1">
+        <dc:Bounds x="1351" y="985" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1325" y="1028" width="89" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0cbd3i6_di" bpmnElement="SequenceFlow_0cbd3i6">
+        <di:waypoint x="1129" y="1003" />
+        <di:waypoint x="1351" y="1003" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_03u6bmu_di" bpmnElement="DataInputAssociation_03u6bmu">
+        <di:waypoint x="1359" y="807" />
+        <di:waypoint x="1359" y="730" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SendTask_19p6w5x_di" bpmnElement="Task_0i44psw">
+        <dc:Bounds x="434" y="1026" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="SendTask_0ab55oz_di" bpmnElement="Task_sendContractToCustomer">
+        <dc:Bounds x="1309" y="650" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_18y3ey3_di" bpmnElement="SequenceFlow_18y3ey3">
+        <di:waypoint x="388" y="766" />
+        <di:waypoint x="659" y="766" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="489" y="776" width="13" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

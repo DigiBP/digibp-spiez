@@ -221,10 +221,9 @@
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">
               <camunda:script scriptFormat="JavaScript">out=JSON.stringify({
-"nEndPriceBasicInsurance":nEndPriceBasicInsurance,
-"nEndPriceAlternativeInsurance":nEndPriceAlternativeInsurance,
-"nEndPriceDentalInsurance":nEndPriceDentalInsurance,
-"nEndPriceLifeInsurance":nEndPriceLifeInsurance
+"sLastName": sLastName,
+"eGender": eGender,
+"sEmail": sEmail
 });</camunda:script>
             </camunda:inputParameter>
             <camunda:outputParameter name="state">
@@ -251,7 +250,28 @@ state=object.state;</camunda:script>
       <bpmn:incoming>SequenceFlow_039mupp</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0tt7isc</bpmn:outgoing>
     </bpmn:sendTask>
-    <bpmn:sendTask id="Task_sendContractToCustomer" name="Send contract to customer" camunda:expression="$(test)">
+    <bpmn:sendTask id="Task_sendContractToCustomer" name="Send contract to customer">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hook.integromat.com/9pok51uratqwjukfnswiy52wzcnby2w8</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="JavaScript">out=JSON.stringify({
+"sLastName": sLastName,
+"eGender": eGender,
+"sEmail": sEmail
+});</camunda:script>
+            </camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0dodatt</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0it35zf</bpmn:outgoing>
       <bpmn:property id="Property_1s9wzx6" name="__targetRef_placeholder" />

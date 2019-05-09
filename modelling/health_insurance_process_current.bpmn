@@ -156,17 +156,33 @@
       </bpmn:dataOutputAssociation>
     </bpmn:serviceTask>
     <bpmn:dataStoreReference id="DataStoreReference_customerData" name="contract databse" />
-    <bpmn:serviceTask id="Task_createContract" name="Create contract" camunda:type="external" camunda:topic="$(test)">
-      <bpmn:incoming>SequenceFlow_0dy9hm0</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0dodatt</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_1u7vsgk">
-        <bpmn:targetRef>DataObjectReference_contract</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-    </bpmn:serviceTask>
     <bpmn:intermediateThrowEvent id="EndEvent_emailRejectApplication" name="Email Reject Application">
+      <bpmn:extensionElements />
       <bpmn:incoming>SequenceFlow_0q9rb4q</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0cbd3i6</bpmn:outgoing>
-      <bpmn:messageEventDefinition messageRef="Message_0pyxu08" />
+      <bpmn:messageEventDefinition messageRef="Message_0pyxu08">
+        <bpmn:extensionElements>
+          <camunda:connector>
+            <camunda:inputOutput>
+              <camunda:inputParameter name="method">POST</camunda:inputParameter>
+              <camunda:inputParameter name="url">https://hook.integromat.com/2hs8inluvcgsg79vvcsqtd70znhrs65t</camunda:inputParameter>
+              <camunda:inputParameter name="headers">
+                <camunda:map>
+                  <camunda:entry key="Content-Type">application/json</camunda:entry>
+                </camunda:map>
+              </camunda:inputParameter>
+              <camunda:inputParameter name="payload">
+                <camunda:script scriptFormat="JavaScript">out=JSON.stringify({
+"sLastName": sLastName,
+"eGender": eGender,
+"sEmail": sEmail
+});</camunda:script>
+              </camunda:inputParameter>
+            </camunda:inputOutput>
+            <camunda:connectorId>http-connector</camunda:connectorId>
+          </camunda:connector>
+        </bpmn:extensionElements>
+      </bpmn:messageEventDefinition>
     </bpmn:intermediateThrowEvent>
     <bpmn:callActivity id="Task_calculatePrices" name="Calculate Prices" calledElement="Process_calculatePrices">
       <bpmn:extensionElements>
@@ -195,32 +211,7 @@
       <bpmn:incoming>SequenceFlow_1otr561</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0dy9hm0</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:serviceTask id="Task_rejectCase" name="Reject case">
-      <bpmn:extensionElements>
-        <camunda:connector>
-          <camunda:inputOutput>
-            <camunda:inputParameter name="method">POST</camunda:inputParameter>
-            <camunda:inputParameter name="url">https://hook.integromat.com/2hs8inluvcgsg79vvcsqtd70znhrs65t</camunda:inputParameter>
-            <camunda:inputParameter name="headers">
-              <camunda:map>
-                <camunda:entry key="Content-Type">application/json</camunda:entry>
-              </camunda:map>
-            </camunda:inputParameter>
-            <camunda:inputParameter name="payload">
-              <camunda:script scriptFormat="JavaScript">out=JSON.stringify({
-"sLastName": sLastName,
-"eGender": eGender,
-"sEmail": sEmail
-});</camunda:script>
-            </camunda:inputParameter>
-            <camunda:outputParameter name="state">
-              <camunda:script scriptFormat="JavaScript">object=JSON.parse(response);
-state=object.state;</camunda:script>
-            </camunda:outputParameter>
-          </camunda:inputOutput>
-          <camunda:connectorId>http-connector</camunda:connectorId>
-        </camunda:connector>
-      </bpmn:extensionElements>
+    <bpmn:serviceTask id="Task_rejectCase" name="Reject case" camunda:expression="$(test)">
       <bpmn:incoming>SequenceFlow_1o6jn2x</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0q9rb4q</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -293,14 +284,37 @@ state=object.state;</camunda:script>
     <bpmn:sequenceFlow id="SequenceFlow_0q9rb4q" sourceRef="Task_rejectCase" targetRef="EndEvent_emailRejectApplication" />
     <bpmn:sequenceFlow id="SequenceFlow_0gl41x5" sourceRef="IntermediateThrowEvent_0hrosi3" targetRef="EndEvent_applicationClosed" />
     <bpmn:intermediateThrowEvent id="IntermediateThrowEvent_0hrosi3" name="Send contract confirmation">
+      <bpmn:extensionElements />
       <bpmn:incoming>SequenceFlow_075u5a4</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0gl41x5</bpmn:outgoing>
-      <bpmn:messageEventDefinition />
+      <bpmn:messageEventDefinition>
+        <bpmn:extensionElements>
+          <camunda:connector>
+            <camunda:inputOutput>
+              <camunda:inputParameter name="method">POST</camunda:inputParameter>
+              <camunda:inputParameter name="url">https://hook.integromat.com/127ydyn8b6ikfghacoxam8t4v9dft11u</camunda:inputParameter>
+              <camunda:inputParameter name="headers">
+                <camunda:map>
+                  <camunda:entry key="Content-Type">application/json</camunda:entry>
+                </camunda:map>
+              </camunda:inputParameter>
+              <camunda:inputParameter name="payload">
+                <camunda:script scriptFormat="JavaScript">out=JSON.stringify({
+"sLastName": sLastName,
+"eGender": eGender,
+"sEmail": sEmail
+});</camunda:script>
+              </camunda:inputParameter>
+            </camunda:inputOutput>
+            <camunda:connectorId>http-connector</camunda:connectorId>
+          </camunda:connector>
+        </bpmn:extensionElements>
+      </bpmn:messageEventDefinition>
     </bpmn:intermediateThrowEvent>
     <bpmn:endEvent id="EndEvent_applicationClosed" name="Application closed">
       <bpmn:incoming>SequenceFlow_0gl41x5</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:callActivity id="Task_assesCase" name="Assess case">
+    <bpmn:callActivity id="Task_assesCase" name="Assess case" calledElement="assess_case">
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:inputParameter name="nEligibilityScore">1</camunda:inputParameter>
@@ -312,6 +326,13 @@ state=object.state;</camunda:script>
       <bpmn:incoming>SequenceFlow_1erw4e2</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1v49919</bpmn:outgoing>
     </bpmn:callActivity>
+    <bpmn:serviceTask id="Task_createContract" name="Create contract" camunda:type="external" camunda:topic="$(test)">
+      <bpmn:incoming>SequenceFlow_0dy9hm0</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0dodatt</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1u7vsgk">
+        <bpmn:targetRef>DataObjectReference_contract</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmn:message id="Message_0vsfji7" name="Message_0e7eoe9" />
   <bpmn:message id="Message_016opmc" name="Message_17nu932" />
@@ -346,7 +367,7 @@ state=object.state;</camunda:script>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0bltqy3_di" bpmnElement="Lane_0bltqy3" isHorizontal="true">
-        <dc:Bounds x="186" y="416" width="1860" height="729" />
+        <dc:Bounds x="188" y="416" width="1860" height="729" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1o6jn2x_di" bpmnElement="SequenceFlow_1o6jn2x">
         <di:waypoint x="857" y="703" />

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="Definitions_AssesCase" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
-  <decision id="Decision_CalculateBmi" name="Calculate BMI">
+  <decision id="Decision_CalculateBmi" name="calculate BMI">
     <extensionElements>
       <biodi:bounds x="359" y="567" width="180" height="80" />
       <biodi:edge source="InputData_1pgvjgr">
@@ -20,10 +20,10 @@
       <requiredInput href="#InputData_0u9q7a7" />
     </informationRequirement>
     <literalExpression id="LiteralExpression_1lkxm7p" expressionLanguage="javascript">
-      <text>fWeight / (fHeight^2)</text>
+      <text>fWeight/((fHeight/100.0)^2)</text>
     </literalExpression>
   </decision>
-  <decision id="Decision_DecideWhetherPersonIsObese" name="Decide whether person is obese">
+  <decision id="Decision_DecideWhetherPersonIsObese" name="decide whether person is obese">
     <extensionElements>
       <biodi:bounds x="624" y="566" width="180" height="80" />
       <biodi:edge source="Decision_CalculateBmi">

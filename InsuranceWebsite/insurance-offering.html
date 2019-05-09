@@ -97,19 +97,19 @@
             <h2>Personal Data</h2>
             <div class="row" style="padding:.5em;">
               <div class="col-md-3">
-                <input type="text" name="sFirstName" placeholder="First name" />
+                <input type="text" name="sFirstName" placeholder="First name" value="Christopher" />
               </div>
               <div class="col-md-3">
-                <input type="text" name="sLastName" placeholder="Last name" />
+                <input type="text" name="sLastName" placeholder="Last name" value = "Vogel" />
               </div>
               <div class="col-md-3">
-                <input type="date" name="dBirthdate" placeholder="Birth date" />
+                <input type="date" name="dBirthdate" placeholder="Birth date" value="1992-08-10" />
               </div>
               <div class="col-md-2">
-                <input type="number" name="nZip" placeholder="ZIP" min="1000" max="9999" />
+                <input type="number" name="nZipCode" placeholder="ZIP" min="1000" max="9999" value ="4242" />
               </div>
               <div class="col-md-1">
-                <input type="hidden" id="eGender" name="eGender" value="" />
+                <input type="hidden" id="eGender" name="eGender" value="_m" />
                 <div class="btn-group btn-group-xs" role="group" aria-label="genders">
                   <button type="button" class="btn btn-primary" style="padding:0.3em .5em;margin-top:.5em" id="eGender_male"> <i class="fa fa-lg fa-male"></i></button>
                   <button type="button" class="btn btn-primary" style="padding:0.3em .5em;margin-top:.5em" id="eGender_female"> <i class="fa fa-lg fa-female"></i></button>
@@ -301,30 +301,34 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
             <div class="row">
               <div class="col-md-4">
                 <label for="exampleInputEmail1">Start date of contract</label>
-                <input type="date" id="dStartDate" placeholder="Start date">
+                <input type="date" id="dStartDate" placeholder="Start date" value="10.08.2019">
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email address</label>
-                  <input type="email"  id="eMail" placeholder="E-mail">
+                  <input type="email"  name="sEmail" placeholder="E-mail" value="christopher.vogel@students.fhnw.ch">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Phone</label>
-                  <input type="text"  id="sPhone" placeholder="Phone">
+                  <input type="text"  name="sPhone" placeholder="Phone" value="078 883 99 12">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Street</label>
-                  <input type="text"  id="sStreet" placeholder="Street">
+                  <input type="text"  name="sStreet" placeholder="Street" value="Bahnhofplatz 2">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Nationality</label>
-                  <input type="text"  id="sNationality" placeholder="Nationality">
+                  <label for="exampleInputEmail1">Citizenship</label>
+                  <select name="eCitizenShip">
+                 	 <option value="_CH" selected=selected>Swiss</option>
+                     <option value="_DE">German</option>
+                     <option value="_OT">Other</option>
+                  </select>
                 </div>
               </div>
               <div class="col-md-12">
@@ -414,6 +418,41 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-hover-dropdown/2.2.1/bootstrap-hover-dropdown.min.js"></script> 
 <script language="javascript">
+
+	function getInsuranceFormData() {
+	data = 
+							{ 
+							"variables": 
+								{
+									"sFirstName" : 				{"value" : $("input[name=sFirstName]" ).val(),			"type": "String"},
+									"sLastName" : 				{"value" : $("input[name=sLastName]" ).val(),			"type": "String"},
+									"dBirthDate" : 				{"value" : $("input[name=dBirthDate]" ).val(),			"type": "String"},
+									"eGender" : 				{"value" : $("input[name=eGender]" ).val(), 			"type": "String"},
+									"nAge" :					{"value" : $("input[name=nAge]" ).val(), 				"type": "Long"},
+									"eCitizenShip" : 			{"value" : $("input[name=eCitizenShip]" ).val(),		"type": "String"},
+									"sStreet" : 				{"value" : $("input[name=sStreet]" ).val(), 			"type": "String"},
+									"nZipCode" : 				{"value" : $("input[name=nZipCode]" ).val(),			"type": "Long"},
+									"sCity" : 					{"value" : $("input[name=sCity]" ).val(), 				"type": "String"},
+									"sEmail" : 					{"value" : $("input[name=sEmail]" ).val(), 				"type": "String"},
+									"eBaseInsuranceType" : 		{"value" : $("input[name=eBaseInsuranceType]" ).val(), 	"type": "String"},
+									"eFranchise" : 				{"value" : $("input[name=eFranchise]" ).val(), 			"type": "String"},
+									"bAccidentCoverage" : 		{"value" : ("on"==$("input[name=bAccidentCoverage]" ).val()),			"type": "Boolean"},
+									"bAlternativeInsurance" : 	{"value" :$("input[name=bAlternativeInsurance]" ).val(), 			"type": "Boolean"},
+									"eAlternativeInsuranceType":{"value" : $("input[name=eAlternativeInsuranceType]" ).val(),			"type": "String"},
+									"bDentalTreatment" : 		{"value": $("input[name=bDentalTreatment]" ).val(), 			"type": "Boolean"},
+									"eDentalTreatmentCoverage": {"value" :$("input[name=eDentalTreatmentCoverage]" ).val(), 									"type": "String"},
+									"bLifeInsurance" : 			{"value" : $("input[name=bLifeInsurance]" ).val(), 										"type": "Boolean"},
+									"eLifeInsuranceCoverage" : 	{"value" : $("input[name=eLifeInsuranceCoverage]" ).val(), 									"type": "String"}
+								},
+							 "businessKey" : "thisIsMyDefaultBusinessKey"
+							};
+							
+		console.log(data);
+		return JSON.stringify(data);
+	
+	}
+
+
     $(function () {
   		$('[data-toggle="tooltip"]').tooltip({"html":true});
 		
@@ -507,42 +546,16 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
 				  method: "POST",
 				  origin: "null",
 				  contentType:"application/json; charset=utf-8",
-				  data:	JSON.stringify(
-							{ 
-							"variables": 
-								{
-									"sFirstName" : {"value" : "sFirstName", "type": "String"},
-									"sLastName" : {"value" : "sLastName", "type": "String"},
-									"dBirthDate" : {"value" : "01/01/2019", "type": "String"},
-									"eGender" : {"value" : "_f", "type": "String"},
-									"nAge" : {"value" : 18, "type": "Long"},
-									"eCitizenShip" : {"value" : "_CH", "type": "String"},
-									"sStreet" : {"value" : "sStreet", "type": "String"},
-									"nZipCode" : {"value" : 4000, "type": "Long"},
-									"sCity" : {"value" : "sCity", "type": "String"},
-									"sEmail" : {"value" : "sEmail", "type": "String"},
-									"eBaseInsuranceType" : {"value" : "_telmed", "type": "String"},
-									"eFranchise" : {"value" : "_0500", "type": "String"},
-									"bAccidentCoverage" : {"value" : true, "type": "Boolean"},
-									"bBasicInsuranceOnly" : {"value" :true, "type": "Boolean"},
-									"bAlternativeInsurance" : {"value" :true, "type": "Boolean"},
-									"eAlternativeInsuranceType" : {"value" : "_chinese", "type": "String"},
-									"bDentalTreatment" : {"value": true, "type": "Boolean"},
-									"eDentalTreatmentCoverage" : {"value" : "_5000", "type": "String"},
-									"bLifeInsurance" : {"value" : true, "type": "Boolean"},
-									"eLifeInsuranceCoverage" : {"value" : "_100000", "type": "String"}
-								},
-							 "businessKey" : "thisIsMyDefaultBusinessKey"
-							} )
-						,
+				  data:	getInsuranceFormData(),
 				  dataType: "json"
 				});
 				 
 				request.done(function( msg ) {
-				  alert( msg );
-				  
+				  //alert( msg );
+				  console.log(msg);
 				  $("#errorMessage .modal-title").html("Success");
-				  $("#errorMessage .modal-body").html("<pre>"+msg+"</pre>");
+				  //$("#errorMessage .modal-body").html("<pre>"+msg+"</pre>");
+				  $("#errorMessage .modal-body").html("<pre>"+JSON.stringify(msg, undefined, 4)+"</pre>");
 				  $('#errorMessage').modal('show');
 				  
 				});

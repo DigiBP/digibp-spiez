@@ -213,7 +213,7 @@
         <camunda:connector>
           <camunda:inputOutput>
             <camunda:inputParameter name="method">POST</camunda:inputParameter>
-            <camunda:inputParameter name="url">https://hook.integromat.com/zcnxink8vc0kw11xus5khznjbhl1e1ke</camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hook.integromat.com/2hs8inluvcgsg79vvcsqtd70znhrs65t</camunda:inputParameter>
             <camunda:inputParameter name="headers">
               <camunda:map>
                 <camunda:entry key="Content-Type">application/json</camunda:entry>

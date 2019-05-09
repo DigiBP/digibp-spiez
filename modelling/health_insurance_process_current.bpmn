@@ -289,10 +289,10 @@ state=object.state;</camunda:script>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1vz2tl9" sourceRef="StartEvent_receiveApplication" targetRef="ExclusiveGateway_SupplementaryInsruanceSelected" />
     <bpmn:sequenceFlow id="SequenceFlow_039mupp" name="yes" sourceRef="ExclusiveGateway_SupplementaryInsruanceSelected" targetRef="Task_0i44psw">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${bDentalTreatment || bLifeInsruance || bAlternativeInsurance}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${bDentalTreatment || bLifeInsurance || bAlternativeInsurance}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_18y3ey3" name="no" sourceRef="ExclusiveGateway_SupplementaryInsruanceSelected" targetRef="Task_assesCase">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!(bDentalTreatment || bLifeInsruance || bAlternativeInsurance==1)}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!(bDentalTreatment || bLifeInsurance || bAlternativeInsurance==1)}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_0tt7isc" sourceRef="Task_0i44psw" targetRef="StartEvent_1elbdov" />
     <bpmn:sequenceFlow id="SequenceFlow_1erw4e2" sourceRef="StartEvent_1elbdov" targetRef="Task_assesCase" />

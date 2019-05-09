@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_0z51br2" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
   <bpmn:collaboration id="HealthInsuranceProcessDavid">
-    <bpmn:participant id="Participant_11arpnk" name="Customer Support" processRef="Process_1fktq2r" />
+    <bpmn:participant id="Participant_11arpnk" name="Customer Support" processRef="Process_HealthInsurance" />
     <bpmn:participant id="Participant_17bhftx" name="Customer" />
     <bpmn:messageFlow id="MessageFlow_17zf0ro" sourceRef="Participant_17bhftx" targetRef="StartEvent_receiveApplication" />
     <bpmn:messageFlow id="MessageFlow_1rhs2bg" sourceRef="Participant_17bhftx" targetRef="IntermediateThrowEvent_receiveSignedContract" />
@@ -10,7 +10,7 @@
     <bpmn:messageFlow id="MessageFlow_0ogch6n" sourceRef="Task_0i44psw" targetRef="Participant_17bhftx" />
     <bpmn:messageFlow id="MessageFlow_0id0k09" sourceRef="EndEvent_emailRejectApplication" targetRef="Participant_17bhftx" />
   </bpmn:collaboration>
-  <bpmn:process id="Process_1fktq2r" name="Health Insurance Process (current)" isExecutable="true">
+  <bpmn:process id="Process_HealthInsurance" name="Health Insurance Process (current)" isExecutable="true">
     <bpmn:laneSet id="LaneSet_1wkwfu0">
       <bpmn:lane id="Lane_0bltqy3" name="IT-System">
         <bpmn:flowNodeRef>ExclusiveGateway_resultAssessment</bpmn:flowNodeRef>
@@ -63,11 +63,6 @@
             </camunda:validation>
           </camunda:formField>
           <camunda:formField id="sLastName" label="Last Name" type="string">
-            <camunda:validation>
-              <camunda:constraint name="required" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="dBirthDate" label="Birthdate" type="date">
             <camunda:validation>
               <camunda:constraint name="required" />
             </camunda:validation>

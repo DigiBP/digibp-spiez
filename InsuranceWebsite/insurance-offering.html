@@ -503,11 +503,11 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
 		 event.preventDefault();
 		 
 				var request = $.ajax({
-				  url: "https://hook.integromat.com/xxr8vjfrc4sm1kx7spi1y1x3u9nkyiuw",
+				  url: "https://heroku-spiez-cors.herokuapp.com/https://digibp-spiez.herokuapp.com/rest/process-definition/key/Process_HealthInsurance/submit-form",
 				  method: "POST",
-				  data: {
-					  	"value": 
-							JSON.stringify(
+				  origin: "null",
+				  contentType:"application/json; charset=utf-8",
+				  data:	JSON.stringify(
 							{ 
 							"variables": 
 								{
@@ -534,7 +534,7 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
 								},
 							 "businessKey" : "thisIsMyDefaultBusinessKey"
 							} )
-						},
+						,
 				  dataType: "json"
 				});
 				 

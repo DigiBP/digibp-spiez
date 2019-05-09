@@ -9,6 +9,7 @@
     <bpmn:messageFlow id="MessageFlow_0ygn8rd" sourceRef="Participant_17bhftx" targetRef="StartEvent_1elbdov" />
     <bpmn:messageFlow id="MessageFlow_0ogch6n" sourceRef="Task_0i44psw" targetRef="Participant_17bhftx" />
     <bpmn:messageFlow id="MessageFlow_0id0k09" sourceRef="EndEvent_emailRejectApplication" targetRef="Participant_17bhftx" />
+    <bpmn:messageFlow id="MessageFlow_1b1wv85" sourceRef="IntermediateThrowEvent_0hrosi3" targetRef="Participant_17bhftx" />
   </bpmn:collaboration>
   <bpmn:process id="Process_HealthInsurance" name="Health Insurance Process (current)" isExecutable="true">
     <bpmn:laneSet id="LaneSet_1wkwfu0">
@@ -21,7 +22,6 @@
         <bpmn:flowNodeRef>IntermediateThrowEvent_receiveSignedContract</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_InsertContractToDatabase</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_0055xl1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>EndEvent_applicationClosed</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_updateStatusInContractDatabase</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_createContract</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_emailRejectApplication</bpmn:flowNodeRef>
@@ -29,6 +29,8 @@
         <bpmn:flowNodeRef>Task_rejectCase</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_0i44psw</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_sendContractToCustomer</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IntermediateThrowEvent_0hrosi3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_applicationClosed</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:exclusiveGateway id="ExclusiveGateway_resultAssessment" name="Result of asessment">
@@ -152,9 +154,6 @@
     </bpmn:serviceTask>
     <bpmn:endEvent id="EndEvent_0055xl1" name="Application closed">
       <bpmn:incoming>SequenceFlow_0cbd3i6</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:endEvent id="EndEvent_applicationClosed" name="Application closed">
-      <bpmn:incoming>SequenceFlow_075u5a4</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:serviceTask id="Task_updateStatusInContractDatabase" name="Update status in contract data base" camunda:expression="$(test)">
       <bpmn:incoming>SequenceFlow_1ov1ks7</bpmn:incoming>
@@ -292,7 +291,7 @@ state=object.state;</camunda:script>
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${bDentalTreatment || bLifeInsurance || bAlternativeInsurance}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_18y3ey3" name="no" sourceRef="ExclusiveGateway_SupplementaryInsruanceSelected" targetRef="Task_assesCase">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!(bDentalTreatment || bLifeInsurance || bAlternativeInsurance==1)}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!(bDentalTreatment || bLifeInsurance || bAlternativeInsurance)}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_0tt7isc" sourceRef="Task_0i44psw" targetRef="StartEvent_1elbdov" />
     <bpmn:sequenceFlow id="SequenceFlow_1erw4e2" sourceRef="StartEvent_1elbdov" targetRef="Task_assesCase" />
@@ -300,10 +299,19 @@ state=object.state;</camunda:script>
     <bpmn:sequenceFlow id="SequenceFlow_1ov1ks7" sourceRef="IntermediateThrowEvent_receiveSignedContract" targetRef="Task_updateStatusInContractDatabase" />
     <bpmn:sequenceFlow id="SequenceFlow_0it35zf" sourceRef="Task_sendContractToCustomer" targetRef="Task_InsertContractToDatabase" />
     <bpmn:sequenceFlow id="SequenceFlow_0cbd3i6" sourceRef="EndEvent_emailRejectApplication" targetRef="EndEvent_0055xl1" />
-    <bpmn:sequenceFlow id="SequenceFlow_075u5a4" sourceRef="Task_updateStatusInContractDatabase" targetRef="EndEvent_applicationClosed" />
+    <bpmn:sequenceFlow id="SequenceFlow_075u5a4" sourceRef="Task_updateStatusInContractDatabase" targetRef="IntermediateThrowEvent_0hrosi3" />
     <bpmn:sequenceFlow id="SequenceFlow_0dy9hm0" sourceRef="Task_calculatePrices" targetRef="Task_createContract" />
     <bpmn:sequenceFlow id="SequenceFlow_0dodatt" sourceRef="Task_createContract" targetRef="Task_sendContractToCustomer" />
     <bpmn:sequenceFlow id="SequenceFlow_0q9rb4q" sourceRef="Task_rejectCase" targetRef="EndEvent_emailRejectApplication" />
+    <bpmn:sequenceFlow id="SequenceFlow_0gl41x5" sourceRef="IntermediateThrowEvent_0hrosi3" targetRef="EndEvent_applicationClosed" />
+    <bpmn:intermediateThrowEvent id="IntermediateThrowEvent_0hrosi3" name="Send contract confirmation">
+      <bpmn:incoming>SequenceFlow_075u5a4</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0gl41x5</bpmn:outgoing>
+      <bpmn:messageEventDefinition />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:endEvent id="EndEvent_applicationClosed" name="Application closed">
+      <bpmn:incoming>SequenceFlow_0gl41x5</bpmn:incoming>
+    </bpmn:endEvent>
   </bpmn:process>
   <bpmn:message id="Message_0vsfji7" name="Message_0e7eoe9" />
   <bpmn:message id="Message_016opmc" name="Message_17nu932" />
@@ -376,14 +384,14 @@ state=object.state;</camunda:script>
         <di:waypoint x="1439" y="602" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="EndEvent_1s5pmc3_di" bpmnElement="EndEvent_applicationClosed">
-        <dc:Bounds x="1866" y="584" width="36" height="36" />
+        <dc:Bounds x="1962" y="584" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1840" y="627" width="89" height="14" />
+          <dc:Bounds x="1936" y="627" width="89" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_075u5a4_di" bpmnElement="SequenceFlow_075u5a4">
         <di:waypoint x="1806" y="602" />
-        <di:waypoint x="1866" y="602" />
+        <di:waypoint x="1863" y="602" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="MessageFlow_1rhs2bg_di" bpmnElement="MessageFlow_1rhs2bg">
         <di:waypoint x="1621" y="269" />
@@ -541,6 +549,20 @@ state=object.state;</camunda:script>
         <bpmndi:BPMNLabel>
           <dc:Bounds x="499" y="688" width="13" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0gl41x5_di" bpmnElement="SequenceFlow_0gl41x5">
+        <di:waypoint x="1899" y="602" />
+        <di:waypoint x="1962" y="602" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="IntermediateThrowEvent_19pc5i1_di" bpmnElement="IntermediateThrowEvent_0hrosi3">
+        <dc:Bounds x="1863" y="584" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1847" y="627" width="69" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="MessageFlow_1b1wv85_di" bpmnElement="MessageFlow_1b1wv85">
+        <di:waypoint x="1881" y="584" />
+        <di:waypoint x="1881" y="269" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

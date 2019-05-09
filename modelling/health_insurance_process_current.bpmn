@@ -213,7 +213,7 @@
         <camunda:connector>
           <camunda:inputOutput>
             <camunda:inputParameter name="method">POST</camunda:inputParameter>
-            <camunda:inputParameter name="url">https://hook.integromat.com/zcnxink8vc0kw11xus5khznjbhl1e1ke</camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hook.integromat.com/2hs8inluvcgsg79vvcsqtd70znhrs65t</camunda:inputParameter>
             <camunda:inputParameter name="headers">
               <camunda:map>
                 <camunda:entry key="Content-Type">application/json</camunda:entry>
@@ -221,10 +221,9 @@
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">
               <camunda:script scriptFormat="JavaScript">out=JSON.stringify({
-"nEndPriceBasicInsurance":nEndPriceBasicInsurance,
-"nEndPriceAlternativeInsurance":nEndPriceAlternativeInsurance,
-"nEndPriceDentalInsurance":nEndPriceDentalInsurance,
-"nEndPriceLifeInsurance":nEndPriceLifeInsurance
+"sLastName": sLastName,
+"eGender": eGender,
+"sEmail": sEmail
 });</camunda:script>
             </camunda:inputParameter>
             <camunda:outputParameter name="state">
@@ -251,7 +250,28 @@ state=object.state;</camunda:script>
       <bpmn:incoming>SequenceFlow_039mupp</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0tt7isc</bpmn:outgoing>
     </bpmn:sendTask>
-    <bpmn:sendTask id="Task_sendContractToCustomer" name="Send contract to customer" camunda:expression="$(test)">
+    <bpmn:sendTask id="Task_sendContractToCustomer" name="Send contract to customer">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hook.integromat.com/9pok51uratqwjukfnswiy52wzcnby2w8</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="JavaScript">out=JSON.stringify({
+"sLastName": sLastName,
+"eGender": eGender,
+"sEmail": sEmail
+});</camunda:script>
+            </camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0dodatt</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0it35zf</bpmn:outgoing>
       <bpmn:property id="Property_1s9wzx6" name="__targetRef_placeholder" />
@@ -269,10 +289,10 @@ state=object.state;</camunda:script>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1vz2tl9" sourceRef="StartEvent_receiveApplication" targetRef="ExclusiveGateway_SupplementaryInsruanceSelected" />
     <bpmn:sequenceFlow id="SequenceFlow_039mupp" name="yes" sourceRef="ExclusiveGateway_SupplementaryInsruanceSelected" targetRef="Task_0i44psw">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${bDentalTreatment || bLifeInsruance || bAlternativeInsurance}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${bDentalTreatment || bLifeInsurance || bAlternativeInsurance}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_18y3ey3" name="no" sourceRef="ExclusiveGateway_SupplementaryInsruanceSelected" targetRef="Task_assesCase">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!(bDentalTreatment || bLifeInsruance || bAlternativeInsurance==1)}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!(bDentalTreatment || bLifeInsurance || bAlternativeInsurance==1)}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_0tt7isc" sourceRef="Task_0i44psw" targetRef="StartEvent_1elbdov" />
     <bpmn:sequenceFlow id="SequenceFlow_1erw4e2" sourceRef="StartEvent_1elbdov" targetRef="Task_assesCase" />

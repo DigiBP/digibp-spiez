@@ -103,7 +103,7 @@
                 <input type="text" name="sLastName" placeholder="Last name" value = "Vogel" />
               </div>
               <div class="col-md-3">
-                <input type="date" name="dBirthdate" placeholder="Birth date" value="1992-08-10" />
+                <input type="date" name="dBirthDate" placeholder="Birth date" value="1992-08-10" />
               </div>
               <div class="col-md-2">
                 <input type="number" name="nZipCode" placeholder="ZIP" min="1000" max="9999" value ="4242" />
@@ -188,7 +188,7 @@
             <h2>Additional Health Insurances</h2>
             <div class="row text-center" style="padding:.5em;">
               <input type="hidden" id="bAlternativeInsurance" name="bAlternativeInsurance" value="0" />
-              <input type="hidden" id="bDentalTreatment" name="bDentaltTreatment" value="0" />
+              <input type="hidden" id="bDentalTreatment" name="bDentalTreatment" value="0" />
               <input type="hidden" id="bLifeInsurance" name="bLifeInsurance" value="0" />
               <div class="col-md-4">
                 <button type="button" style="width:90%; height:101px" class="btn btn-success supplementInsurance" id="alternativeButton"                                      						                                                 data-toggle="tooltip" data-placement="bottom" 
@@ -197,10 +197,10 @@
                   <hr />
                   <strong>Alternative options</strong>
                   <p>
-                    <select id="eAlternativeInsuranceType" name="eAlternativeInsuranceCoverage" >
-                      <option>accupuncture</option>
-                      <option>chinese medicine</option>
-                      <option>accupucnture and chinese medicine</option>
+                    <select id="eAlternativeInsuranceType" name="eAlternativeInsuranceType" >
+                      <option value="_accupuncture">accupuncture</option>
+                      <option value="_chinese">chinese medicine</option>
+                      <option value="_chineseAccupuncture">accupucnture and chinese medicine</option>
                     </select>
                   </p>
                 </div>
@@ -219,7 +219,7 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
                   <hr />
                   <strong>Maximal coverage</strong>
                   <p>
-                    <select id="eDentalTreatmentType" name="eDentalTreatmentType" >
+                    <select id="eDentalTreatmentCoverage" name="eDentalTreatmentCoverage" >
                       <option value="_2000">2'000 CHF</option>
                       <option value="_5000">5'000 CHF</option>
                     </select>
@@ -235,7 +235,7 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
                   <hr />
                   <strong>Coverage by death</strong>
                   <p>
-                    <select id="e" name="eLifeInsuranceCoverage" >
+                    <select id="eLifeInsuranceCoverage" name="eLifeInsuranceCoverage" >
                       <option value="_050000">50'000 CHF</option>
                       <option value="_100000">100'000 CHF</option>
                     </select>
@@ -315,7 +315,7 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
                   <input type="text"  name="sPhone" placeholder="Phone" value="078 883 99 12">
                 </div>
               </div>
-              <div class="col-md-4">
+               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Street</label>
                   <input type="text"  name="sStreet" placeholder="Street" value="Bahnhofplatz 2">
@@ -323,9 +323,15 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
               </div>
               <div class="col-md-4">
                 <div class="form-group">
+                  <label for="exampleInputEmail1">City</label>
+                  <input type="text"  name="sCity" placeholder="City" value="Pratteln">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
                   <label for="exampleInputEmail1">Citizenship</label>
                   <select name="eCitizenShip">
-                 	 <option value="_CH" selected=selected>Swiss</option>
+                 	 <option value="_CH" selected="selected">Swiss</option>
                      <option value="_DE">German</option>
                      <option value="_OT">Other</option>
                   </select>
@@ -419,7 +425,22 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-hover-dropdown/2.2.1/bootstrap-hover-dropdown.min.js"></script> 
 <script language="javascript">
 
+	function calculate_age(dob) { 
+		var diff_ms = Date.now() - dob.getTime();
+		var age_dt = new Date(diff_ms); 
+	  
+		return Math.abs(age_dt.getUTCFullYear() - 1970);
+	}
+	
+	function parseDate(s) {
+  var b = s.split(/\D/);
+  return new Date(b[0], --b[1], b[2]);
+}
+
 	function getInsuranceFormData() {
+		
+	nAge = calculate_age(parseDate($("input[name=dBirthDate]" ).val()));
+		
 	data = 
 							{ 
 							"variables": 
@@ -428,21 +449,21 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
 									"sLastName" : 				{"value" : $("input[name=sLastName]" ).val(),			"type": "String"},
 									"dBirthDate" : 				{"value" : $("input[name=dBirthDate]" ).val(),			"type": "String"},
 									"eGender" : 				{"value" : $("input[name=eGender]" ).val(), 			"type": "String"},
-									"nAge" :					{"value" : $("input[name=nAge]" ).val(), 				"type": "Long"},
-									"eCitizenShip" : 			{"value" : $("input[name=eCitizenShip]" ).val(),		"type": "String"},
+									"nAge" :					{"value" : nAge, 										"type": "Long"},
+									"eCitizenShip" : 			{"value" : $("select[name=eCitizenShip]" ).val(),		"type": "String"},
 									"sStreet" : 				{"value" : $("input[name=sStreet]" ).val(), 			"type": "String"},
 									"nZipCode" : 				{"value" : $("input[name=nZipCode]" ).val(),			"type": "Long"},
 									"sCity" : 					{"value" : $("input[name=sCity]" ).val(), 				"type": "String"},
 									"sEmail" : 					{"value" : $("input[name=sEmail]" ).val(), 				"type": "String"},
-									"eBaseInsuranceType" : 		{"value" : $("input[name=eBaseInsuranceType]" ).val(), 	"type": "String"},
-									"eFranchise" : 				{"value" : $("input[name=eFranchise]" ).val(), 			"type": "String"},
-									"bAccidentCoverage" : 		{"value" : ("on"==$("input[name=bAccidentCoverage]" ).val()),			"type": "Boolean"},
-									"bAlternativeInsurance" : 	{"value" :$("input[name=bAlternativeInsurance]" ).val(), 			"type": "Boolean"},
-									"eAlternativeInsuranceType":{"value" : $("input[name=eAlternativeInsuranceType]" ).val(),			"type": "String"},
-									"bDentalTreatment" : 		{"value": $("input[name=bDentalTreatment]" ).val(), 			"type": "Boolean"},
-									"eDentalTreatmentCoverage": {"value" :$("input[name=eDentalTreatmentCoverage]" ).val(), 									"type": "String"},
-									"bLifeInsurance" : 			{"value" : $("input[name=bLifeInsurance]" ).val(), 										"type": "Boolean"},
-									"eLifeInsuranceCoverage" : 	{"value" : $("input[name=eLifeInsuranceCoverage]" ).val(), 									"type": "String"}
+									"eBaseInsuranceType" : 		{"value" : $("input[name=eBasicInsuranceType]" ).val(), 	"type": "String"},
+									"eFranchise" : 				{"value" : $("select[name=eFranchise]" ).val(), 			"type": "String"},
+									"bAccidentCoverage" : 		{"value" : ($("input[name=bAccidentCoverage]:checked" ).val()=="on"),			"type": "Boolean"},
+									"bAlternativeInsurance" : 	{"value" :($("input[name=bAlternativeInsurance]" ).val()=="1"), 			"type": "Boolean"},
+									"eAlternativeInsuranceType":{"value" : $("select[name=eAlternativeInsuranceType]" ).val(),			"type": "String"},
+									"bDentalTreatment" : 		{"value": ($("input[name=bDentalTreatment]" ).val()=="1"), 			"type": "Boolean"},
+									"eDentalTreatmentCoverage": {"value" :$("select[name=eDentalTreatmentCoverage]" ).val(), 									"type": "String"},
+									"bLifeInsurance" : 			{"value" :( $("input[name=bLifeInsurance]" ).val()=="1"), 										"type": "Boolean"},
+									"eLifeInsuranceCoverage" : 	{"value" : $("select[name=eLifeInsuranceCoverage]" ).val(), 									"type": "String"}
 								},
 							 "businessKey" : "thisIsMyDefaultBusinessKey"
 							};

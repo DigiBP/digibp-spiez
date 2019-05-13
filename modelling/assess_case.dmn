@@ -3,21 +3,21 @@
   <decision id="Decision_CalculateBmi" name="calculate BMI">
     <extensionElements>
       <biodi:bounds x="359" y="567" width="180" height="80" />
-      <biodi:edge source="InputData_1pgvjgr">
-        <biodi:waypoints x="287" y="575" />
-        <biodi:waypoints x="359" y="593" />
-      </biodi:edge>
-      <biodi:edge source="InputData_0u9q7a7">
+      <biodi:edge source="fWeight">
         <biodi:waypoints x="281" y="634" />
         <biodi:waypoints x="359" y="622" />
+      </biodi:edge>
+      <biodi:edge source="fHeight">
+        <biodi:waypoints x="287" y="569" />
+        <biodi:waypoints x="359" y="580" />
       </biodi:edge>
     </extensionElements>
     <variable id="InformationItem_10jx5pn" name="fBMI" typeRef="double" />
     <informationRequirement>
-      <requiredInput href="#InputData_1pgvjgr" />
+      <requiredInput href="#fWeight" />
     </informationRequirement>
     <informationRequirement>
-      <requiredInput href="#InputData_0u9q7a7" />
+      <requiredInput href="#fHeight" />
     </informationRequirement>
     <literalExpression id="LiteralExpression_1lkxm7p" expressionLanguage="javascript">
       <text>fWeight/((fHeight/100.0)^2)</text>
@@ -30,16 +30,16 @@
         <biodi:waypoints x="539" y="606" />
         <biodi:waypoints x="624" y="605" />
       </biodi:edge>
-      <biodi:edge source="InputData_160p3ny">
-        <biodi:waypoints x="719" y="680" />
-        <biodi:waypoints x="719" y="646" />
+      <biodi:edge source="bBodybuilder">
+        <biodi:waypoints x="737" y="680" />
+        <biodi:waypoints x="763" y="646" />
       </biodi:edge>
     </extensionElements>
     <informationRequirement>
       <requiredDecision href="#Decision_CalculateBmi" />
     </informationRequirement>
     <informationRequirement>
-      <requiredInput href="#InputData_160p3ny" />
+      <requiredInput href="#bBodybuilder" />
     </informationRequirement>
     <decisionTable id="DecisionTable_0ichmw3">
       <input id="InputClause_1hgc69k">
@@ -99,17 +99,17 @@
       </rule>
     </decisionTable>
   </decision>
-  <inputData id="InputData_1pgvjgr" name="Height">
+  <inputData id="fHeight" name="Height">
     <extensionElements>
       <biodi:bounds x="162" y="537" width="125" height="45" />
     </extensionElements>
   </inputData>
-  <inputData id="InputData_0u9q7a7" name="Weight">
+  <inputData id="fWeight" name="Weight">
     <extensionElements>
       <biodi:bounds x="156" y="621" width="125" height="45" />
     </extensionElements>
   </inputData>
-  <inputData id="InputData_160p3ny" name="Is bodybuilder?">
+  <inputData id="bBodybuilder" name="Is bodybuilder?">
     <extensionElements>
       <biodi:bounds x="656" y="680" width="125" height="45" />
     </extensionElements>
@@ -121,85 +121,85 @@
         <biodi:waypoints x="754" y="566" />
         <biodi:waypoints x="824" y="497" />
       </biodi:edge>
-      <biodi:edge source="InputData_1rqp2oz">
-        <biodi:waypoints x="590" y="191" />
-        <biodi:waypoints x="843" y="417" />
+      <biodi:edge source="bOngoingTreatmentOrSurgery">
+        <biodi:waypoints x="589" y="191" />
+        <biodi:waypoints x="836" y="417" />
       </biodi:edge>
-      <biodi:edge source="InputData_12je31q">
-        <biodi:waypoints x="591" y="263" />
-        <biodi:waypoints x="818" y="417" />
+      <biodi:edge source="bDisabilityOrBirthDefect">
+        <biodi:waypoints x="586" y="263" />
+        <biodi:waypoints x="789" y="427" />
       </biodi:edge>
-      <biodi:edge source="InputData_1a35tlh">
-        <biodi:waypoints x="603" y="343" />
-        <biodi:waypoints x="789" y="424" />
+      <biodi:edge source="bPastRejection">
+        <biodi:waypoints x="599" y="343" />
+        <biodi:waypoints x="789" y="433" />
       </biodi:edge>
-      <biodi:edge source="InputData_1355390">
+      <biodi:edge source="bDrugTaker">
         <biodi:waypoints x="624" y="414" />
         <biodi:waypoints x="789" y="450" />
       </biodi:edge>
-      <biodi:edge source="InputData_0w8h56h">
-        <biodi:waypoints x="639" y="479" />
-        <biodi:waypoints x="789" y="471" />
+      <biodi:edge source="bHivInfected">
+        <biodi:waypoints x="639" y="480" />
+        <biodi:waypoints x="789" y="474" />
       </biodi:edge>
     </extensionElements>
-    <variable id="InformationItem_13dgbye" name="eligibilityScore" typeRef="integer" />
+    <variable id="InformationItem_13dgbye" name="nEligibilityScore" typeRef="integer" />
     <informationRequirement>
       <requiredDecision href="#Decision_DecideWhetherPersonIsObese" />
     </informationRequirement>
     <informationRequirement>
-      <requiredInput href="#InputData_1rqp2oz" />
+      <requiredInput href="#bOngoingTreatmentOrSurgery" />
     </informationRequirement>
     <informationRequirement>
-      <requiredInput href="#InputData_12je31q" />
+      <requiredInput href="#bDisabilityOrBirthDefect" />
     </informationRequirement>
     <informationRequirement>
-      <requiredInput href="#InputData_1a35tlh" />
+      <requiredInput href="#bPastRejection" />
     </informationRequirement>
     <informationRequirement>
-      <requiredInput href="#InputData_1355390" />
+      <requiredInput href="#bDrugTaker" />
     </informationRequirement>
     <informationRequirement>
-      <requiredInput href="#InputData_0w8h56h" />
+      <requiredInput href="#bHivInfected" />
     </informationRequirement>
     <literalExpression id="LiteralExpression_1y8xk4e" expressionLanguage="javascript">
-      <text>bDisabilityOrBirthDefect+bOngoingTreatmentOrSurgery+bPastRejection+bDrugTaker+bHivInjected+bObese</text>
+      <text>bDisabilityOrBirthDefect+bOngoingTreatmentOrSurgery+bPastRejection+bDrugTaker+bHivInfected+bObese</text>
     </literalExpression>
   </decision>
-  <inputData id="InputData_0w8h56h" name="HIV infected">
+  <inputData id="bHivInfected" name="HIV infected">
     <extensionElements>
       <biodi:bounds x="514" y="459" width="125" height="45" />
     </extensionElements>
   </inputData>
-  <inputData id="InputData_1355390" name="Drug taker">
+  <inputData id="bDrugTaker" name="Drug taker">
     <extensionElements>
       <biodi:bounds x="499" y="378" width="125" height="45" />
     </extensionElements>
   </inputData>
-  <inputData id="InputData_1a35tlh" name="Past rejection">
+  <inputData id="bPastRejection" name="Past rejection">
     <extensionElements>
       <biodi:bounds x="489" y="298" width="125" height="45" />
     </extensionElements>
   </inputData>
-  <inputData id="InputData_12je31q" name="Disabilty or birth defect">
+  <inputData id="bDisabilityOrBirthDefect" name="Disabilty or birth defect">
     <extensionElements>
       <biodi:bounds x="496" y="218" width="125" height="45" />
     </extensionElements>
   </inputData>
-  <inputData id="InputData_1rqp2oz" name="Ongoing treatment or surgery">
+  <inputData id="bOngoingTreatmentOrSurgery" name="Ongoing treatment or surgery">
     <extensionElements>
       <biodi:bounds x="502" y="146" width="125" height="45" />
     </extensionElements>
   </inputData>
   <decision id="Decision_assessEligibility" name="assess eligibility">
     <extensionElements>
-      <biodi:bounds x="1014" y="416" width="180" height="80" />
+      <biodi:bounds x="1005" y="416" width="180" height="80" />
       <biodi:edge source="Decision_calculateEligibiltyScore">
         <biodi:waypoints x="969" y="455" />
-        <biodi:waypoints x="1014" y="454" />
+        <biodi:waypoints x="1005" y="454" />
       </biodi:edge>
       <biodi:edge source="Decision_calculateSupplementaryInsurances">
         <biodi:waypoints x="1046" y="368" />
-        <biodi:waypoints x="1043" y="416" />
+        <biodi:waypoints x="1034" y="416" />
       </biodi:edge>
     </extensionElements>
     <informationRequirement>
@@ -284,44 +284,44 @@
   <decision id="Decision_calculateSupplementaryInsurances" name="calculate supplementary insurances">
     <extensionElements>
       <biodi:bounds x="959" y="288" width="180" height="80" />
-      <biodi:edge source="InputData_0nxdy5r">
-        <biodi:waypoints x="951" y="156" />
-        <biodi:waypoints x="991" y="288" />
+      <biodi:edge source="bLifeInsurance">
+        <biodi:waypoints x="956" y="156" />
+        <biodi:waypoints x="1028" y="288" />
       </biodi:edge>
-      <biodi:edge source="InputData_14pv7ko">
-        <biodi:waypoints x="1209" y="146" />
-        <biodi:waypoints x="1088" y="288" />
+      <biodi:edge source="bDentalInsurance">
+        <biodi:waypoints x="1072" y="126" />
+        <biodi:waypoints x="1069" y="288" />
       </biodi:edge>
-      <biodi:edge source="InputData_15njd6q">
-        <biodi:waypoints x="1069" y="126" />
-        <biodi:waypoints x="1043" y="288" />
+      <biodi:edge source="bAlternativeInsurance">
+        <biodi:waypoints x="1210" y="146" />
+        <biodi:waypoints x="1095" y="288" />
       </biodi:edge>
     </extensionElements>
     <variable id="InformationItem_0s79ebh" name="bSupplementaryInsurance" typeRef="boolean" />
     <informationRequirement>
-      <requiredInput href="#InputData_0nxdy5r" />
+      <requiredInput href="#bLifeInsurance" />
     </informationRequirement>
     <informationRequirement>
-      <requiredInput href="#InputData_14pv7ko" />
+      <requiredInput href="#bDentalInsurance" />
     </informationRequirement>
     <informationRequirement>
-      <requiredInput href="#InputData_15njd6q" />
+      <requiredInput href="#bAlternativeInsurance" />
     </informationRequirement>
     <literalExpression id="LiteralExpression_0we8lqq" expressionLanguage="javascript">
-      <text>bDentalTreatment||bLifeInsruance||bAlternativeInsurance</text>
+      <text>bDentalTreatment||bLifeInsurance||bAlternativeInsurance</text>
     </literalExpression>
   </decision>
-  <inputData id="InputData_0nxdy5r" name="Life Insurance selected">
+  <inputData id="bLifeInsurance" name="Life Insurance selected">
     <extensionElements>
       <biodi:bounds x="881" y="111" width="125" height="45" />
     </extensionElements>
   </inputData>
-  <inputData id="InputData_15njd6q" name="Dental Treatment selected">
+  <inputData id="bDentalInsurance" name="Dental Treatment selected">
     <extensionElements>
       <biodi:bounds x="1010" y="81" width="125" height="45" />
     </extensionElements>
   </inputData>
-  <inputData id="InputData_14pv7ko" name="Alternative Insurance selected">
+  <inputData id="bAlternativeInsurance" name="Alternative Insurance selected">
     <extensionElements>
       <biodi:bounds x="1165" y="101" width="125" height="45" />
     </extensionElements>

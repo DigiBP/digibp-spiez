@@ -13,7 +13,7 @@
           <camunda:formField id="bDrugTaker" label="Drug Taker" type="boolean" />
           <camunda:formField id="bHivInfected" label="HIV Injected" type="boolean" />
           <camunda:formField id="bDentalTreatment" label="Dental Treatment" type="boolean" />
-          <camunda:formField id="bLifeInsurance" label="Life Insruance" type="boolean" />
+          <camunda:formField id="bLifeInsurance" label="Life Insurance" type="boolean" />
           <camunda:formField id="bAlternativeInsurance" label="Alternative Insurance" type="boolean" />
           <camunda:formField id="_businessKeyAssessCase" type="string" defaultValue="thisIsMyDefaultBusinessKeyAssessCase" />
         </camunda:formData>
@@ -26,9 +26,9 @@
     <bpmn:businessRuleTask id="Task_DecisionObese" name="decide whether person is obese" camunda:resultVariable="decDecideWhetherPersonIsObese" camunda:decisionRef="Decision_DecideWhetherPersonIsObese" camunda:mapDecisionResult="singleResult">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="fBMI" />
-          <camunda:inputParameter name="bBodybuilder" />
-          <camunda:outputParameter name="bObese" />
+          <camunda:inputParameter name="fBMI">${fBMI}</camunda:inputParameter>
+          <camunda:inputParameter name="bBodybuilder">${bBodybuilder}</camunda:inputParameter>
+          <camunda:outputParameter name="bObese">${decDecideWhetherPersonIsObese.bObese}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0v9vasu</bpmn:incoming>
@@ -37,9 +37,9 @@
     <bpmn:businessRuleTask id="Task_CalculateBmi" name="calculate BMI" camunda:resultVariable="decCalculateBmi" camunda:decisionRef="Decision_CalculateBmi" camunda:mapDecisionResult="singleResult">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="fWeight" />
-          <camunda:inputParameter name="fHeight" />
-          <camunda:outputParameter name="fBMI" />
+          <camunda:inputParameter name="fWeight">${fWeight}</camunda:inputParameter>
+          <camunda:inputParameter name="fHeight">${fHeight}</camunda:inputParameter>
+          <camunda:outputParameter name="fBMI">${decCalculateBmi.fBMI}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_17ivmqw</bpmn:incoming>
@@ -48,13 +48,13 @@
     <bpmn:businessRuleTask id="Task_CalculateEligibilityScore" name="calculate eligibility score" camunda:resultVariable="deccalculateEligibiltyScore" camunda:decisionRef="Decision_calculateEligibiltyScore" camunda:mapDecisionResult="singleResult">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="bObese" />
-          <camunda:inputParameter name="bDisabilityOrBirthDefect" />
-          <camunda:inputParameter name="bOngoingTreatmentOrSurgery" />
-          <camunda:inputParameter name="bPastRejection" />
-          <camunda:inputParameter name="bDrugTaker" />
-          <camunda:inputParameter name="bHivInfected" />
-          <camunda:outputParameter name="nEligibilityScore" />
+          <camunda:inputParameter name="bObese">${bObese}</camunda:inputParameter>
+          <camunda:inputParameter name="bDisabilityOrBirthDefect">${bDisabilityOrBirthDefect}</camunda:inputParameter>
+          <camunda:inputParameter name="bOngoingTreatmentOrSurgery">${bOngoingTreatmentOrSurgery}</camunda:inputParameter>
+          <camunda:inputParameter name="bPastRejection">${bPastRejection}</camunda:inputParameter>
+          <camunda:inputParameter name="bDrugTaker">${bDrugTaker}</camunda:inputParameter>
+          <camunda:inputParameter name="bHivInfected">${bHivInfected}</camunda:inputParameter>
+          <camunda:outputParameter name="nEligibilityScore">${deccalculateEligibiltyScore.nEligibilityScore}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0vbk4qi</bpmn:incoming>
@@ -63,9 +63,9 @@
     <bpmn:businessRuleTask id="Task_assessEligibility" name="assess eligibility" camunda:resultVariable="decassessEligibilty" camunda:decisionRef="Decision_assessEligibility" camunda:mapDecisionResult="singleResult">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="nEligibilityScore" />
-          <camunda:inputParameter name="bSupplmentarySelected" />
-          <camunda:outputParameter name="sEligibilityDecision" />
+          <camunda:inputParameter name="nEligibilityScore">${nEligibilityScore}</camunda:inputParameter>
+          <camunda:inputParameter name="bSupplementaryInsurance">${bSupplementaryInsurance}</camunda:inputParameter>
+          <camunda:outputParameter name="sEligibilityDecision">${decassessEligibilty.sEligibilityDecision}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_07zpr2l</bpmn:incoming>
@@ -74,10 +74,10 @@
     <bpmn:businessRuleTask id="Task_calculateSupplementaryInsurance" name="calculate Supplementary Insurance" camunda:resultVariable="deccalculateSupplementaryInsurances" camunda:decisionRef="Decision_calculateSupplementaryInsurances" camunda:mapDecisionResult="singleResult">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="bDentalTreatment" />
-          <camunda:inputParameter name="bLifeInsurance" />
-          <camunda:inputParameter name="bAlternativeInsurance" />
-          <camunda:outputParameter name="bSupplementaryInsurance" />
+          <camunda:inputParameter name="bDentalTreatment">${bDentalTreatment}</camunda:inputParameter>
+          <camunda:inputParameter name="bLifeInsurance">${bLifeInsurance}</camunda:inputParameter>
+          <camunda:inputParameter name="bAlternativeInsurance">${bAlternativeInsurance}</camunda:inputParameter>
+          <camunda:outputParameter name="bSupplementaryInsurance">${deccalculateSupplementaryInsurances.bSupplementaryInsurance}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0eqv4zg</bpmn:incoming>

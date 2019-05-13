@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="Definitions_AssesCase" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
-  <decision id="Decision_CalculateBmi" name="calculate BMI">
+  <decision id="Decision_CalculateBmi" name="calculateBMI">
     <extensionElements>
       <biodi:bounds x="359" y="567" width="180" height="80" />
       <biodi:edge source="fWeight">
@@ -23,7 +23,7 @@
       <text>fWeight/((fHeight/100.0)^2)</text>
     </literalExpression>
   </decision>
-  <decision id="Decision_DecideWhetherPersonIsObese" name="decide whether person is obese">
+  <decision id="Decision_DecideWhetherPersonIsObese" name="decidewhetherpersonisobese">
     <extensionElements>
       <biodi:bounds x="624" y="566" width="180" height="80" />
       <biodi:edge source="Decision_CalculateBmi">
@@ -48,11 +48,11 @@
         </inputExpression>
       </input>
       <input id="InputClause_0v7yj7i">
-        <inputExpression id="LiteralExpression_1gx0rr8" typeRef="string">
+        <inputExpression id="LiteralExpression_1gx0rr8" typeRef="boolean">
           <text>bBodybuilder</text>
         </inputExpression>
       </input>
-      <output id="OutputClause_1z02vli" name="bObese" typeRef="string" />
+      <output id="OutputClause_1z02vli" name="bObese" typeRef="boolean" />
       <rule id="DecisionRule_1bs7rem">
         <inputEntry id="UnaryTests_1hx6dtv">
           <text>&gt;=30.0</text>
@@ -114,7 +114,7 @@
       <biodi:bounds x="656" y="680" width="125" height="45" />
     </extensionElements>
   </inputData>
-  <decision id="Decision_calculateEligibiltyScore" name="calculate eligibilty score">
+  <decision id="Decision_calculateEligibiltyScore" name="calculateeligibiltyscore">
     <extensionElements>
       <biodi:bounds x="789" y="417" width="180" height="80" />
       <biodi:edge source="Decision_DecideWhetherPersonIsObese">
@@ -190,7 +190,7 @@
       <biodi:bounds x="502" y="146" width="125" height="45" />
     </extensionElements>
   </inputData>
-  <decision id="Decision_assessEligibility" name="assess eligibility">
+  <decision id="Decision_assessEligibility" name="assesseligibility">
     <extensionElements>
       <biodi:bounds x="1005" y="416" width="180" height="80" />
       <biodi:edge source="Decision_calculateEligibiltyScore">
@@ -216,7 +216,7 @@
       </input>
       <input id="InputClause_1ukjx0o">
         <inputExpression id="LiteralExpression_18bgavy" typeRef="boolean">
-          <text>bSupplmentarySelected</text>
+          <text>bSupplementaryInsurance</text>
         </inputExpression>
       </input>
       <output id="OutputClause_0p7pw7n" name="sEligibilityDecision" typeRef="string">
@@ -257,31 +257,9 @@
           <text>"accept"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_1vlel79">
-        <inputEntry id="UnaryTests_1y58vtc">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0v3s6f4">
-          <text></text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_0qj9kkf">
-          <text></text>
-        </outputEntry>
-      </rule>
-      <rule id="DecisionRule_0kbcpyr">
-        <inputEntry id="UnaryTests_1n1gd46">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_14wlnxa">
-          <text></text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_03di1f6">
-          <text></text>
-        </outputEntry>
-      </rule>
     </decisionTable>
   </decision>
-  <decision id="Decision_calculateSupplementaryInsurances" name="calculate supplementary insurances">
+  <decision id="Decision_calculateSupplementaryInsurances" name="calculatesupplementaryinsurances">
     <extensionElements>
       <biodi:bounds x="959" y="288" width="180" height="80" />
       <biodi:edge source="bLifeInsurance">

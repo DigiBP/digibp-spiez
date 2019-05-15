@@ -20,7 +20,7 @@
       <requiredInput href="#fHeight" />
     </informationRequirement>
     <literalExpression id="LiteralExpression_1lkxm7p" expressionLanguage="javascript">
-      <text>fWeight/((fHeight/100.0)^2)</text>
+      <text>fWeight/((fHeight/100.0)*(fHeight/100.0))</text>
     </literalExpression>
   </decision>
   <decision id="Decision_DecideWhetherPersonIsObese" name="decidewhetherpersonisobese">

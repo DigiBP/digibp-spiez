@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Insurance - Press</title>
+<link rel="shortcut icon" href="images/favicon.png" />
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href="http://root.chi-projects.ch/libraries/fontawesome/all.min.css" rel="stylesheet" type="text/css">
+<link href="css/icons.css" rel="stylesheet" type="text/css">
+<!--[if lt IE 8]><!-->
+    <link rel="stylesheet" href="ie7/ie7.css">
+    <!--<![endif]-->
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body data-spy="scroll" data-target=".navbar-fixed-top">
+<div class="modal fade" tabindex="-1" role="dialog" id="errorMessage">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content --> 
+  </div>
+  <!-- /.modal-dialog --> 
+</div>
+<!-- /.modal -->
+
+<header>
+  <div class="top-bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 address"> <i class="ti-location-pin"></i> Aarauerstrasse 35, CH-4600 Olten </div>
+        <div class="col-sm-6 social">
+          <ul>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse"> <i class="fa fa-bars"></i> </button>
+        <a class="navbar-brand" href="index.html"> Health<span>Insurance </span></a>
+        <p>Call Us Now <b>+41 44 888 99 11</b></p>
+      </div>
+      <div class="collapse navbar-collapse navbar-main-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li> <a href="index.html">Home</a> </li>
+          <li> <a href="contact-us.html">Contact</a> </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="clear"></div>
+<div id="page-content">
+<section class="breadcrumb">
+  <div class="container">
+    <h2>Health Insurance Questions</h2>
+    <ul>
+      <li><a href="index.html">Home</a> ></li>
+      <li><a href="#">Get Health Insurance Offer</a></li>
+    </ul>
+  </div>
+</section>
+<section class="contact-us">
+  <form class="nooutline" name="HealthInsuranceForm" id="HealthInsuranceForm" onsubmit="false" method="POST" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="form-box">
+            <h2>Health Insurance Questions</h2>
+            <div class="row">
+              <div class="col-md-6">
+                <label for="fWeight">Weight</label>
+                <input type="number" name="fWeight" placeholder="Weight" value="80">
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="fHeight">Height</label>
+                  <input type="number"  name="fHeight" placeholder="Height" value="180">
+                </div>
+              </div>
+			  
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="bDisabilityOrBirthDefect">Do you have a disability or a birht defect?</label>
+                   <select name="bDisabilityOrBirthDefect">
+                 	 <option value="true" selected="selected">Yes</option>
+                     <option value="false">No</option>
+                  </select>
+                </div>
+              </div>
+               <div class="col-md-6">
+                <div class="form-group">
+                  <label for="bOngoingTreatmentOrSurgery">Do you have an ongoing treatment or a surgery?<br/ ></label>
+                   <select name="bOngoingTreatmentOrSurgery">
+                 	 <option value="true" selected="selected">Yes</option>
+                     <option value="false">No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="bPastRejection">Do you ever received a rejection for a health insurance application?</label>
+                   <select name="bPastRejection">
+                 	 <option value="true" selected="selected">Yes</option>
+                     <option value="false">No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="bDrugTaker">Do you take drugs?<br/ ></label>
+                  <select name="bDrugTaker">
+                 	 <option value="true" selected="selected">Yes</option>
+                     <option value="false">No</option>
+                  </select>
+                </div>
+              </div>
+			    <div class="col-md-6">
+                <div class="form-group">
+                  <label for="bHivInfected">Are you HIV infected?<br/ ></label>
+                   <select name="bHivInfected">
+                 	 <option value="true" selected="selected">Yes</option>
+                     <option value="false">No</option>
+                  </select>
+                </div>
+              </div>
+			    <div class="col-md-6">
+                <div class="form-group">
+                  <label for="bBodybuilder">Are you a bodybuilder?<br/ ></label>
+                   <select name="bBodybuilder">
+                 	 <option value="true" selected="selected">Yes</option>
+                     <option value="false">No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class=" text-right" style="padding: 0.5em;">
+                  <input type="submit" name="submitButton" class="btn btn-default" value="Send application" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+  </form>
+</section>
+</div>
+<div class="clear"></div>
+<footer>
+<div class="container">
+  <div class="row contact-sec">
+    <div class="col-md-5 col-lg-5">
+      <h2>Insurance<span>Press</span></h2>
+      <div class="row">
+        <div class="col-sm-6">
+          <p>E104 Dharti -2 , Nr Silverstar Mall Chandlodia - Ahmedabad <br/>
+            Zip - 382481</p>
+        </div>
+        <div class="col-sm-6">
+          <ul>
+            <li><a href="#"><i class="fa fa-phone"></i> +91 123 456 7890</a></li>
+            <li><a href="#"><i class="ti-email"></i> info@bootstrapmart.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <a href="#" class="btn-default">Contact Us</a> </div>
+    <div class="col-md-5 col-lg-5 col-md-offset-2 col-lg-offset-2">
+      <h2>Agent<span>Detail</span></h2>
+      <div class="row">
+        <div class="col-sm-6">
+          <p>E104 Dharti -2 , Nr Silverstar Mall Chandlodia - Ahmedabad <br/>
+            Zip - 382481</p>
+        </div>
+        <div class="col-sm-6">
+          <ul>
+            <li><a href="#"><i class="fa fa-phone"></i> +91 123 456 7890</a></li>
+            <li><a href="#"><i class="ti-email"></i> info@bootstrapmart.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <a href="#" class="btn-default">Contact Agent</a> </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-lg-8">
+      <ul class="footer-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="#">Compnies represented</a></li>
+        <li><a href="contact-us.html">Contact us</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Products</a></li>
+      </ul>
+    </div>
+    <div class="col-md-2 col-lg-2 col-md-offset-2 col-lg-offset-2">
+      <ul class="footer-social">
+        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="copyright">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-md-6 col-lg-6"> Copyright &copy; 2018 <a href="#">insurancepress.com</a> </div>
+      <div class="col-sm-6 col-md-6 col-lg-6 text-right"> <a href="#">Terms & Conditions</a> <a href="#">Policy</a> </div>
+    </div>
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-hover-dropdown/2.2.1/bootstrap-hover-dropdown.min.js"></script> 
+<script language="javascript">
+
+	function calculate_age(dob) { 
+		var diff_ms = Date.now() - dob.getTime();
+		var age_dt = new Date(diff_ms); 
+	  
+		return Math.abs(age_dt.getUTCFullYear() - 1970);
+	}
+	
+	function parseDate(s) {
+  var b = s.split(/\D/);
+  return new Date(b[0], --b[1], b[2]);
+}
+
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+};
+
+
+
+	function getInsuranceFormData() {
+			
+	data = 
+							
+			  {
+			  "messageName" : "Message_38tpcvo",
+			  
+			  "processInstanceId" : getUrlParameter("processInstanceId"),
+			  "processVariables" : {
+				"bDisabilityOrBirthDefect" : 		{"value" : $("select[name=bDisabilityOrBirthDefect]" ).val()=="true", "type": "Boolean"},
+				"bOngoingTreatmentOrSurgery" : 		{"value" : $("select[name=bOngoingTreatmentOrSurgery]" ).val()=="true", "type": "Boolean"},
+				"bPastRejection" : 					{"value" :$("select[name=bPastRejection]" ).val()=="true", "type": "Boolean"},
+				"bDrugTaker" : 						{"value": $("select[name=bDrugTaker]" ).val()=="true", "type": "Boolean"},
+				"bHivInfected" : 					{"value" : $("select[name=bHivInfected]" ).val()=="true", "type": "Boolean"},
+				"fHeight" : 						{"value" : $("input[name=fHeight]" ).val(), "type": "Long"},
+				"fWeight" : 						{"value" : $("input[name=fWeight]" ).val(), "type": "Long"},
+				"bBodybuilder" : 					{"value" : $("select[name=bBodybuilder]" ).val()=="true", "type": "Boolean"}
+
+				
+			  }
+  ,  "resultEnabled" : true
+}
+							
+		console.log(data);
+		return JSON.stringify(data);
+	
+	}
+
+
+    $(function () {
+		
+		$( "#HealthInsuranceForm" ).submit(function( event ) {
+		 event.preventDefault();
+		 
+				var request = $.ajax({
+				  url: "https://heroku-spiez-cors.herokuapp.com/https://digibp-spiez.herokuapp.com/rest/message",
+				  method: "POST",
+				  origin: "null",
+				  contentType:"application/json; charset=utf-8",
+				  data:	getInsuranceFormData(),
+				  dataType: "json"
+				});
+				 
+				request.done(function( msg ) {
+				  //alert( msg );
+				  console.log(msg);
+				  $("#errorMessage .modal-title").html("Success");
+				  //$("#errorMessage .modal-body").html("<pre>"+msg+"</pre>");
+				  $("#errorMessage .modal-body").html("<pre>"+JSON.stringify(msg, undefined, 4)+"</pre>");
+				  $('#errorMessage').modal('show');
+				  
+				});
+				 
+				request.fail(function( jqXHR, textStatus, errorThrown  ) {
+				  $("#errorMessage .modal-title").html("Request failed: " + textStatus+", "+errorThrown);
+				  $("#errorMessage .modal-body").html("<pre>"+JSON.stringify(JSON.parse(jqXHR.responseText), undefined, 4)+"</pre>");
+				  $('#errorMessage').modal('show');
+				  console.log(jqXHR);
+				});
+		 
+		 	}); 
+		
+	});
+	
+
+	
+		
+	/*	basicInsurance_generalPraciticer
+        basicInsurance_family
+        basicInsurance_standard
+	*/
+	
+	
+	
+	
+	
+	
+    </script> 
+<script src="js/custom.js"></script>
+</body>
+</html>

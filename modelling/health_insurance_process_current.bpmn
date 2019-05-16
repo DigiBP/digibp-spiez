@@ -308,7 +308,29 @@
       </bpmn:dataOutputAssociation>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_1sg3bgb" sourceRef="Task_InsertContractToDatabase" targetRef="IntermediateThrowEvent_receiveSignedContract" />
-    <bpmn:serviceTask id="Task_createContract" name="Create contract" camunda:expression="$(test)">
+    <bpmn:serviceTask id="Task_createContract" name="Create contract">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hook.integromat.com/ncsejkq82x05huyuqcijhxoa6kpezdxn</camunda:inputParameter>
+            <camunda:inputParameter name="payload">out=JSON.stringify({
+"sFirstName": sFirstName,
+"sLastName": sLastName,
+"eGender": eGender,
+"sEmail": sEmail,
+"sApplicationID": execution.processInstanceId,
+"sStatus": "accepted"
+});</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0dy9hm0</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0dodatt</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1u7vsgk">

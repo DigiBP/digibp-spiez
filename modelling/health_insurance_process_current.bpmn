@@ -20,7 +20,6 @@
         <bpmn:flowNodeRef>StartEvent_1elbdov</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_0055xl1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_emailRejectApplication</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_calculatePrices</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_AskHealthQuestions</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IntermediateThrowEvent_0hrosi3</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_updateStatusInContractDatabase</bpmn:flowNodeRef>
@@ -33,6 +32,7 @@
         <bpmn:flowNodeRef>Task_assesCase</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_updateApplicationStatusToUnsigned</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_applicationClosed</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_calculatePrices</bpmn:flowNodeRef>
         <bpmn:childLaneSet id="LaneSet_1yrjch4" />
       </bpmn:lane>
       <bpmn:lane id="Lane_0cefaof" name="Agent">
@@ -156,37 +156,6 @@
         </bpmn:extensionElements>
       </bpmn:messageEventDefinition>
     </bpmn:intermediateThrowEvent>
-    <bpmn:callActivity id="Task_calculatePrices" name="Calculate Prices" calledElement="Process_calculatePrices">
-      <bpmn:extensionElements>
-        <camunda:in source="dBirthDate" target="dBirthDate" />
-        <camunda:in source="eGender" target="eGender" />
-        <camunda:in source="nAge" target="nAge" />
-        <camunda:in source="nZipCode" target="nZipCode" />
-        <camunda:in source="eBaseInsuranceType" target="eBaseInsuranceType" />
-        <camunda:in source="bBasicInsuranceOnly" target="bBasicInsuranceOnly" />
-        <camunda:in source="eFranchise" target="eFranchise" />
-        <camunda:in source="bAccidentCoverage" target="bAccidentCoverage" />
-        <camunda:in source="bAlternativeInsurance" target="bAlternativeInsurance" />
-        <camunda:in source="eAlternativeInsuranceType" target="eAlternativeInsuranceType" />
-        <camunda:in source="bDentalTreatment" target="bDentalTreatment" />
-        <camunda:in source="eDentalTreatmentCoverage" target="eDentalTreatmentCoverage" />
-        <camunda:in source="bLifeInsurance" target="bLifeInsurance" />
-        <camunda:in source="eLifeInsuranceCoverage" target="eLifeInsuranceCoverage" />
-        <camunda:out source="sPersonProfile" target="sPersonProfile" />
-        <camunda:out source="sAreaType" target="sAreaType" />
-        <camunda:out source="nPersonFactor" target="nPersonFactor" />
-        <camunda:out source="nEndPriceDentalInsurance" target="nEndPriceDentalInsurance" />
-        <camunda:out source="nEndPriceBasicInsurance" target="nEndPriceBasicInsurance" />
-        <camunda:out source="nEndPriceAlternativeInsurance" target="nEndPriceAlternativeInsurance" />
-        <camunda:out source="nEndPriceLifeInsurance" target="nEndPriceLifeInsurance" />
-        <camunda:out source="nBasePriceBasicInsurance" target="nBasePriceBasicInsurance" />
-        <camunda:out source="nBasePriceDentalInsurance" target="nBasePriceDentalInsurance" />
-        <camunda:out source="nBasePriceLifeInsurance" target="nBasePriceLifeInsurance" />
-        <camunda:out source="nBasePriceAlternativeInsurance" target="nBasePriceAlternativeInsurance" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_1otr561</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0dy9hm0</bpmn:outgoing>
-    </bpmn:callActivity>
     <bpmn:sendTask id="Task_AskHealthQuestions" name="Ask health questions">
       <bpmn:extensionElements>
         <camunda:connector>
@@ -603,6 +572,14 @@ out=JSON.stringify(
       <bpmn:incoming>SequenceFlow_0tedwyb</bpmn:incoming>
       <bpmn:incoming>SequenceFlow_0gl41x5</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:callActivity id="Task_calculatePrices" name="Calculate Prices" calledElement="Process_calculatePrices">
+      <bpmn:extensionElements>
+        <camunda:in variables="all" />
+    		<camunda:out variables="all" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1otr561</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0dy9hm0</bpmn:outgoing>
+    </bpmn:callActivity>
   </bpmn:process>
   <bpmn:message id="Message_0vsfji7" name="Message_0e7eoe9" />
   <bpmn:message id="Message_016opmc" name="Message_17nu932" />
@@ -652,10 +629,10 @@ out=JSON.stringify(
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1otr561_di" bpmnElement="SequenceFlow_1otr561">
         <di:waypoint x="857" y="653" />
-        <di:waypoint x="857" y="602" />
-        <di:waypoint x="923" y="602" />
+        <di:waypoint x="857" y="606" />
+        <di:waypoint x="923" y="606" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="865" y="581" width="34" height="14" />
+          <dc:Bounds x="865" y="585" width="34" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="DataObjectReference_01zbefm_di" bpmnElement="DataObjectReference_contract">
@@ -714,7 +691,7 @@ out=JSON.stringify(
         <dc:Bounds x="923" y="875" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="CallActivity_0hnq19f_di" bpmnElement="Task_calculatePrices">
-        <dc:Bounds x="923" y="562" width="100" height="80" />
+        <dc:Bounds x="923" y="566" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1erw4e2_di" bpmnElement="SequenceFlow_1erw4e2">
         <di:waypoint x="650" y="978" />
@@ -744,7 +721,9 @@ out=JSON.stringify(
         <di:waypoint x="832" y="678" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_0dy9hm0_di" bpmnElement="SequenceFlow_0dy9hm0">
-        <di:waypoint x="1023" y="602" />
+        <di:waypoint x="1023" y="606" />
+        <di:waypoint x="1081" y="606" />
+        <di:waypoint x="1081" y="602" />
         <di:waypoint x="1139" y="602" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="IntermediateCatchEvent_110ezri_di" bpmnElement="StartEvent_1elbdov">

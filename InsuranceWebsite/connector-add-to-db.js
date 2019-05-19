@@ -60,3 +60,32 @@ out=JSON.stringify(
 	"dtModified"	:	formatDate(new Date())	,
 	"processVersion"	:	execution.version	
 });
+
+
+
+
+/* <camunda:in source="dBirthDate" target="dBirthDate" />
+        <camunda:in source="eGender" target="eGender" />
+        <camunda:in source="nAge" target="nAge" />
+        <camunda:in source="nZipCode" target="nZipCode" />
+        <camunda:in source="eBaseInsuranceType" target="eBaseInsuranceType" />
+        <camunda:in source="bBasicInsuranceOnly" target="bBasicInsuranceOnly" />
+        <camunda:in source="eFranchise" target="eFranchise" />
+        <camunda:in source="bAccidentCoverage" target="bAccidentCoverage" />
+        <camunda:in source="bAlternativeInsurance" target="bAlternativeInsurance" />
+        <camunda:in source="eAlternativeInsuranceType" target="eAlternativeInsuranceType" />
+        <camunda:in source="bDentalTreatment" target="bDentalTreatment" />
+        <camunda:in source="eDentalTreatmentCoverage" target="eDentalTreatmentCoverage" />
+        <camunda:in source="bLifeInsurance" target="bLifeInsurance" />
+        <camunda:in source="eLifeInsuranceCoverage" target="eLifeInsuranceCoverage" />
+        <camunda:out source="sPersonProfile" target="sPersonProfile" />
+        <camunda:out source="sAreaType" target="sAreaType" />
+        <camunda:out source="nPersonFactor" target="nPersonFactor" />
+        <camunda:out source="nEndPriceDentalInsurance" target="nEndPriceDentalInsurance" />
+        <camunda:out source="nEndPriceBasicInsurance" target="nEndPriceBasicInsurance" />
+        <camunda:out source="nEndPriceAlternativeInsurance" target="nEndPriceAlternativeInsurance" />
+        <camunda:out source="nEndPriceLifeInsurance" target="nEndPriceLifeInsurance" />
+        <camunda:out source="nBasePriceBasicInsurance" target="nBasePriceBasicInsurance" />
+        <camunda:out source="nBasePriceDentalInsurance" target="nBasePriceDentalInsurance" />
+        <camunda:out source="nBasePriceLifeInsurance" target="nBasePriceLifeInsurance" />
+        <camunda:out source="nBasePriceAlternativeInsurance" target="nBasePriceAlternativeInsurance" />*/

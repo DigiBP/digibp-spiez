@@ -221,7 +221,7 @@
       </input>
       <output id="OutputClause_0p7pw7n" name="sEligibilityDecision" typeRef="string">
         <outputValues id="UnaryTests_0hol90e">
-          <text>"reject","accept"</text>
+          <text>"reject","accept","manualAssessment"</text>
         </outputValues>
       </output>
       <rule id="DecisionRule_123xkvm">
@@ -235,9 +235,20 @@
           <text>"reject"</text>
         </outputEntry>
       </rule>
+      <rule id="DecisionRule_1rdti5w">
+        <inputEntry id="UnaryTests_1qkx0zq">
+          <text>3</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_148vy00">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0h5blxp">
+          <text>"manualAssessment"</text>
+        </outputEntry>
+      </rule>
       <rule id="DecisionRule_1m3dgjf">
         <inputEntry id="UnaryTests_18sdl9p">
-          <text>&lt;=3</text>
+          <text>&lt;3</text>
         </inputEntry>
         <inputEntry id="UnaryTests_03d5q3a">
           <text>true</text>

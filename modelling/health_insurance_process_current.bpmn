@@ -36,7 +36,7 @@
         <bpmn:childLaneSet id="LaneSet_1yrjch4" />
       </bpmn:lane>
       <bpmn:lane id="Lane_0cefaof" name="Agent">
-        <bpmn:flowNodeRef>Task_0gjwrp2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_humanDecides</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:exclusiveGateway id="ExclusiveGateway_resultAssessment" name="Result of asessment">
@@ -184,10 +184,10 @@
     </bpmn:sendTask>
     <bpmn:sequenceFlow id="SequenceFlow_1v49919" sourceRef="Task_assesCase" targetRef="ExclusiveGateway_resultAssessment" />
     <bpmn:sequenceFlow id="SequenceFlow_1o6jn2x" name="reject" sourceRef="ExclusiveGateway_resultAssessment" targetRef="Task_rejectCase">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${sEligibilityDecision== "reject"}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${(sEligibilityDecision== "reject" || eEligibilityDecisionByHuman=="_humanReject")}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1otr561" name="accept" sourceRef="ExclusiveGateway_resultAssessment" targetRef="Task_calculatePrices">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${sEligibilityDecision== "accept"}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${(sEligibilityDecision== "accept" || eEligibilityDecisionByHuman=="_humanAccept")}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1vz2tl9" sourceRef="StartEvent_receiveApplication" targetRef="ExclusiveGateway_SupplementaryInsruanceSelected" />
     <bpmn:sequenceFlow id="SequenceFlow_039mupp" name="yes" sourceRef="ExclusiveGateway_SupplementaryInsruanceSelected" targetRef="Task_AskHealthQuestions">
@@ -499,10 +499,10 @@ out=JSON.stringify(
         <bpmn:targetRef>DataStoreReference_customerData</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="SequenceFlow_1i3c337" name="manual assessment" sourceRef="ExclusiveGateway_resultAssessment" targetRef="Task_0gjwrp2">
+    <bpmn:sequenceFlow id="SequenceFlow_1i3c337" name="manual assessment" sourceRef="ExclusiveGateway_resultAssessment" targetRef="Task_humanDecides">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${sEligibilityDecision== "manualAssessment"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_125s3z0" sourceRef="Task_0gjwrp2" targetRef="ExclusiveGateway_resultAssessment" />
+    <bpmn:sequenceFlow id="SequenceFlow_125s3z0" sourceRef="Task_humanDecides" targetRef="ExclusiveGateway_resultAssessment" />
     <bpmn:callActivity id="Task_assesCase" name="Assess case" calledElement="Process_assess_case">
       <bpmn:extensionElements>
         <camunda:in source="dBirthDate" target="dBirthDate" />
@@ -531,12 +531,25 @@ out=JSON.stringify(
         <camunda:out source="fBMI" target="fBMI" />
         <camunda:out source="nEligibilityScore" target="nEligibilityScore" />
         <camunda:out source="bSupplementaryInsurance" target="bSupplementaryInsurance" />
+        <camunda:inputOutput>
+          <camunda:outputParameter name="eEligibilityDecisionByHuman">_nothing</camunda:outputParameter>
+        </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_18y3ey3</bpmn:incoming>
       <bpmn:incoming>SequenceFlow_1erw4e2</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1v49919</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:userTask id="Task_0gjwrp2" name="human decides">
+    <bpmn:userTask id="Task_humanDecides" name="human decides" camunda:formKey="humanDecidesFormKey">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="eEligibilityDecisionByHuman" label="EligibilityDecisionByHuman" type="enum">
+            <camunda:value id="_humanAccept" name="Accept" />
+            <camunda:value id="_humanReject" name="Reject" />
+            <camunda:value id="_nothing" />
+          </camunda:formField>
+          <camunda:formField id="sNote" label="Notes" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1i3c337</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_125s3z0</bpmn:outgoing>
     </bpmn:userTask>
@@ -575,7 +588,7 @@ out=JSON.stringify(
     <bpmn:callActivity id="Task_calculatePrices" name="Calculate Prices" calledElement="Process_calculatePrices">
       <bpmn:extensionElements>
         <camunda:in variables="all" />
-    		<camunda:out variables="all" />
+        <camunda:out variables="all" />
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1otr561</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0dy9hm0</bpmn:outgoing>
@@ -872,7 +885,7 @@ out=JSON.stringify(
           <dc:Bounds x="862" y="1009" width="60" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="UserTask_1ajtbg0_di" bpmnElement="Task_0gjwrp2">
+      <bpmndi:BPMNShape id="UserTask_1ajtbg0_di" bpmnElement="Task_humanDecides">
         <dc:Bounds x="923" y="1082" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_125s3z0_di" bpmnElement="SequenceFlow_125s3z0">

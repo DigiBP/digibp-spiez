@@ -539,7 +539,7 @@ out=JSON.stringify(
       <bpmn:incoming>SequenceFlow_1erw4e2</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1v49919</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:userTask id="Task_humanDecides" name="human decides" camunda:formKey="humanDecidesFormKey">
+    <bpmn:userTask id="Task_humanDecides" name="human decides">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="eEligibilityDecisionByHuman" label="EligibilityDecisionByHuman" type="enum">

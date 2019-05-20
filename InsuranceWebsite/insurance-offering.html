@@ -97,21 +97,21 @@
             <h2>Personal Data</h2>
             <div class="row" style="padding:.5em;">
               <div class="col-md-3">
-                <input type="text" name="sFirstName" placeholder="First name" value="Christopher" />
+                <input type="text" name="sFirstName" placeholder="First name" value="Christopher" required="required" />
               </div>
               <div class="col-md-3">
-                <input type="text" name="sLastName" placeholder="Last name" value = "Vogel" />
+                <input type="text" name="sLastName" placeholder="Last name" value = "Vogel" required="required" />
               </div>
               <div class="col-md-3">
-                <input type="date" name="dBirthDate" placeholder="Birth date" value="1992-08-10" />
+                <input type="date" name="dBirthDate" placeholder="Birth date" value="1992-08-10" required="required" />
               </div>
               <div class="col-md-2">
-                <input type="number" name="nZipCode" placeholder="ZIP" min="1000" max="9999" value ="4242" />
+                <input type="number" name="nZipCode" placeholder="ZIP" min="1000" max="9999" value ="4242" required="required" />
               </div>
               <div class="col-md-1">
                 <input type="hidden" id="eGender" name="eGender" value="_m" />
                 <div class="btn-group btn-group-xs" role="group" aria-label="genders">
-                  <button type="button" class="btn btn-primary" style="padding:0.3em .5em;margin-top:.5em" id="eGender_male"> <i class="fa fa-lg fa-male"></i></button>
+                  <button type="button" class="btn btn-primary active" style="padding:0.3em .5em;margin-top:.5em" id="eGender_male"> <i class="fa fa-lg fa-male "></i></button>
                   <button type="button" class="btn btn-primary" style="padding:0.3em .5em;margin-top:.5em" id="eGender_female"> <i class="fa fa-lg fa-female"></i></button>
                 </div>
               </div>
@@ -132,7 +132,7 @@
                 <input type="hidden" id="bBasicInsuranceOnly" name="bBasicInsuranceOnly" value="1" />
                 <div class="btn-group" role="group" aria-label="basicInsurance">
                   <button type="button" class="btn btn-primary btn-lg active basicInsuranceOption" id="eBasicInsuranceType_telmed" value="_telmed"                                      						                                                 data-toggle="tooltip" data-placement="bottom" 
-                                                 title="In the event of health problems, always call the independent Centre for Telemedicine first. If further investigations or treatment are necessary, you will be immediately referred to a doctor to a hospital."> <i class="fa fa-phone fa-flip-horizontal"></i> Telmedicine </button>
+                                                 title="In the event of health problems, always call the independent Centre for Telemedicine first. If further investigations or treatment are necessary, you will be immediately referred to a doctor to a hospital."> <i class="fa fa-phone fa-flip-horizontal"></i> Telemedicine </button>
                   <button type="button" class="btn btn-primary btn-lg basicInsuranceOption" id="eBasicInsuranceType_hmo" value="_hmo"
                                                   data-toggle="tooltip" data-placement="bottom"                                                
                                                 title="If you fall ill, always contact your GP (or group medical practice) in the first instance. You and your doctor will then discuss the next steps and, where necessary, he or she will refer you to a specialist or send you to hospital."
@@ -170,7 +170,7 @@
                 </div>
               </div>
               <div class="col-md-4 text-center">
-                <div class="form-group">
+                <div class="form-group hidden">
                   <label for="basicInsurancePrice">Price basic insurance</label>
                   <p> <span id="basicInsurancePrice">140 CHF per Motnh</span> </p>
                 </div>
@@ -200,7 +200,7 @@
                     <select id="eAlternativeInsuranceType" name="eAlternativeInsuranceType" >
                       <option value="_accupuncture">accupuncture</option>
                       <option value="_chinese">chinese medicine</option>
-                      <option value="_chineseAccupuncture">accupucnture and chinese medicine</option>
+                      <option value="_chineseAccupuncture">accupuncture and chinese medicine</option>
                     </select>
                   </p>
                 </div>
@@ -247,7 +247,7 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
         </div>
       </div>
     </div>
-    <hr />
+    <hr /><!--
     <div class="container">
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -292,7 +292,7 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
         </div>
       </div>
     </div>
-    <hr />
+    <hr />-->
     <div class="container">
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -301,30 +301,30 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
             <div class="row">
               <div class="col-md-4">
                 <label for="exampleInputEmail1">Start date of contract</label>
-                <input type="date" id="dStartDate" placeholder="Start date" value="10.08.2019">
+                <input type="date" name="dStartDate" placeholder="Start date" value="1999-01-01"  required="required">
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email address</label>
-                  <input type="email"  name="sEmail" placeholder="E-mail" value="christopher.vogel@students.fhnw.ch">
+                  <input type="email"  name="sEmail" placeholder="E-mail" value="christopher.vogel@students.fhnw.ch"  required="required">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Phone</label>
-                  <input type="text"  name="sPhone" placeholder="Phone" value="078 883 99 12">
+                  <input type="text"  name="sPhone" placeholder="Phone" value="078 883 99 12"  required="required">
                 </div>
               </div>
                <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Street</label>
-                  <input type="text"  name="sStreet" placeholder="Street" value="Bahnhofplatz 2">
+                  <input type="text"  name="sStreet" placeholder="Street" value="Bahnhofplatz 2"  required="required">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputEmail1">City</label>
-                  <input type="text"  name="sCity" placeholder="City" value="Pratteln">
+                  <input type="text"  name="sCity" placeholder="City" value="Pratteln"  required="required">
                 </div>
               </div>
               <div class="col-md-4">
@@ -437,6 +437,18 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
   return new Date(b[0], --b[1], b[2]);
 }
 
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+
 	function getInsuranceFormData() {
 		
 	nAge = calculate_age(parseDate($("input[name=dBirthDate]" ).val()));
@@ -450,6 +462,7 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
 									"dBirthDate" : 				{"value" : $("input[name=dBirthDate]" ).val(),			"type": "String"},
 									"eGender" : 				{"value" : $("input[name=eGender]" ).val(), 			"type": "String"},
 									"nAge" :					{"value" : nAge, 										"type": "Long"},
+									"dStartDate" : 				{"value" : $("input[name=dStartDate]" ).val(),			"type": "String"},
 									"eCitizenShip" : 			{"value" : $("select[name=eCitizenShip]" ).val(),		"type": "String"},
 									"sStreet" : 				{"value" : $("input[name=sStreet]" ).val(), 			"type": "String"},
 									"nZipCode" : 				{"value" : $("input[name=nZipCode]" ).val(),			"type": "Long"},
@@ -475,7 +488,13 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
 
 
     $(function () {
-  		$('[data-toggle="tooltip"]').tooltip({"html":true});
+		
+		
+		$("input[name=dStartDate]").attr("value",formatDate(new Date(new Date().getFullYear()+1, 0, 1)));
+		$("input[name=dStartDate]").attr("min",formatDate(new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()+5)));
+				$("input[name=dStartDate]").attr("max",formatDate(new Date(new Date().getFullYear()+2, 0, 1)));
+		
+  		$('[data-toggle="tooltip"]').tooltip({"html":true,"trigger":"hover"});
 		
 		
 		$("#startDate").attr("min",  new Date().toJSON().split('T')[0]+"");

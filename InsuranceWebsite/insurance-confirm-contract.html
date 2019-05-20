@@ -106,8 +106,9 @@
               
                 I accept the attached contract I received via mail.</p>
                 <p><br/>
-                 <input type="submit" name="yes" class="btn btn-success" value="Yes, start my contract immidiatley" />
-                  <input type="submit" name="no" class="btn btn-danger" value="No, I do not accept this contract. Please delete all my personal data" />
+				<input type="hidden" id="contractSigned" value="false" />
+                 <input type="button" id="submitYes" name="yes" class="btn btn-success" value="Yes, start my contract immidiatley" />
+                  <input type="button" id="submitNo" name="no" class="btn btn-danger" value="No, I do not accept this contract. Please delete all my personal data" />
                   <p>
                   <em>When you do not accept the contract during one month after its sending, the contract is going to be considered as not accepted and will be deleted.</em>
                   </p>
@@ -226,7 +227,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 
 
-	function getInsuranceFormData(acceptance) {
+	function getInsuranceFormData() {
 			
 	data = 
 							
@@ -235,7 +236,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 			  
 			  "processInstanceId" : getUrlParameter("processInstanceId"),
 			  "processVariables" : {
-				"bContractSigned" : 		{"value" : acceptance=="yes", "type": "Boolean"},		
+				"bContractSigned" : 		{"value" : $("#contractSigned")=="true", "type": "Boolean"},		
 			  }
   ,  "resultEnabled" : true
 }
@@ -247,21 +248,33 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 
     $(function () {
+	
+	
+	$("#submitYes").click(function( event ) {
+	 $("#contractSigned").attr("value","true");
+	 $( "#HealthInsuranceForm" ).submit();	
+	});
+	
+	$("#submitNo").click(function( event ) {
+	 $("#contractSigned").attr("value","false");
+	 $( "#HealthInsuranceForm" ).submit();	
+	});
 		
 		$( "#HealthInsuranceForm" ).submit(function( event ) {
 		 event.preventDefault();
+		// console.log(event);
 		 				var request = $.ajax({
 				  url: "https://heroku-spiez-cors.herokuapp.com/https://digibp-spiez.herokuapp.com/rest/message",
 				  method: "POST",
 				  origin: "null",
 				  contentType:"application/json; charset=utf-8",
-				  data:	getInsuranceFormData(event.originalEvent.explicitOriginalTarget.attributes.name.nodeValue),
+				  data:	getInsuranceFormData(),
 				  dataType: "json"
 				});
 				 
 				request.done(function( msg ) {
 				  //alert( msg );
-				  console.log(msg);
+				  //console.log(msg);
 				  $("#errorMessage .modal-title").html("Success");
 				  //$("#errorMessage .modal-body").html("<pre>"+msg+"</pre>");
 				  $("#errorMessage .modal-body").html("<pre>"+JSON.stringify(msg, undefined, 4)+"</pre>");

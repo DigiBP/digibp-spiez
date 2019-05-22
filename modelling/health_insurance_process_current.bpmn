@@ -23,9 +23,6 @@
         <bpmn:flowNodeRef>Task_AskHealthQuestions</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IntermediateThrowEvent_0hrosi3</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_updateStatusInContractDatabase</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_createContract</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_sendContractToCustomer</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_InsertContractToDatabase</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IntermediateThrowEvent_receiveSignedContract</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_1q1uc51</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_rejectCase</bpmn:flowNodeRef>
@@ -33,6 +30,9 @@
         <bpmn:flowNodeRef>Task_updateApplicationStatusToUnsigned</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_applicationClosed</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_calculatePrices</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_sendContractToCustomer</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_InsertContractToDatabase</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_createContract</bpmn:flowNodeRef>
         <bpmn:childLaneSet id="LaneSet_1yrjch4" />
       </bpmn:lane>
       <bpmn:lane id="Lane_0cefaof" name="Agent">
@@ -198,11 +198,8 @@
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_0tt7isc" sourceRef="Task_AskHealthQuestions" targetRef="StartEvent_1elbdov" />
     <bpmn:sequenceFlow id="SequenceFlow_1erw4e2" sourceRef="StartEvent_1elbdov" targetRef="Task_assesCase" />
-    <bpmn:sequenceFlow id="SequenceFlow_0it35zf" sourceRef="Task_sendContractToCustomer" targetRef="Task_InsertContractToDatabase" />
     <bpmn:sequenceFlow id="SequenceFlow_0cbd3i6" sourceRef="EndEvent_emailRejectApplication" targetRef="EndEvent_0055xl1" />
     <bpmn:sequenceFlow id="SequenceFlow_075u5a4" sourceRef="Task_updateStatusInContractDatabase" targetRef="IntermediateThrowEvent_0hrosi3" />
-    <bpmn:sequenceFlow id="SequenceFlow_0dy9hm0" sourceRef="Task_calculatePrices" targetRef="Task_createContract" />
-    <bpmn:sequenceFlow id="SequenceFlow_0dodatt" sourceRef="Task_createContract" targetRef="Task_sendContractToCustomer" />
     <bpmn:sequenceFlow id="SequenceFlow_0q9rb4q" sourceRef="Task_rejectCase" targetRef="EndEvent_emailRejectApplication" />
     <bpmn:sequenceFlow id="SequenceFlow_0gl41x5" sourceRef="IntermediateThrowEvent_0hrosi3" targetRef="EndEvent_applicationClosed" />
     <bpmn:intermediateThrowEvent id="IntermediateThrowEvent_0hrosi3" name="Send contract confirmation">
@@ -268,139 +265,8 @@
         <bpmn:targetRef>DataStoreReference_customerData</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="SequenceFlow_1sg3bgb" sourceRef="Task_InsertContractToDatabase" targetRef="IntermediateThrowEvent_receiveSignedContract" />
-    <bpmn:serviceTask id="Task_createContract" name="Create contract" camunda:expression="${&#34;test&#34;}">
-      <bpmn:incoming>SequenceFlow_0dy9hm0</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0dodatt</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_1u7vsgk">
-        <bpmn:targetRef>DataObjectReference_contract</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-    </bpmn:serviceTask>
-    <bpmn:sendTask id="Task_sendContractToCustomer" name="Send contract to customer">
-      <bpmn:extensionElements>
-        <camunda:connector>
-          <camunda:inputOutput>
-            <camunda:inputParameter name="method">POST</camunda:inputParameter>
-            <camunda:inputParameter name="url">https://hook.integromat.com/9pok51uratqwjukfnswiy52wzcnby2w8</camunda:inputParameter>
-            <camunda:inputParameter name="headers">
-              <camunda:map>
-                <camunda:entry key="Content-Type">application/json</camunda:entry>
-              </camunda:map>
-            </camunda:inputParameter>
-            <camunda:inputParameter name="payload">
-              <camunda:script scriptFormat="JavaScript">out=JSON.stringify({
-"sLastName": sLastName,
-"eGender": eGender,
-"sEmail": sEmail,
-"sQuestionUrl": "http://root.chi-projects.ch/digibp-spiez-web/insurance-confirm-contract.html?processInstanceId="+execution.processInstanceId+""
-});</camunda:script>
-            </camunda:inputParameter>
-          </camunda:inputOutput>
-          <camunda:connectorId>http-connector</camunda:connectorId>
-        </camunda:connector>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_0dodatt</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0it35zf</bpmn:outgoing>
-      <bpmn:property id="Property_1s9wzx6" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_03u6bmu">
-        <bpmn:sourceRef>DataObjectReference_contract</bpmn:sourceRef>
-        <bpmn:targetRef>Property_1s9wzx6</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-    </bpmn:sendTask>
-    <bpmn:serviceTask id="Task_InsertContractToDatabase" name="Insert contract to database" camunda:expression="$(test)">
-      <bpmn:extensionElements>
-        <camunda:connector>
-          <camunda:inputOutput>
-            <camunda:inputParameter name="method">POST</camunda:inputParameter>
-            <camunda:inputParameter name="url">https://hook.integromat.com/aulm3jmewet9rvlicpzzdr01aq40ce7n</camunda:inputParameter>
-            <camunda:inputParameter name="payload">
-              <camunda:script scriptFormat="JavaScript">function formatDate(date) {
-    var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
-
-    if (month.length &lt; 2) month = '0' + month;
-    if (day.length &lt; 2) day = '0' + day;
-
-    return [year, month, day].join('-');
-}
-
-
-out=JSON.stringify(
-{
-	"sFirstName": sFirstName,
-	"sLastName": sLastName,
-	"eGender": eGender,
-	"sEmail": sEmail,
-	"sApplicationID": execution.processInstanceId,
-	"sStatus": "accepted",
-	"dBirthDate"	:	dBirthDate	,
-	"eGender"	:	eGender	,
-	"nAge"	:	nAge	,
-	"eCitizenShip"	:	eCitizenShip	,
-	"sStreet"	:	sStreet	,
-	"nZipCode"	:	nZipCode	,
-	"sCity"	:	sCity	,
-	"sEmail"	:	sEmail	,
-	"eBaseInsuranceType"	:	eBaseInsuranceType	,
-	"eFranchise"	:	eFranchise	,
-	"bAccidentCoverage"	:	bAccidentCoverage	,
-	"bAlternativeInsurance"	:	bAlternativeInsurance	,
-	"eAlternativeInsuranceType"	:	eAlternativeInsuranceType	,
-	"bDentalTreatment"	:	bDentalTreatment	,
-	"eDentalTreatmentCoverage"	:	eDentalTreatmentCoverage	,
-	"bLifeInsurance"	:	bLifeInsurance	,
-	"eLifeInsuranceCoverage"	:	eLifeInsuranceCoverage	,
-	"bDisabilityOrBirthDefect"	:	bDisabilityOrBirthDefect	,
-	"bOngoingTreatmentOrSurgery"	:	bOngoingTreatmentOrSurgery	,
-	"bPastRejection"	:	bPastRejection	,
-	"bDrugTaker"	:	bDrugTaker	,
-	"bHivInfected"	:	bHivInfected	,
-	"fHeight"	:	fHeight	,
-	"fWeight"	:	fWeight	,
-	"bBodybuilder"	:	bBodybuilder	,
-	"fBMI"	:	fBMI	,
-	"sAreaType"	:	sAreaType	,
-	"nPersonFactor"	:	nPersonFactor	,
-	"sPersonProfile"	:	sPersonProfile	,
-	"nEndPriceDentalInsurance"	:	nEndPriceDentalInsurance	,
-	"nEndPriceBasicInsurance"	:	nEndPriceBasicInsurance	,
-	"nEndPriceAlternativeInsurance"	:	nEndPriceAlternativeInsurance	,
-	"nEndPriceLifeInsurance"	:	nEndPriceLifeInsurance	,
-	"nBasePriceBasicInsurance"	:	nBasePriceBasicInsurance	,
-	"nBasePriceDentalInsurance"	:	nBasePriceDentalInsurance	,
-	"nBasePriceLifeInsurance"	:	nBasePriceLifeInsurance	,
-	"nBasePriceAlternativeInsurance"	:	nBasePriceAlternativeInsurance	,
-	"dtCreated"	:	formatDate(new Date())	,
-	"dtModified"	:	formatDate(new Date())	,
-	"processVersion"	:	execution.version	
-});</camunda:script>
-            </camunda:inputParameter>
-            <camunda:inputParameter name="headers">
-              <camunda:map>
-                <camunda:entry key="Content-Type">application/json</camunda:entry>
-              </camunda:map>
-            </camunda:inputParameter>
-          </camunda:inputOutput>
-          <camunda:connectorId>http-connector</camunda:connectorId>
-        </camunda:connector>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_0it35zf</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1sg3bgb</bpmn:outgoing>
-      <bpmn:property id="Property_0kn8ve6" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_0prxc1q">
-        <bpmn:sourceRef>DataObjectReference_contract</bpmn:sourceRef>
-        <bpmn:targetRef>Property_0kn8ve6</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_1r0alpl">
-        <bpmn:targetRef>DataStoreReference_customerData</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-    </bpmn:serviceTask>
-    <bpmn:dataObjectReference id="DataObjectReference_contract" name="contract" dataObjectRef="DataObject_0sbpkil" />
-    <bpmn:dataObject id="DataObject_0sbpkil" />
     <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_receiveSignedContract" name="Receive signed contract">
-      <bpmn:incoming>SequenceFlow_1sg3bgb</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_0x57k0p</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_18kpqik</bpmn:outgoing>
       <bpmn:messageEventDefinition messageRef="Message_1dj4s63" />
     </bpmn:intermediateCatchEvent>
@@ -591,8 +457,259 @@ out=JSON.stringify(
         <camunda:out variables="all" />
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1otr561</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0dy9hm0</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_0jfpb9v</bpmn:outgoing>
     </bpmn:callActivity>
+    <bpmn:sendTask id="Task_sendContractToCustomer" name="Send contract to customer">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hook.integromat.com/9pok51uratqwjukfnswiy52wzcnby2w8</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="JavaScript">out=JSON.stringify({
+"sLastName": sLastName,
+"eGender": eGender,
+"sEmail": sEmail,
+"sQuestionUrl": "http://root.chi-projects.ch/digibp-spiez-web/insurance-confirm-contract.html?processInstanceId="+execution.processInstanceId+"",
+"sContractUrl": sContractUrl
+});</camunda:script>
+            </camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_09k1umo</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0x57k0p</bpmn:outgoing>
+      <bpmn:property id="Property_1s9wzx6" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_03u6bmu">
+        <bpmn:sourceRef>DataObjectReference_contract</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1s9wzx6</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:sendTask>
+    <bpmn:serviceTask id="Task_InsertContractToDatabase" name="Insert contract to database" camunda:expression="$(test)">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hook.integromat.com/aulm3jmewet9rvlicpzzdr01aq40ce7n</camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="JavaScript">function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length &lt; 2) month = '0' + month;
+    if (day.length &lt; 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+
+
+out=JSON.stringify(
+{
+	"sFirstName": sFirstName,
+	"sLastName": sLastName,
+	"eGender": eGender,
+	"sEmail": sEmail,
+	"sApplicationID": execution.processInstanceId,
+	"sStatus": "accepted",
+	"dBirthDate"	:	dBirthDate	,
+	"eGender"	:	eGender	,
+	"nAge"	:	nAge	,
+	"eCitizenShip"	:	eCitizenShip	,
+	"sStreet"	:	sStreet	,
+	"nZipCode"	:	nZipCode	,
+	"sCity"	:	sCity	,
+	"sEmail"	:	sEmail	,
+	"eBaseInsuranceType"	:	eBaseInsuranceType	,
+	"eFranchise"	:	eFranchise	,
+	"bAccidentCoverage"	:	bAccidentCoverage	,
+	"bAlternativeInsurance"	:	bAlternativeInsurance	,
+	"eAlternativeInsuranceType"	:	eAlternativeInsuranceType	,
+	"bDentalTreatment"	:	bDentalTreatment	,
+	"eDentalTreatmentCoverage"	:	eDentalTreatmentCoverage	,
+	"bLifeInsurance"	:	bLifeInsurance	,
+	"eLifeInsuranceCoverage"	:	eLifeInsuranceCoverage	,
+	"bDisabilityOrBirthDefect"	:	bDisabilityOrBirthDefect	,
+	"bOngoingTreatmentOrSurgery"	:	bOngoingTreatmentOrSurgery	,
+	"bPastRejection"	:	bPastRejection	,
+	"bDrugTaker"	:	bDrugTaker	,
+	"bHivInfected"	:	bHivInfected	,
+	"fHeight"	:	fHeight	,
+	"fWeight"	:	fWeight	,
+	"bBodybuilder"	:	bBodybuilder	,
+	"fBMI"	:	fBMI	,
+	"sAreaType"	:	sAreaType	,
+	"nPersonFactor"	:	nPersonFactor	,
+	"sPersonProfile"	:	sPersonProfile	,
+	"nEndPriceDentalInsurance"	:	nEndPriceDentalInsurance	,
+	"nEndPriceBasicInsurance"	:	nEndPriceBasicInsurance	,
+	"nEndPriceAlternativeInsurance"	:	nEndPriceAlternativeInsurance	,
+	"nEndPriceLifeInsurance"	:	nEndPriceLifeInsurance	,
+	"nBasePriceBasicInsurance"	:	nBasePriceBasicInsurance	,
+	"nBasePriceDentalInsurance"	:	nBasePriceDentalInsurance	,
+	"nBasePriceLifeInsurance"	:	nBasePriceLifeInsurance	,
+	"nBasePriceAlternativeInsurance"	:	nBasePriceAlternativeInsurance	,
+	"dtCreated"	:	formatDate(new Date())	,
+	"dtModified"	:	formatDate(new Date())	,
+	"processVersion"	:	execution.version	
+});</camunda:script>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:outputParameter name="nPolicyNumber">
+              <camunda:script scriptFormat="JavaScript">object=JSON.parse(response);
+nPolicyNumber=9770000+object.nRowNumber;</camunda:script>
+            </camunda:outputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0jfpb9v</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1612m08</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1r0alpl">
+        <bpmn:targetRef>DataStoreReference_customerData</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_0jfpb9v" sourceRef="Task_calculatePrices" targetRef="Task_InsertContractToDatabase" />
+    <bpmn:sequenceFlow id="SequenceFlow_1612m08" sourceRef="Task_InsertContractToDatabase" targetRef="Task_createContract" />
+    <bpmn:serviceTask id="Task_createContract" name="Create contract">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hook.integromat.com/cen1nmnjc8fl8rwa2fhhdjfs5s84d8rp</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="JavaScript">function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length &lt; 2) month = '0' + month;
+    if (day.length &lt; 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+
+function formatDate2(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length &lt; 2) month = '0' + month;
+    if (day.length &lt; 2) day = '0' + day;
+
+    return [year, month, day].join('');
+}
+
+function formatDate3(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length &lt; 2) month = '0' + month;
+    if (day.length &lt; 2) day = '0' + day;
+
+    return [day, month, year].join('.');
+}
+
+
+out=JSON.stringify(
+{
+	"sFirstName": sFirstName,
+	"sLastName": sLastName,
+	"eGender": eGender,
+	"sEmail": sEmail,
+	"sApplicationID": execution.processInstanceId,
+	"sStatus": "accepted",
+	"dBirthDate"	:	dBirthDate	,
+	"eGender"	:	eGender	,
+	"nAge"	:	nAge	,
+	"eCitizenShip"	:	eCitizenShip	,
+	"sStreet"	:	sStreet	,
+	"nZipCode"	:	nZipCode	,
+	"sCity"	:	sCity	,
+	"sEmail"	:	sEmail	,
+	"eBaseInsuranceType"	:	eBaseInsuranceType	,
+	"eFranchise"	:	eFranchise	,
+	"bAccidentCoverage"	:	bAccidentCoverage	,
+	"bAlternativeInsurance"	:	bAlternativeInsurance	,
+	"eAlternativeInsuranceType"	:	eAlternativeInsuranceType	,
+	"bDentalTreatment"	:	bDentalTreatment	,
+	"eDentalTreatmentCoverage"	:	eDentalTreatmentCoverage	,
+	"bLifeInsurance"	:	bLifeInsurance	,
+	"eLifeInsuranceCoverage"	:	eLifeInsuranceCoverage	,
+	"bDisabilityOrBirthDefect"	:	bDisabilityOrBirthDefect	,
+	"bOngoingTreatmentOrSurgery"	:	bOngoingTreatmentOrSurgery	,
+	"bPastRejection"	:	bPastRejection	,
+	"bDrugTaker"	:	bDrugTaker	,
+	"bHivInfected"	:	bHivInfected	,
+	"fHeight"	:	fHeight	,
+	"fWeight"	:	fWeight	,
+	"bBodybuilder"	:	bBodybuilder	,
+	"fBMI"	:	fBMI	,
+	"sAreaType"	:	sAreaType	,
+	"nPersonFactor"	:	nPersonFactor	,
+	"sPersonProfile"	:	sPersonProfile	,
+	"nEndPriceDentalInsurance"	:	nEndPriceDentalInsurance	,
+	"nEndPriceBasicInsurance"	:	nEndPriceBasicInsurance	,
+	"nEndPriceAlternativeInsurance"	:	nEndPriceAlternativeInsurance	,
+	"nEndPriceLifeInsurance"	:	nEndPriceLifeInsurance	,
+	"nBasePriceBasicInsurance"	:	nBasePriceBasicInsurance	,
+	"nBasePriceDentalInsurance"	:	nBasePriceDentalInsurance	,
+	"nBasePriceLifeInsurance"	:	nBasePriceLifeInsurance	,
+	"nBasePriceAlternativeInsurance"	:	nBasePriceAlternativeInsurance	,
+	"dtCreated"	:	formatDate(new Date())	,
+	"dtModified"	:	formatDate(new Date())	,
+	"processVersion"	:	execution.version,
+	"nPolicyNumber": nPolicyNumber,
+        "sYearMonthDay": formatDate2(new Date()),
+	"dToday": formatDate3(new Date())
+});</camunda:script>
+            </camunda:inputParameter>
+            <camunda:outputParameter name="sContractUrl">
+              <camunda:script scriptFormat="JavaScript">object=JSON.parse(response);
+sContractUrl=object.sContractUrl;</camunda:script>
+            </camunda:outputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1612m08</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_09k1umo</bpmn:outgoing>
+      <bpmn:property id="Property_0j4vnah" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0k26eja">
+        <bpmn:sourceRef>DataStoreReference_customerData</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0j4vnah</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0e6ppim">
+        <bpmn:targetRef>DataStoreReference_customerData</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1hkscvy">
+        <bpmn:targetRef>DataObjectReference_contract</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_09k1umo" sourceRef="Task_createContract" targetRef="Task_sendContractToCustomer" />
+    <bpmn:sequenceFlow id="SequenceFlow_0x57k0p" sourceRef="Task_sendContractToCustomer" targetRef="IntermediateThrowEvent_receiveSignedContract" />
+    <bpmn:dataObjectReference id="DataObjectReference_contract" name="contract" dataObjectRef="DataObject_0sbpkil" />
+    <bpmn:dataObject id="DataObject_0sbpkil" />
   </bpmn:process>
   <bpmn:message id="Message_0vsfji7" name="Message_0e7eoe9" />
   <bpmn:message id="Message_016opmc" name="Message_17nu932" />
@@ -649,24 +766,11 @@ out=JSON.stringify(
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="DataObjectReference_01zbefm_di" bpmnElement="DataObjectReference_contract">
-        <dc:Bounds x="1303" y="719" width="36" height="50" />
+        <dc:Bounds x="1304" y="701" width="36" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1302" y="776" width="41" height="14" />
+          <dc:Bounds x="1303" y="758" width="41" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_1u7vsgk_di" bpmnElement="DataOutputAssociation_1u7vsgk">
-        <di:waypoint x="1189" y="642" />
-        <di:waypoint x="1189" y="744" />
-        <di:waypoint x="1303" y="744" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_0dodatt_di" bpmnElement="SequenceFlow_0dodatt">
-        <di:waypoint x="1239" y="602" />
-        <di:waypoint x="1271" y="602" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_0it35zf_di" bpmnElement="SequenceFlow_0it35zf">
-        <di:waypoint x="1371" y="602" />
-        <di:waypoint x="1394" y="602" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="EndEvent_1s5pmc3_di" bpmnElement="EndEvent_applicationClosed">
         <dc:Bounds x="2298" y="584" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -694,8 +798,8 @@ out=JSON.stringify(
         <di:waypoint x="1939" y="642" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="MessageFlow_0bnmkvc_di" bpmnElement="MessageFlow_0bnmkvc">
-        <di:waypoint x="1321" y="562" />
-        <di:waypoint x="1321" y="245" />
+        <di:waypoint x="1436" y="566" />
+        <di:waypoint x="1436" y="245" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ServiceTask_1o8p59f_di" bpmnElement="Task_updateStatusInContractDatabase">
         <dc:Bounds x="1889" y="562" width="100" height="80" />
@@ -733,12 +837,6 @@ out=JSON.stringify(
         <di:waypoint x="759" y="678" />
         <di:waypoint x="832" y="678" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_0dy9hm0_di" bpmnElement="SequenceFlow_0dy9hm0">
-        <di:waypoint x="1023" y="606" />
-        <di:waypoint x="1081" y="606" />
-        <di:waypoint x="1081" y="602" />
-        <di:waypoint x="1139" y="602" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="IntermediateCatchEvent_110ezri_di" bpmnElement="StartEvent_1elbdov">
         <dc:Bounds x="614" y="960" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -758,20 +856,16 @@ out=JSON.stringify(
         <di:waypoint x="490" y="245" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ServiceTask_191bv9v_di" bpmnElement="Task_createContract">
-        <dc:Bounds x="1139" y="562" width="100" height="80" />
+        <dc:Bounds x="1246" y="567" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_1kyyzdm_di" bpmnElement="Task_InsertContractToDatabase">
-        <dc:Bounds x="1394" y="562" width="100" height="80" />
+        <dc:Bounds x="1116" y="566" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="DataInputAssociation_0prxc1q_di" bpmnElement="DataInputAssociation_0prxc1q">
-        <di:waypoint x="1339" y="744" />
-        <di:waypoint x="1418" y="744" />
-        <di:waypoint x="1418" y="642" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1r0alpl_di" bpmnElement="DataOutputAssociation_1r0alpl">
-        <di:waypoint x="1444" y="642" />
-        <di:waypoint x="1444" y="695" />
-        <di:waypoint x="1444" y="803" />
+        <di:waypoint x="1166" y="646" />
+        <di:waypoint x="1166" y="784" />
+        <di:waypoint x="1344" y="784" />
+        <di:waypoint x="1419" y="817" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="MessageFlow_0id0k09_di" bpmnElement="MessageFlow_0id0k09">
         <di:waypoint x="1111" y="897" />
@@ -798,14 +892,15 @@ out=JSON.stringify(
         <di:waypoint x="1351" y="915" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_03u6bmu_di" bpmnElement="DataInputAssociation_03u6bmu">
-        <di:waypoint x="1321" y="719" />
-        <di:waypoint x="1321" y="642" />
+        <di:waypoint x="1340" y="726" />
+        <di:waypoint x="1436" y="726" />
+        <di:waypoint x="1436" y="646" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="SendTask_19p6w5x_di" bpmnElement="Task_AskHealthQuestions">
         <dc:Bounds x="434" y="938" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="SendTask_0ab55oz_di" bpmnElement="Task_sendContractToCustomer">
-        <dc:Bounds x="1271" y="562" width="100" height="80" />
+        <dc:Bounds x="1386" y="566" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_18y3ey3_di" bpmnElement="SequenceFlow_18y3ey3">
         <di:waypoint x="388" y="678" />
@@ -853,10 +948,6 @@ out=JSON.stringify(
       <bpmndi:BPMNEdge id="MessageFlow_1rhs2bg_di" bpmnElement="MessageFlow_1rhs2bg">
         <di:waypoint x="1572" y="245" />
         <di:waypoint x="1572" y="584" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_1sg3bgb_di" bpmnElement="SequenceFlow_1sg3bgb">
-        <di:waypoint x="1494" y="602" />
-        <di:waypoint x="1554" y="602" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_18kpqik_di" bpmnElement="SequenceFlow_18kpqik">
         <di:waypoint x="1590" y="602" />
@@ -907,6 +998,43 @@ out=JSON.stringify(
         <di:waypoint x="1689" y="887" />
         <di:waypoint x="1513" y="887" />
         <di:waypoint x="1469" y="849" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0jfpb9v_di" bpmnElement="SequenceFlow_0jfpb9v">
+        <di:waypoint x="1023" y="606" />
+        <di:waypoint x="1116" y="606" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0e6ppim_di" bpmnElement="DataOutputAssociation_0e6ppim">
+        <di:waypoint x="1323" y="647" />
+        <di:waypoint x="1394" y="752" />
+        <di:waypoint x="1444" y="752" />
+        <di:waypoint x="1444" y="803" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0k26eja_di" bpmnElement="DataInputAssociation_0k26eja">
+        <di:waypoint x="1444" y="803" />
+        <di:waypoint x="1444" y="754" />
+        <di:waypoint x="1394" y="754" />
+        <di:waypoint x="1323" y="647" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1612m08_di" bpmnElement="SequenceFlow_1612m08">
+        <di:waypoint x="1216" y="606" />
+        <di:waypoint x="1246" y="607" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_09k1umo_di" bpmnElement="SequenceFlow_09k1umo">
+        <di:waypoint x="1346" y="607" />
+        <di:waypoint x="1366" y="607" />
+        <di:waypoint x="1366" y="606" />
+        <di:waypoint x="1386" y="606" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0x57k0p_di" bpmnElement="SequenceFlow_0x57k0p">
+        <di:waypoint x="1486" y="606" />
+        <di:waypoint x="1520" y="606" />
+        <di:waypoint x="1520" y="602" />
+        <di:waypoint x="1554" y="602" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1hkscvy_di" bpmnElement="DataOutputAssociation_1hkscvy">
+        <di:waypoint x="1278" y="647" />
+        <di:waypoint x="1278" y="726" />
+        <di:waypoint x="1304" y="726" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

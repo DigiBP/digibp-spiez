@@ -728,7 +728,7 @@ sContractUrl=object.sContractUrl;</camunda:script>
     <bpmn:boundaryEvent id="BoundaryEvent_1h4c1er" name="30 days without signation" attachedToRef="Task_ReceiveSignedContract">
       <bpmn:outgoing>SequenceFlow_0s42ebe</bpmn:outgoing>
       <bpmn:timerEventDefinition>
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P1D</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P0DT30S</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:boundaryEvent>
     <bpmn:endEvent id="EndEvent_1i6f26b" name="close application without message">

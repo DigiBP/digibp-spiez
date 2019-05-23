@@ -47,7 +47,7 @@
   <div class="top-bar">
     <div class="container">
       <div class="row">
-        <div class="col-sm-6 address"> <i class="ti-location-pin"></i> Aarauerstrasse 35, CH-4600 Olten </div>
+        <div class="col-sm-6 address"> <i class="ti-location-pin"></i> Gutebesserungstrasse 7, 8001 Gutfühlhausen </div>
         <div class="col-sm-6 social">
           <ul>
             <li><a href="#"><i class="fab fa-twitter"></i></a></li>
@@ -65,8 +65,8 @@
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse"> <i class="fa fa-bars"></i> </button>
-        <a class="navbar-brand" href="index.html"> Health<span>Insurance </span></a>
-        <p>Call Us Now <b>+41 44 888 99 11</b></p>
+        <a class="navbar-brand" href="index.html"> We<span>-Care </span></a>
+        <p>Call Us Now <b>+41 44 800 34 34</b></p>
       </div>
       <div class="collapse navbar-collapse navbar-main-collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -98,16 +98,16 @@
             <div class="row">
               <div class="col-md-12"><div class="well">
               <p>
-              <!--<div class="text-center">
+              <div class="text-center">
               <a target="_blank" href="https://integromat.ch/contract.pdf"><i class="far fa-5x fa-file-pdf"></i><br />
               contract.pdf</a>
-              </div>-->
+              </div>
 
               
-                Do you accept the attached contract you received via mail?</p>
+                I accept the attached contract, that I received via mail.</p>
                 <p><br/>
 				<input type="hidden" id="contractSigned" value="false" />
-                 <input type="button" id="submitYes" name="yes" class="btn btn-success" value="Yes, start my contract for the applied date" />
+                 <input type="button" id="submitYes" name="yes" class="btn btn-success" value="Yes, start my contract immediately" />
                   <input type="button" id="submitNo" name="no" class="btn btn-danger" value="No, I do not accept this contract. Please delete all my personal data" />
                   <p>
                   <em>When you do not accept the contract during one month after its sending, the contract is going to be considered as not accepted and will be deleted.</em>
@@ -128,7 +128,7 @@
 </section>
 </div>
 <div class="clear"></div>
-<footer>
+<!----<footer>
 <div class="container">
   <div class="row contact-sec">
     <div class="col-md-5 col-lg-5">
@@ -185,6 +185,7 @@
     </div>
   </div>
 </div>
+
 <div class="copyright">
   <div class="container">
     <div class="row">
@@ -193,6 +194,7 @@
     </div>
   </div>
 </div>
+/footer>-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-hover-dropdown/2.2.1/bootstrap-hover-dropdown.min.js"></script> 
@@ -236,7 +238,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 			  
 			  "processInstanceId" : getUrlParameter("processInstanceId"),
 			  "processVariables" : {
-				"bContractSigned" : 		{"value" : $("#contractSigned").val()=="true", "type": "Boolean"},		
+				"bContractSigned" : 		{"value" : $("#contractSigned")=="true", "type": "Boolean"},		
 			  }
   ,  "resultEnabled" : true
 }
@@ -252,15 +254,11 @@ var getUrlParameter = function getUrlParameter(sParam) {
 	
 	$("#submitYes").click(function( event ) {
 	 $("#contractSigned").attr("value","true");
-	//	console.log("true");
-	//	console.log($("#contractSigned").val()=="true");
 	 $( "#HealthInsuranceForm" ).submit();	
 	});
 	
 	$("#submitNo").click(function( event ) {
 	 $("#contractSigned").attr("value","false");
-	// console.log("false");
-	// console.log($("#contractSigned").val()=="true");
 	 $( "#HealthInsuranceForm" ).submit();	
 	});
 		

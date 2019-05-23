@@ -70,12 +70,6 @@ xxx
 ### Issue Creation Process
 xxx
 
-![Media Flows](https://github.com/DigiBP/digibp-spiez/blob/master/Documentation/TestPrintScreen.png)
-
-Example Picture
-
-
-
 #### Create an Issue using Camunda
 
 

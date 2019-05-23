@@ -70,7 +70,7 @@ xxx
 ### Issue Creation Process
 xxx
 
-![Media Flows](https://github.com/DigiBP/digibp-spiez/Documentation/TestPrintScreen.png)
+![Media Flows](https://github.com/DigiBP/digibp-spiez/blob/master/Documentation/TestPrintScreen.png)
 
 Example Picture
 

@@ -233,7 +233,7 @@
     <bpmn:sequenceFlow id="SequenceFlow_0r90eeg" name="Yes" sourceRef="ExclusiveGateway_1q1uc51" targetRef="Task_updateStatusInContractDatabase">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${bContractSigned==true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:serviceTask id="Task_updateStatusInContractDatabase" name="Update status in contract data base">
+    <bpmn:serviceTask id="Task_updateStatusInContractDatabase" name="Update application status in contract data base to signed">
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
@@ -405,7 +405,7 @@ out=JSON.stringify(
       <bpmn:incoming>SequenceFlow_1erw4e2</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1v49919</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:userTask id="Task_humanDecides" name="human decides">
+    <bpmn:userTask id="Task_humanDecides" name="Human decides">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="eEligibilityDecisionByHuman" label="EligibilityDecisionByHuman" type="enum">
@@ -420,7 +420,7 @@ out=JSON.stringify(
       <bpmn:outgoing>SequenceFlow_125s3z0</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_0tedwyb" sourceRef="Task_updateApplicationStatusToUnsigned" targetRef="EndEvent_applicationClosed" />
-    <bpmn:serviceTask id="Task_updateApplicationStatusToUnsigned" name="update application status to unsigned">
+    <bpmn:serviceTask id="Task_updateApplicationStatusToUnsigned" name="Update application status in contract database to unsigned">
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
@@ -491,7 +491,7 @@ out=JSON.stringify(
         <bpmn:targetRef>Property_1s9wzx6</bpmn:targetRef>
       </bpmn:dataInputAssociation>
     </bpmn:sendTask>
-    <bpmn:serviceTask id="Task_InsertContractToDatabase" name="Insert contract to database" camunda:expression="$(test)">
+    <bpmn:serviceTask id="Task_InsertContractToDatabase" name="Insert contract in database" camunda:expression="$(test)">
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
@@ -582,7 +582,7 @@ nPolicyNumber=9770000+object.nRowNumber;</camunda:script>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_0jfpb9v" sourceRef="Task_calculatePrices" targetRef="Task_InsertContractToDatabase" />
     <bpmn:sequenceFlow id="SequenceFlow_1612m08" sourceRef="Task_InsertContractToDatabase" targetRef="Task_createContract" />
-    <bpmn:serviceTask id="Task_createContract" name="Create contract">
+    <bpmn:serviceTask id="Task_createContract" name="Create contract pdf">
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>

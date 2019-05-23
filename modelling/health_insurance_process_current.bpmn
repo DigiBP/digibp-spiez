@@ -728,7 +728,7 @@ sContractUrl=object.sContractUrl;</camunda:script>
     <bpmn:boundaryEvent id="BoundaryEvent_1h4c1er" name="30 days without signation" attachedToRef="Task_ReceiveSignedContract">
       <bpmn:outgoing>SequenceFlow_0s42ebe</bpmn:outgoing>
       <bpmn:timerEventDefinition>
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P0DT30S</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P0DT60S</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:boundaryEvent>
     <bpmn:endEvent id="EndEvent_1i6f26b" name="close application without message">
@@ -763,35 +763,15 @@ sContractUrl=object.sContractUrl;</camunda:script>
       <bpmn:endEvent id="EndEvent_0no78f4">
         <bpmn:incoming>SequenceFlow_12xiidx</bpmn:incoming>
       </bpmn:endEvent>
-      <bpmn:serviceTask id="Task_UpdateStatusTimeExpired" name="Update status">
-        <bpmn:extensionElements>
-          <camunda:connector>
-            <camunda:inputOutput>
-              <camunda:inputParameter name="method">POST</camunda:inputParameter>
-              <camunda:inputParameter name="url">https://hook.integromat.com/y2v165rg1jjntnn5iax9umspik9llsxl</camunda:inputParameter>
-              <camunda:inputParameter name="headers">
-                <camunda:map>
-                  <camunda:entry key="Content-Type">application/json</camunda:entry>
-                </camunda:map>
-              </camunda:inputParameter>
-              <camunda:inputParameter name="payload">
-                <camunda:script scriptFormat="JavaScript">out=JSON.stringify({
-"processInstanceId": execution.processInstanceId,
-"sStatus": "SignatureTimeExpired"
-});</camunda:script>
-              </camunda:inputParameter>
-            </camunda:inputOutput>
-            <camunda:connectorId>http-connector</camunda:connectorId>
-          </camunda:connector>
-        </bpmn:extensionElements>
+      <bpmn:serviceTask id="Task_02ubr0z" name="Update status" camunda:expression="${test}">
         <bpmn:incoming>SequenceFlow_0x03iet</bpmn:incoming>
         <bpmn:outgoing>SequenceFlow_0gsh2g2</bpmn:outgoing>
         <bpmn:dataOutputAssociation id="DataOutputAssociation_0n74m1q">
           <bpmn:targetRef>DataStoreReference_customerData</bpmn:targetRef>
         </bpmn:dataOutputAssociation>
       </bpmn:serviceTask>
-      <bpmn:sequenceFlow id="SequenceFlow_0x03iet" sourceRef="StartEvent_0yvwfot" targetRef="Task_UpdateStatusTimeExpired" />
-      <bpmn:sequenceFlow id="SequenceFlow_0gsh2g2" sourceRef="Task_UpdateStatusTimeExpired" targetRef="Task_sendExpirationMail" />
+      <bpmn:sequenceFlow id="SequenceFlow_0x03iet" sourceRef="StartEvent_0yvwfot" targetRef="Task_02ubr0z" />
+      <bpmn:sequenceFlow id="SequenceFlow_0gsh2g2" sourceRef="Task_02ubr0z" targetRef="Task_sendExpirationMail" />
       <bpmn:sequenceFlow id="SequenceFlow_12xiidx" sourceRef="Task_sendExpirationMail" targetRef="EndEvent_0no78f4" />
       <bpmn:startEvent id="StartEvent_0yvwfot" name="30 days without signature">
         <bpmn:outgoing>SequenceFlow_0x03iet</bpmn:outgoing>
@@ -1166,7 +1146,7 @@ sContractUrl=object.sContractUrl;</camunda:script>
         <di:waypoint x="2290" y="1033" />
         <di:waypoint x="2321" y="1033" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ServiceTask_05igniu_di" bpmnElement="Task_UpdateStatusTimeExpired">
+      <bpmndi:BPMNShape id="ServiceTask_05igniu_di" bpmnElement="Task_02ubr0z">
         <dc:Bounds x="2057" y="993" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="SubProcess_0rw4bq3_di" bpmnElement="SubProcess_124uoxx" isExpanded="true">

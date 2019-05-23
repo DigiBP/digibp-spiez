@@ -491,7 +491,7 @@ out=JSON.stringify(
         <bpmn:targetRef>Property_1s9wzx6</bpmn:targetRef>
       </bpmn:dataInputAssociation>
     </bpmn:sendTask>
-    <bpmn:serviceTask id="Task_InsertContractToDatabase" name="Insert contract to database" camunda:expression="$(test)">
+    <bpmn:serviceTask id="Task_InsertContractToDatabase" name="Insert contract in database" camunda:expression="$(test)">
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
@@ -582,7 +582,7 @@ nPolicyNumber=9770000+object.nRowNumber;</camunda:script>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_0jfpb9v" sourceRef="Task_calculatePrices" targetRef="Task_InsertContractToDatabase" />
     <bpmn:sequenceFlow id="SequenceFlow_1612m08" sourceRef="Task_InsertContractToDatabase" targetRef="Task_createContract" />
-    <bpmn:serviceTask id="Task_createContract" name="Create contract">
+    <bpmn:serviceTask id="Task_createContract" name="Create contract pdf">
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>

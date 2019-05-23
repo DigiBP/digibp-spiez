@@ -10,7 +10,7 @@
     <bpmn:messageFlow id="MessageFlow_0id0k09" sourceRef="EndEvent_emailRejectApplication" targetRef="Participant_17bhftx" />
     <bpmn:messageFlow id="MessageFlow_1b1wv85" sourceRef="IntermediateThrowEvent_0hrosi3" targetRef="Participant_17bhftx" />
     <bpmn:messageFlow id="MessageFlow_1rhs2bg" sourceRef="Participant_17bhftx" targetRef="Task_ReceiveSignedContract" />
-    <bpmn:messageFlow id="MessageFlow_0bsxk8l" sourceRef="Task_04f7xno" targetRef="Participant_17bhftx" />
+    <bpmn:messageFlow id="MessageFlow_0bsxk8l" sourceRef="Task_sendExpirationMail" targetRef="Participant_17bhftx" />
   </bpmn:collaboration>
   <bpmn:process id="Process_HealthInsurance" name="Health Insurance Process (current)" isExecutable="true">
     <bpmn:laneSet id="LaneSet_1wkwfu0">
@@ -728,21 +728,42 @@ sContractUrl=object.sContractUrl;</camunda:script>
     <bpmn:boundaryEvent id="BoundaryEvent_1h4c1er" name="30 days without signation" attachedToRef="Task_ReceiveSignedContract">
       <bpmn:outgoing>SequenceFlow_0s42ebe</bpmn:outgoing>
       <bpmn:timerEventDefinition>
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P30D</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P1D</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:boundaryEvent>
     <bpmn:endEvent id="EndEvent_1i6f26b" name="close application without message">
       <bpmn:incoming>SequenceFlow_13dj3r4</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:subProcess id="SubProcess_124uoxx" triggeredByEvent="true">
-      <bpmn:sendTask id="Task_04f7xno" name="Send expiration mail">
+      <bpmn:sendTask id="Task_sendExpirationMail" name="Send expiration mail">
+        <bpmn:extensionElements>
+          <camunda:connector>
+            <camunda:inputOutput>
+              <camunda:inputParameter name="method">POST</camunda:inputParameter>
+              <camunda:inputParameter name="url">https://hook.integromat.com/nrxuk1b677b8fu8ui7i52t8y36rwwvck</camunda:inputParameter>
+              <camunda:inputParameter name="payload">
+                <camunda:script scriptFormat="JavaScript">out=JSON.stringify({
+"sLastName": sLastName,
+"eGender": eGender,
+"sEmail": sEmail
+});</camunda:script>
+              </camunda:inputParameter>
+              <camunda:inputParameter name="headers">
+                <camunda:map>
+                  <camunda:entry key="Content-Type">application/json</camunda:entry>
+                </camunda:map>
+              </camunda:inputParameter>
+            </camunda:inputOutput>
+            <camunda:connectorId>http-connector</camunda:connectorId>
+          </camunda:connector>
+        </bpmn:extensionElements>
         <bpmn:incoming>SequenceFlow_0gsh2g2</bpmn:incoming>
         <bpmn:outgoing>SequenceFlow_12xiidx</bpmn:outgoing>
       </bpmn:sendTask>
       <bpmn:endEvent id="EndEvent_0no78f4">
         <bpmn:incoming>SequenceFlow_12xiidx</bpmn:incoming>
       </bpmn:endEvent>
-      <bpmn:serviceTask id="Task_02ubr0z" name="Update status">
+      <bpmn:serviceTask id="Task_02ubr0z" name="Update status" camunda:expression="${test}">
         <bpmn:incoming>SequenceFlow_0x03iet</bpmn:incoming>
         <bpmn:outgoing>SequenceFlow_0gsh2g2</bpmn:outgoing>
         <bpmn:dataOutputAssociation id="DataOutputAssociation_0n74m1q">
@@ -750,11 +771,11 @@ sContractUrl=object.sContractUrl;</camunda:script>
         </bpmn:dataOutputAssociation>
       </bpmn:serviceTask>
       <bpmn:sequenceFlow id="SequenceFlow_0x03iet" sourceRef="StartEvent_0yvwfot" targetRef="Task_02ubr0z" />
-      <bpmn:sequenceFlow id="SequenceFlow_0gsh2g2" sourceRef="Task_02ubr0z" targetRef="Task_04f7xno" />
-      <bpmn:sequenceFlow id="SequenceFlow_12xiidx" sourceRef="Task_04f7xno" targetRef="EndEvent_0no78f4" />
+      <bpmn:sequenceFlow id="SequenceFlow_0gsh2g2" sourceRef="Task_02ubr0z" targetRef="Task_sendExpirationMail" />
+      <bpmn:sequenceFlow id="SequenceFlow_12xiidx" sourceRef="Task_sendExpirationMail" targetRef="EndEvent_0no78f4" />
       <bpmn:startEvent id="StartEvent_0yvwfot" name="30 days without signature">
         <bpmn:outgoing>SequenceFlow_0x03iet</bpmn:outgoing>
-        <bpmn:escalationEventDefinition escalationRef="Escalation_1bqve73" />
+        <bpmn:escalationEventDefinition escalationRef="Escalation_1bqve73" camunda:escalationCodeVariable="errContractExpiration" />
       </bpmn:startEvent>
     </bpmn:subProcess>
   </bpmn:process>
@@ -769,7 +790,7 @@ sContractUrl=object.sContractUrl;</camunda:script>
   <bpmn:message id="Message_1beuwrl" name="Message_3k51hi5" />
   <bpmn:message id="Message_0ucp0cl" name="Message_3i5rrmr" />
   <bpmn:escalation id="Escalation_0fwktyc" name="Escalation_059kva6" />
-  <bpmn:escalation id="Escalation_1bqve73" name="Escalation_ContractExpiration" />
+  <bpmn:escalation id="Escalation_1bqve73" name="Escalation_ContractExpiration" escalationCode="ContractExpiration" />
   <bpmn:signal id="Signal_1yrw3zv" name="Signal_11dl7mf" />
   <bpmn:signal id="Signal_0j3h66e" name="Signal_16f3kuj" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -1107,7 +1128,7 @@ sContractUrl=object.sContractUrl;</camunda:script>
           <dc:Bounds x="1646" y="633" width="78" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="SendTask_0ndk9vn_di" bpmnElement="Task_04f7xno">
+      <bpmndi:BPMNShape id="SendTask_0ndk9vn_di" bpmnElement="Task_sendExpirationMail">
         <dc:Bounds x="2190" y="993" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="EndEvent_0no78f4_di" bpmnElement="EndEvent_0no78f4">

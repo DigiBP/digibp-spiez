@@ -70,6 +70,10 @@ xxx
 ### Issue Creation Process
 xxx
 
+Example Picture
+
+
+
 #### Create an Issue using Camunda
 
 

@@ -98,16 +98,16 @@
             <div class="row">
               <div class="col-md-12"><div class="well">
               <p>
-              <div class="text-center">
+              <!--<div class="text-center">
               <a target="_blank" href="https://integromat.ch/contract.pdf"><i class="far fa-5x fa-file-pdf"></i><br />
               contract.pdf</a>
-              </div>
+              </div>-->
 
               
-                I accept the attached contract I received via mail.</p>
+                Do you accept the attached contract you received via mail?</p>
                 <p><br/>
 				<input type="hidden" id="contractSigned" value="false" />
-                 <input type="button" id="submitYes" name="yes" class="btn btn-success" value="Yes, start my contract immidiatley" />
+                 <input type="button" id="submitYes" name="yes" class="btn btn-success" value="Yes, start my contract for the applied date" />
                   <input type="button" id="submitNo" name="no" class="btn btn-danger" value="No, I do not accept this contract. Please delete all my personal data" />
                   <p>
                   <em>When you do not accept the contract during one month after its sending, the contract is going to be considered as not accepted and will be deleted.</em>
@@ -236,7 +236,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 			  
 			  "processInstanceId" : getUrlParameter("processInstanceId"),
 			  "processVariables" : {
-				"bContractSigned" : 		{"value" : $("#contractSigned")=="true", "type": "Boolean"},		
+				"bContractSigned" : 		{"value" : $("#contractSigned").val()=="true", "type": "Boolean"},		
 			  }
   ,  "resultEnabled" : true
 }
@@ -252,11 +252,15 @@ var getUrlParameter = function getUrlParameter(sParam) {
 	
 	$("#submitYes").click(function( event ) {
 	 $("#contractSigned").attr("value","true");
+	//	console.log("true");
+	//	console.log($("#contractSigned").val()=="true");
 	 $( "#HealthInsuranceForm" ).submit();	
 	});
 	
 	$("#submitNo").click(function( event ) {
 	 $("#contractSigned").attr("value","false");
+	// console.log("false");
+	// console.log($("#contractSigned").val()=="true");
 	 $( "#HealthInsuranceForm" ).submit();	
 	});
 		

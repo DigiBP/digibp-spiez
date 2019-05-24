@@ -604,6 +604,7 @@ function formatDate(date) {
 				  url: "https://heroku-spiez-cors.herokuapp.com/https://digibp-spiez.herokuapp.com/rest/process-definition/key/Process_HealthInsurance/submit-form",
 				  method: "POST",
 				  origin: "null",
+				  async: false,
 				  contentType:"application/json; charset=utf-8",
 				  data:	getInsuranceFormData(),
 				  dataType: "json"

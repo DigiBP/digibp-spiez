@@ -238,7 +238,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 			  
 			  "processInstanceId" : getUrlParameter("processInstanceId"),
 			  "processVariables" : {
-				"bContractSigned" : 		{"value" : $("#contractSigned")=="true", "type": "Boolean"},		
+				"bContractSigned" : 		{"value" : $("#contractSigned").val()=="true", "type": "Boolean"},		
 			  }
   ,  "resultEnabled" : true
 }

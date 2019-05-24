@@ -23,6 +23,7 @@
 </head>
 
 <body data-spy="scroll" data-target=".navbar-fixed-top">
+<div id="loading-spinner" class="loading-loading hidden"><div class="loading-spinner"></div></div>
 <div class="modal fade" tabindex="-1" role="dialog" id="errorMessage">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -89,6 +90,20 @@
   </div>
 </section>
 <section class="contact-us">
+
+<div id = "alert-success" class="container hidden">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              Your decision has been sent!
+            </div>
+         </div>
+         </div>
+         </div>
+
+
+
   <form class="nooutline" name="HealthInsuranceForm" id="HealthInsuranceForm" onsubmit="false" method="POST" >
     <div class="container">
       <div class="row">
@@ -264,6 +279,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 		
 		$( "#HealthInsuranceForm" ).submit(function( event ) {
 		 event.preventDefault();
+		  $("#loading-spinner").removeClass("hidden");
 		// console.log(event);
 		 				var request = $.ajax({
 				  url: "https://heroku-spiez-cors.herokuapp.com/https://digibp-spiez.herokuapp.com/rest/message",
@@ -280,11 +296,13 @@ var getUrlParameter = function getUrlParameter(sParam) {
 				  $("#errorMessage .modal-title").html("Success");
 				  //$("#errorMessage .modal-body").html("<pre>"+msg+"</pre>");
 				  $("#errorMessage .modal-body").html("<pre>"+JSON.stringify(msg, undefined, 4)+"</pre>");
-				  $('#errorMessage').modal('show');
-				  
+				 // $('#errorMessage').modal('show');
+				  $('#HealthInsuranceForm').addClass("hidden");
+				  $("#alert-success").removeClass("hidden");
 				});
 				 
 				request.fail(function( jqXHR, textStatus, errorThrown  ) {
+				$("#loading-spinner").addClass("hidden");
 				  $("#errorMessage .modal-title").html("Request failed: " + textStatus+", "+errorThrown);
 				  $("#errorMessage .modal-body").html("<pre>"+JSON.stringify(JSON.parse(jqXHR.responseText), undefined, 4)+"</pre>");
 				  $('#errorMessage').modal('show');

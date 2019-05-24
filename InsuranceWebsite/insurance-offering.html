@@ -504,6 +504,9 @@ function formatDate(date) {
 
     $(function () {
 		
+	$('form').submit(function(){
+	$(this).find(':submit').attr( 'disabled','disabled' );
+	});	
 		
 		$("input[name=dStartDate]").attr("value",formatDate(new Date(new Date().getFullYear()+1, 0, 1)));
 		$("input[name=dStartDate]").attr("min",formatDate(new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()+5)));
@@ -613,9 +616,9 @@ function formatDate(date) {
 				  $("#errorMessage .modal-title").html("Success");
 				  $("#errorMessage .modal-body").html("<pre>"+msg+"</pre>");
 				  $("#errorMessage .modal-body").html("<pre>"+JSON.stringify(msg, undefined, 4)+"</pre>");
-				  $('#errorMessage').modal('show');
-				//  $('#HealthInsuranceForm').addClass("hidden");
-				//  $("#alert-success").removeClass("hidden");
+				//  $('#errorMessage').modal('show');
+				  $('#HealthInsuranceForm').addClass("hidden");
+				  $("#alert-success").removeClass("hidden");
 				});
 				 
 				request.fail(function( jqXHR, textStatus, errorThrown  ) {

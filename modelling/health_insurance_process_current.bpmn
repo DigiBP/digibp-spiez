@@ -770,6 +770,9 @@ sContractUrl=object.sContractUrl;</camunda:script>
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="eEligibilityDecisionByHuman" label="EligibilityDecisionByHuman" type="enum">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
             <camunda:value id="_humanAccept" name="Accept" />
             <camunda:value id="_humanReject" name="Reject" />
             <camunda:value id="_nothing" />

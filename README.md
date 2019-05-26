@@ -12,18 +12,18 @@ VMMMP"     dMP dMP    VMMMP"    VMMMP"     dMP            VMMMP"    dMP        d
 |This repository contains an incident management workflow running on [Camunda BPM](https://docs.camunda.org). This repository is part of the group assignment of the Digitalization of the Business Processes (SS19) Module at the FHNW. Check out our [Presentation Slides](https://stillnotfinished.com) to get an overview of the process as well as the tools and technologies used. | [Camunda Health Insurance Offer Creator]( https://digibp-spiez.herokuapp.com) 
 
 *Authors*
-* Chris, [jaime.ramirez@students.fhnw.ch](mailto:xxx@students.fhnw.ch)
-* David Emmenegger, [moritz.armingeon@students.fhnw.ch](mailto: david.emmenegger@students.fhnw.ch)
-* Shreena, [xxx@students.fhnw.ch](mailto:xxx@students.fhnw.ch)
-* Swapna, [xxx@students.fhnw.ch](mailto:xxx@students.fhnw.ch)
+* Christopher Vogel, [christopher.vogel@students.fhnw.ch]
+* David Emmenegger, [david.emmenegger@students.fhnw.ch]
+* David Emmenegger, [david.emmenegger@students.fhnw.ch]
+* Shreeya Nema, [shreeya.nema@students.fhnw.ch]
+* Swapna Chinta [swapna.chinta@students.fhnw.ch]
 
 
 # Methodology and Approach
-Please be aware that the reader should be familiar with BPMN 2.0. The processes and their flows are not described or explained in this project. 
-
-This project was approached using the KISS (keep it simple, stupid) principle. With the KISS principle, a simple solution can be found to solve a complex problem. In addition to the KISS principle, the project team has chosen an agile approach to enable a high flexibility during the implementation and further to increase the success rate of the project.
+Please be aware that the reader should be familiar with BPMN 3.0. The processes and their flows are not described or explained in this project. 
 
 ## Design Approach
+
 After the first lesson, we were able to execute the first workflow by running the Camunda BPM Engine on Heroku. Although with a limited functionality. It was a valuable experience for the group as new technologies were used. Furthermore, documentation and design plans were crafted and some tests were conducted. We treated every lesson and the following development and adaptions to the product as one sprint.
 
 ## Collaboration
@@ -34,40 +34,53 @@ We work with two Heroku instances and two GitHub Repositories. GitHub and Heroku
 - 2 Web Form / PHP: This instance contains the web-based components of our solution: The web-form to create new incidents, a status page to check the status of the tickets and an overview using the Tableau dashboards. 
 
 ## Testing
-In order to minimalize defects, various functional tests were conducted. We created test-cases from an external view (black box). Furthermore, different decision paths were tested. Detected issues were tracked with the [Github issue management](https://github.com/DigiBP/digibp-saentis/issues) as well as with the tasks stored in the README.md file.
+In order to minimalize defects and complete QA process successfully, various functional tests were conducted. The bug finding procedure included documenting the bugs and defect reporting and resolution. We created test-cases from an external view (black box).  Detected issues were tracked and documented in [Github test cases](https://github.com/DigiBP/digibp-spiez/blob/master/Bugs.docx).
 
 ## Project Management
 Tasks were tracked within this documentation and assigned to one of the team members. For such as small team, no designated project leader was chosen. Tasks were taken by the each teammember individually.
 
+
 # Process Description (Health Insureance Offering Service)
-The following chapter describes the basic idea behind the incident process we have selected. 
 
 ![Media Flows](https://github.com/DigiBP/digibp-saentis/blob/master/pics/BigPicture_v2.png)
-We have implemented an incident management process. The incident management system runs for a fictional company called “Säntis Corporation”. Incidents are filed out by customer of the company as well as internal staff. The company has different incident managers which work on resolving these issues.
 
-We have three main options to open a ticket:
-* **e-Mail:** Send an e-Mail to the support address [t700agmb@robot.zapier.com] to automatically create a ticket
-* **Web form:** Fill out the [web-form](https://saentisincident-php.herokuapp.com/views/createTicket.php) to create a new incident
-* **Camunda:** Create the issue directly in [Camunda BPM](https://saentisincident.herokuapp.com/app/welcome/default/). For example, an issue received by phone can then directly recoreded.
+The Following chapter describes the basic idea behind the health insurance process.The fictitious company "we care Health insurance" offers Basic and supplementary health insurance. Both models have  pre-defined  criteria, which need to be satified in order to be eligible for the insurance.The eligibilty criteria will be explained in detail in the To-be process. 
 
-Please be aware that all these channels are all using the REST API of Camunda. Therefore, further channels can be easiliy added in the future.
+**Basic insurance:** The customer is eligible for basic insurance if he lives in switzerland. Depending on the zipcode,age and gender the price is calculated for every applicant. there are 4 different models that a customer can choose from: Telemedicine, General practitioner, Family doctor model and Standard Model.
 
-The **communication** with the incident creator is done by e-Mail. In case the identified incident is critical, the case manager gets informed. If the indicent has a impact for different customers a automatic tweet is generated to quickly inform other customers and to prevent the incident managers from further interruptions. Consequently, this should reduce the amount of similar issues received.
+**Supplementary Insurance:** If a customer wishes to apply for a supplementary insurance he can select from different models : Alterative, dental and Life insurance by answering additional health questions.
 
-A **status report** of the ticket is provided by a reporting suite. Two general views were created: An [internal view](https://saentisincident-php.herokuapp.com/views/ticketDashboard.php), for incident managers and their supervisors, giving an overview of all tickets as well as a [external, personal view](https://saentisincident-php.herokuapp.com/views/ticketStatus.php) for the customer, where he may consult his ticket status.
+Based on the type of Insurance selected, the price is calculated and contract is sent to the customer.when the customer signs the contract and sends it back to the company through email via integromat, it is saved in the database and the application process is closed.
 
-### Process Description
-xxx
+In order to understand the current application process, a high level AS-IS process was first created using Camunda BPMN 3.0. The AS-IS process required a lot of human interaction as explained in the next section(AS-IS Process). To minimize the human tasks the process is digitalized, and every step of digitalization process is documented (TO-BE Digitalized).
 
 
-## Overall Process
-xxx
+
+## AS-IS Process
+
+| **AS-IS Process** |
+| ------------------ | 
+|The following image shows a comprehensive visualization of AS-IS process. |![alt text](https://github.com/DigiBP/digibp-saentis/blob/master/pics/00_Overall.png) |
+
+1.The customer sends a physical application form, which is checked for completeness manually by a customer agent. If the  form  is incomplete, additional information is requested. Otherwise the application will be forwarded to back office for assessment 
+2. The back office assesses the application. If the application is accepted an offer is created by another employee e and the offer is sent to the applicant via post. In the case of rejection, the applicant is notified via email. 
+3. If the customer accepts the offer, a contract is created by an employee and sent to the customer by post. As soon as the signed contract is received from the customer, a copy of the same is filed and stored.
+
+
+
+
+## TO-Be Process
+
+
+
+
+
 
 
 
 ## Camunda Processes Step by Step Guide
 
-### Issue Creation Process
+###  Integrations
 xxx
 
 #### Create an Issue using Camunda
@@ -84,22 +97,51 @@ xxx
 |xxxx|
 
 
-## Automation
-Different automation techniques and languages were used.
-* **Groovy**: Quick changes to variables were realised in groovy. Mostly changes of the status-variable (State Machine)
-* **JavaScript**: Slightly more complex requests were programmed in JavaScript. For example the Twitter integration.
-* **Java**: More complex cases were programmed in Java. For example, the variable initialisation and the e-Mail interface was realized in Java.
-
-## E-Mails
-**E-Mail Outbound**
-- Hook: https://hooks.zapier.com/hooks/catch/3017214/katznf/
-- Test with:  curl -v -H "Accept: application/json"         -H "Content-Type: application/json"         -X POST         -d '{"email":"moritz.armingeon@gmail.com","msg":"This is a Test","title":"Incident Notification123"}'    https://hooks.zapier.com/hooks/catch/3017214/katznf/
-
-**E-Mail Inbound**
-- Hook: t700agmb@robot.zapier.com
 
 
-## Instructions for Testing
+
+
+
+##  Integrations
+
+The process starts with a google form filled out by a customer.
+![ApplicationForm](https://github.com/DigiBP/digispiez - Integration1.png)ADD png
+
+The data will then be stored in the customer database by submitting the application form.
+![Database](https://github.com/DigiBP/Integration2.png) ADD
+
+Afterwards it will be sent to Camunda’s engine (see scenario in belows figure) from Integromat as a post request containing all necessary data for the application process and then the process starts automatically.
+![SendData](https://github.com/DigiBP/digibpIntegration3.png) ADD
+![CamundaSendData](https://github.com/DigiBP/digibp-Integration4.png) ADD
+
+For sending, request for additional questions,  offer mail and contract to the customer a service task triggers the Integromat’s scenario which receives email,  from the ongoing cases in Camunda and sends an email containing a link for a specific purpose that will trigger the next step of the process.
+
+![IntegromatVerification](https://github.com/DigiBP/digibp-weisshorn/blob/master/Wiki/Integration6.png)ADD
+
+To check whether email with  filled in details of additional questions, offer mail or signed contract is received, the data from the google form is first saved in the specific database and a message will be sent to Camunda in form of a post request by the following scenario to proceed with the process.
+![Link](https://github.com/DigiBP/Integration7.png)ADD
+![IntegromatLink](https://github.com/DigiBP/Integration8.png)ADD
+
+
+
+
+##  Database
+
+The application run on the Heroku OpenSource plattform.  Google Spreadsheet  is used as a database to save and read all customer data. The customer data is inserted into the database as soon the application is processed by the insurance company. 
+
+The business key in the database identifies the different customer applications and is the main key. It is used for communication with customers to realize instantions of the process. 
+
+All personal contact details of applicants are stored in the database columns (A-L). Type of insurance is stored in columns (M-T) The health status of customers is shown in the columns (V-AG) . The price fo the different options of health insurance selected for each applicant are stored in columns Ah-An. every time the status of the application is updated it is stored in colums Ao to Ar and finally the policy number and the pdf of signed contract are stored in columns Ar and As respectively 
+![](https://github.com/DigiBP/.png) > ADD 
+
+
+
+
+
+
+
+
+
 xxxx
 
 ## License

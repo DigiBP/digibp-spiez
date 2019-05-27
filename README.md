@@ -62,9 +62,9 @@ The following image shows a comprehensive visualization of AS-IS process.
 
 |![alt text](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/As-is%20Process.png) |
 
-1.The customer sends a physical application form, which is checked for completeness manually by a customer agent. If the  form  is incomplete, additional information is requested. Otherwise the application will be forwarded to back office for assessment 
-2. The back office assesses the application. If the application is accepted an offer is created by another employee and the offer is sent to the applicant via post. In the case of rejection, the applicant is notified via email. 
-3. If the customer accepts the offer, a contract is created by an employee and sent to the customer by post. As soon as the signed contract is received from the customer, a copy of the same is filed and stored.
+**1.The customer sends a physical application form, which is checked for completeness manually by a customer agent. If the  form  is incomplete, additional information is requested. Otherwise the application will be forwarded to back office for assessment 
+**2. The back office assesses the application. If the application is accepted an offer is created by another employee and the offer is sent to the applicant via post. In the case of rejection, the applicant is notified via email. 
+**3. If the customer accepts the offer, a contract is created by an employee and sent to the customer by post. As soon as the signed contract is received from the customer, a copy of the same is filed and stored.
 
 
 ## DIGITALISED HEALTH INSURANCE Process

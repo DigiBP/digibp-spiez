@@ -57,7 +57,7 @@ In order to understand the current application process, a high level AS-IS proce
 
 ## AS-IS Process
 
-| ------------------ | 
+ 
 |The following image shows a comprehensive visualization of AS-IS process. 
 
 |![alt text](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/As-is%20Process.png) |

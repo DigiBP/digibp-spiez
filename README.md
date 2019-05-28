@@ -121,7 +121,6 @@ For sending request for additional questions,  offer mail and contract to the cu
 
 | ![Additional details](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration8.png) |
 
-| ![ Camunda Additional details](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration6.png) |
 
 To check whether email with  filled in details of additional questions, offer mail or signed contract is received, the data from the google form is first saved in the specific database and change in status regularly updated and a message is sent to Camunda in form of a post request by the following scenario to proceed with the process.
 

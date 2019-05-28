@@ -9,7 +9,7 @@ VMMMP"     dMP dMP    VMMMP"    VMMMP"     dMP            VMMMP"    dMP        d
 
 | Summary | Quicklinks |
 | ------------------ | - |
-|This repository contains health insurance process [Camunda BPM](https://docs.camunda.org). This repository is part of the group assignment of the Digitalization of the Business Processes (SS19) Module at the FHNW. Check out our [Presentation Slides](https://stillnotfinished.com) to get an overview of the process as well as the tools and technologies used. | [Camunda Health Insurance Offer Creator]( https://digibp-spiez.herokuapp.com) 
+|This repository contains Health insurance process [Camunda BPM](https://docs.camunda.org). This repository is part of the group assignment of the Digitalization of the Business Processes (SS19) Module at the FHNW. Check out our [Presentation Slides](https://stillnotfinished.com) to get an overview of the process as well as the tools and technologies used. | [Camunda Health Insurance Offer Creator]( https://digibp-spiez.herokuapp.com) 
 
 *Authors*
 * Christopher Vogel, [christopher.vogel@students.fhnw.ch]
@@ -139,7 +139,7 @@ The application run on the Heroku OpenSource plattform.  Google Spreadsheet  is 
 The business key in the database identifies the different customer applications and is the main key. It is used for communication with customers to realize instantions of the process. 
 
 All personal contact details of applicants are stored in the database columns (A-L). Type of insurance is stored in columns (M-T) The health status of customers is shown in the columns (V-AG) . The price fo the different options of health insurance selected for each applicant are stored in columns Ah-An. every time the status of the application is updated it is stored in colums Ao to Ar and finally the policy number and the pdf of signed contract are stored in columns Ar and As respectively 
-![](https://github.com/DigiBP/.png) > ADD 
+![](https://docs.google.com/spreadsheets/d/1vylyVyxa2TxJ6EUE9TZ10fDxG6PzmvdVn69UXdBo5j0/edit#gid=0) 
 
 
 

@@ -78,7 +78,7 @@ The figure below shows a simple visualization of our overall process. The follow
 - Pricing Models to calculate the 
 
 
-| ** Overall Health Insurance Process** | 
+| **Overall Health Insurance Process** | 
 | ------------------ | 
 | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Health%20insurance%20process.png) |
 

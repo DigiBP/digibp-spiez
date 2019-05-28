@@ -80,7 +80,7 @@ The figure below shows a simple visualization of our overall process. The follow
 
 | **Overall Health Insurance Process** | 
 | ------------------ | 
-| ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Health%20insurance%20process.png) |
+| ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/health%20insurance%20process.png) |
 
 
 

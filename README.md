@@ -93,12 +93,12 @@ The figure below shows a simple visualization of our overall process. The follow
 
 ### Basic Insurance
 
-Customer applies for the basic health Insurance by filling the web application form. The submitted Webform is sent will be sent via Integromat (https://hook.integromat.com/9pok51uratqwjukfnswiy52wzcnby2w8) to herokuapp with all relevant variables.  Camunda executes the decision table “Assess case”.  The decision table uses input variables from the form (age, date of birth, zip code) to calculate a person factor, which is an eligibility score calculated based on output from two decision tables: 
-1. Calculate area: Assigns a value of high, medium or low risk to a customer based on zip code and,
+Customer applies for the basic health Insurance by filling the web application form. The submitted Webform is sent via Integromat (https://hook.integromat.com/9pok51uratqwjukfnswiy52wzcnby2w8) to herokuapp with all relevant variables. Camunda executes the decision table “Assess case”.  The decision table uses input variables from the form (age, date of birth, zip code) to calculate a person factor, which is an eligibility score calculated based on output from two decision tables: 
+1. Calculate area: Which Assigns a value of high, medium or low risk to a customer based on zip code and,
 
-2. Person data: Assigns a value of high, medium or low-price to the applicant based on age and gender.
+2. Person data: Which Assigns a value of high, medium or low-price to the applicant based on age and gender.
 
-Person factor is an eligibility score between 0 and 2. If the score is less than 2 the application is accepted else rejected. When the application is accepted, the price is calculated based on the Basic insurance model selected multiplied by the person factor and a contract generated. A pdf of the contract is created and stored in the database.  An email is sent to the customer with the contract and the signed application should be returned by the customer within a period of 30 days or the contract expires. When the customer sends the signed contract, the status is updated automatically in the database, the pdf of the contract is stored, and a confirmation email is sent to the customer. 
+Person factor is an eligibility score between 0 and 2. If the score is less than 2 the application is accepted else rejected. When the application is accepted, the price is calculated based on the Basic insurance model selected multiplied by the person factor and a contract generated. A pdf of the contract is created and stored in the database.  An email is sent to the customer with the contract.  The application should be signed by the customer within a period of 30 days or the contract expires. When the customer sends the signed contract, the status is updated automatically , the pdf of the contract stored in the database and a confirmation email is sent to the customer. 
  
 
 

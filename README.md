@@ -30,7 +30,7 @@ Git Version control was used in order to work collaboratively on the project. Gi
 
 We work with two Heroku instances and two GitHub Repositories. GitHub and Heroku can be seamlessly integrated with eachother, allowing a continous delivery of the implemented increment. 
 - 1 Camunda / Tomcat: This instance holds the Camunda codebase. Camunda was firstly tested locally on the developer's machine and then  committed. Once committed, the repo is automatically deployed on Heroku.
-- 2 Web Form / PHP: This instance contains the web-based components of our solution: The web-form to create new incidents, a status page to check the status of the tickets and an overview using the Tableau dashboards. 
+- 2 Web Form / PHP: This instance contains the web-based components of our solution: The web-form to, 
 
 ## Testing
 In order to minimalize defects and complete QA process successfully, various functional tests were conducted. The bug finding procedure included documenting the bugs and defect reporting and resolution. We created test-cases from an external view (black box).  Detected issues were tracked and documented in [Github test cases](https://github.com/DigiBP/digibp-spiez/blob/master/Bugs.docx).

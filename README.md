@@ -118,29 +118,29 @@ The figure below shows a simple visualization of our overall process. The follow
 
 The process starts with a Web application form filled out by a customer.
 
-| ![ApplicationForm](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration%201.png) |
+|![ApplicationForm](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration%201.png)|
 
 The data will then be stored in the customer database by submitting the application form.
 
-| ![Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration2.png) |
+|![Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration2.png)|
 
 Afterwards it will be sent to Camunda’s engine (see scenario in belows figure) from Integromat as a post request containing all necessary data for the application process and then the process starts automatically.
 
-| ![CamundaSendData](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration3.png) |
+|![CamundaSendData](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration3.png)|
 
 For sending request for additional questions,  offer mail and contract to the customer a service task triggers the Integromat’s scenario which receives email,  from the ongoing cases in Camunda and sends an email containing a link for a specific purpose that will trigger the next step of the process.
 
-| ![Additional details](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration8.png) |
+|![Additional details](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration8.png)|
 
 
 To check whether email with  filled in details of additional questions, offer mail or signed contract is received, the data from the google form is first saved in the specific database and change in status regularly updated and a message is sent to Camunda in form of a post request by the following scenario to proceed with the process.
 
-| ![ Updating Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration5.png) |
+|![ Updating Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration5.png)|
 
 
 When the customer's eligibilty criteria is satisfied and application is accepted, a pdf contract is generated automatically using eledo  and the copy of the PDF is stored in the database. 
 
-| ![Contract](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration7.png) |
+|![Contract](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration7.png)|
 
 
 ##  Database

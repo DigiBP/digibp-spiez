@@ -43,7 +43,7 @@ Tasks were tracked within this documentation and assigned to one of the team mem
 
 ![Process flow](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/High-level%20process%20flow.png)
 
-The Following chapter describes the basic idea behind the health insurance process.The fictitious company "We Care Health insurance" offers Basic and supplementary health insurance. Both models have  pre-defined  criteria, which need to be satified in order to be eligible for the insurance.The eligibilty criteria will be explained in detail in the To-be process. 
+The Following chapter describes the basic idea behind the health insurance process.The fictitious company "We Care Health insurance" offers Basic and supplementary health insurance. Both models have  pre-defined  criteria, which need to be satisfied in order to be eligible for the insurance.The eligibilty criteria will be explained in detail in the chapte- Digitalized health insurance process. 
 
 **Basic insurance:** The customer is eligible for basic insurance if he lives in switzerland. Depending on the zipcode,age and gender the price is calculated for every applicant. there are 4 different models that a customer can choose from: Telemedicine, General practitioner, Family doctor model and Standard Model.
 

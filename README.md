@@ -60,7 +60,7 @@ In order to understand the current application process, a high level AS-IS proce
  
 The following image shows a comprehensive visualization of AS-IS process. 
 
-|![alt text](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/As-is%20Process.png)|
+| ![alt text](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/As-is%20Process.png) |
 
 1. The customer sends a physical application form, which is checked for completeness manually by a customer agent. If the  form  is incomplete, additional information is requested. Otherwise the application will be forwarded to back office for assessment.
 

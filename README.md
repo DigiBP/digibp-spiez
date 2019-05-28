@@ -69,7 +69,18 @@ The following image shows a comprehensive visualization of AS-IS process.
 3. If the customer accepts the offer, a contract is created by an employee and sent to the customer by post. As soon as the signed contract is received from the customer, a copy of the same is filed and stored.
 
 
-## DIGITALISED HEALTH INSURANCE Process
+## Overall Health Insurance Process
+The figure below shows a simple visualization of our overall process. The following chapter is divided into 4 sections to explain the digitalized Health Insurance process: 
+
+- Basic Insurance process
+- Supplementary Insurance process
+- Decision tables for checking eligibility
+- Pricing Models to calculate the 
+
+
+| ** Overall Health Insurance Process** | 
+| ------------------ | 
+| ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Health%20insurance%20process.png) |
 
 
 

@@ -39,7 +39,7 @@ In order to minimalize defects and complete QA process successfully, various fun
 Tasks were tracked within this documentation and assigned to one of the team members. For such as small team, no designated project leader was chosen. Tasks were taken by the each teammember individually.
 
 
-# Process Description (Health Insureance Offering Service)
+# Process Description (Health Insurance Offering Service)
 
 ![Media Flows](https://github.com/DigiBP/digibp-saentis/blob/master/pics/BigPicture_v2.png)
 

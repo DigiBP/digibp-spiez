@@ -100,7 +100,10 @@ The following figure shows a simple visualization of our overall process. This p
 | ------------------ | - |
 |The following image shows a comprehensive visualization of our Additional insurance process. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/supplementary_insurance%20processflow.png) |
 
-| ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/supplementary%20insurance.png) |
+
+| **Additional insurance subprocess** | - |
+| ------------------ | - |
+|The following image shows a comprehensive visualization of subprocess- Assess case to check eligibility for additional insurance. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/supplementary%20insurance.png) |
 
 
 ### Calculate price subprocess

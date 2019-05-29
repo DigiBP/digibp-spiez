@@ -106,15 +106,16 @@ The following figure shows a simple visualization of our overall process. This p
 |The following image shows a comprehensive visualization of DRD, decision tables & rules for assessing the eligibility of the applicant for Additional Insurance. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/supplementary%20insurance.png) |
 
 
-
-
 ### Calculate price subprocess
 
 | **Calculate price subprocess** | - |
 | ------------------ | - |
 | The following image shows a comprehensive visualization of our Calculate price subprocess. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/calculate%20price_subprocess.png) |
 
-| ![alt text]( https:// https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Calculate%20price.png) |
+
+| **Calculate price subprocess DRD, Decision table &Rules** | - |
+| ------------------ | - |
+| The following image shows a comprehensive visualization of our DRD, decision tables & rules to calculate the price for individual customers. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Calculate%20price.png) |
 
 
 

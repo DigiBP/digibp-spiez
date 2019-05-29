@@ -98,12 +98,14 @@ The following figure shows a simple visualization of our overall process. This p
 
 | **Additional insurance process** | - |
 | ------------------ | - |
-|The following image shows a comprehensive visualization of our Additional insurance process. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/supplementary_insurance%20processflow.png) |
+|The following image shows a comprehensive visualization of our Additional insurance process and  the sub process- Assess case for checking eligibility. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Additional%20insurance%20process%20flow.png) |
 
 
-| **Additional insurance subprocess** | - |
+| **Additional insurance: DRD, Decision tables & rules** | - |
 | ------------------ | - |
-|The following image shows a comprehensive visualization of subprocess- Assess case to check eligibility for additional insurance. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/supplementary%20insurance.png) |
+|The following image shows a comprehensive visualization of DRD, decision tables & rules for assessing the eligibility of the applicant for Additional Insurance. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/supplementary%20insurance.png) |
+
+
 
 
 ### Calculate price subprocess

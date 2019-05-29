@@ -81,7 +81,7 @@ The following figure shows a simple visualization of our overall process. This p
 
 | **Overall Process** | 
 | ------------------ | 
-| ![alt text](https://github.com/DigiBP/digibp-saentis/blob/master/pics/00_Overall.png) |
+| ![alt text](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/health%20insurance%20process.png) |
 
 ### Basic Insurance process
 

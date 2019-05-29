@@ -70,39 +70,43 @@ The following image shows a comprehensive visualization of AS-IS process.
 
 
 ## Overall Health Insurance Process
-The figure below shows a simple visualization of our overall process. The following chapter is divided into 4 sections to explain the digitalized Health Insurance process: 
+The figure below shows a simple visualization of our overall process. The following chapter is divided into 3 sections to give a comprehensive visualization of the digitalized Health Insurance process: 
 
-- Basic Insurance process
-- Supplementary Insurance process
-- Decision tables for checking eligibility
-- Pricing Models to calculate the 
+## Overall Process
+The following figure shows a simple visualization of our overall process. This process is divided in four sub processes.
+- Basic Insurance
+- Additional Insurance
+- Calculate Price
 
 
-| **Overall Health Insurance Process** | 
+| **Overall Process** | 
 | ------------------ | 
-| ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/health%20insurance%20process.png) |
+| ![alt text](https://github.com/DigiBP/digibp-saentis/blob/master/pics/00_Overall.png) |
+
+### Basic Insurance process
+
+| **Basic Insurance process** | - |
+| ------------------ | - |
+|The following image shows a comprehensive visualization of Basic Insurance process. |![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Basic%20insurance%20process.png) |
+                                                                                                                                                  |![alt text](https://github.com/DigiBP/digibpspiez/blob/Swapna/documentation/basicinsuranced.png) |
 
 
+### Additional insurance process
+
+| **Additional insurance process** | - |
+| ------------------ | - |
+|The following image shows a comprehensive visualization of our Additional insurance process. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/supplementary_insurance%20processflow.png) |
+
+| ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/supplementary%20insurance.png) |
 
 
+### Calculate price subprocess
 
+| **Calculate price subprocess** | - |
+| ------------------ | - |
+| The following image shows a comprehensive visualization of our Calculate price subprocess. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/calculate%20price_subprocess.png) |
 
-
-
-
-
-### Basic Insurance
-
-Customer applies for the basic health Insurance by filling the web application form. The submitted Webform is sent via Integromat (https://hook.integromat.com/9pok51uratqwjukfnswiy52wzcnby2w8) to herokuapp with all relevant variables. Camunda executes the decision table “Assess case”.  The decision table uses input variables from the form (age, date of birth, zip code) to calculate a person factor, which is an eligibility score calculated based on input from two decision tables: 
-
-1. Calculate area: Which Assigns a value of high, medium or low risk to a customer based on zip code and,
-
-2. Person data: Which Assigns a value of high, medium or low-price to the applicant based on age and gender.
-
-Person factor is an eligibility score between 0 and 2. When the application is accepted, the price is calculated based on the Basic insurance model selected multiplied by the person factor and a contract generated. A pdf of the contract is created and stored in the database.  An email is sent to the customer with the contract.  The application should be signed by the customer within a period of 30 days or the contract expires. When the customer sends the signed contract, the status is updated automatically and the pdf of the contract stored in the database. A confirmation email is sent to the customer. 
-
-### Additional Insurance
- 
+| ![alt text]( https:// https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Calculate%20price.png) |
 
 
 

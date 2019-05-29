@@ -130,29 +130,27 @@ Person factor is an eligibility score between 0 and 2. When the application is a
 
 The process starts with a Web application form filled out by a customer.
 
-|![ApplicationForm](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration%201.png)|
+![ApplicationForm](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration%201.png)
 
-The data will then be stored in the customer database by submitting the application form.
+All the applicant information is stored in the database .
 
-|![Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration2.png)|
+![Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration2.png)
 
-Afterwards it will be sent to Camunda’s engine (see scenario in belows figure) from Integromat as a post request containing all necessary data for the application process and then the process starts automatically.
+The information is sent to Camunda’s engine (see scenario in belows figure) from Integromat as a post request containing all necessary data for the application process and then the process starts automatically.
 
-|![CamundaSendData](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration3.png)|
+![CamundaSendData](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration3.png)
 
 For sending request for additional questions,  offer mail and contract to the customer a service task triggers the Integromat’s scenario which receives email,  from the ongoing cases in Camunda and sends an email containing a link for a specific purpose that will trigger the next step of the process.
 
-|![Additional details](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration8.png)|
+![Additional details](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration8.png)
 
+To check whether email with  filled in details of additional questions, offer mail or signed contract is received, the data from the web form is first saved in the  database and change in status regularly updated and a message is sent to Camunda in form of a post request by the following scenario to proceed with the process.
 
-To check whether email with  filled in details of additional questions, offer mail or signed contract is received, the data from the google form is first saved in the specific database and change in status regularly updated and a message is sent to Camunda in form of a post request by the following scenario to proceed with the process.
-
-|![ Updating Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration5.png)|
-
+![ Updating Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration5.png)
 
 When the customer's eligibilty criteria is satisfied and application is accepted, a pdf contract is generated automatically using eledo  and the copy of the PDF is stored in the database. 
 
-|![Contract](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration7.png)|
+![Contract](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration7.png)
 
 
 ##  Database
@@ -162,6 +160,7 @@ The application run on the Heroku OpenSource plattform.  Google Spreadsheet  is 
 The business key in the database identifies the different customer applications and is the main key. It is used for communication with customers to realize instantions of the process. 
 
 All personal contact details of applicants are stored in the database columns (A-L). Type of insurance is stored in columns (M-T) The health status of customers is shown in the columns (V-AG) . The price fo the different options of health insurance selected for each applicant are stored in columns Ah-An. every time the status of the application is updated it is stored in colums Ao to Ar and finally the policy number and the pdf of signed contract are stored in columns Ar and As respectively 
+
 ![Database](https://docs.google.com/spreadsheets/d/1vylyVyxa2TxJ6EUE9TZ10fDxG6PzmvdVn69UXdBo5j0/edit#gid=0) 
 
 

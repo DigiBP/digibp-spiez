@@ -88,7 +88,10 @@ The following figure shows a simple visualization of our overall process. This p
 | **Basic Insurance process** | - |
 | ------------------ | - |
 |The following image shows a comprehensive visualization of Basic Insurance process. |![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Basic%20insurance%20process.png) |
-                                                                                                                                                  |![alt text](https://github.com/DigiBP/digibpspiez/blob/Swapna/documentation/basicinsuranced.png) |
+
+| ------------------ | - |
+
+|![alt text](https://github.com/DigiBP/digibpspiez/blob/Swapna/documentation/basicinsuranced.png) |
 
 
 ### Additional insurance process

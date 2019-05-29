@@ -100,6 +100,8 @@ Customer applies for the basic health Insurance by filling the web application f
 2. Person data: Which Assigns a value of high, medium or low-price to the applicant based on age and gender.
 
 Person factor is an eligibility score between 0 and 2. When the application is accepted, the price is calculated based on the Basic insurance model selected multiplied by the person factor and a contract generated. A pdf of the contract is created and stored in the database.  An email is sent to the customer with the contract.  The application should be signed by the customer within a period of 30 days or the contract expires. When the customer sends the signed contract, the status is updated automatically and the pdf of the contract stored in the database. A confirmation email is sent to the customer. 
+
+### Additional Insurance
  
 
 

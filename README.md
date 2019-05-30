@@ -176,6 +176,8 @@ All personal contact details of applicants are stored in the database columns (A
 
 ![Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Database.png) 
 
+
+## Tools and Software
 The following tools and software have been used for implementing the Health insurance process
 
 | Tool / Software  | Description |
@@ -184,9 +186,6 @@ The following tools and software have been used for implementing the Health insu
 | GitHub| Github is used for collaboration and versioning of the programming code as well as the models. |
 |Heroku|Heroku is a PaaS (Platform as a Services) which is used to quickly build, run, and operate the Camunda in the cloud. |
 |Eledo | Eledo helps in automating documents by mapping data to get PDF.  Once you save and activate your document template, you can load new fields in Integromat immediately. Eledo prepares Web Form and REST API automatically.  
-
-
-
 
 
 

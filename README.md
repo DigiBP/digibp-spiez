@@ -74,8 +74,8 @@ The figure below shows a simple visualization of our overall process. The follow
 
 ## Overall Process
 The following figure shows a simple visualization of our overall process. This process is divided in four sub processes.
-- Basic Insurance
-- Additional Insurance
+- Basic Insurance process
+- Additional Insurance process
 - Calculate Price
 
 

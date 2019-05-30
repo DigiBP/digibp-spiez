@@ -187,6 +187,18 @@ The following tools and software have been used for implementing the Health insu
 |Heroku|Heroku is a PaaS (Platform as a Services) which is used to quickly build, run, and operate the Camunda in the cloud. |
 |Eledo | Eledo helps in automating documents by mapping data to get PDF.  Once you save and activate your document template, you can load new fields in Integromat immediately. Eledo prepares Web Form and REST API automatically.  
 
+## Automation
+Different automation techniques and languages were used.
+**JavaScript**:  Insert text
+* **Java**:  Insert text
+
+## E-Mails
+**E-Mail Outbound**
+- 
+
+**E-Mail Inbound**
+
+
 
 
 

@@ -118,6 +118,26 @@ The following figure shows a simple visualization of our overall process. This p
 | The following image shows a comprehensive visualization of our DRD, decision tables & rules to calculate the price for individual customers. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Calculate%20price.png) |
 
 
+### Camunda step by step process 
+
+| **Basic insurance process** | - |
+| ------------------ | - |
+| Customer applies for the basic health Insurance by filling the web application form. The submitted form is sent via Integromat to digibp herokuapp with all relevant variables. As soon as the form is submitted as all the relevant information is saved in the database. 
+. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/application%20form.png) |
+
+| ------------------ | - |
+
+| Camunda executes the sub process “Assess case”. For basic insurance, the input variables from the form (age, date of birth, zip code) are used to calculate a person factor, which is an eligibility score calculated based on output from two decision tables as seen in the previous section. 
+
+When the application is accepted, the price is calculated in a subprocess- calculate price for every individual customer based on any of the four basic insurance models selected. A pdf of the contract is created and stored in the database and an email is sent with the contract to the potential customer. A time period of 30 days is given to sign the contract after which the contract expires. 
+| ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/signcontract_waiting.png |
+
+| ------------------ | - |
+
+| When the customer sends the signed contract, the pdf of the contract is automatically stored as well as the status updated in the database. A confirmation email sent to the customer.
+Two columns in the database are used to save the status of the application: created- which holds the date of creation of application; Modified- which is used to save the date on which the contract is signed, date an application is rejected or date on which the contract expires. 
+
+| ![alt text](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Dtcreated.png) |
 
 
 

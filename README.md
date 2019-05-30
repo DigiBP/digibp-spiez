@@ -120,13 +120,13 @@ The following figure shows a simple visualization of our overall process. This p
 
 ### Camunda step by step process
 
-| **Basic Insurance :Step 1** | - |
+| **Step1 :Basic Insurance** | - |
 | ------------------ | - |
 | Customer applies for the basic health Insurance by filling the web application form. The submitted form is sent via Integromat to digibp herokuapp with all relevant variables. As soon as the form is submitted as all the relevant information is saved in the database.| ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/application%20form.png) |
 
 | **Basic Insurance :Step 2** | - |
 | ------------------ | - |
-Camunda executes the sub process “Assess case”. For basic insurance, the input variables from the form (age, date of birth, zip code) are used to calculate a person factor, which is an eligibility score calculated based on output from two decision tables as seen in the previous section. When the application is accepted, the price is calculated in a subprocess- calculate price for every individual customer based on any of the four basic insurance models selected. A pdf of the contract is created and stored in the database and an email is sent with the contract to the potential customer. A time period of 30 days is given to sign the contract after which the contract expires. | ![alt text](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/signcontract_waiting.png) |
+Camunda executes the sub process “Assess case”. For basic insurance, the input variables from the form (age, date of birth, zip code) are used to calculate a person factor, which is an eligibility score calculated based on output from two decision tables as seen in the previous section. When the application is accepted, the price is calculated in a subprocess- calculate price.  The price varies depending on the type of model selected and the person factor. A pdf of the contract is created and stored in the database and an email is sent with the contract to the potential customer. A time period of 30 days is given to sign the contract after which the contract expires. | ![alt text](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/signcontract_waiting.png) |
  
  | **Basic Insurance :Step 3** | - |
  | ------------------ | - |

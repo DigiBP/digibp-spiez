@@ -39,7 +39,7 @@ In order to minimalize defects and complete QA process successfully, various fun
 Tasks were tracked within this documentation and assigned to one of the team members. For such as small team, no designated project leader was chosen. Tasks were taken by the each teammember individually.
 
 
-# Process Description (Health Insurance Offering Service)
+# Process Description (We Care: Health Insurance Offering Service)
 
 ![Process flow](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Highlevel%20orocess%20flow.png)
 
@@ -47,7 +47,7 @@ The Following chapter describes the basic idea behind the health insurance proce
 
 **Basic insurance:** The customer is eligible for basic insurance if he lives in switzerland. Depending on the zipcode,age and gender the price is calculated for every applicant. there are 4 different models that a customer can choose from: Telemedicine, General practitioner, Family doctor model and Standard Model.
 
-**Supplementary Insurance:** If a customer wishes to apply for a supplementary insurance he can select from different models : Alterative, dental and Life insurance by answering additional health questions.
+**Additional Insurance:** If a customer wishes to apply for a supplementary insurance he can select from different models : Alterative, dental and Life insurance by answering additional health questions.
 
 Based on the type of Insurance selected, the price is calculated and contract is sent to the customer.when the customer signs the contract and sends it back to the company through email via integromat, it is saved in the database and the application process is closed.
 

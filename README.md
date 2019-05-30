@@ -19,7 +19,7 @@ VMMMP"     dMP dMP    VMMMP"    VMMMP"     dMP            VMMMP"    dMP        d
 
 
 # Methodology and Approach
-Please be aware that the reader should be familiar with BPMN 3.0. The processes and their flows are not described or explained in this project. 
+Please be aware that the reader should be familiar with BPMN 3.0. 
 
 ## Design Approach
 
@@ -43,15 +43,15 @@ Tasks were tracked within this documentation and assigned to one of the team mem
 
 ![Process flow](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Highlevel%20orocess%20flow.png)
 
-The Following chapter describes the basic idea behind the health insurance process.The fictitious company "We Care Health insurance" offers Basic and supplementary health insurance. Both models have  pre-defined  criteria, which need to be satisfied in order to be eligible for the insurance.The eligibilty criteria will be explained in detail in the chapte- Digitalized health insurance process. 
+The following chapter describes the basic idea behind the health insurance process.The fictitious company "We Care health insurance" offers basic and supplementary health insurance. Both models have  pre-defined  criteria, which need to be satisfied in order to be eligible for the insurance.The eligibilty criteria will be explained in detail in the chapter digitalized health insurance process. 
 
-**Basic insurance:** The customer is eligible for basic insurance if he lives in switzerland. Depending on the zipcode,age and gender the price is calculated for every applicant. there are 4 different models that a customer can choose from: Telemedicine, General practitioner, Family doctor model and Standard Model.
+**Basic insurance:** The customer is eligible for basic insurance if he lives in switzerland. Depending on the zipcode,age and gender the price is calculated for every applicant. There are 4 different models that a customer can choose from: Telemedicine, General practitioner, Family doctor model and Standard model.
 
-**Additional Insurance:** If a customer wishes to apply for a supplementary insurance he can select from different models : Alterative, dental and Life insurance by answering additional health questions.
+**Additional insurance:** If a customer wishes to apply for a supplementary insurance he can select from different models : Alterative, Dental and Life insurance by answering additional health questions.
 
-Based on the type of Insurance selected, the price is calculated and contract is sent to the customer.when the customer signs the contract and sends it back to the company through email via integromat, it is saved in the database and the application process is closed.
+Based on the type of insurance selected, the price is calculated and contract is sent to the customer.when the customer signs the contract and sends it back to the company through email via integromat, it is saved in the database and the application process is closed.
 
-In order to understand the current application process, a high level AS-IS process was first created using Camunda BPMN 3.0. The AS-IS process required a lot of human interaction as explained in the next section(AS-IS Process). To minimize the human tasks the process is digitalized, and every step of digitalization process is documented (TO-BE Digitalized).
+In order to understand the current application process, a high level AS-IS process was first created using Camunda BPMN 3.0. The AS-IS process required a lot of human interaction as explained in the next section. To minimize the human tasks the process is digitalized, and every step of digitalization process is documented.
 
 
 
@@ -64,13 +64,13 @@ The following image shows a comprehensive visualization of AS-IS process.
 
 1. The customer sends a physical application form, which is checked for completeness manually by a customer agent. If the  form  is incomplete, additional information is requested. Otherwise the application will be forwarded to back office for assessment.
 
-2. The back office assesses the application. If the application is accepted an offer is created by another employee and the offer is sent to the applicant via post. In the case of rejection, the applicant is notified via email. 
+2. The back office assesses the application. If the application is accepted an offer is created by another employee and the offer is sent to the applicant via post. In case of rejection, the applicant is notified via email. 
 
-3. If the customer accepts the offer, a contract is created by an employee and sent to the customer by post. As soon as the signed contract is received from the customer, a copy of the same is filed and stored.
+3. If the customer accepts the offer, a contract is created by an employee and sent to the customer by post. As soon as the signed contract is received from the customer, a copy of the same is stored in the database.
 
 
 ## Overall Health Insurance Process
-The figure below shows a simple visualization of our overall process. The following chapter is divided into 3 sections to give a comprehensive visualization of the digitalized Health Insurance process: 
+The figure below shows a simple visualization of our overall process. The following chapter is divided into 3 sections to give a comprehensive visualization of the digitalized Health insurance process: 
 
 ## Overall Process
 The following figure shows a simple visualization of our overall process. This process is divided in four sub processes.
@@ -122,15 +122,15 @@ The following figure shows a simple visualization of our overall process. This p
 
 | **Step1: Application process** | - |
 | ------------------ | - |
-| Customer applies for the basic health Insurance by filling the web application form. The submitted form is sent via Integromat to digibp herokuapp with all relevant variables. As soon as the form is submitted as all the relevant information is saved in the database. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/application%20form.png) |
+| Customer applies for the basic health insurance by filling the web application form. The submitted form is sent via to herokuapp with all relevant variables. As soon as the form is submitted all the relevant information is saved in the database. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/application%20form.png) |
 
 | **Step 2 : Basic Insurance process** | - |
 | ------------------ | - |
-Camunda executes the sub process “Assess case”. For basic insurance, the input variables from the form (age, date of birth, zip code) are used to calculate a person factor, which is an eligibility score calculated based on output from two decision tables as seen in the previous section. When the application is accepted, the price is calculated, and pdf of the contract is generated automatically via Eledo and an email with contract is sent through integromat to the customer. A time period of 30 days is given to the customer for signing the contract after which the contract expires. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/basic%20insurance%20contract.png) |
+Camunda executes the sub process “Assess case”. For basic insurance, the input variables from the form (age, gender, zip code) are used to calculate a person factor, which is an eligibility score calculated based on output from two decision tables as seen in the previous section. When the application is accepted, the price is calculated, and pdf of the contract is generated automatically via Eledo and an email with contract is sent through integromat to the customer. A time period of 30 days is given to the customer for signing the contract after which the contract expires. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/basic%20insurance%20contract.png) |
 
 | **4 Step – Additional Insurance** | - |
 | ------------------ | - |
-In case of additional Insurance, The Applicant selects the additional insurance option in the webpage. It is sent to digiherokuapp and camunda starts additional insurance process. An automatic email with a link is sent to the customer requesting additional details. A period of 14 days is given to fill the application. As soon as the customer fills the additional details on the webpage, it is sent to Digi Heroku via integromat and camunda starts the assess sub process which is mentioned in the previous section. The assessment subprocess takes all the input variables provided such as disabilities, previous health issues, drug addictions, medical history, BMI etc., and performs eligibility check.  If the eligibility score <3 application is accepted,   >3 the application is rejected and a score of 3 requires manual assessment, which is done by employee at the back office. If the assessment is complete and customer accepted, a contract is sent to the customer and a time period of 30 days is given. In case of rejection the same is notified.
+In case of additional Insurance,the applicant selects the additional insurance option in the webpage. It is sent to digiherokuapp and camunda executes additional insurance process. An automatic email with a link is sent to the customer requesting additional details. A period of 14 days is given to fill the application. As soon as the customer fills the additional details on the webpage, it is sent to Digi Heroku  and camunda starts the assess case sub process. The assessment subprocess takes all the input variables provided such as disabilities, previous health issues, drug addictions, medical history, BMI etc., and performs eligibility check.  If the eligibility score <3 application is accepted,if the score is >3 the application is rejected and a score of 3 requires manual assessment, which is done by employee at the back office. If the assessment is complete and customer accepted, a contract is sent to the customer and a time period of 30 days is given. In case of rejection the same is notified.
 
 
 

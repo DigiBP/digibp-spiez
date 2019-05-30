@@ -120,18 +120,17 @@ The following figure shows a simple visualization of our overall process. This p
 
 ### Camunda step by step process
 
-| **Step1 :Basic Insurance** | - |
+| **Step1: Application process** | - |
 | ------------------ | - |
-| Customer applies for the basic health Insurance by filling the web application form. The submitted form is sent via Integromat to digibp herokuapp with all relevant variables. As soon as the form is submitted as all the relevant information is saved in the database.| ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/application%20form.png) |
+| Customer applies for the basic health Insurance by filling the web application form. The submitted form is sent via Integromat to digibp herokuapp with all relevant variables. As soon as the form is submitted as all the relevant information is saved in the database. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/application%20form.png) |
 
-| **Basic Insurance :Step 2** | - |
+| **Step 2 : Basic Insurance process** | - |
 | ------------------ | - |
-Camunda executes the sub process “Assess case”. For basic insurance, the input variables from the form (age, date of birth, zip code) are used to calculate a person factor, which is an eligibility score calculated based on output from two decision tables as seen in the previous section. When the application is accepted, the price is calculated in a subprocess- calculate price.  The price varies depending on the type of model selected and the person factor. A pdf of the contract is created and stored in the database and an email is sent with the contract to the potential customer. A time period of 30 days is given to sign the contract after which the contract expires. | ![alt text](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/signcontract_waiting.png) |
- 
- | **Basic Insurance :Step 3** | - |
- | ------------------ | - |
- When the customer sends the signed contract, the pdf of the contract is automatically stored as well as the status updated in the database. A confirmation email sent to the customer.
-Two columns in the database are used to save the status of the application: created- which holds the date of creation of application; Modified- which is used to save the date on which the contract is signed, date an application is rejected or date on which the contract expires. | ![alt text](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Dtcreated.png) |
+Camunda executes the sub process “Assess case”. For basic insurance, the input variables from the form (age, date of birth, zip code) are used to calculate a person factor, which is an eligibility score calculated based on output from two decision tables as seen in the previous section. When the application is accepted, the price is calculated, and pdf of the contract is generated automatically via Eledo and an email with contract is sent through integromat to the customer. A time period of 30 days is given to the customer for signing the contract after which the contract expires. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/basic%20insurance%20contract.png) |
+
+| **4 Step – Additional Insurance** | - |
+| ------------------ | - |
+In case of additional Insurance, The Applicant selects the additional insurance option in the webpage. It is sent to digiherokuapp and camunda starts additional insurance process. An automatic email with a link is sent to the customer requesting additional details. A period of 14 days is given to fill the application. As soon as the customer fills the additional details on the webpage, it is sent to Digi Heroku via integromat and camunda starts the assess sub process which is mentioned in the previous section. The assessment subprocess takes all the input variables provided such as disabilities, previous health issues, drug addictions, medical history, BMI etc., and performs eligibility check.  If the eligibility score <3 application is accepted,   >3 the application is rejected and a score of 3 requires manual assessment, which is done by employee at the back office. If the assessment is complete and customer accepted, a contract is sent to the customer and a time period of 30 days is given. In case of rejection the same is notified.
 
 
 

@@ -70,14 +70,14 @@ The following image shows a comprehensive visualization of AS-IS process.
 
 
 ## Overall Health Insurance Process
-The figure below shows a simple visualization of our overall process. The following chapter is divided into 3 sections to give a comprehensive visualization of the digitalized Health insurance process: 
-
-## Overall Process
-The following figure shows a simple visualization of our overall process. This process is divided in four sub processes.
-- Basic Insurance process
-- Additional Insurance process
+The figure below shows a simple visualization of our overall process. The following chapter is divided into 3 sections to give a comprehensive visualization of the digitalized Health insurance process:
+- Basic insurance process
+- Additional insurance process
 - Calculate Price
 
+
+## Overall Process
+The following figure shows a visualization of our overall process. 
 
 | **Overall Process** | 
 | ------------------ | 

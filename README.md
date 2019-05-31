@@ -165,7 +165,7 @@ To check whether email with  filled in details of additional questions, offer ma
 
 ![ Updating Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration5.png)
 
-When the customer's eligibilty criteria is satisfied and application is accepted, a pdf contract is generated automatically using eledo  and the copy of the PDF is stored in the database. 
+When the customer's eligibilty criteria is satisfied and application is accepted, a pdf contract is generated automatically using eledo  and the copy of the PDF is stored in the database. The status of the application is also updated in the relevant column.
 
 ![Contract](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration7.png)
 

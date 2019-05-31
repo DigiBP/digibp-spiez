@@ -111,7 +111,7 @@ The following figure shows a visualization of our overall process.
 
 | **Calculate price subprocess** | - |
 | ------------------ | - |
-| The following image shows a comprehensive visualization of our Calculate price subprocess. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/calculate%20prices.png) |
+| The following image shows a comprehensive visualization of our Calculate price subprocess. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Calculate.png) |
 
 
 | **Calculate price subprocess DRD, Decision table &Rules** | - |

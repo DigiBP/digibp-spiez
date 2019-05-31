@@ -123,8 +123,7 @@ The following figure shows a visualization of our overall process.
 
 | **Step1: Application process** | - |
 | ------------------ | - |
-Customer applies for the health insurance by filling the web application form. In case of Basic health insurance, the customer is required to fill Personal data and select from any of the 4 standard models on the webpage before clicking send. 
-For additional Insurance, the customer can select from the three additional insurance models. The customer can select either one, two or all the three additional insurances depending on their needs and preferences. The price of the insurance varies based on the type of insurance or the combination of insurances selected. As soon as the application is sent with all relevant variables to herokuapp, camunda executes the assess case subprocess to check for eligibility.  | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/application%20form.png) |
+Customer applies for the health insurance by filling the web application form. In case of Basic health insurance, the customer is required to fill Personal data and select from any of the 4 standard models on the webpage before clicking send. For additional Insurance, the customer can select from the three additional insurance models. The customer can select either one, two or all the three additional insurances depending on their needs and preferences. The price of the insurance varies based on the type of insurance or the combination of insurances selected. As soon as the application is sent with all relevant variables to herokuapp, camunda executes the assess case subprocess to check for eligibility. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/application%20form.png) |
 
 | **Step 2 : Basic Insurance process** | - |
 | ------------------ | - |

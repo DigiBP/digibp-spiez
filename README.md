@@ -20,7 +20,7 @@ VMMMP"     dMP dMP    VMMMP"    VMMMP"     dMP            VMMMP"    dMP        d
 
 
 # Methodology and Approach
-Please be aware that the reader should be familiar with BPMN 3.0. 
+Please be aware that the reader should be familiar with BPMN 2.0. 
 
 ## Design Approach
 
@@ -52,7 +52,7 @@ The following chapter describes the basic idea behind the health insurance proce
 
 Based on the type of insurance selected, the price is calculated and contract is sent to the customer.when the customer signs the contract and sends it back to the company through email via integromat, it is saved in the database and the application process is closed.
 
-In order to understand the current application process, a high level AS-IS process was first created using Camunda BPMN 3.0. The AS-IS process required a lot of human interaction as explained in the next section. To minimize the human tasks the process is digitalized, and every step of digitalization process is documented.
+In order to understand the current application process, a high level AS-IS process was first created using Camunda BPMN 2.0. The AS-IS process required a lot of human interaction as explained in the next section. To minimize the human tasks the process is digitalized, and every step of digitalization process is documented.
 
 
 

@@ -149,11 +149,11 @@ The process starts with a Web application form filled out by a customer.
 
 ![ApplicationForm](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration%201.png)
 
-All the applicant information is stored in the database .
+All the customer information is stored in the database once the assessment is complete.
 
 ![Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration2.png)
 
-The information is sent to Camunda’s engine (see scenario in belows figure) from Integromat as a post request containing all necessary data for the application process and then the process starts automatically.
+The information is sent to Camunda’s engine (see scenario in belows figure) the webform through AJAX with all input variables  and then the process starts automatically.
 
 ![CamundaSendData](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration3.png)
 
@@ -172,9 +172,9 @@ When the customer's eligibilty criteria is satisfied and application is accepted
 
 ##  Database
 
-The application run on the Heroku OpenSource plattform.  Google Spreadsheet  is used as a database to save and read all customer data. The customer data is inserted into the database as soon the application is processed by the insurance company. 
+The application run on the Heroku OpenSource platform.  Google Spreadsheet  is used as a database to save and read all customer data. The customer data is inserted into the database as soon the application is processed and the assessment is completed.
 
-The business key in the database identifies the different customer applications and is the main key. It is used for communication with customers to realize instantions of the process. 
+The business key in the database identifies the different customer applications and is the main key. 
 
 All personal contact details of applicants are stored in the database columns (A-L). Type of insurance is stored in columns (M-T) The health status of customers is shown in the columns (V-AG) . The price fo the different options of health insurance selected for each applicant are stored in columns Ah-An. every time the status of the application is updated it is stored in colums Ao to Ar and finally the policy number and the pdf of signed contract are stored in columns Ar and As respectively 
 

@@ -102,7 +102,7 @@ The following figure shows a visualization of our overall process.
 |The following image shows a comprehensive visualization of our Additional insurance process and  the sub process- Assess case for checking eligibility. | ![alt text](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/assess%20case%20subprocess.png) |
 
 
-| **Additional insurance: DRD, Decision tables & rules** | - |
+| **Additional insurance: DMN, Decision tables & rules** | - |
 | ------------------ | - |
 |The following image shows a comprehensive visualization of DMN, decision tables & rules for assessing the eligibility of the applicant for Additional Insurance. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/supplementary%20insurance.png) |
 
@@ -114,7 +114,7 @@ The following figure shows a visualization of our overall process.
 | The following image shows a comprehensive visualization of our Calculate price subprocess. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Calculate.png) |
 
 
-| **Calculate price subprocess DRD, Decision table &Rules** | - |
+| **Calculate price subprocess DMN, Decision table &Rules** | - |
 | ------------------ | - |
 | The following image shows a comprehensive visualization of our DMN, decision tables & rules to calculate the price for individual customers. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Calculate%20price.png) |
 

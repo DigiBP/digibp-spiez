@@ -169,9 +169,6 @@ https://digibp-spiez.herokuapp.com/rest/process-definition/key/Process_HealthIns
 ![Database JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Savedataafterassessment.png)
 
 ![Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration2.png)
-
-**The output is row number:**
-
 ![Output](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/output.com.png)
 
 **The following JSON element is sent to integromat to create a PDF via Eledo and send an update to our database with a url to the created pdf**

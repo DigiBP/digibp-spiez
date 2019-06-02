@@ -146,29 +146,55 @@ In case of additional Insurance,the applicant selects the additional insurance o
 
 ##  Integrations
 
-The process starts with a Web application form filled out by a customer.
+The process starts with a Web application form filled which is sent via AJAX sending JSON element to:
+
+![ApplicationForm JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration%201.png)
 
 ![ApplicationForm](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration%201.png)
 
-All the customer information is stored in the database once the assessment is complete.
+For Additional Insurance, an email requesting additional details sent done via email. email is defined in Integromat.
+
+![ApplicationForm JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration%201.png)
+
+Sending answers of additional health questions from web form to waiting message trigger of a specific process instance done via:
+
+![ApplicationForm JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration%201.png)
+
+When the assessment of the application is done, the accepted or rejected data is going to be saved in our database, google drive table sheet persistently via an integromat service. The integromat service is triggered by:
 
 ![Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration2.png)
 
-The information is sent to Camunda’s engine (see scenario in belows figure) the webform through AJAX with all input variables  and then the process starts automatically.
+![Database JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration2.png)
 
-![CamundaSendData](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration3.png)
+The following JSON element is sent to integromat to create a PDF via Eledo and send an update to our database with a url to the created pdf.
 
-For sending request for additional questions,  offer mail and contract to the customer a service task triggers the Integromat’s scenario which receives email,  from the ongoing cases in Camunda and sends an email containing a link for a specific purpose that will trigger the next step of the process.
+![Eledo JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration2.png)
 
-![Additional details](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration8.png)
+The contract is sent to customer via:
 
-To check whether email with  filled in details of additional questions, offer mail or signed contract is received, the data from the web form is first saved in the  database and change in status regularly updated and a message is sent to Camunda in form of a post request by the following scenario to proceed with the process.
+![Send contract](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration2.png)
+
+Receiving a decision  from the customer whether a contract is accepted or not to Camunda from web form to waiting message trigger of a specific process instance is done via:
+
+
+![recieve mail](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration8.png)
+
+The following message is sent by integromat service to update application status of an already inserted data row in our application database. Currently it is only used to set for the stati: unsigned/signed/SignatureTimeExpired
 
 ![ Updating Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration5.png)
 
-When the customer's eligibilty criteria is satisfied and application is accepted, a pdf contract is generated automatically using eledo  and the copy of the PDF is stored in the database. The status of the application is also updated in the relevant column.
+Send contract information to customer
 
 ![Contract](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration7.png)
+
+Send rejection to customer
+
+![send rejection](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration7.png)
+
+Send expiration email to customer.
+
+![send expiration](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration7.png)
+
 
 
 ##  Database

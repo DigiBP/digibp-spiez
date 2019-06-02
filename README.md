@@ -123,11 +123,13 @@ The following figure shows a visualization of our overall process.
 
 | **Step1: Application process** | - |
 | ------------------ | - |
-Customer applies for the health insurance by filling the web application form. In case of Basic health insurance, the customer is required to fill personal data and select from any of the 4 standard models on the webpage before clicking send. For additional Insurance, the customer can select from the three additional insurance models. The customer can select either one, two or all the three additional insurances depending on their needs and preferences. The price of the insurance varies based on the type of insurance or the combination of insurances selected. As soon as the application is sent with all relevant variables to herokuapp, camunda executes the assess case subprocess to check for eligibility. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/application%20form.png) |
+<p><img src="https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/application%20form.png" alt="alt text" style="float: right"> Customer applies for the health insurance by filling the web application form. In case of Basic health insurance, the customer is required to fill personal data and select from any of the 4 standard models on the webpage before clicking send. For additional Insurance, the customer can select from the three additional insurance models. The customer can select either one, two or all the three additional insurances depending on their needs and preferences. The price of the insurance varies based on the type of insurance or the combination of insurances selected. As soon as the application is sent with all relevant variables to herokuapp, camunda executes the assess case subprocess to check for eligibility. </p>
+
+
 
 | **Step 2 : Basic Insurance process** | - |
 | ------------------ | - |
-<p><img src="https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/basic%20insurance%20contract.png" alt="alt text" style="float: right"> Camunda executes the sub process “Assess case”. For basic insurance, the input variables from the form (age, gender, zip code) are used to calculate a person factor, which is an eligibility score calculated based on output from two decision tables as seen in the previous section. The person factor is used to calculate. When the application is accepted, the price is calculated, and pdf of the contract is generated automatically via Eledo and an email with contract is sent through integromat to the customer. A time period of 30 days is given to the customer for signing the contract after which the contract expires. </p>|
+<p><img src="https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/basic%20insurance%20contract.png" alt="alt text" style="float: right"> Camunda executes the sub process “Assess case”. For basic insurance, the input variables from the form (age, gender, zip code) are used to calculate a person factor, which is an eligibility score calculated based on output from two decision tables as seen in the previous section. The person factor is used to calculate. When the application is accepted, the price is calculated, and pdf of the contract is generated automatically via Eledo and an email with contract is sent through integromat to the customer. A time period of 30 days is given to the customer for signing the contract after which the contract expires. </p>
 
 
 | **Step 3: Additional insurance process** | - |
@@ -137,7 +139,7 @@ Customer applies for the health insurance by filling the web application form. I
 As soon as the customer fills the additional details on the webpage, it is sent to digibpherokuapp and camunda starts the assess case sub process. 
 
 The assessment subprocess takes all the input variables provided such as disabilities, previous health issues, drug addictions, medical history etc., BMI is calculated using the height and weight of the person which is used to determine if the person is obese or not. an eligibility check is performed using the variables. If the eligibility score <3 application is accepted, if the score is >3 the application is rejected and a score of 3 requires manual assessment, which is done by employee at the back office. 
-If the assessment is complete and customer accepted, a contract is sent to the customer and a time period of 30 days is given. In case of rejection the same is notified.</p>|
+If the assessment is complete and customer accepted, a contract is sent to the customer and a time period of 30 days is given. In case of rejection the same is notified.</p>
 
 
 

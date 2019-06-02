@@ -146,7 +146,9 @@ In case of additional Insurance,the applicant selects the additional insurance o
 
 ##  Integrations
 
-The process starts with a web application form filled which is sent via AJAX sending JSON element to:[start process]( https://digibp-spiez.herokuapp.com/rest/process-definition/key/Process_HealthInsurance/submit-form)  
+The process starts with a web application form filled which is sent via AJAX sending JSON element to:
+
+( https://digibp-spiez.herokuapp.com/rest/process-definition/key/Process_HealthInsurance/submit-form)  
 
 ![ApplicationForm](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration%201.png)
 

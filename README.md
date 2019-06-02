@@ -189,7 +189,7 @@ Send contract information to customer
 
 Send rejection to customer
 
-![send rejection](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration7.png)
+![send rejection](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/send%20rejection.png)
 
 Send expiration email to customer.
 

@@ -148,8 +148,6 @@ A value is assigned to each of the parameter, “0” if it is true or “1” i
 
 
 
- 
-
 ##  Integrations
 
 **The process starts with a web application form filled which is sent via AJAX sending JSON element to:**

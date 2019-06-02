@@ -138,8 +138,12 @@ The following figure shows a visualization of our overall process.
 <p><img src="https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Additional%20health%20insurance%20process.png" alt="alt text" style="float: right"> In case of additional Insurance, the applicant selects the additional insurance option in the webpage. It is sent to digiherokuapp and camunda executes additional insurance process. An automatic email with a link is sent to the customer requesting additional details. A period of 14 days is given to fill the application. 
 As soon as the customer fills the additional details on the webpage, it is sent to digibpherokuapp and camunda starts the assess case sub process. 
 
-The assessment subprocess takes all the input variables provided such as disabilities, previous health issues, drug addictions, medical history etc., BMI is calculated using the height and weight of the person which is used to determine if the person is obese or not. an eligibility check is performed using the variables. If the eligibility score <3 application is accepted, if the score is >3 the application is rejected and a score of 3 requires manual assessment, which is done by employee at the back office. 
-If the assessment is complete and customer accepted, a contract is sent to the customer and a time period of 30 days is given. In case of rejection the same is notified.</p>
+The assessment subprocess takes all the input variables provided such as disabilities, previous health issues, drug addictions, medical history etc.,Based on the height and weight of the applicant BMI is calculated and this is used as one of the parameters to calculate the eligibility score. A rule is used to calculate the eligibility for additional insurance.
+
+**bDisabilityOrBirthDefect+bOngoingTreatmentOrSurgery+bPastRejection+bDrugTaker+bHivInfected+bObese**
+
+A value is assigned to each of the parameter, “0” if it is true or “1” if it is false. An applicant with a score of less than 3 is automatically rejected. If a person has 3 then he is eligible for manual assessment done by an underwriter in the back office, which is shown as a human task in our process. A score of more than 3 makes an applicant eligible for additional insurance, in which case the price is calculated, and contract sent. A period of is 30 days is given to sign the document, after which the contract expires. In case of rejection the same is notified.</p>
+
 
 
 

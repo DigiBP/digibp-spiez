@@ -20,24 +20,27 @@ VMMMP"     dMP dMP    VMMMP"    VMMMP"     dMP            VMMMP"    dMP        d
 
 
 # Methodology and Approach
-Please be aware that the reader should be familiar with BPMN 2.0. 
 
-## Design Approach
+## Process design approach
+The team decided to go for a ‘rough-to-detail’ design approach keeping a working process model in the centre of attention. In detail this meant that the group decided for a very simple (but technically working) health insurance process at the beginning of the course and then added step by step more and more complexity to the process until it reached its final beauty with all features required from the team.
+During the entire course the insurance process was always (technically) running.
 
-After the first lesson, we were able to execute the first workflow by running the Camunda BPM Engine on Heroku. Although with a limited functionality. It was a valuable experience for the group as new technologies were used. Furthermore, documentation and design plans were crafted and some tests were conducted. We treated every lesson and the following development and adaptions to the product as one sprint.
-
-## Collaboration
-Git Version control was used in order to work collaboratively on the project. GitHub was used for the versioning of the development increments, as well as to create the technical documentation.
-
-We work with two Heroku instances and two GitHub Repositories. GitHub and Heroku can be seamlessly integrated with eachother, allowing a continous delivery of the implemented increment. 
-- 1 Camunda / Tomcat: This instance holds the Camunda codebase. Camunda was firstly tested locally on the developer's machine and then  committed. Once committed, the repo is automatically deployed on Heroku.
-- 2 Web Form / PHP: This instance contains the web-based components of our solution: The web-form to apply for health insurance process.
+## Application development
+GitHub was used in order to work collaboratively on the project. For every team member an own branch was created to work ‘independently’ on everyone’s topic. 
+The standard-features of GitHub fully served the purpose to collaborate effectively. Pull and merge requests (formerly not known by the team-members) were used to create a joint, final and working master repository.
 
 ## Testing
-In order to minimalize defects and complete QA process successfully, various functional tests were conducted. The bug finding procedure included documenting the bugs and defect reporting and resolution. We created test-cases from an external view (black box).  Detected issues were tracked and documented in [Github test cases](https://github.com/DigiBP/digibp-spiez/blob/master/Bugs.docx).
+Testings were conducted weekly. Results were shared immediately. For the integration-tools integromat and eledo in various occasions the tool postman was used to fasten ‘partial’ testings of the process.
+Detected issues were tracked by the testing-responsible person (see section project management) forwarded to and solved by the domain-specific responsible person.
+
 
 ## Project Management
-Tasks were tracked within this documentation and assigned to one of the team members. For such as small team, no designated project leader was chosen. Tasks were taken by the each teammember individually.
+For this small team an agile project management approach was chosen (weekly meetings with jointly defined goals). Each person was allocated to a specific domain:
+
+- Christioph: Technical Area (Web-Frontend, Java Script)
+- Shreeya: Testing and Process design
+- David: Business Logic (decision tables, price engine)
+- Swapna: Documentation
 
 
 # Process Description (We Care: Health Insurance Offering Service)

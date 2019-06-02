@@ -146,9 +146,9 @@ In case of additional Insurance,the applicant selects the additional insurance o
 
 ##  Integrations
 
-The process starts with a web application form filled which is sent via AJAX sending JSON element to:
+**The process starts with a web application form filled which is sent via AJAX sending JSON element to:**
 
-( https://digibp-spiez.herokuapp.com/rest/process-definition/key/Process_HealthInsurance/submit-form)
+https://digibp-spiez.herokuapp.com/rest/process-definition/key/Process_HealthInsurance/submit-form
 
 ![ApplicationForm JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/startprocessjson.png)
 
@@ -156,52 +156,51 @@ The process starts with a web application form filled which is sent via AJAX sen
 ![ApplicationForm](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration%201.png)
 
 
-**For Additional Insurance, an email requesting additional details sent. email is defined in Integromat.**
+**For Additional Insurance, an email requesting additional details sent. email is defined in Integromat**
 
 ![ApplicationForm JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Additonalquestionsjson.png)
 
-Sending answers of additional health questions from web form to waiting message trigger of a specific process instance done via:
+**Sending answers of additional health questions from web form to waiting message trigger of a specific process instance done via:**
 
 ![Send answers JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Sending%20answersjson.png)
 
-When the assessment of the application is done, the accepted or rejected data is going to be saved in our database, google drive table sheet persistently via an integromat service. The integromat service is triggered by:
+**When the assessment of the application is done, the accepted or rejected data is going to be saved in our database, google drive table sheet persistently via an integromat service. The integromat service is triggered by:**
 
 ![Database JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Savedataafterassessment.png)
 
 ![Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration2.png)
 
-The output is row number:
+**The output is row number:**
 
 ![Output](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/output.com.png)
 
-The following JSON element is sent to integromat to create a PDF via Eledo and send an update to our database with a url to the created pdf.
+**The following JSON element is sent to integromat to create a PDF via Eledo and send an update to our database with a url to the created pdf**
 
 ![Eledo JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/pdfeledo.png)
 
-The contract is sent to customer via:
+**The contract is sent to customer via:**
 
 ![Send contract](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/sendcontract.png)
 
-Receiving a decision from the customer whether a contract is accepted or not is sent to Camunda from web form to waiting message trigger of a specific process instance is done via:
+**Receiving a decision from the customer whether a contract is accepted or not is sent to Camunda from web form to waiting message trigger of a specific process instance is done via:**
 
 ![recieve mail](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/receivemail.png)
 
-The following message is sent by integromat service to update application status of an already inserted data row in our application database. Currently it is only used to set for the stati: unsigned/signed/SignatureTimeExpired
+**The following message is sent by integromat service to update application status of an already inserted data row in our application database. Currently it is only used to set for the stati: unsigned/signed/SignatureTimeExpired**
 
 ![Updating Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/setnewstatus.png)
 
-Send contract information to customer
+**Send contract information to customer**
 
 ![Contract](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/sendcontract12.png)
 
-Send rejection to customer
+**Send rejection to customer**
 
 ![send rejection](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/send%20rejection.png)
 
-Send expiration email to customer.
+**Send expiration email to customer**
 
 ![send expiration](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/expiration.png)
-
 
 
 ##  Database

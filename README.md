@@ -130,13 +130,13 @@ The following figure shows a visualization of our overall process.
 
 
 
-| **Step 2 : Basic Insurance process** | - |
-| ------------------ | - |
+**Step 2 : Basic Insurance process** 
+
 <p><img src="https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/basic%20insurance%20contract.png" alt="alt text" style="float: right"> Goto:[Digibpheroku] (https://digibp.herokuapp.com/app/welcome/default/#/login), Login with ID: demo, Password: demo, click on tasklist and select health insurance process. Camunda executes the sub process “Assess case”. For basic insurance, the input variables from the form (age, gender, zip code) are used to calculate a person factor, which is an eligibility score calculated based on output from two decision tables as seen in the previous section. The person factor is used to calculate. When the application is accepted, the price is calculated, and pdf of the contract is generated automatically via Eledo and an email with contract is sent through integromat to the customer. A time period of 30 days is given to the customer for signing the contract after which the contract expires. </p>
 
 
-| **Step 3: Additional insurance process** | - |
-| ------------------ | - |
+**Step 3: Additional insurance process** 
+
 
 <p><img src="https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Additional%20health%20insurance%20process.png" alt="alt text" style="float: right"> In case of additional Insurance, the applicant selects the additional insurance option in the webpage. It is sent to digiherokuapp and camunda executes additional insurance process. An automatic email with a link is sent to the customer requesting additional details. A period of 14 days is given to fill the application. 
 As soon as the customer fills the additional details on the webpage, it is sent to digibpherokuapp and camunda starts the assess case sub process. 
@@ -147,7 +147,7 @@ The assessment subprocess takes all the input variables provided such as disabil
 
 A value is assigned to each of the parameter, “0” if it is true or “1” if it is false. An applicant with a score of less than 3 is automatically rejected. If a person has 3 then he is eligible for manual assessment done by an underwriter in the back office, which is shown as a human task in our process. A score of more than 3 makes an applicant eligible for additional insurance, in which case the price is calculated, and contract sent. A period of is 30 days is given to sign the document, after which the contract expires. In case of rejection the same is notified.</p>
 
-
+**Step 4: Calculate price**
 
 
 

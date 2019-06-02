@@ -214,7 +214,7 @@ The following tools and software have been used for implementing the Health insu
 | Camunda Modeler | The Camunda Modeler is used to create BPMN, CMMN and DMN models. The modeler is based on [bpmn.io] (http://bpmn.io/).  |
 | GitHub| Github is used for collaboration and versioning of the programming code as well as the models. |
 |Heroku|Heroku is a PaaS (Platform as a Services) which is used to quickly build, run, and operate the Camunda in the cloud. |
-|Integromat | **<font color=red> Some text</font>** 
+|Integromat | Integromat is a free tool to connect apps and automate workflows using a beautiful, no-code, visual builder.
 |Eledo | Eledo helps in automating documents by mapping data to get PDF.  Once you save and activate your document template, you can load new fields in Integromat immediately. Eledo prepares Web Form and REST API automatically.  
 
 ## Automation

@@ -148,10 +148,9 @@ In case of additional Insurance,the applicant selects the additional insurance o
 
 **The process starts with a web application form filled which is sent via AJAX sending JSON element to:**
 ![ApplicationForm JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/startprocessjson.png)
-
 ![ApplicationForm](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration%201.png)
-**For Additional Insurance, an email requesting additional details sent. email is defined in Integromat**
 
+**For Additional Insurance, an email requesting additional details sent. email is defined in Integromat**
 ![ApplicationForm JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Additonalquestionsjson.png)
 
 **Sending answers of additional health questions from web form to waiting message trigger of a specific process instance done via:**

@@ -193,7 +193,7 @@ Send rejection to customer
 
 Send expiration email to customer.
 
-![send expiration](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration7.png)
+![send expiration](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/expiration.png)
 
 
 

@@ -104,7 +104,7 @@ The following figure shows a visualization of our overall process.
 
 | **Additional insurance: DRD, Decision tables & rules** | - |
 | ------------------ | - |
-|The following image shows a comprehensive visualization of DRD, decision tables & rules for assessing the eligibility of the applicant for Additional Insurance. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/supplementary%20insurance.png) |
+|The following image shows a comprehensive visualization of DMN, decision tables & rules for assessing the eligibility of the applicant for Additional Insurance. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/supplementary%20insurance.png) |
 
 
 ### Calculate price subprocess
@@ -116,7 +116,7 @@ The following figure shows a visualization of our overall process.
 
 | **Calculate price subprocess DRD, Decision table &Rules** | - |
 | ------------------ | - |
-| The following image shows a comprehensive visualization of our DRD, decision tables & rules to calculate the price for individual customers. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Calculate%20price.png) |
+| The following image shows a comprehensive visualization of our DMN, decision tables & rules to calculate the price for individual customers. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Calculate%20price.png) |
 
 
 ### Camunda step by step process
@@ -129,7 +129,7 @@ The following figure shows a visualization of our overall process.
 
 | **Step 2 : Basic Insurance process** | - |
 | ------------------ | - |
-<p><img src="https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/basic%20insurance%20contract.png" alt="alt text" style="float: right"> Goto: [Digibpheroku](https://digibp.herokuapp.com/app/welcome/default/#/login), Login with ID: demo, Password: demo, click on tasklist and select health insurance process. Camunda executes the sub process “Assess case”. For basic insurance, the input variables from the form (age, gender, zip code) are used to calculate a person factor, which is an eligibility score calculated based on output from two decision tables as seen in the previous section. The person factor is used to calculate. When the application is accepted, the price is calculated, and pdf of the contract is generated automatically via Eledo and an email with contract is sent through integromat to the customer. A time period of 30 days is given to the customer for signing the contract after which the contract expires. </p>
+<p><img src="https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/basic%20insurance%20contract.png" alt="alt text" style="float: right"> Goto:[Digibpheroku](https://digibp.herokuapp.com/app/welcome/default/#/login), Login with ID: demo, Password: demo, click on tasklist and select health insurance process. Camunda executes the sub process “Assess case”. For basic insurance, the input variables from the form (age, gender, zip code) are used to calculate a person factor, which is an eligibility score calculated based on output from two decision tables as seen in the previous section. The person factor is used to calculate. When the application is accepted, the price is calculated, and pdf of the contract is generated automatically via Eledo and an email with contract is sent through integromat to the customer. A time period of 30 days is given to the customer for signing the contract after which the contract expires. </p>
 
 
 | **Step 3: Additional insurance process** | - |

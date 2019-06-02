@@ -131,10 +131,11 @@ Camunda executes the sub process “Assess case”. For basic insurance, the inp
 
 | **4 Step – Additional Insurance** | - |
 | ------------------ | - |
-In case of additional Insurance,the applicant selects the additional insurance option in the webpage. It is sent to digiherokuapp and camunda executes additional insurance process. An automatic email with a link is sent to the customer requesting additional details. A period of 14 days is given to fill the application. As soon as the customer fills the additional details on the webpage, it is sent to Digi Heroku  and camunda starts the assess case sub process. The assessment subprocess takes all the input variables provided  such as disabilities, previous health issues, drug addictions, medical history etc., BMI is calculated using the height and weight of the person which is used to determine if the person is obese or not. an eligibilty check is performed using the variables. If the eligibility score <3 application is accepted,if the score is >3 the application is rejected and a score of 3 requires manual assessment, which is done by employee at the back office. If the assessment is complete and customer accepted, a contract is sent to the customer and a time period of 30 days is given. In case of rejection the same is notified.| ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/basic%20insurance%20contract.png) |
+In case of additional Insurance,the applicant selects the additional insurance option in the webpage. It is sent to digiherokuapp and camunda executes additional insurance process. An automatic email with a link is sent to the customer requesting additional details. A period of 14 days is given to fill the application. 
 
+As soon as the customer fills the additional details on the webpage, it is sent to Digi Heroku  and camunda starts the assess case sub process. The assessment subprocess takes all the input variables provided such as disabilities, previous health issues, drug addictions, medical history etc., BMI is calculated using the height and weight of the person which is used to determine if the person is obese or not. an eligibilty check is performed using the variables. If the eligibility score <3 application is accepted,if the score is >3 the application is rejected and a score of 3 requires manual assessment, which is done by employee at the back office. If the assessment is complete and customer accepted, a contract is sent to the customer and a time period of 30 days is given. In case of rejection the same is notified.| ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/basic%20insurance%20contract.png) |
 
-
+ |
 
 
 

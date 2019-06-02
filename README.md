@@ -105,9 +105,9 @@ The following figure shows a visualization of our overall process.
 |The following image shows a comprehensive visualization of our Additional insurance process and  the sub process- Assess case for checking eligibility. | ![alt text](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/assess%20case%20subprocess.png) |
 
 
-| **Additional insurance: DMN, Decision tables & rules** | - |
+| **Additional insurance: DRD, Decision tables & rules** | - |
 | ------------------ | - |
-|The following image shows a comprehensive visualization of DMN, decision tables & rules for assessing the eligibility of the applicant for Additional Insurance. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/supplementary%20insurance.png) |
+|The following image shows a comprehensive visualization of DRD, decision tables & rules for assessing the eligibility of the applicant for Additional Insurance. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/supplementary%20insurance.png) |
 
 
 ### Calculate price subprocess
@@ -117,15 +117,15 @@ The following figure shows a visualization of our overall process.
 | The following image shows a comprehensive visualization of our Calculate price subprocess. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Calculate.png) |
 
 
-| **Calculate price subprocess DMN, Decision table &Rules** | - |
+| **Calculate price subprocess DRD, Decision table &Rules** | - |
 | ------------------ | - |
-| The following image shows a comprehensive visualization of our DMN, decision tables & rules to calculate the price for individual customers. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Calculate%20price.png) |
+| The following image shows a comprehensive visualization of our DRD, decision tables & rules to calculate the price for individual customers. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Calculate%20price.png) |
 
 
 ### Camunda step by step process
 
-| **Step1: Application process** | - |
-| ------------------ | - |
+ **Step 1: Application process** 
+
 <p><img src="https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/application%20form.png" alt="alt text" style="float: right"> Customer applies for the health insurance by filling the web application form. [We care webpage]( )In case of Basic health insurance, the customer is required to fill personal data and select from any of the 4 standard models on the webpage before clicking send. For additional Insurance, the customer can select from the three additional insurance models. The customer can select either one, two or all the three additional insurances depending on their needs and preferences. The price of the insurance varies based on the type of insurance or the combination of insurances selected. As soon as the application is sent with all relevant variables to herokuapp, camunda executes the assess case subprocess to check for eligibility. </p>
 
 

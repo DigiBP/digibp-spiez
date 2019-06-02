@@ -10,7 +10,7 @@ VMMMP"     dMP dMP    VMMMP"    VMMMP"     dMP            VMMMP"    dMP        d
 
 | Summary | Quicklinks |
 | ------------------ | - |
-|This repository contains Health insurance process [Camunda BPM](https://docs.camunda.org). This repository is part of the group assignment of the Digitalization of the Business Processes (SS19) Module at the FHNW. Check out our [Presentation Slides](https://stillnotfinished.com) to get an overview of the process as well as the tools and technologies used. | [Camunda Health Insurance Offer Creator]( https://digibp-spiez.herokuapp.com) 
+|This repository contains Health insurance process [Camunda BPM](https://docs.camunda.org). This repository is part of the group assignment of the Digitalization of the Business Processes (SS19) Module at the FHNW. Check out our [Presentation Slides](https://stillnotfinished.com) to get an overview of the process as well as the tools and technologies used. | [Camunda Health Insurance Offer Creator]( https://digibp-spiez.herokuapp.com/app/welcome/default/#/login) 
 
 *Authors*
 * Christopher Vogel, [christopher.vogel@students.fhnw.ch]

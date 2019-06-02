@@ -129,26 +129,19 @@ Customer applies for the health insurance by filling the web application form. I
 | ------------------ | - |
 Camunda executes the sub process “Assess case”. For basic insurance, the input variables from the form (age, gender, zip code) are used to calculate a person factor, which is an eligibility score calculated based on output from two decision tables as seen in the previous section.the person factor is used to calculate. When the application is accepted, the price is calculated, and pdf of the contract is generated automatically via Eledo and an email with contract is sent through integromat to the customer. A time period of 30 days is given to the customer for signing the contract after which the contract expires. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/basic%20insurance%20contract.png) |
 
-| **Step 3 – Additional Insurance** | - |
-| ------------------ | 
+| **Step 3: Additional insurance process** | - |
+| ------------------ | - |
+
 <p><img src="https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Additional%20health%20insurance%20process.png" alt="alt text" style="float: right"> In case of additional Insurance, the applicant selects the additional insurance option in the webpage. It is sent to digiherokuapp and camunda executes additional insurance process. An automatic email with a link is sent to the customer requesting additional details. A period of 14 days is given to fill the application. 
 As soon as the customer fills the additional details on the webpage, it is sent to digibpherokuapp and camunda starts the assess case sub process. 
 
-The assessment subprocess takes all the input variables provided such as disabilities, previous health issues, drug addictions, medical history etc., BMI is calculated using the height and weight of the person which is used to determine if the person is obese or not. an eligibilty check is performed using the variables. If the eligibility score <3 application is accepted,if the score is >3 the application is rejected and a score of 3 requires manual assessment, which is done by employee at the back office. 
-If the assessment is complete and customer accepted, a contract is sent to the customer and a time period of 30 days is given. In case of rejection the same is notified.</p>
-
-
-
- |
+The assessment subprocess takes all the input variables provided such as disabilities, previous health issues, drug addictions, medical history etc., BMI is calculated using the height and weight of the person which is used to determine if the person is obese or not. an eligibility check is performed using the variables. If the eligibility score <3 application is accepted, if the score is >3 the application is rejected and a score of 3 requires manual assessment, which is done by employee at the back office. 
+If the assessment is complete and customer accepted, a contract is sent to the customer and a time period of 30 days is given. In case of rejection the same is notified.</p>|
 
 
 
 
-
-
-
-
-
+ 
 
 ##  Integrations
 

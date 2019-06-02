@@ -184,7 +184,7 @@ Receiving a decision from the customer whether a contract is accepted or not is 
 
 The following message is sent by integromat service to update application status of an already inserted data row in our application database. Currently it is only used to set for the stati: unsigned/signed/SignatureTimeExpired
 
-![ Updating Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/setnewstatus.png)
+![Updating Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/setnewstatus.png)
 
 Send contract information to customer
 

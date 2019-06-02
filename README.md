@@ -154,7 +154,7 @@ The process starts with a Web application form filled which is sent via AJAX sen
 
 For Additional Insurance, an email requesting additional details sent done via email. email is defined in Integromat.
 
-![ApplicationForm JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration%201.png)
+![ApplicationForm JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Additonalquestionsjson.png)
 
 Sending answers of additional health questions from web form to waiting message trigger of a specific process instance done via:
 

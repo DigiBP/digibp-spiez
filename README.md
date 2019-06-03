@@ -156,15 +156,15 @@ A value is assigned to each of the parameter, “0” if it is true or “1” i
 
 **Additional insurance:** 
 
--Dental Insurance: A customer is eligible for dental insurance, if and only if he has had a previous dental insurance coverage. The cost of the Insurance depends on the insurance coverage of CHF 2000 or CHF5000 per month. The final cost is calculated using the rule 
+- Dental Insurance: A customer is eligible for dental insurance, if and only if he has had a previous dental insurance coverage. The cost of the Insurance depends on the insurance coverage of CHF 2000 or CHF5000 per month. The final cost is calculated using the rule 
 
                                   nBasePriceDentalInsurance*nPersonfactor
 
--Alternative Insurance: The customer can benefit from applying for 3 Alternative insurance offerings: Chinese, acupuncture & a combination of both. The cost is calculated based on the model selected. 
+- Alternative Insurance: The customer can benefit from applying for 3 Alternative insurance offerings: Chinese, acupuncture & a combination of both. The cost is calculated based on the model selected. 
 
                                    nBasePriceDentalInsurance*nPersonfactor
 
--Life insurance: is based on the total coverage the customer wants to select for. Two options of a total coverage of 100000 & 50000 are offered to the customer. The final price is calculated using the rule
+- Life insurance: is based on the total coverage the customer wants to select for. Two options of a total coverage of 100000 & 50000 are offered to the customer. The final price is calculated using the rule
 
                                     nBasePriceLifeInsurance*nPersonfactor
 

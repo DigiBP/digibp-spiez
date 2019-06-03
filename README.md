@@ -145,7 +145,7 @@ The assessment subprocess takes all the input variables provided such as disabil
 
 **bDisabilityOrBirthDefect+bOngoingTreatmentOrSurgery+bPastRejection+bDrugTaker+bHivInfected+bObese**
 
-A value is assigned to each of the parameter, “0” if it is true or “1” if it is false. An applicant with a score of less than 3 is automatically rejected. If a person has 3 then he is eligible for manual assessment done by an underwriter in the back office, which is shown as a human task in our process. A score of more than 3 makes an applicant eligible for additional insurance, in which case the price is calculated, and contract sent. A period of is 30 days is given to sign the document, after which the contract expires. In case of rejection the same is notified.</p>
+A value is assigned to each of the parameter, “0” if it is true or “1” if it is false. An applicant with a score of less than 3 is automatically rejected. If a person has 3 then he is eligible for manual assessment done by an underwriter in the back office, which is shown as a human task in our process. A score of more than 3 makes an applicant eligible for additional insurance, in which case the price is calculated, and contract sent. A period of is 30 days is given to sign the document, after which the contract expires.The status in the database is updated and an email is sent to the customer informing him about the expired contract.  In case of rejection the same is notified.</p>
 
 **Step 4: Calculate price**
 

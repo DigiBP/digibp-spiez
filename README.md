@@ -245,7 +245,8 @@ The following tools and software have been used for implementing the Health insu
 |Eledo | Eledo helps in automating documents by mapping data to get PDF.  Once you save and activate your document template, you can load new fields in Integromat immediately. Eledo prepares Web Form and REST API automatically.  
 
 ## Automation
-Different automation techniques and languages were used.
+Different automation techniques and languages were used:  
+
 **JavaScript**: Used in Webforms and Service tasks in Camunda. 
 
 

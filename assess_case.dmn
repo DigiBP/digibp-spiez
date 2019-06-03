@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="Definitions_0mms9qb" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
+  <decision id="Decision_assessment" name="Assess case">
+    <extensionElements>
+      <biodi:bounds x="157" y="81" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="decisionTable_1">
+      <input id="input_1" label="Citizenship">
+        <inputExpression id="inputExpression_1" typeRef="string">
+          <text>citizenShip</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0rdh6wd">
+          <text>"CH","DE","OT"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_1gl8qcz" label="Marital Status">
+        <inputExpression id="LiteralExpression_0kvndu2" typeRef="string">
+          <text>maritalStatus</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_1x0xyi2">
+          <text>"si","ma","di","wi"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_0bydqjk">
+        <inputExpression id="LiteralExpression_1qpjy7b" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0mkx53c">
+        <inputExpression id="LiteralExpression_060rot4" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="Assessment Decision" name="assessmentDecision" typeRef="string">
+        <outputValues id="UnaryTests_1fiayzs">
+          <text>"accept","reject","alternative"</text>
+        </outputValues>
+      </output>
+      <rule id="DecisionRule_1cjvtdy">
+        <inputEntry id="UnaryTests_024k71o">
+          <text>"CH"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_09c182l">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1942x63">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1pwz69e">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1w89kpc">
+          <text>"accept"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0vwintn">
+        <inputEntry id="UnaryTests_1wdwchr">
+          <text>"OT"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0t73cno">
+          <text>"si"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_00foj9d">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0mrjffd">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1jb3s9g">
+          <text>"accept"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_07noa0y">
+        <inputEntry id="UnaryTests_0oml5rj">
+          <text>"OT"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ol3xvw">
+          <text>"ma"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_031s62v">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qgs14b">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0j6xxly">
+          <text>"reject"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_192s258">
+        <inputEntry id="UnaryTests_12ahwf8">
+          <text>"OT"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ewzjsk">
+          <text>"di"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_191vovc">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pkf8ul">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1p61i5y">
+          <text>"reject"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0nssfc8">
+        <inputEntry id="UnaryTests_0mymz09">
+          <text>"OT"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_14wrj4w">
+          <text>"wi"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19yuc7t">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1wtl71g">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0muzh6g">
+          <text>"alternative"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_18iq2sh">
+        <inputEntry id="UnaryTests_1do1nti">
+          <text>"DE"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1n9wubb">
+          <text>"si"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1j54agz">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1aylyu9">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0bwgjo2">
+          <text>"accept"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1nmoace">
+        <inputEntry id="UnaryTests_059m2e8">
+          <text>"DE"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04e1f0p">
+          <text>"ma"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qr01pf">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ycv950">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0fm2eo4">
+          <text>"accept"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1msbbpl">
+        <inputEntry id="UnaryTests_1ju0whz">
+          <text>"DE"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ow4rgq">
+          <text>"di"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1pmmdbs">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0mxfw1i">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_134o0t3">
+          <text>"alternative"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1qcbh49">
+        <inputEntry id="UnaryTests_09tkkdp">
+          <text>"DE"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1600ypb">
+          <text>"wi"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0087gri">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vy458x">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1v7wo4l">
+          <text>"alternative"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>

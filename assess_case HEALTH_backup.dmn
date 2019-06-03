@@ -1,0 +1,1108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="Definitions_0mms9qb" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
+  <decision id="Decision_assessment" name="Assess case">
+    <extensionElements>
+      <biodi:bounds x="157" y="81" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="decisionTable_1">
+      <input id="input_1" label="Citizenship">
+        <inputExpression id="inputExpression_1" typeRef="string">
+          <text>citizenShip</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0rdh6wd">
+          <text>"CH","OT"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_0bydqjk" label="Employement Status">
+        <inputExpression id="LiteralExpression_1qpjy7b" typeRef="string">
+          <text>Employmentstatus</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_1ad98i7">
+          <text>"employed","Unemployed","pensioner"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_0u5ynfo" label="AGE">
+        <inputExpression id="LiteralExpression_1oj6dc8" typeRef="string">
+          <text>age</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0nut2i3" label="Disability">
+        <inputExpression id="LiteralExpression_13up1f9" typeRef="string">
+          <text>Disability</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0fcu5xw">
+          <text>"yes","no"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_0skymxp" label="Terminal Illness">
+        <inputExpression id="LiteralExpression_054qs47" typeRef="string">
+          <text>Terminal Illness</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_029lc31">
+          <text>"Yes","No"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_1r6w6w0" label="Addiction">
+        <inputExpression id="LiteralExpression_0ymq38g" typeRef="string">
+          <text>addiction</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_1nskiz2">
+          <text>"smoking","Alcohol","substance abuse","none"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_0ohc2be" label="Health conditions">
+        <inputExpression id="LiteralExpression_0h1vw0x" typeRef="string">
+          <text>Health conditions</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0uhdj7u">
+          <text>"Yes","No"</text>
+        </inputValues>
+      </input>
+      <output id="output_1" label="Assessment Decision" name="assessmentDecision" typeRef="string">
+        <outputValues id="UnaryTests_1fiayzs">
+          <text>"accept","reject","alternative"</text>
+        </outputValues>
+      </output>
+      <rule id="DecisionRule_1cjvtdy">
+        <inputEntry id="UnaryTests_024k71o">
+          <text>"CH"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1942x63">
+          <text>"employed"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03m1fcb">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0q9gvcn">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1c1p7y3">
+          <text>"No"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0nkwqet">
+          <text>"none"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_09xb922">
+          <text>"none"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1w89kpc">
+          <text>"accept"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_16lph2a">
+        <inputEntry id="UnaryTests_1m6ordk">
+          <text>"CH"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_170l9nt">
+          <text>"Unemployed"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0fpl22a">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1v1izgh">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fbroyl">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0x1tqo0">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0u2bsci">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0pecnee">
+          <text>"alternative"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0vwintn">
+        <inputEntry id="UnaryTests_1wdwchr">
+          <text>"OT"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_00foj9d">
+          <text>"employed"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hqbzvm">
+          <text>&lt;65</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1wwv4z3">
+          <text>"no"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_100t1wr">
+          <text>"No"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qznxsy">
+          <text>"none"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yf2dzi">
+          <text>"none"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1jb3s9g">
+          <text>"accept"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1q3y00s">
+        <inputEntry id="UnaryTests_1m8nllf">
+          <text>"OT"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0u2u5vy">
+          <text>"Unemployed"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1edgp9q">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0jrvm5w">
+          <text>"no"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_12ttb1e">
+          <text>"No"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0eo7jvl">
+          <text>"none"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ppi676">
+          <text>"none"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_072pzbb">
+          <text>"reject"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_192s258">
+        <inputEntry id="UnaryTests_12ahwf8">
+          <text>"OT"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_191vovc">
+          <text>"pensioner"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_007smon">
+          <text>&gt;65</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0u4mohc">
+          <text>"no</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04qlvqq">
+          <text>"No",</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_07ebx0g">
+          <text>"none"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0h9m9i7">
+          <text>"none"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1p61i5y">
+          <text>"accept"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0nssfc8">
+        <inputEntry id="UnaryTests_0mymz09">
+          <text>"OT"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19yuc7t">
+          <text>"employed"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0owy7j9">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1i9ntx8">
+          <text>"no"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10g32ac">
+          <text>"No"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1f4c5jx">
+          <text>"none"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0apgr6g">
+          <text>"none"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0muzh6g">
+          <text>"accept"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0dukp43">
+        <inputEntry id="UnaryTests_020tfkv">
+          <text>"CH"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jty006">
+          <text>"employed"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05oss64">
+          <text>=&lt;65</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_197zuyp">
+          <text>"yes"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01oexv5">
+          <text>"No"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0vglfs7">
+          <text>"none"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1eqg8fz">
+          <text>"none"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0he3thx">
+          <text>"accept"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_18zl4md">
+        <inputEntry id="UnaryTests_1m4crs9">
+          <text>"CH"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_156y577">
+          <text>"employed"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0j8iwz6">
+          <text>=&lt;65</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1mc889b">
+          <text>"no"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hx5vjd">
+          <text>"Yes"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fv78tn">
+          <text>"none"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1dlgvln">
+          <text>"none"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1q67p2z">
+          <text>"alternative"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_06bz33i">
+        <inputEntry id="UnaryTests_0zwplcb">
+          <text>"CH"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0kgdgme">
+          <text>"employed"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1q4ev0v">
+          <text>=&lt;65</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10lc5qh">
+          <text>"no"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03xyf23">
+          <text>"No"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_180bl91">
+          <text>"smoking"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1obzkor">
+          <text>"none"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1gspukk">
+          <text>"accept"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_11zrxjd">
+        <inputEntry id="UnaryTests_0oz547h">
+          <text>"CH"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0b1t773">
+          <text>"employed"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0x6ulqf">
+          <text>=&lt;65</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01orb4t">
+          <text>"no"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1grnjip">
+          <text>"No"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0v9pxmh">
+          <text>"smoking","Alcohol","substance abuse"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0u65ly1">
+          <text>"Yes"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_140u9wt">
+          <text>"reject"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_044dpmu">
+        <inputEntry id="UnaryTests_0lk678u">
+          <text>"CH"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xziodj">
+          <text>"employed"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1qyj9o3">
+          <text>=&lt;65</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1w7j07b">
+          <text>"yes"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vbmac1">
+          <text>"Yes"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0gesns1">
+          <text>"none"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10xsanx">
+          <text>"Yes"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1lpnjhk">
+          <text>"alternative"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_06xl8nx">
+        <inputEntry id="UnaryTests_0p8j4ng">
+          <text>"CH"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0bnlrne">
+          <text>"employed"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ypwp5m">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0kw9p6u">
+          <text>"yes"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_11lc1bq">
+          <text>"Yes"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0axnokl">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0mp47gh">
+          <text>"Yes"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ocf48v">
+          <text>"reject"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_07zm5m9">
+        <inputEntry id="UnaryTests_1b0kfb8">
+          <text>"CH"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0erkma1">
+          <text>"employed"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_00jytqn">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1a45crr">
+          <text>"yes"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1kkxu99">
+          <text>"Yes"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1x92tgz">
+          <text>"smoking","Alcohol","substance abuse"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1h131ka">
+          <text>"Yes"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0p60g11">
+          <text>"reject"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0pi08nt">
+        <inputEntry id="UnaryTests_0va2zbk">
+          <text>"CH"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1t7iosc">
+          <text>pensioner</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15t3iav">
+          <text>&gt;65</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0hz4tfz">
+          <text>"yes"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0j75fwn">
+          <text>no</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0fxbk0q">
+          <text>"none"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19awqsk">
+          <text>no</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1s7zqtv">
+          <text>"accept"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1lh725u">
+        <inputEntry id="UnaryTests_1yy281e">
+          <text>"CH"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ycyp1q">
+          <text>"pensioner"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0fpp545">
+          <text>&gt;65</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0f0rkq0">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1bpnspy">
+          <text>"Yes"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0k1r8wh">
+          <text>"none"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05eik59">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1nbqywh">
+          <text>"alternative"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1x3kwb0">
+        <inputEntry id="UnaryTests_1ka32u3">
+          <text>"CH"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0k5mcp1">
+          <text>"pensioner"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_050dnx9">
+          <text>&gt;65</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_09k3hfa">
+          <text>no</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ulkxqo">
+          <text>"No"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0iy8tiu">
+          <text>"none"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19pyn6j">
+          <text>"Yes"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1aewzxp">
+          <text>"accept"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_16ku2bt">
+        <inputEntry id="UnaryTests_1p80tr0">
+          <text>"CH"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0v6xgs6">
+          <text>"pensioner"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17jiol7">
+          <text>&gt;65</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01sqttm">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_114apw2">
+          <text>"No"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ul23m3">
+          <text>"smoking"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yxylxb">
+          <text>"No"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1dg6wov">
+          <text>"alternative"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_05svlbr">
+        <inputEntry id="UnaryTests_0kd6hjj">
+          <text>"CH"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0bo6no8">
+          <text>"pensioner"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0kq3ua3">
+          <text>&gt;65</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_162sc31">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0aprbp0">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1k1ote0">
+          <text>"Alcohol","substance abuse"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_081ez3k">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1v9ggra">
+          <text>"reject"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_01yx1bt">
+        <inputEntry id="UnaryTests_0gl6wy9">
+          <text>"CH"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0prx6du">
+          <text>"pensioner"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_106d5e6">
+          <text>&gt;65</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0zzgmcw">
+          <text>"yes"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1aealoy">
+          <text>yes</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1e6b0ac">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1sfmf0n">
+          <text>yes</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0yewd0v">
+          <text>"reject"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_02nxrp3">
+        <inputEntry id="UnaryTests_1mfwo13">
+          <text>"OT"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1iqvs3k">
+          <text>"employed"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0uvfnoi">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0745feb">
+          <text>"yes"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1f9dj8y">
+          <text>"No"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04v50ku">
+          <text>"none"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1bce2rd">
+          <text>"No"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_10kjutd">
+          <text>"alternative"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_06svz1y">
+        <inputEntry id="UnaryTests_1yx9jlx">
+          <text>"OT"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0jo2lns">
+          <text>"employed"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_07igg03">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0iz29sf">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1iiqm6e">
+          <text>"Yes"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vtr1i9">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1pt6vw2">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1bo1cgy">
+          <text>"reject"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1oqsu5y">
+        <inputEntry id="UnaryTests_0pyzznf">
+          <text>"OT"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0b133ti">
+          <text>"employed"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0r6z6dy">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1q3k9m2">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0vr3ihq">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1cpcbmf">
+          <text>Alcohol","substance abuse"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1p5vxcy">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1t2is8q">
+          <text>"reject"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0gd2u0x">
+        <inputEntry id="UnaryTests_12p3i2r">
+          <text>"OT"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1g9wh6k">
+          <text>"employed"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1wa7qds">
+          <text>&lt;65</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1dgvgk8">
+          <text>no</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vf2w81">
+          <text>"No"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yjqgrt">
+          <text>"none"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01n1ktk">
+          <text>"Yes"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0jzi47e">
+          <text>"alternative"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_14p3l8p">
+        <inputEntry id="UnaryTests_0hairth">
+          <text>"OT"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1rarru1">
+          <text>"employed"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1x8rt9l">
+          <text>&lt;65</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_16nui53">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01l37gg">
+          <text>"No"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jdjvdh">
+          <text>"smoking"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_128fczt">
+          <text>"No"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_077hzjw">
+          <text>"accept"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_123jma4">
+        <inputEntry id="UnaryTests_0m51dyg">
+          <text>"OT"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0hxiuer">
+          <text>"employed"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0u2o2gx">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03x24kd">
+          <text>yes</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01icudj">
+          <text>yes</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qkqq3l">
+          <text>"smoking","Alcohol","substance abuse"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03mkd2g">
+          <text>yes</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1v8tt6z">
+          <text>"reject"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0x6e2d1">
+        <inputEntry id="UnaryTests_15yfjei">
+          <text>"OT"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fkezfx">
+          <text>"pensioner"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18xlf3y">
+          <text>&gt;65</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1wglf9e">
+          <text>"yes"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1pg2geo">
+          <text>"No"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fupcyr">
+          <text>"none"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gbkp37">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0iq3yaq">
+          <text>"alternative"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0pt95bx">
+        <inputEntry id="UnaryTests_1rofk7s">
+          <text>"OT"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0lqa59a">
+          <text>"pensioner"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qyc302">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1qmbbep">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0z8hafs">
+          <text>"Yes"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0rjmsa0">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0l1vzb1">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_023c6cf">
+          <text>"reject"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0vlkzqn">
+        <inputEntry id="UnaryTests_0c1f3e8">
+          <text>"OT"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0a74q9k">
+          <text>"pensioner"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1icv06s">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06sxiek">
+          <text>"no"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xkyae2">
+          <text>"No"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xggtv9">
+          <text>"none"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_013xza2">
+          <text>"Yes"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ep2lpb">
+          <text>"alternative"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_18b7b0j">
+        <inputEntry id="UnaryTests_12o7bwx">
+          <text>"OT"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1icu7vz">
+          <text>"pensioner"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_12209oy">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0eey1dt">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_14o5fma">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0vm5vl1">
+          <text>"Alcohol","substance abuse"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xr9whw">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1lksy41">
+          <text>"reject"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0xiaekf">
+        <inputEntry id="UnaryTests_1gnrcpq">
+          <text>"OT"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pgchrn">
+          <text>"pensioner"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1nefbeb">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02z8qr1">
+          <text>"yes"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ky1ei5">
+          <text>"Yes"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0nenpsf">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0g1j93y">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1b0c5io">
+          <text>"reject"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_165cjnl">
+        <inputEntry id="UnaryTests_1u9rsxt">
+          <text>"OT"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fv1ouo">
+          <text>"Unemployed"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0tiwt32">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_09p7205">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06ffe3g">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hasu8v">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1so32wn">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0v81f5s">
+          <text>"reject"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1yndvn5">
+        <inputEntry id="UnaryTests_03wddl6">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0p46f9c">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_12qjg3m">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yrxvfw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1x08ppq">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0de55ix">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vo7q4h">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_12ef4wo">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1if18kw">
+        <inputEntry id="UnaryTests_10iofsl">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ma5vwp">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08kredy">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1t6fntd">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1d1ennn">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1tyirot">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0a57bfk">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1eozot8">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0e6y91o">
+        <inputEntry id="UnaryTests_1ftrhqr">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0emxxbn">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01jhvd2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_113fwcx">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15mrr4o">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0fmhgg3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_120jjac">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0a94g4l">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1rugdmx">
+        <inputEntry id="UnaryTests_0pqwpvp">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06gdhm5">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1dawwym">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1r02sjh">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gceknf">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1lcb6xw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1kzvqjs">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1qa6kpr">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ll823q">
+        <inputEntry id="UnaryTests_0k5yklv">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19wmaco">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08kegw4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0muo7ys">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0s54s9r">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1dj5qry">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0rh9ps0">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0qs3wyk">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1m8yt1r">
+        <inputEntry id="UnaryTests_14y9g78">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_00dzbr0">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_16yueem">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0uzfd2z">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0vn5uyt">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1lwlkxf">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jmrx0z">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1pw53kl">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0gn7rgo">
+        <inputEntry id="UnaryTests_08iby34">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xu5od2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vxx54j">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0tc30dh">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1g144eb">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08hvobq">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1rfqw2j">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_03y7b5l">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1q8xgxk">
+        <inputEntry id="UnaryTests_0isxdbx">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ngqzbr">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1rbfr1i">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0291nbm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_16zftp8">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1abhaqk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18newna">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1achhnl">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0nllcyc">
+        <inputEntry id="UnaryTests_13mbg6b">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19bun0o">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0x2vrnx">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10bxwo9">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hqnrir">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08orgf0">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vmz6jm">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ba0pci">
+          <text></text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>

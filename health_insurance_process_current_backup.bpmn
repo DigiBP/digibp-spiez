@@ -4,26 +4,17 @@
     <bpmn:participant id="Participant_11arpnk" name="Customer Support" processRef="Process_1fktq2r" />
     <bpmn:participant id="Participant_17bhftx" name="Customer" />
     <bpmn:messageFlow id="MessageFlow_17zf0ro" sourceRef="Participant_17bhftx" targetRef="StartEvent_receiveApplication" />
-<<<<<<< HEAD:health_insurance_process_current.bpmn
     <bpmn:messageFlow id="MessageFlow_0id0k09" sourceRef="EndEvent_0n4326m" targetRef="Participant_17bhftx" />
-=======
-    <bpmn:messageFlow id="MessageFlow_0id0k09" sourceRef="EndEvent_emailRejectApplication" targetRef="Participant_17bhftx" />
->>>>>>> master:Archiv Processes/health_insurance_process_current copy.bpmn
     <bpmn:messageFlow id="MessageFlow_1na8gav" sourceRef="Task_proposeAlternativeOffers" targetRef="Participant_17bhftx" />
     <bpmn:messageFlow id="MessageFlow_1rhs2bg" sourceRef="Participant_17bhftx" targetRef="IntermediateThrowEvent_receiveSignedContract" />
     <bpmn:messageFlow id="MessageFlow_0rohzv9" sourceRef="Participant_17bhftx" targetRef="IntermediateThrowEvent_receiveMissingData" />
     <bpmn:messageFlow id="MessageFlow_1p8tb7o" sourceRef="Participant_17bhftx" targetRef="IntermediateThrowEvent_0yuxpid" />
-<<<<<<< HEAD:health_insurance_process_current.bpmn
     <bpmn:messageFlow id="MessageFlow_0bqgbbp" sourceRef="EndEvent_1gxxze8" targetRef="Participant_17bhftx" />
-=======
-    <bpmn:messageFlow id="MessageFlow_0bqgbbp" sourceRef="EndEvent_emailcCoseCase" targetRef="Participant_17bhftx" />
->>>>>>> master:Archiv Processes/health_insurance_process_current copy.bpmn
     <bpmn:messageFlow id="MessageFlow_0bnmkvc" sourceRef="Task_sendContractToCustomer" targetRef="Participant_17bhftx" />
   </bpmn:collaboration>
   <bpmn:process id="Process_1fktq2r" name="Health Insurance Process (current)" isExecutable="true">
     <bpmn:laneSet id="LaneSet_1wkwfu0">
       <bpmn:lane id="Lane_0bltqy3" name="Underwriters">
-<<<<<<< HEAD:health_insurance_process_current.bpmn
         <bpmn:flowNodeRef>Task_sendContractToCustomer</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IntermediateThrowEvent_receiveSignedContract</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_0n4326m</bpmn:flowNodeRef>
@@ -32,16 +23,6 @@
         <bpmn:flowNodeRef>ExclusiveGateway_resultAssessment</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>T_issuePolicy</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_assesCase</bpmn:flowNodeRef>
-=======
-        <bpmn:flowNodeRef>IntermediateThrowEvent_receiveSignedContract</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>EndEvent_emailRejectApplication</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>ExclusiveGateway_resultAssessment</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_assesCase</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>T_issuePolicy</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_sendContractToCustomer</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_rejectCase</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>StartEvent_receiveApplication</bpmn:flowNodeRef>
->>>>>>> master:Archiv Processes/health_insurance_process_current copy.bpmn
       </bpmn:lane>
       <bpmn:lane id="Lane_1x5uilt" name="IT System">
         <bpmn:flowNodeRef>IntermediateThrowEvent_receiveMissingData</bpmn:flowNodeRef>
@@ -53,18 +34,13 @@
         <bpmn:flowNodeRef>ExclusiveGateway_1tcpkzi</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IntermediateThrowEvent_0yuxpid</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_closeCase</bpmn:flowNodeRef>
-<<<<<<< HEAD:health_insurance_process_current.bpmn
         <bpmn:flowNodeRef>EndEvent_1gxxze8</bpmn:flowNodeRef>
-=======
-        <bpmn:flowNodeRef>EndEvent_emailcCoseCase</bpmn:flowNodeRef>
->>>>>>> master:Archiv Processes/health_insurance_process_current copy.bpmn
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:userTask id="Task_proposeAlternativeOffers" name="Propose alternative offers">
       <bpmn:incoming>SequenceFlow_1cr7dwi</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_12eaxtt</bpmn:outgoing>
     </bpmn:userTask>
-<<<<<<< HEAD:health_insurance_process_current.bpmn
     <bpmn:task id="Task_sendContractToCustomer" name="Send contract to customer">
       <bpmn:incoming>SequenceFlow_0dodatt</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0it35zf</bpmn:outgoing>
@@ -72,8 +48,6 @@
         <bpmn:targetRef>DataObjectReference_contract</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:task>
-=======
->>>>>>> master:Archiv Processes/health_insurance_process_current copy.bpmn
     <bpmn:sequenceFlow id="SequenceFlow_1yuu9ma" sourceRef="Task_assesCase" targetRef="ExclusiveGateway_resultAssessment" />
     <bpmn:sequenceFlow id="SequenceFlow_1o6jn2x" name="reject" sourceRef="ExclusiveGateway_resultAssessment" targetRef="Task_rejectCase">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${assessmentDecision== "reject"}</bpmn:conditionExpression>
@@ -84,11 +58,7 @@
     <bpmn:sequenceFlow id="SequenceFlow_1cr7dwi" name="alternative" sourceRef="ExclusiveGateway_resultAssessment" targetRef="Task_proposeAlternativeOffers">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${assessmentDecision== "alternative"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-<<<<<<< HEAD:health_insurance_process_current.bpmn
     <bpmn:sequenceFlow id="SequenceFlow_0q9rb4q" sourceRef="Task_rejectCase" targetRef="EndEvent_0n4326m" />
-=======
-    <bpmn:sequenceFlow id="SequenceFlow_0q9rb4q" sourceRef="Task_rejectCase" targetRef="EndEvent_emailRejectApplication" />
->>>>>>> master:Archiv Processes/health_insurance_process_current copy.bpmn
     <bpmn:sequenceFlow id="SequenceFlow_0dodatt" sourceRef="T_issuePolicy" targetRef="Task_sendContractToCustomer" />
     <bpmn:sequenceFlow id="SequenceFlow_0it35zf" sourceRef="Task_sendContractToCustomer" targetRef="IntermediateThrowEvent_receiveSignedContract" />
     <bpmn:sequenceFlow id="SequenceFlow_075u5a4" sourceRef="Task_updateContractDatabase" targetRef="EndEvent_applicationClosed" />
@@ -100,11 +70,7 @@
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="SequenceFlow_12x7ozm" name="yes" sourceRef="ExclusiveGateway_1tcpkzi" targetRef="T_issuePolicy" />
     <bpmn:sequenceFlow id="SequenceFlow_1r490y5" sourceRef="IntermediateThrowEvent_0yuxpid" targetRef="ExclusiveGateway_1tcpkzi" />
-<<<<<<< HEAD:health_insurance_process_current.bpmn
     <bpmn:sequenceFlow id="SequenceFlow_1gl0l84" sourceRef="Task_closeCase" targetRef="EndEvent_1gxxze8" />
-=======
-    <bpmn:sequenceFlow id="SequenceFlow_1gl0l84" sourceRef="Task_closeCase" targetRef="EndEvent_emailcCoseCase" />
->>>>>>> master:Archiv Processes/health_insurance_process_current copy.bpmn
     <bpmn:sequenceFlow id="SequenceFlow_0ds8v4x" name="no" sourceRef="ExclusiveGateway_1tcpkzi" targetRef="Task_closeCase">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${false}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -122,7 +88,7 @@
       <bpmn:outgoing>SequenceFlow_1ov1ks7</bpmn:outgoing>
       <bpmn:messageEventDefinition messageRef="Message_1dj4s63" />
     </bpmn:intermediateCatchEvent>
-    <bpmn:endEvent id="EndEvent_emailRejectApplication" name="Email Reject Application">
+    <bpmn:endEvent id="EndEvent_0n4326m">
       <bpmn:incoming>SequenceFlow_0q9rb4q</bpmn:incoming>
       <bpmn:messageEventDefinition messageRef="Message_0qbnllw" />
     </bpmn:endEvent>
@@ -148,7 +114,6 @@
       <bpmn:incoming>SequenceFlow_0ds8v4x</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1gl0l84</bpmn:outgoing>
     </bpmn:serviceTask>
-<<<<<<< HEAD:health_insurance_process_current.bpmn
     <bpmn:task id="Task_rejectCase" name="Reject case">
       <bpmn:incoming>SequenceFlow_1o6jn2x</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0q9rb4q</bpmn:outgoing>
@@ -159,74 +124,6 @@
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="SequenceFlow_1v41auc" sourceRef="StartEvent_receiveApplication" targetRef="Task_assesCase" />
     <bpmn:dataStoreReference id="DataStoreReference_1ggj3lc" name="case database" />
-=======
-    <bpmn:endEvent id="EndEvent_emailcCoseCase" name="Email Close Case">
-      <bpmn:incoming>SequenceFlow_1gl0l84</bpmn:incoming>
-      <bpmn:messageEventDefinition messageRef="Message_0qhxvl8" />
-    </bpmn:endEvent>
-    <bpmn:sequenceFlow id="SequenceFlow_1v41auc" sourceRef="StartEvent_receiveApplication" targetRef="Task_assesCase" />
-    <bpmn:dataStoreReference id="DataStoreReference_1ggj3lc" name="case database" />
-    <bpmn:exclusiveGateway id="ExclusiveGateway_resultAssessment" name="Result of asessment">
-      <bpmn:incoming>SequenceFlow_1yuu9ma</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1o6jn2x</bpmn:outgoing>
-      <bpmn:outgoing>SequenceFlow_1otr561</bpmn:outgoing>
-      <bpmn:outgoing>SequenceFlow_1cr7dwi</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:businessRuleTask id="Task_assesCase" name="Assess case" camunda:resultVariable="decision" camunda:decisionRef="Decision_assessment" camunda:mapDecisionResult="singleResult">
-      <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:inputParameter name="citizenShip">${citizenShip}</camunda:inputParameter>
-          <camunda:inputParameter name="maritalStatus">${maritalStatus}</camunda:inputParameter>
-          <camunda:outputParameter name="assessmentDecision">${decision.assessmentDecision}</camunda:outputParameter>
-        </camunda:inputOutput>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_1v41auc</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1yuu9ma</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_1efpgg5">
-        <bpmn:targetRef>DataStoreReference_1ggj3lc</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-    </bpmn:businessRuleTask>
-    <bpmn:userTask id="T_issuePolicy" name="Issue Policy">
-      <bpmn:incoming>SequenceFlow_1otr561</bpmn:incoming>
-      <bpmn:incoming>SequenceFlow_12x7ozm</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0dodatt</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:userTask id="Task_sendContractToCustomer" name="Send contract to customer">
-      <bpmn:incoming>SequenceFlow_0dodatt</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0it35zf</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_1u7vsgk">
-        <bpmn:targetRef>DataObjectReference_contract</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-    </bpmn:userTask>
-    <bpmn:serviceTask id="Task_rejectCase" name="Reject case">
-      <bpmn:extensionElements>
-        <camunda:connector>
-          <camunda:inputOutput>
-            <camunda:inputParameter name="method">POST</camunda:inputParameter>
-            <camunda:inputParameter name="url">https://hook.integromat.com/zcnxink8vc0kw11xus5khznjbhl1e1ke</camunda:inputParameter>
-            <camunda:inputParameter name="headers">
-              <camunda:map>
-                <camunda:entry key="Content-Type">application/json</camunda:entry>
-              </camunda:map>
-            </camunda:inputParameter>
-            <camunda:inputParameter name="payload">
-              <camunda:script scriptFormat="JavaScript">out=JSON.stringify({
-"type":"Pizza",
-"name":"name"
-});</camunda:script>
-            </camunda:inputParameter>
-            <camunda:outputParameter name="state">
-              <camunda:script scriptFormat="JavaScript">object=JSON.parse(response);
-state=object.state;</camunda:script>
-            </camunda:outputParameter>
-          </camunda:inputOutput>
-          <camunda:connectorId>http-connector</camunda:connectorId>
-        </camunda:connector>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_1o6jn2x</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0q9rb4q</bpmn:outgoing>
-    </bpmn:serviceTask>
->>>>>>> master:Archiv Processes/health_insurance_process_current copy.bpmn
     <bpmn:startEvent id="StartEvent_receiveApplication" name="Receive application">
       <bpmn:extensionElements>
         <camunda:formData businessKey="FormField_1gb19q4">
@@ -240,12 +137,18 @@ state=object.state;</camunda:script>
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
+          <camunda:formField id="gender" label="Gender" type="enum">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+            <camunda:value id="m" name="male" />
+            <camunda:value id="f" name="female" />
+          </camunda:formField>
           <camunda:formField id="age" label="Age" type="long">
             <camunda:validation>
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
-<<<<<<< HEAD:health_insurance_process_current.bpmn
           <camunda:formField id="dateOfBirth" label="Date of Birth" type="date">
             <camunda:validation>
               <camunda:constraint name="required" />
@@ -266,11 +169,6 @@ state=object.state;</camunda:script>
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
-=======
-          <camunda:formField id="addressStreet" label="Street + No." type="string" />
-          <camunda:formField id="addressZipCode" label="ZipCode" type="string" />
-          <camunda:formField id="addressCity" label="City" type="string" />
->>>>>>> master:Archiv Processes/health_insurance_process_current copy.bpmn
           <camunda:formField id="email" label="Email" type="string" />
           <camunda:formField id="employment" label="Employment" type="enum">
             <camunda:validation>
@@ -297,7 +195,6 @@ state=object.state;</camunda:script>
             <camunda:value id="EU" name="European union" />
             <camunda:value id="OT" name="Other Countries" />
           </camunda:formField>
-<<<<<<< HEAD:health_insurance_process_current.bpmn
           <camunda:formField id="telephone" type="long">
             <camunda:validation>
               <camunda:constraint name="required" />
@@ -341,35 +238,12 @@ state=object.state;</camunda:script>
               <camunda:constraint />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="business_key" label="Business key" type="" />
-=======
-          <camunda:formField id="street" label="Street" type="string" />
-          <camunda:formField id="houseNumber" label="House number" type="long" />
-          <camunda:formField id="zipCode" label="Zip Code" type="long" />
-          <camunda:formField id="city" label="City" type="string" />
-          <camunda:formField id="telephone" label="Telephone" type="long" />
-          <camunda:formField id="eMail" label="Email" type="string" />
-          <camunda:formField id="height" label="Height" type="string" />
-          <camunda:formField id="weight" label="Weight" type="string" />
-          <camunda:formField id="disability" label="Disability" type="string" />
-          <camunda:formField id="disabilityDetails" label="Disability details" type="string" />
-          <camunda:formField id="healthCondition" label="Health conditions" type="boolean" />
-          <camunda:formField id="plannedTreatment" label="Planned treatment" type="string" />
-          <camunda:formField id="children" label="Children" type="boolean" />
-          <camunda:formField id="smoking" label="Smoking" type="boolean" />
-          <camunda:formField id="bmi" label="Body mass index" type="long" />
-          <camunda:formField id="gender" label="Gender" type="enum" defaultValue="m">
-            <camunda:value id="m" name="male" />
-            <camunda:value id="f" name="female" />
-            <camunda:value id="d" name="Diverse" />
-          </camunda:formField>
->>>>>>> master:Archiv Processes/health_insurance_process_current copy.bpmn
+          <camunda:formField id="business_key" label="Business k" type="" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_1v41auc</bpmn:outgoing>
       <bpmn:messageEventDefinition messageRef="Message_0vsfji7" />
     </bpmn:startEvent>
-<<<<<<< HEAD:health_insurance_process_current.bpmn
     <bpmn:exclusiveGateway id="ExclusiveGateway_resultAssessment" name="Result of asessment">
       <bpmn:incoming>SequenceFlow_1yuu9ma</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1o6jn2x</bpmn:outgoing>
@@ -395,8 +269,6 @@ state=object.state;</camunda:script>
         <bpmn:targetRef>DataStoreReference_1ggj3lc</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:businessRuleTask>
-=======
->>>>>>> master:Archiv Processes/health_insurance_process_current copy.bpmn
   </bpmn:process>
   <bpmn:message id="Message_0vsfji7" name="Message_0e7eoe9" />
   <bpmn:message id="Message_016opmc" name="Message_17nu932" />
@@ -413,18 +285,14 @@ state=object.state;</camunda:script>
         <dc:Bounds x="156" y="81" width="1891" height="188" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="StartEvent_1c4x6xz_di" bpmnElement="StartEvent_receiveApplication">
-<<<<<<< HEAD:health_insurance_process_current.bpmn
         <dc:Bounds x="287" y="727" width="36" height="36" />
-=======
-        <dc:Bounds x="287" y="723" width="36" height="36" />
->>>>>>> master:Archiv Processes/health_insurance_process_current copy.bpmn
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="279" y="766" width="53" height="27" />
+          <dc:Bounds x="279" y="770" width="53" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="MessageFlow_17zf0ro_di" bpmnElement="MessageFlow_17zf0ro">
         <di:waypoint x="305" y="269" />
-        <di:waypoint x="305" y="723" />
+        <di:waypoint x="305" y="727" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ExclusiveGateway_10qbl19_di" bpmnElement="ExclusiveGateway_resultAssessment" isMarkerVisible="true">
         <dc:Bounds x="696" y="740" width="50" height="50" />
@@ -432,12 +300,9 @@ state=object.state;</camunda:script>
           <dc:Bounds x="657" y="787" width="54" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-<<<<<<< HEAD:health_insurance_process_current.bpmn
       <bpmndi:BPMNShape id="Task_14bxa3i_di" bpmnElement="Task_rejectCase">
         <dc:Bounds x="1094" y="826" width="100" height="80" />
       </bpmndi:BPMNShape>
-=======
->>>>>>> master:Archiv Processes/health_insurance_process_current copy.bpmn
       <bpmndi:BPMNShape id="Lane_0bltqy3_di" bpmnElement="Lane_0bltqy3" isHorizontal="true">
         <dc:Bounds x="186" y="536" width="1860" height="425" />
       </bpmndi:BPMNShape>
@@ -458,7 +323,7 @@ state=object.state;</camunda:script>
         <di:waypoint x="721" y="866" />
         <di:waypoint x="1094" y="866" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="856" y="871" width="27" height="14" />
+          <dc:Bounds x="855" y="871" width="28" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1otr561_di" bpmnElement="SequenceFlow_1otr561">
@@ -493,12 +358,9 @@ state=object.state;</camunda:script>
       <bpmndi:BPMNShape id="UserTask_1w3mv6s_di" bpmnElement="Task_proposeAlternativeOffers">
         <dc:Bounds x="774" y="445" width="100" height="80" />
       </bpmndi:BPMNShape>
-<<<<<<< HEAD:health_insurance_process_current.bpmn
       <bpmndi:BPMNShape id="Task_1erucnw_di" bpmnElement="Task_sendContractToCustomer">
         <dc:Bounds x="1357" y="674" width="100" height="80" />
       </bpmndi:BPMNShape>
-=======
->>>>>>> master:Archiv Processes/health_insurance_process_current copy.bpmn
       <bpmndi:BPMNShape id="DataObjectReference_01zbefm_di" bpmnElement="DataObjectReference_contract">
         <dc:Bounds x="1389" y="802" width="36" height="50" />
         <bpmndi:BPMNLabel>
@@ -556,11 +418,7 @@ state=object.state;</camunda:script>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BusinessRuleTask_1e3w1uw_di" bpmnElement="Task_assesCase">
-<<<<<<< HEAD:health_insurance_process_current.bpmn
         <dc:Bounds x="468" y="705" width="100" height="80" />
-=======
-        <dc:Bounds x="460" y="725" width="100" height="80" />
->>>>>>> master:Archiv Processes/health_insurance_process_current copy.bpmn
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_12eaxtt_di" bpmnElement="SequenceFlow_12eaxtt">
         <di:waypoint x="874" y="485" />
@@ -611,17 +469,11 @@ state=object.state;</camunda:script>
           <dc:Bounds x="918" y="1004" width="81" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="EndEvent_0djnlku_di" bpmnElement="EndEvent_emailRejectApplication">
+      <bpmndi:BPMNShape id="EndEvent_0djnlku_di" bpmnElement="EndEvent_0n4326m">
         <dc:Bounds x="1257" y="848" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1245" y="891" width="62" height="27" />
-        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="EndEvent_07wtadp_di" bpmnElement="EndEvent_emailcCoseCase">
+      <bpmndi:BPMNShape id="EndEvent_07wtadp_di" bpmnElement="EndEvent_1gxxze8">
         <dc:Bounds x="1332" y="467" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1309" y="510" width="88" height="14" />
-        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="MessageFlow_0bqgbbp_di" bpmnElement="MessageFlow_0bqgbbp">
         <di:waypoint x="1350" y="467" />
@@ -652,28 +504,12 @@ state=object.state;</camunda:script>
         <di:waypoint x="503" y="875" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1v41auc_di" bpmnElement="SequenceFlow_1v41auc">
-<<<<<<< HEAD:health_insurance_process_current.bpmn
         <di:waypoint x="323" y="745" />
         <di:waypoint x="468" y="745" />
-=======
-        <di:waypoint x="323" y="741" />
-        <di:waypoint x="413" y="741" />
-        <di:waypoint x="413" y="765" />
-        <di:waypoint x="460" y="765" />
->>>>>>> master:Archiv Processes/health_insurance_process_current copy.bpmn
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_0c1insi_di" bpmnElement="T_issuePolicy">
         <dc:Bounds x="1139" y="674" width="100" height="80" />
       </bpmndi:BPMNShape>
-<<<<<<< HEAD:health_insurance_process_current.bpmn
-=======
-      <bpmndi:BPMNShape id="UserTask_0bmy0yh_di" bpmnElement="Task_sendContractToCustomer">
-        <dc:Bounds x="1357" y="674" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ServiceTask_0dfyjmg_di" bpmnElement="Task_rejectCase">
-        <dc:Bounds x="1094" y="826" width="100" height="80" />
-      </bpmndi:BPMNShape>
->>>>>>> master:Archiv Processes/health_insurance_process_current copy.bpmn
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>

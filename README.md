@@ -19,7 +19,13 @@ VMMMP"     dMP dMP    VMMMP"    VMMMP"     dMP            VMMMP"    dMP        d
 * Swapna Chinta [swapna.chinta@students.fhnw.ch]
 
 
-# Methodology and Approach
+# Methodology and Approach 
+
+Please be aware that the reader should be familiar with BPMN 3.0. The processes and their flows are not described or explained in this project. 
+
+## Design Approach
+
+After the first lesson, we were able to execute the first workflow by running the Camunda BPM Engine on Heroku. Although with a limited functionality. It was a valuable experience for the group as new technologies were used. Furthermore, documentation and design plans were crafted and some tests were conducted. We treated every lesson and the following development and adaptions to the product as one sprint.
 
 ## Process design approach
 The team decided to go for a ‘rough-to-detail’ design approach keeping a working process model in the centre of attention. In detail this meant that the group decided for a very simple (but technically working) health insurance process at the beginning of the course and then added step by step more and more complexity to the process until it reached its final beauty with all features required from the team.
@@ -28,11 +34,6 @@ During the entire course the insurance process was always (technically) running.
 ## Application development
 GitHub was used in order to work collaboratively on the project. For every team member an own branch was created to work ‘independently’ on everyone’s topic. 
 The standard-features of GitHub fully served the purpose to collaborate effectively. Pull and merge requests (formerly not known by the team-members) were used to create a joint, final and working master repository.
-
-## Testing
-Testings were conducted weekly. Results were shared immediately. For the integration-tools integromat and eledo in various occasions the tool postman was used to fasten ‘partial’ testings of the process.
-Detected issues were tracked by the testing-responsible person (see section project management) forwarded to and solved by the domain-specific responsible person.
-
 
 ## Project Management
 For this small team an agile project management approach was chosen (weekly meetings with jointly defined goals). Each person was allocated to a specific domain:
@@ -55,14 +56,10 @@ The following chapter describes the basic idea behind the health insurance proce
 
 Based on the type of insurance selected, the price is calculated and contract is sent to the customer.when the customer signs the contract and sends it back to the company through email via integromat, it is saved in the database and the application process is closed.
 
-In order to understand the current application process, a high level AS-IS process was first created using Camunda BPMN 2.0. The AS-IS process required a lot of human interaction as explained in the next section. To minimize the human tasks the process is digitalized, and every step of digitalization process is documented.
-
-
 
 ## AS-IS Process
 
- 
-The following image shows a comprehensive visualization of AS-IS process. 
+ The following image shows a comprehensive visualization of AS-IS process. 
 
 ![alt text](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/As-is%20Process.png)
 
@@ -80,20 +77,20 @@ The figure below shows a simple visualization of our overall process. The follow
 - Calculate price
 
 
-## Overall Process
+## Overall process
 The following figure shows a visualization of our overall process. 
 
-| **Overall Process** | 
+| **Overall process** | 
 | ------------------ | 
 | ![alt text](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/health%20insurance%20process.png) |
 
-### Basic Insurance process
+### Basic insurance process
 
-| **Basic Insurance process** | - |
+| **Basic insurance process** | - |
 | ------------------ | - |
 |The following image shows a comprehensive visualization of Basic Insurance process. |![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Basic%20insurance%20process.png) |
 
-| **Basic Insurance decision tables** | - |
+| **Basic insurance decision tables** | - |
 | ------------------ | - |
 |The following image shows a comprehensive visualization of decision tables for eligibility check for basic insurance. |![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/basicinsuranced.png) |
 
@@ -108,6 +105,7 @@ The following figure shows a visualization of our overall process.
 | **Additional insurance: DRD, Decision tables & rules** | - |
 | ------------------ | - |
 |The following image shows a comprehensive visualization of DRD, decision tables & rules for assessing the eligibility of the applicant for Additional Insurance. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/supplementary%20insurance.png) |
+
 
 
 ### Calculate price subprocess
@@ -152,6 +150,7 @@ A value is assigned to each of the parameter, “0” if it is true or “1” i
 **Basic Insurance:** The insurance premium depends on the basic insurance model selected and the preferred franchise. The end price is calculated by multiplying nPersonfactor to the nbasepricebasicInsurance selected. 
 
                                  nBasePriceBasicInsurance*nPersonfactor
+
 
 
 **Additional insurance:** 
@@ -248,14 +247,6 @@ The following tools and software have been used for implementing the Health insu
 Automation techniques and languages used:  
 
 **JavaScript**: Used in Webforms and Service tasks in Camunda. 
-
-
-
-
-
-
-
-
 
 ## License
 - [Apache License, Version 2.0](https://github.com/DigiBP/digibp-archetype-camunda-boot/blob/master/LICENSE)

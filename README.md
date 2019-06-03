@@ -246,7 +246,7 @@ The following tools and software have been used for implementing the Health insu
 
 ## Automation
 Different automation techniques and languages were used.
-**JavaScript**:  
+**JavaScript**: Used in Webforms and Service tasks in Camunda. 
 
 
 

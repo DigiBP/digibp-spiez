@@ -206,7 +206,76 @@ The final premium is a sum total of all the insurances selected by the customer.
 ![Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration2.png)
 
 
-**The following JSON element is sent to integromat to create a PDF via Eledo and send an update to our database with a url to the created pdf**
+**Create PDF and save PDF-URL to database 
+The following JSON element is sent to integromat to create a PDF via Eledo and send an update to our database with a url to the created pdf**
+
+https://hook.integromat.com/cen1nmnjc8fl8rwa2fhhdjfs5s84d8rp
+
+```
+// {
+	"sFirstName": sFirstName,
+	"sLastName": sLastName,
+	"eGender": eGender,
+	"sEmail": sEmail,
+	"sApplicationID": execution.processInstanceId,
+	"sStatus": "accepted",
+	"dBirthDate"	:	dBirthDate	,
+	"eGender"	:	eGender	,
+	"nAge"	:	nAge	,
+	"eCitizenShip"	:	eCitizenShip	,
+	"sStreet"	:	sStreet	,
+	"nZipCode"	:	nZipCode	,
+	"sCity"	:	sCity	,
+	"sEmail"	:	sEmail	,
+	"eBaseInsuranceType"	:	eBaseInsuranceType	,
+	"eFranchise"	:	eFranchise	,
+	"bAccidentCoverage"	:	bAccidentCoverage	,
+	"bAlternativeInsurance"	:	bAlternativeInsurance	,
+	"eAlternativeInsuranceType"	:	eAlternativeInsuranceType	,
+	"bDentalTreatment"	:	bDentalTreatment	,
+	"eDentalTreatmentCoverage"	:	eDentalTreatmentCoverage	,
+	"bLifeInsurance"	:	bLifeInsurance	,
+	"eLifeInsuranceCoverage"	:	eLifeInsuranceCoverage	,
+	"bDisabilityOrBirthDefect"	:	bDisabilityOrBirthDefect	,
+	"bOngoingTreatmentOrSurgery"	:	bOngoingTreatmentOrSurgery	,
+	"bPastRejection"	:	bPastRejection	,
+	"bDrugTaker"	:	bDrugTaker	,
+	"bHivInfected"	:	bHivInfected	,
+	"fHeight"	:	fHeight	,
+	"fWeight"	:	fWeight	,
+	"bBodybuilder"	:	bBodybuilder	,
+	"fBMI"	:	fBMI	,
+	"sAreaType"	:	sAreaType	,
+	"nPersonFactor"	:	nPersonFactor	,
+	"sPersonProfile"	:	sPersonProfile	,
+	"nEndPriceDentalInsurance"	:	nEndPriceDentalInsurance	,
+	"nEndPriceBasicInsurance"	:	nEndPriceBasicInsurance	,
+	"nEndPriceAlternativeInsurance"	:	nEndPriceAlternativeInsurance	,
+	"nEndPriceLifeInsurance"	:	nEndPriceLifeInsurance	,
+	"nBasePriceBasicInsurance"	:	nBasePriceBasicInsurance	,
+	"nBasePriceDentalInsurance"	:	nBasePriceDentalInsurance	,
+	"nBasePriceLifeInsurance"	:	nBasePriceLifeInsurance	,
+	"nBasePriceAlternativeInsurance"	:	nBasePriceAlternativeInsurance	,
+	"dtCreated"	:	formatDate(new Date())	,
+	"dtModified"	:	formatDate(new Date())	,
+	"processVersion"	:	execution.version,
+	"nPolicyNumber": nPolicyNumber,
+        "sYearMonthDay": formatDate2(new Date()),
+	"dToday": formatDate3(new Date())
+}
+
+```
+The output sends back the URL :
+
+
+```
+//
+{
+sContractUrl: https://drive.google.com/uc?export=download&id=1d2FwjgLpgEUsTBobrsDVBqH6ACs5hH1b
+ } 
+
+```
+
 ![Eledo JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/pdfeledo.png)
 
 

@@ -215,7 +215,26 @@ The final premium is a sum total of all the insurances selected by the customer.
 
 
 **Receiving a decision from the customer whether a contract is accepted or not is sent to Camunda from web form to waiting message trigger of a specific process instance is done via:**
+
+
+
 ![recieve mail](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/receivemail.png)
+
+**Send contract signature to camunda:
+Sending decision whether contact get accepted to Camunda from web from to waiting message trigger of a specific process instance via:**
+
+https://digibp-spiez.herokuapp.com/rest/message
+
+```
+{
+"messageName" : "Message_1eea03e", 
+"processInstanceId" : getUrlParameter("processInstanceId"), 
+"processVariables" : { 
+"bContractSigned" : {"value" : $("#contractSigned").val()=="true", "type": "Boolean"}, 
+     } 
+}
+
+```
 
 
 **The following message is sent by integromat service to update application status of an already inserted data row in our application database. Currently it is only used to set for the stati: unsigned/signed/SignatureTimeExpired**

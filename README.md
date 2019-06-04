@@ -228,7 +228,7 @@ The final premium is a sum total of all the insurances selected by the customer.
 
 ```
 
-![Updating Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/setnewstatus.png)
+![Updating Database](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/setnewstatus.png)
 
 
 **Send contract information to customer:**

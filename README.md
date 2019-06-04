@@ -201,6 +201,75 @@ The final premium is a sum total of all the insurances selected by the customer.
 
 
 **When the assessment of the application is done, the accepted or rejected data is going to be saved in our database, google drive table sheet persistently via an integromat service. The integromat service is triggered by:**
+
+https://hook.integromat.com/aulm3jmewet9rvlicpzzdr01aq40ce7n
+
+```
+//
+{
+	"sFirstName": sFirstName,
+	"sLastName": sLastName,
+	"eGender": eGender,
+	"sEmail": sEmail,
+	"sApplicationID": execution.processInstanceId,
+	"sStatus": "accepted/rejected",
+	"dBirthDate"	:	dBirthDate	,
+	"eGender"	:	eGender	,
+	"nAge"	:	nAge	,
+	"eCitizenShip"	:	eCitizenShip	,
+	"sStreet"	:	sStreet	,
+	"nZipCode"	:	nZipCode	,
+	"sCity"	:	sCity	,
+	"sEmail"	:	sEmail	,
+	"eBaseInsuranceType"	:	eBaseInsuranceType	,
+	"eFranchise"	:	eFranchise	,
+	"bAccidentCoverage"	:	bAccidentCoverage	,
+	"bAlternativeInsurance"	:	bAlternativeInsurance	,
+	"eAlternativeInsuranceType"	:	eAlternativeInsuranceType	,
+	"bDentalTreatment"	:	bDentalTreatment	,
+	"eDentalTreatmentCoverage"	:	eDentalTreatmentCoverage	,
+	"bLifeInsurance"	:	bLifeInsurance	,
+	"eLifeInsuranceCoverage"	:	eLifeInsuranceCoverage	,
+	"bDisabilityOrBirthDefect"	:	bDisabilityOrBirthDefect	,
+	"bOngoingTreatmentOrSurgery"	:	bOngoingTreatmentOrSurgery	,
+	"bPastRejection"	:	bPastRejection	,
+	"bDrugTaker"	:	bDrugTaker	,
+	"bHivInfected"	:	bHivInfected	,
+	"fHeight"	:	fHeight	,
+	"fWeight"	:	fWeight	,
+	"bBodybuilder"	:	bBodybuilder	,
+	"fBMI"	:	fBMI	,
+	"sAreaType"	:	sAreaType	, //if rejected this field is empty
+	"nPersonFactor"	:	nPersonFactor	, //if rejected this field is empty
+	"sPersonProfile"	:	sPersonProfile	, //if rejected this field is empty
+	"nEndPriceDentalInsurance"	:	nEndPriceDentalInsurance	, //if rejected this field is empty
+	"nEndPriceBasicInsurance"	:	nEndPriceBasicInsurance	, //if rejected this field is empty
+	"nEndPriceAlternativeInsurance"	:	nEndPriceAlternativeInsurance	, //if rejected this field is empty
+	"nEndPriceLifeInsurance"	:	nEndPriceLifeInsurance	, //if rejected this field is empty
+	"nBasePriceBasicInsurance"	:	nBasePriceBasicInsurance	, //if rejected this field is empty
+	"nBasePriceDentalInsurance"	:	nBasePriceDentalInsurance	, //if rejected this field is empty
+	"nBasePriceLifeInsurance"	:	nBasePriceLifeInsurance	, //if rejected this field is empty
+	"nBasePriceAlternativeInsurance"	:	nBasePriceAlternativeInsurance	,
+	"dtCreated"	:	formatDate(new Date())	,
+	"dtModified"	:	formatDate(new Date())	,
+	"processVersion"	:	execution.version	
+});
+
+
+```
+The output is row number: 
+
+```
+//
+{
+"nRowNumber: " 12
+}} 
+
+```
+For our further procedure we add 9770000 to calculate the policy number:
+nPolicyNumber=9770000+nRowNumber
+
+
 ![Database JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Savedataafterassessment.png)
 ![Output](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/output.com.png)
 ![Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration2.png)

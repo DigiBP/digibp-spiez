@@ -223,10 +223,25 @@ The final premium is a sum total of all the insurances selected by the customer.
 
 
 **Send contract information to customer**
-![Contract](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/sendcontract12.png)
+
+https://hook.integromat.com/127ydyn8b6ikfghacoxam8t4v9dft11u
+
+input:
+
+```
+// {"sLastName": sLastName, 
+"eGender": eGender, 
+"sEmail": sEmail
+
+};
+
+```
+
+![Contract](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/expiration.png)
 
 
 **Send application rejection to customer**
+
 https://hook.integromat.com/2hs8inluvcgsg79vvcsqtd70znhrs65t 
 
 input:

@@ -225,10 +225,6 @@ https://hook.integromat.com/9pok51uratqwjukfnswiy52wzcnby2w8
 
 ```
 
-![Send contract](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/sendcontract.png)
-
-
-
 
 **Send contract signature to camunda:
 Sending decision whether contract gets accepted to Camunda from web form to waiting message trigger of a specific process instance via:**

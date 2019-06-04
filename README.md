@@ -197,7 +197,25 @@ The final premium is a sum total of all the insurances selected by the customer.
 
 
 **Sending answers of additional health questions from web form to waiting message trigger of a specific process instance done via:**
-![Send answers JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Sending%20answersjson.png)
+
+https://digibp-spiez.herokuapp.com/rest/message
+
+```
+{
+	"messageName" : "Message_38tpcvo",
+	"processInstanceId" : getUrlParameter("processInstanceId"),
+	"processVariables" : {
+		"bDisabilityOrBirthDefect" : 	{"value" : $("select[name=bDisabilityOrBirthDefect]" ).val()=="true", "type": "Boolean"},
+		"bOngoingTreatmentOrSurgery" : 	{"value" : $("select[name=bOngoingTreatmentOrSurgery]" ).val()=="true", "type": "Boolean"},
+		"bPastRejection" : 	{"value" :$("select[name=bPastRejection]" ).val()=="true", "type": "Boolean"},
+		"bDrugTaker" : 	{"value": $("select[name=bDrugTaker]" ).val()=="true", "type": "Boolean"},
+		"bHivInfected" : 	{"value" : $("select[name=bHivInfected]" ).val()=="true", "type": "Boolean"},
+		"fHeight" : 	{"value" : $("input[name=fHeight]" ).val(), "type": "Long"},
+		"fWeight" : 	{"value" : $("input[name=fWeight]" ).val(), "type": "Long"},
+		"bBodybuilder" : 	{"value" : $("select[name=bBodybuilder]" ).val()=="true", "type": "Boolean"}
+}
+	
+```
 
 
 **When the assessment of the application is done, the accepted or rejected data is going to be saved in our database, google drive table sheet persistently via an integromat service. The integromat service is triggered by:**

@@ -242,7 +242,7 @@ Expiration email
 "sEmail": sEmail
 } 
 ```
-![send expiration](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/expiration.png)
+![send expiration](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/expiration.png)
 
 
 ##  Database

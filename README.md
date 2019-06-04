@@ -219,10 +219,19 @@ The final premium is a sum total of all the insurances selected by the customer.
 
 
 **The following message is sent by integromat service to update application status of an already inserted data row in our application database. Currently it is only used to set for the stati: unsigned/signed/SignatureTimeExpired**
+
+```
+// {
+"processInstanceId": execution.processInstanceId, 
+"sStatus": "unsigned/signed/SignatureTimeExpired" 
+} 
+
+```
+
 ![Updating Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/setnewstatus.png)
 
 
-**Send contract information to customer**
+**Send contract information to customer:**
 
 https://hook.integromat.com/127ydyn8b6ikfghacoxam8t4v9dft11u
 
@@ -240,7 +249,7 @@ input:
 ![Contract](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/expiration.png)
 
 
-**Send application rejection to customer**
+**Send application rejection to customer:**
 
 https://hook.integromat.com/2hs8inluvcgsg79vvcsqtd70znhrs65t 
 
@@ -256,7 +265,7 @@ input:
 ![send rejection](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/expiration.png)
 
 
-**Send expiration email to customer**
+**Send expiration email to customer:**
 
 https://hook.integromat.com/nrxuk1b677b8fu8ui7i52t8y36rwwvck
 

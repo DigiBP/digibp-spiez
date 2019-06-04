@@ -178,6 +178,40 @@ The final premium is a sum total of all the insurances selected by the customer.
 ##  Integrations
 
 **The process starts with a web application form filled which is sent via AJAX sending JSON element to:**
+ 
+https:/digibp-spiez.herokuapp.com/rest/process-definition/key/Process_HealthInsurance/submit-form
+
+```
+{ 
+	"variables": 
+	{
+	"sFirstName" : {"value" : $("input[name=sFirstName]" ).val(),	"type": "String"},
+	"sLastName" : 	{"value" : $("input[name=sLastName]" ).val(),	"type": "String"},
+	"dBirthDate" : 	{"value" : $("input[name=dBirthDate]" ).val(),	"type": "String"},
+	"eGender" : 	{"value" : $("input[name=eGender]" ).val(), 	"type": "String"},
+	"nAge" :	{"value" : nAge, 	"type": "Long"},
+	"dStartDate" : 	{"value" : $("input[name=dStartDate]" ).val(),	"type": "String"},
+	"eCitizenShip" : 	{"value" : $("select[name=eCitizenShip]" ).val(),	"type": "String"},
+	"sStreet" : 	{"value" : $("input[name=sStreet]" ).val(), 	"type": "String"},
+	"nZipCode" : 	{"value" : $("input[name=nZipCode]" ).val(),	"type": "Long"},
+	"sCity" : 	{"value" : $("input[name=sCity]" ).val(), 	"type": "String"},
+	"sEmail" : 	{"value" : $("input[name=sEmail]" ).val(), 	"type": "String"},
+	"eBaseInsuranceType" : 	{"value" : $("input[name=eBasicInsuranceType]" ).val(), 	"type": "String"},
+	"eFranchise" : 	{"value" : $("select[name=eFranchise]" ).val(), 	"type": "String"},
+	"bAccidentCoverage" : 	{"value" : ($("input[name=bAccidentCoverage]:checked" ).val()=="on"),	"type": "Boolean"},
+	"bAlternativeInsurance" : 	{"value" :($("input[name=bAlternativeInsurance]" ).val()=="1"), 	"type": "Boolean"},
+	"eAlternativeInsuranceType":{"value" : $("select[name=eAlternativeInsuranceType]" ).val(),	"type": "String"},
+	"bDentalTreatment" : 	{"value": ($("input[name=bDentalTreatment]" ).val()=="1"), 	"type": "Boolean"},
+	"eDentalTreatmentCoverage": {"value": $("select[name=eDentalTreatmentCoverage]" ).val(), 	"type": "String"},
+	"bLifeInsurance" : 	{"value" :( $("input[name=bLifeInsurance]" ).val()=="1"), 	"type": "Boolean"},
+	"eLifeInsuranceCoverage" : 	{"value" : $("select[name=eLifeInsuranceCoverage]" ).val(), 	"type": "String"}
+	},
+	 "businessKey" : "thisIsMyDefaultBusinessKey"
+};
+	
+```
+
+
 ![ApplicationForm JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/startprocessjson.png)
 ![ApplicationForm](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration%201.png)
 

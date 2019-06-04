@@ -235,7 +235,7 @@ The final premium is a sum total of all the insurances selected by the customer.
 https://hook.integromat.com/nrxuk1b677b8fu8ui7i52t8y36rwwvck
 
 input:
-Expiration email
+
 ```
 // {"sLastName": sLastName, 
 "eGender": eGender, 

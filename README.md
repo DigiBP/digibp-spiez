@@ -271,12 +271,13 @@ The output sends back the URL :
 ```
 //
 {
-sContractUrl: https://drive.google.com/uc?export=download&id=1d2FwjgLpgEUsTBobrsDVBqH6ACs5hH1b
- } 
+sContractUrl:
+https://drive.google.com/uc?export=download&id=1d2FwjgLpgEUsTBobrsDVBqH6ACs5hH1b
+} 
 
 ```
 
-![Eledo JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/pdfeledo.png)
+![Eledo JSON](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/pdfeledo.png)
 
 
 **The contract is sent to customer via:**

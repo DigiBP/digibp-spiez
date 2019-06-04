@@ -214,7 +214,7 @@ https://digibp-spiez.herokuapp.com/rest/process-definition/key/Process_HealthIns
 ![ApplicationForm](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration%201.png)
 
 
-**For Additional Insurance, an email requesting additional details sent. email is defined in Integromat**
+**For Additional Insurance, an email requesting additional health questions is sent. email is defined in Integromat**
 
 https://hook.integromat.com/o73at2rbiaijc5ck5k9ia12j14rd2sqq
 
@@ -228,8 +228,6 @@ https://hook.integromat.com/o73at2rbiaijc5ck5k9ia12j14rd2sqq
 "sQuestionUrl": "http://root.chi-projects.ch/digibp-spiez-web/insurance-additional- questions.html?processInstanceId="+execution.processInstanceId+""
 } 
 ```
-
-![ApplicationForm JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Additonalquestionsjson.png)
 
 
 **Sending answers of additional health questions from web form to waiting message trigger of a specific process instance done via:**

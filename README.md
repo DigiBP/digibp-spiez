@@ -179,7 +179,7 @@ The final premium is a sum total of all the insurances selected by the customer.
 
 **The process starts with a web application form filled which is sent via AJAX sending JSON element to:**
  
-https:/digibp-spiez.herokuapp.com/rest/process-definition/key/Process_HealthInsurance/submit-form
+https://digibp-spiez.herokuapp.com/rest/process-definition/key/Process_HealthInsurance/submit-form
 
 ```
 { 
@@ -211,8 +211,6 @@ https:/digibp-spiez.herokuapp.com/rest/process-definition/key/Process_HealthInsu
 	
 ```
 
-
-![ApplicationForm JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/startprocessjson.png)
 ![ApplicationForm](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration%201.png)
 
 

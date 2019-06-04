@@ -231,10 +231,10 @@ The final premium is a sum total of all the insurances selected by the customer.
 
 
 **Send expiration email to customer**
-![send expiration]
-https://hook.integromat.com/nrxuk1b677b8fu8ui7i52t8y36rwwvck
-input:
 
+https://hook.integromat.com/nrxuk1b677b8fu8ui7i52t8y36rwwvck
+
+input:
 Expiration email
 ```
 // {"sLastName": sLastName, 
@@ -242,7 +242,7 @@ Expiration email
 "sEmail": sEmail
 } 
 ```
-(https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/expiration.png)
+![send expiration](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/expiration.png)
 
 
 ##  Database

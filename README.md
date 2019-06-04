@@ -211,6 +211,20 @@ The final premium is a sum total of all the insurances selected by the customer.
 
 
 **The contract is sent to customer via:**
+
+https://hook.integromat.com/9pok51uratqwjukfnswiy52wzcnby2w8
+
+```
+{
+"sLastName": sLastName, "
+"eGender": eGender,
+"sEmail": sEmail,
+"sQuestionUrl": "http://root.chi-projects.ch/digibp-spiez-web/insurance-confirm- contract.html?processInstanceId="+execution.processInstanceId+"", 
+"sContractUrl": sContractUrl
+} 
+
+```
+
 ![Send contract](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/sendcontract.png)
 
 

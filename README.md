@@ -183,6 +183,16 @@ The final premium is a sum total of all the insurances selected by the customer.
 
 
 **For Additional Insurance, an email requesting additional details sent. email is defined in Integromat**
+
+```
+// {
+"sLastName": sLastName,
+"eGender": eGender,
+"sEmail": sEmail,
+"sQuestionUrl": "http://root.chi-projects.ch/digibp-spiez-web/insurance-additional- questions.html?processInstanceId="+execution.processInstanceId+""
+} 
+```
+
 ![ApplicationForm JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Additonalquestionsjson.png)
 
 

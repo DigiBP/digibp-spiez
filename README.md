@@ -214,11 +214,7 @@ The final premium is a sum total of all the insurances selected by the customer.
 ![Send contract](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/sendcontract.png)
 
 
-**Receiving a decision from the customer whether a contract is accepted or not is sent to Camunda from web form to waiting message trigger of a specific process instance is done via:**
 
-
-
-![recieve mail](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/receivemail.png)
 
 **Send contract signature to camunda:
 Sending decision whether contract gets accepted to Camunda from web form to waiting message trigger of a specific process instance via:**

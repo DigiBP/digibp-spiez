@@ -221,7 +221,7 @@ The final premium is a sum total of all the insurances selected by the customer.
 ![recieve mail](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/receivemail.png)
 
 **Send contract signature to camunda:
-Sending decision whether contact get accepted to Camunda from web from to waiting message trigger of a specific process instance via:**
+Sending decision whether contract gets accepted to Camunda from web form to waiting message trigger of a specific process instance via:**
 
 https://digibp-spiez.herokuapp.com/rest/message
 
@@ -235,6 +235,9 @@ https://digibp-spiez.herokuapp.com/rest/message
 }
 
 ```
+
+![contractsign](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/contractsign.png)
+
 
 
 **The following message is sent by integromat service to update application status of an already inserted data row in our application database. Currently it is only used to set for the stati: unsigned/signed/SignatureTimeExpired**

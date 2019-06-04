@@ -209,6 +209,8 @@ The final premium is a sum total of all the insurances selected by the customer.
 **Create PDF and save PDF-URL to database 
 The following JSON element is sent to integromat to create a PDF via Eledo and send an update to our database with a url to the created pdf**
 
+![Eledo JSON](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/pdfeledo.png)
+
 https://hook.integromat.com/cen1nmnjc8fl8rwa2fhhdjfs5s84d8rp
 
 ```
@@ -277,8 +279,6 @@ https://drive.google.com/uc?export=download&id=1d2FwjgLpgEUsTBobrsDVBqH6ACs5hH1b
 
 ```
 
-![Eledo JSON](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/pdfeledo.png)
-
 
 **The contract is sent to customer via:**
 
@@ -299,6 +299,9 @@ https://hook.integromat.com/9pok51uratqwjukfnswiy52wzcnby2w8
 **Send contract signature to camunda:
 Sending decision whether contract gets accepted to Camunda from web form to waiting message trigger of a specific process instance via:**
 
+![contractsign](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/contractsign.png)
+
+
 https://digibp-spiez.herokuapp.com/rest/message
 
 ```
@@ -312,11 +315,10 @@ https://digibp-spiez.herokuapp.com/rest/message
 
 ```
 
-![contractsign](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/contractsign.png)
-
-
 
 **The following message is sent by integromat service to update application status of an already inserted data row in our application database. Currently it is only used to set for the stati: unsigned/signed/SignatureTimeExpired**
+
+![Updating Database](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/setnewstatus.png)
 
 ```
 // {
@@ -326,10 +328,10 @@ https://digibp-spiez.herokuapp.com/rest/message
 
 ```
 
-![Updating Database](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/setnewstatus.png)
-
 
 **Send contract information to customer:**
+
+![Contract](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/expiration.png)
 
 https://hook.integromat.com/127ydyn8b6ikfghacoxam8t4v9dft11u
 
@@ -344,10 +346,10 @@ input:
 
 ```
 
-![Contract](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/expiration.png)
-
 
 **Send application rejection to customer:**
+
+![send rejection](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/expiration.png)
 
 https://hook.integromat.com/2hs8inluvcgsg79vvcsqtd70znhrs65t 
 
@@ -360,10 +362,11 @@ input:
 };
 
 ```
-![send rejection](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/expiration.png)
 
 
 **Send expiration email to customer:**
+
+![send expiration](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/expiration.png)
 
 https://hook.integromat.com/nrxuk1b677b8fu8ui7i52t8y36rwwvck
 
@@ -375,7 +378,7 @@ input:
 "sEmail": sEmail
 } 
 ```
-![send expiration](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/expiration.png)
+
 
 
 ##  Database

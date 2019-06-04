@@ -177,6 +177,7 @@ The final premium is a sum total of all the insurances selected by the customer.
 
 ##  Integrations
 
+
 **The process starts with a web application form filled which is sent via AJAX sending JSON element to:**
  
 https://digibp-spiez.herokuapp.com/rest/process-definition/key/Process_HealthInsurance/submit-form
@@ -214,6 +215,8 @@ https://digibp-spiez.herokuapp.com/rest/process-definition/key/Process_HealthIns
 ![ApplicationForm](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration%201.png)
 
 
+
+
 **For Additional Insurance, an email requesting additional health questions is sent. email is defined in Integromat**
 
 https://hook.integromat.com/o73at2rbiaijc5ck5k9ia12j14rd2sqq
@@ -228,6 +231,8 @@ https://hook.integromat.com/o73at2rbiaijc5ck5k9ia12j14rd2sqq
 "sQuestionUrl": "http://root.chi-projects.ch/digibp-spiez-web/insurance-additional- questions.html?processInstanceId="+execution.processInstanceId+""
 } 
 ```
+
+
 
 
 **Sending answers of additional health questions from web form to waiting message trigger of a specific process instance done via:**
@@ -250,6 +255,8 @@ https://digibp-spiez.herokuapp.com/rest/message
 }
 	
 ```
+
+
 
 
 **When the assessment of the application is done, the accepted or rejected data is going to be saved in our database, google drive table sheet persistently via an integromat service. The integromat service is triggered by:**
@@ -322,6 +329,8 @@ For our further procedure we add 9770000 to calculate the policy number:
 nPolicyNumber=9770000+nRowNumber
 
 ![Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration2.png)
+
+
 
 
 **Create PDF and save PDF-URL to database 
@@ -397,6 +406,8 @@ https://drive.google.com/uc?export=download&id=1d2FwjgLpgEUsTBobrsDVBqH6ACs5hH1b
 ```
 
 
+
+
 **The contract is sent to customer via:**
 
 https://hook.integromat.com/9pok51uratqwjukfnswiy52wzcnby2w8
@@ -411,6 +422,8 @@ https://hook.integromat.com/9pok51uratqwjukfnswiy52wzcnby2w8
 } 
 
 ```
+
+
 
 
 **Send contract signature to camunda:
@@ -433,6 +446,8 @@ https://digibp-spiez.herokuapp.com/rest/message
 ```
 
 
+
+
 **The following message is sent by integromat service to update application status of an already inserted data row in our application database. Currently it is only used to set for the stati: unsigned/signed/SignatureTimeExpired**
 
 ![Updating Database](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/setnewstatus.png)
@@ -444,6 +459,8 @@ https://digibp-spiez.herokuapp.com/rest/message
 } 
 
 ```
+
+
 
 
 **Send contract information to customer:**
@@ -464,6 +481,8 @@ input:
 ```
 
 
+
+
 **Send application rejection to customer:**
 
 ![send rejection](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/expiration.png)
@@ -481,6 +500,8 @@ input:
 ```
 
 
+
+
 **Send expiration email to customer:**
 
 ![send expiration](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/expiration.png)
@@ -495,6 +516,7 @@ input:
 "sEmail": sEmail
 } 
 ```
+
 
 
 

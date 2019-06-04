@@ -269,9 +269,6 @@ The output is row number:
 For our further procedure we add 9770000 to calculate the policy number:
 nPolicyNumber=9770000+nRowNumber
 
-
-![Database JSON](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Savedataafterassessment.png)
-![Output](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/output.com.png)
 ![Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration2.png)
 
 

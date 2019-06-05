@@ -181,15 +181,16 @@ The following tools and software have been used for implementing the Health insu
 |Integromat | Integromat is a free tool to connect apps and automate workflows using a beautiful, no-code, visual builder.
 |Eledo | Eledo helps in automating documents by mapping data to get PDF.  Once you save and activate your document template, you can load new fields in Integromat immediately. Eledo prepares Web Form and REST API automatically. 
 |Gmail | Gmail is a free email service developed by Google. Users can access Gmail on the web and using third-party programs that synchronize email content through POP or IMAPprotocols. The service is notable among website developers for its early adoption of Ajax.  
-|Google Drive & Google Spreadsheet | Google Drive and Google Spreadsheet were used to store health-insurance-application data (also see previous section 'Database') 
+|Google Drive & Google Spreadsheet | Google Drive and Google Spreadsheet were used to store health-insurance-application data (also see previous section 'Database'). 
+|Visual Studio Code |  To create scripts and HTML-pages 'Visual Studio Code' was used.
 
 ## Automation
 Automation techniques and languages used:  
 
-**JavaScript and HTML**: Used in Webforms and Service tasks in Camunda. 
+**JavaScript, JSON-Object and HTML**: Used in Webforms and Service tasks in Camunda. 
 
 
-## Camunda step by step process
+## Camunda step by step process  (example run-through)
 
  **Step 1: Application process** 
 

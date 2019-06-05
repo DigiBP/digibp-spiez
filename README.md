@@ -156,7 +156,8 @@ Once the applicant gets an email with contract for basic or additional insurance
 
 
 ## Data Integration
-[Link to Data Integration documentation](!readme.integration.md)
+For a smooth process several tools were used to integrate Email, Webhooks, PDF-genereator etc. A complete documentation about the APIs and fields used you find in that link here:
+[Link to Data Integration documentation](readme.integration.md)
 
 
 ##  Database

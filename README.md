@@ -148,10 +148,10 @@ Once the applicant gets an email with contract for basic or additional insurance
 
 # Roles
 
-| Role  | Camunda Group | Description 
-| Agent | ApplicationAgent   | This human task role is in charge for deciding whether a applicant is eligible when our decision logic is not able to assess the application. 
-| IT-System | - | The IT-System handles the whole process on its own as far as the eligibilty descision logic allows it. 
-
+| Role  | Camunda  | Description   | 
+|--|--|--  |
+| Agent | ApplicationAgent  | This human task role is in charge for deciding whether a applicant is eligible when our decision logic is not able to assess the application.  | 
+| IT-System| - | The IT-System handles the whole process on its own as far as the eligibilty descision logic allows it.  | 
 
 #  Document and Databases
 

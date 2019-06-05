@@ -155,7 +155,8 @@ Once the applicant gets an email with contract for basic or additional insurance
 
 
 
-
+## Data Integration
+[Link to Data Integration documentation](!readme.integration.md)
 
 
 ##  Database

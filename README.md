@@ -178,7 +178,7 @@ The final premium is a sum total of all the insurances selected by the customer.
 
 There are 11 business cases implemented through the process flow of We-Care:
 
- **1. Basic Insurance Application Accepted:**
+**1. Basic Insurance Application Accepted:**
 After the candidate has filled the form for basic insurance without selecting any additional insurances,the application is accepted and a mail is sent to the applicant with the contract. An entry with applicant information and contract status “accepted” is entered in We-Care Application database (Google Sheet)
 
 **2. Basic Insurance Contract Signed:**

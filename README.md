@@ -54,7 +54,7 @@ The following chapter describes the basic idea behind the health insurance proce
 
 **Additional insurance:** If a customer wishes to apply for a supplementary insurance he can select from different models : Alterative, Dental and Life insurance by answering additional health questions.
 
-Based on the type of insurance selected, the price is calculated and contract is sent to the customer.when the customer signs the contract and sends it back to the company through email via integromat, it is saved in the database and the application process is closed.
+Based on the type of insurance selected, the price is calculated and contract is sent to the customer.when the customer signs the contract and sends it back to the company through email, it is saved in the database and the application process is closed.
 
 
 ## AS-IS Process

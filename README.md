@@ -179,19 +179,19 @@ The final premium is a sum total of all the insurances selected by the customer.
 There are 11 business cases implemented through the process flow of We-Care:
 
  **1. Basic Insurance Application Accepted:**
-After the candidate has filled the form only for basic insurance without selecting any supplementary insurances, in all cases the application is accepted and a mail is sent to the applicant with the contract. An entry with applicant information and contract status “accepted” is entered in We-Care Application database (Google Sheet)
+After the candidate has filled the form for basic insurance without selecting any additional insurances,the application is accepted and a mail is sent to the applicant with the contract. An entry with applicant information and contract status “accepted” is entered in We-Care Application database (Google Sheet)
 
 **2. Basic Insurance Contract Signed:**
-After the contract is accepted in the process for basic Insurance only, a mail containing contract as an attachment is sent to the applicant and a link to sign the contract. On clicking on this link, when applicant selects “accept", then the contract status is changed from “accepted” to “signed” in application database.
+After the contract is accepted in the process for basic Insurance, a mail containing contract as an attachment is sent to the applicant and a link to sign the contract. On clicking the link, when applicant selects “accept", the contract status is changed from “accepted” to “signed” in application database.
 
 **3. Basic Insurance Contract Unsigned:**
-After the contract is accepted in the process for basic Insurance only, a mail containing contract as an attachment is sent to the applicant and a link to sign the contract. On clicking on this link, when applicant selects “reject", then the contract status is changed from “accepted” to “unsigned” in application database.
+After the contract is accepted in the process for basic Insurance, a mail containing the contract as an attachment is sent to the applicant, along with a link to sign the contract. On clicking the link, when applicant selects “reject", the contract status is changed from “accepted” to “unsigned” in application database.
 
 **4. Additional Insurance Application Applied:**
-If the candidate has selected additional to basic also supplementary insurance, a mail  with a link is sent to the applicant. This link opens a new webform containing additional health questions. No database entry is created at this point of time.
+In case the candidate has selected additional to basic also supplementary insurance, a mail  with a link is sent to the applicant. This link opens a new webform containing additional health questions. No database entry is created at this point of time.
 
 **5. Additional insurance Application Accepted:**
-After filling the additional health questions, the eligibility of the applicant for supplementary insurance will be checked. If the elgibility factor has value less than “3” then the applicant is eligible. In this case,  the application is accepted and a mail is sent to the applicant with the contract. An entry with applicant information and contract status “accepted” is entered in We-Care application database.
+After filling the additional health questions, the eligibility of the applicant for additional insurance will be checked. If the eligibility factor has value less than “3” then the applicant is eligible. In this case,  the application is accepted and a mail is sent to the applicant with the contract. An entry with applicant information and contract status “accepted” is entered in We-Care application database.
 
 **6. Additional insurance Application Non-Eligible:**
 After filling the additional health questions, the eligibility of the applicant for supplementary insurance will be checked. If the elgibility factor has value greater than “3” then the applicant is non-eligible. In this case, the application is rejected and a mail is sent to the applicant for rejection. An entry with applicant information and contract status “non-eligible” is created in We-Care application database.

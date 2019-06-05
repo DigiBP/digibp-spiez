@@ -156,6 +156,7 @@ Once the applicant gets an email with contract for basic or additional insurance
 #  Document and Databases
 
 ## Contract PDF
+to be done
 
 ## Database
 The application run on the Heroku OpenSource platform.  Google Spreadsheet  is used as a database to save and read all customer data. The customer data is inserted into the database as soon the application is processed and the assessment is completed.
@@ -188,6 +189,11 @@ For a smooth process several tools were used to integrate Email, Webhooks, PDF-g
 Automation techniques and languages used:  
 
 **JavaScript, JSON-Object and HTML**: Used in Webforms and Service tasks in Camunda. 
+
+## Reasons for no AI
+1.	First of all a chat bot is relatively slow compared to filling a form in once. As a chat bot requires to process every question, it breaks the process flow, which could be frustrating for customer.
+2.	Our process is divided in basic and supplementary insurance. The flow in basic insurance is straightforward and automatic. But in case of additional insurance we need to ask additional questions and depending on assessment may require human intervention. Here the  implementing AI would be over-engineering and does not make any sense.
+3.	(Not objective but time critical) As you are aware about our group dynamics from our group of 3 involved in hands-on, the time is also not anymore realistic for us.
 
 
 # Camunda step by step process  (example run-through)

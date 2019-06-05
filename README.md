@@ -82,27 +82,62 @@ The following figure shows a visualization of our overall process.
 | ------------------ | 
 | ![alt text](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/health%20insurance%20process.png) |
 
-### Basic insurance process
+ ##  Business Cases
 
-| **Basic insurance process** | - |
+There are 11 business cases implemented through the process flow of We-Care:
+
+**1. Basic Insurance Application Accepted:**
+After the candidate has filled the form for basic insurance without selecting any additional insurances,the application is accepted and a mail is sent to the applicant with the contract. An entry with applicant information and contract status “accepted” is entered in We-Care Application database (Google Sheet)
+
+**2. Basic Insurance Contract Signed:**
+After the contract is accepted in the process for basic Insurance, an email containing contract as an attachment is sent to the applicant and a link to sign the contract. On clicking the link, when applicant selects “accept", the contract status is changed from “accepted” to “signed” in application database.
+
+**3. Basic Insurance Contract Unsigned:**
+After the contract is accepted in the process for basic Insurance, an email containing the contract as an attachment is sent to the applicant, along with a link to sign the contract. On clicking the link, when applicant selects “reject", the contract status is changed from “accepted” to “unsigned” in application database.
+
+**4. Additional Insurance Application Applied:**
+In case the candidate selects Basic and Additional insurances, an email  with a link is sent to the applicant. This link opens a new webform containing additional health questions. No database entry is created at this point of time.
+
+**5. Additional insurance Application Accepted:**
+After filling the additional health questions, the eligibility of the applicant for additional insurance will be checked. If the eligibility factor has value less than “3” then the applicant is eligible. In this case,  the application is accepted and an email is sent to the applicant with the contract. An entry with applicant information and contract status “accepted” is entered in We-Care application database.
+
+**6. Additional insurance Application Non-Eligible:**
+After filling the additional health questions, the eligibility of the applicant for additional insurance will be checked. If the eligibility factor has value greater than “3” then the applicant is non-eligible. In this case, the application is rejected and an email is sent to the applicant for rejection. An entry with applicant information and contract status “non-eligible” is created in We-Care application database.
+
+**7. Additional Insurance Human Decide:**
+After filling the additional health questions, the eligibility of the applicant for additional insurance will be checked. If the eligibility factor has exactly value  “3” then the manual task “Human-Decide" is invoked. Two user roles are defined Admin and "Hans Herbert” who can claim the process in Camunda and proceed with the execution to “accept” or “reject” the application. Depending on result of the assessment, an email with contract or a rejection email will be sent to the applicant and database entry with the corresponding contract status will be created in application database.
+
+**8. Additional Insurance Contract Signed:**
+After the contract is accepted in the process for additional insurance, an email containing contract as an attachment is sent to the applicant along with a link to sign the contract. On clicking the link, when applicant selects “accept", the contract status is changed from “accepted” to “signed” in application database.
+
+
+**9. Additional Insurance Contract Unsigned:**
+After the contract is accepted in the process for Additional insurance, an email containing contract as an attachment is sent to the applicant and a link to sign the contract. On clicking the link, when applicant selects reject, the contract status is changed from “accepted” to “unsigned” in application database.
+
+
+**10. Application expiration after 14 days:**
+Once the applicant gets an email with additional questions for additional insurance, he is given a period of 14 days to click on the link and answer the questions,after which the application expires. There is no entry created in database for the same.
+
+**11. Unsigned Contract Expiration after 30 days:**
+Once the applicant gets an email with contract for basic or additional insurance,he is required to accept or reject the offer by clicking on the link and confirming the contract within a period of 30 days, after which time the contract expires. when the contact expires, contract status is changed from “accepted” to “expired"  in the application database for the same.
+
+
+## Descision Logic
+
+### Eligiblity Logic
+
+| **Assess case subprocess** | - |
 | ------------------ | - |
-|The following image shows a comprehensive visualization of Basic Insurance process. |![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Basic%20insurance%20process.png) |
+|The following image shows a comprehensive visualization of our assess case sub process which checks the case for eligibility. | ![alt text](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/assess%20case%20subprocess.png) |
 
 
-### Additional insurance process
-
-| **Additional insurance process** | - |
+| **DRD to assess case used in sub process** | - |
 | ------------------ | - |
-|The following image shows a comprehensive visualization of our Additional insurance process and  the sub process- Assess case for checking eligibility. | ![alt text](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/assess%20case%20subprocess.png) |
-
-
-| **Additional insurance: DRD, Decision tables & rules** | - |
-| ------------------ | - |
-|The following image shows a comprehensive visualization of DRD, decision tables & rules for assessing the eligibility of the applicant for Additional Insurance. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/supplementary%20insurance.png) |
+|The following image shows a comprehensive visualization of DRD, decision tables & rules for assessing the eligibility of the applicant. Be aware that if no supplementary insurance has been selected the application is always accepted. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/supplementary%20insurance.png) |
 
 
 
-### Calculate price subprocess
+### Calculate Price Logic
 
 | **Calculate price subprocess** | - |
 | ------------------ | - |
@@ -173,44 +208,6 @@ A value is assigned to each of the parameter, “0” if it is true or “1” i
 
 The final premium is a sum total of all the insurances selected by the customer. A contract is prepared giving the breakup of all the costs of insurances selected and the total cost. The customer can accept or reject an offer within a period of 30 days. Insurance coverage starts from start date of the contract period mentioned in the policy document and is valid as soon as the customer accepts the offer and signs the contract.
  	
- ##  Business Cases
-
-There are 11 business cases implemented through the process flow of We-Care:
-
-**1. Basic Insurance Application Accepted:**
-After the candidate has filled the form for basic insurance without selecting any additional insurances,the application is accepted and a mail is sent to the applicant with the contract. An entry with applicant information and contract status “accepted” is entered in We-Care Application database (Google Sheet)
-
-**2. Basic Insurance Contract Signed:**
-After the contract is accepted in the process for basic Insurance, an email containing contract as an attachment is sent to the applicant and a link to sign the contract. On clicking the link, when applicant selects “accept", the contract status is changed from “accepted” to “signed” in application database.
-
-**3. Basic Insurance Contract Unsigned:**
-After the contract is accepted in the process for basic Insurance, an email containing the contract as an attachment is sent to the applicant, along with a link to sign the contract. On clicking the link, when applicant selects “reject", the contract status is changed from “accepted” to “unsigned” in application database.
-
-**4. Additional Insurance Application Applied:**
-In case the candidate selects Basic and Additional insurances, an email  with a link is sent to the applicant. This link opens a new webform containing additional health questions. No database entry is created at this point of time.
-
-**5. Additional insurance Application Accepted:**
-After filling the additional health questions, the eligibility of the applicant for additional insurance will be checked. If the eligibility factor has value less than “3” then the applicant is eligible. In this case,  the application is accepted and an email is sent to the applicant with the contract. An entry with applicant information and contract status “accepted” is entered in We-Care application database.
-
-**6. Additional insurance Application Non-Eligible:**
-After filling the additional health questions, the eligibility of the applicant for additional insurance will be checked. If the eligibility factor has value greater than “3” then the applicant is non-eligible. In this case, the application is rejected and an email is sent to the applicant for rejection. An entry with applicant information and contract status “non-eligible” is created in We-Care application database.
-
-**7. Additional Insurance Human Decide:**
-After filling the additional health questions, the eligibility of the applicant for additional insurance will be checked. If the eligibility factor has exactly value  “3” then the manual task “Human-Decide" is invoked. Two user roles are defined Admin and "Hans Herbert” who can claim the process in Camunda and proceed with the execution to “accept” or “reject” the application. Depending on result of the assessment, an email with contract or a rejection email will be sent to the applicant and database entry with the corresponding contract status will be created in application database.
-
-**8. Additional Insurance Contract Signed:**
-After the contract is accepted in the process for additional insurance, an email containing contract as an attachment is sent to the applicant along with a link to sign the contract. On clicking the link, when applicant selects “accept", the contract status is changed from “accepted” to “signed” in application database.
-
-
-**9. Additional Insurance Contract Unsigned:**
-After the contract is accepted in the process for Additional insurance, an email containing contract as an attachment is sent to the applicant and a link to sign the contract. On clicking the link, when applicant selects reject, the contract status is changed from “accepted” to “unsigned” in application database.
-
-
-**10. Application expiration after 14 days:**
-Once the applicant gets an email with additional questions for additional insurance, he is given a period of 14 days to click on the link and answer the questions,after which the application expires. There is no entry created in database for the same.
-
-**11. Unsigned Contract Expiration after 30 days:**
-Once the applicant gets an email with contract for basic or additional insurance,he is required to accept or reject the offer by clicking on the link and confirming the contract within a period of 30 days, after which time the contract expires. when the contact expires, contract status is changed from “accepted” to “expired"  in the application database for the same.
 
 
 ##  Integrations

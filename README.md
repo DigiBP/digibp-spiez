@@ -129,12 +129,6 @@ Once the applicant gets an email with contract for basic or additional insurance
 | ------------------ | - |
 |The following image shows a comprehensive visualization of DRD, decision tables & rules for assessing the eligibility of the applicant. Be aware that if no supplementary insurance has been selected the application is always accepted. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/supplementary%20insurance.png) |
 
-## Roles
-
-| Role  | Camunda Group | Description |
-| Agent | ApplicationAgent   | This human task role is in charge for deciding whether a applicant is eligible when our decision logic is not able to assess the application. |
-| IT-System | - | The IT-System handles the whole process on its own as far as the eligibilty descision logic allows it. |
-
 ## Calculate Price Logic
 
 | **Calculate price subprocess** | - |
@@ -152,7 +146,18 @@ Once the applicant gets an email with contract for basic or additional insurance
 | The following image shows a comprehensive visualization of our DRD, decision tables & rules to calculate the price for basic and additional insurance for individual customers. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Calculate%20price.png) |
 
 
-##  Database
+# Roles
+
+| Role  | Camunda Group | Description 
+| Agent | ApplicationAgent   | This human task role is in charge for deciding whether a applicant is eligible when our decision logic is not able to assess the application. 
+| IT-System | - | The IT-System handles the whole process on its own as far as the eligibilty descision logic allows it. 
+
+
+#  Document and Databases
+
+## Contract PDF
+
+## Database
 The application run on the Heroku OpenSource platform.  Google Spreadsheet  is used as a database to save and read all customer data. The customer data is inserted into the database as soon the application is processed and the assessment is completed.
 
 The business key in the database identifies the different customer applications and is the main key. 

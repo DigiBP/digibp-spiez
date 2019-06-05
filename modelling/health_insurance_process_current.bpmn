@@ -750,15 +750,35 @@ sContractUrl=object.sContractUrl;</camunda:script>
       <bpmn:endEvent id="EndEvent_0no78f4">
         <bpmn:incoming>SequenceFlow_12xiidx</bpmn:incoming>
       </bpmn:endEvent>
-      <bpmn:serviceTask id="Task_02ubr0z" name="Update status" camunda:expression="${test}">
+      <bpmn:serviceTask id="Task_updateExpirationStatus" name="Update status">
+        <bpmn:extensionElements>
+          <camunda:connector>
+            <camunda:inputOutput>
+              <camunda:inputParameter name="method">POST</camunda:inputParameter>
+              <camunda:inputParameter name="url">https://hook.integromat.com/y2v165rg1jjntnn5iax9umspik9llsxl</camunda:inputParameter>
+              <camunda:inputParameter name="payload">
+                <camunda:script scriptFormat="JavaScript">out=JSON.stringify({
+"processInstanceId": execution.processInstanceId,
+"sStatus": "signatureExpiration"
+});</camunda:script>
+              </camunda:inputParameter>
+              <camunda:inputParameter name="headers">
+                <camunda:map>
+                  <camunda:entry key="Content-Type">application/json</camunda:entry>
+                </camunda:map>
+              </camunda:inputParameter>
+            </camunda:inputOutput>
+            <camunda:connectorId>http-connector</camunda:connectorId>
+          </camunda:connector>
+        </bpmn:extensionElements>
         <bpmn:incoming>SequenceFlow_0x03iet</bpmn:incoming>
         <bpmn:outgoing>SequenceFlow_0gsh2g2</bpmn:outgoing>
         <bpmn:dataOutputAssociation id="DataOutputAssociation_0n74m1q">
           <bpmn:targetRef>DataStoreReference_customerData</bpmn:targetRef>
         </bpmn:dataOutputAssociation>
       </bpmn:serviceTask>
-      <bpmn:sequenceFlow id="SequenceFlow_0x03iet" sourceRef="StartEvent_0yvwfot" targetRef="Task_02ubr0z" />
-      <bpmn:sequenceFlow id="SequenceFlow_0gsh2g2" sourceRef="Task_02ubr0z" targetRef="Task_sendExpirationMail" />
+      <bpmn:sequenceFlow id="SequenceFlow_0x03iet" sourceRef="StartEvent_0yvwfot" targetRef="Task_updateExpirationStatus" />
+      <bpmn:sequenceFlow id="SequenceFlow_0gsh2g2" sourceRef="Task_updateExpirationStatus" targetRef="Task_sendExpirationMail" />
       <bpmn:sequenceFlow id="SequenceFlow_12xiidx" sourceRef="Task_sendExpirationMail" targetRef="EndEvent_0no78f4" />
       <bpmn:startEvent id="StartEvent_0yvwfot" name="30 days without signature">
         <bpmn:outgoing>SequenceFlow_0x03iet</bpmn:outgoing>
@@ -769,7 +789,7 @@ sContractUrl=object.sContractUrl;</camunda:script>
       <bpmn:documentation>test</bpmn:documentation>
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="eEligibilityDecisionByHuman" label="EligibilityDecisionByHuman" type="enum">
+          <camunda:formField id="eEligibilityDecisionByHuman" label="EligibilityDecisionByHuman" type="enum" defaultValue="_nothing">
             <camunda:validation>
               <camunda:constraint name="required" />
             </camunda:validation>
@@ -792,13 +812,10 @@ sContractUrl=object.sContractUrl;</camunda:script>
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="eCitizenShip" label="Citzienship" type="enum">
+          <camunda:formField id="eCitizenShip" label="Citzienship" type="string" defaultValue="${eCitizenShip}">
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
-            <camunda:value id="_CH" name="Switzerland" />
-            <camunda:value id="_DE" name="Germany" />
-            <camunda:value id="_OT" name="Other Countries" />
           </camunda:formField>
           <camunda:formField id="sStreet" label="Street" type="string">
             <camunda:validation>
@@ -820,108 +837,119 @@ sContractUrl=object.sContractUrl;</camunda:script>
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="eGender" label="Gender" type="enum">
+          <camunda:formField id="eGender" label="Gender" type="string" defaultValue="${eGender}">
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
-            <camunda:value id="_m" name="male" />
-            <camunda:value id="_f" name="female" />
           </camunda:formField>
-          <camunda:formField id="eBaseInsuranceType" label="Base insurance type" type="enum">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-            <camunda:value id="_hmo" name="HMO Model" />
-            <camunda:value id="_telmed" name="Telmed Model" />
-            <camunda:value id="_familyDoctor" name="Familiy Doctor Model" />
-            <camunda:value id="_standard" name="Standard Model" />
-          </camunda:formField>
-          <camunda:formField id="bAlternativeInsurance" label="Select alternative insurance" type="boolean">
+          <camunda:formField id="eBaseInsuranceType" label="Base insurance type" type="string" defaultValue="${eBaseInsuranceType}">
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="eAlternativeInsuranceType" label="Alternative insurance type" type="enum">
+          <camunda:formField id="bAlternativeInsurance" label="Select alternative insurance" type="boolean">
+            <camunda:properties>
+              <camunda:property id="disabled" value="disabled" />
+            </camunda:properties>
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
-            <camunda:value id="_chinese" name="Chinese medicine" />
-            <camunda:value id="_accupuncture" name="Accupuncture" />
-            <camunda:value id="_chineseAccupuncture" name="Chinese medicine and accupuncture" />
+          </camunda:formField>
+          <camunda:formField id="eAlternativeInsuranceType" label="Alternative insurance type" type="string" defaultValue="${eAlternativeInsuranceType}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
           </camunda:formField>
           <camunda:formField id="bDentalTreatment" label="Select dental treatment" type="boolean">
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="eDentalTreatmentCoverage" label="Coverage for dental treatment " type="enum">
+          <camunda:formField id="eDentalTreatmentCoverage" label="Coverage for dental treatment " type="string" defaultValue="${eDentalTreatmentCoverage}">
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
-            <camunda:value id="_2000" name="CHF 2&#39;000" />
-            <camunda:value id="_5000" name="CHF 5&#39;000" />
           </camunda:formField>
           <camunda:formField id="bLifeInsurance" label="Select life insurance" type="boolean">
+            <camunda:properties>
+              <camunda:property id="disabled" value="disabled" />
+            </camunda:properties>
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="eLifeInsuranceCoverage" label="Coverage by death" type="enum">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-            <camunda:value id="_100000" name="CHF 100&#39;000" />
-            <camunda:value id="_050000" name="CHF 50&#39;000" />
-          </camunda:formField>
-          <camunda:formField id="eFranchise" type="enum">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-            <camunda:value id="_0500" name="CHF 500" />
-            <camunda:value id="_1000" name="CHF 1&#39;000" />
-            <camunda:value id="_2500" name="CHF 2&#39;500" />
-          </camunda:formField>
-          <camunda:formField id="bAccidentCoverage" type="boolean">
+          <camunda:formField id="eLifeInsuranceCoverage" label="Coverage by death" type="string" defaultValue="${eLifeInsuranceCoverage}">
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="fWeight" type="long" defaultValue="0">
+          <camunda:formField id="eFranchise" label="Franchise" type="string" defaultValue="${eFranchise}">
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="fHeight" type="long" defaultValue="0">
+          <camunda:formField id="bAccidentCoverage" label="Should accidents be covered?" type="boolean">
+            <camunda:properties>
+              <camunda:property id="disabled" value="disabled" />
+            </camunda:properties>
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="bBodybuilder" type="boolean" defaultValue="false">
+          <camunda:formField id="fWeight" label="Weight" type="long" defaultValue="0">
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="bDisabilityOrBirthDefect" type="boolean" defaultValue="false">
+          <camunda:formField id="fHeight" label="Height" type="long" defaultValue="0">
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="bOngoingTreatmentOrSurgery" type="boolean" defaultValue="false">
+          <camunda:formField id="bBodybuilder" label="Is this person a bodybuilder?" type="boolean" defaultValue="false">
+            <camunda:properties>
+              <camunda:property id="disabled" value="disabled" />
+            </camunda:properties>
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="bPastRejection" type="boolean" defaultValue="false">
+          <camunda:formField id="bDisabilityOrBirthDefect" label="Does this person have a disability or a birth defect?" type="boolean" defaultValue="false">
+            <camunda:properties>
+              <camunda:property id="disabled" value="disabled" />
+            </camunda:properties>
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="bDrugTaker" type="boolean" defaultValue="false">
+          <camunda:formField id="bOngoingTreatmentOrSurgery" label="Does this person has an ongoing treatment or a surgery?" type="boolean" defaultValue="false">
+            <camunda:properties>
+              <camunda:property id="disabled" value="disabled" />
+            </camunda:properties>
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="bHivInfected" type="boolean" defaultValue="false">
+          <camunda:formField id="bPastRejection" label="Does this person ever received a rejection for a health insruance application?" type="boolean" defaultValue="false">
+            <camunda:properties>
+              <camunda:property id="disabled" value="disabled" />
+            </camunda:properties>
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="bDrugTaker" label="Does this person take drugs?" type="boolean" defaultValue="false">
+            <camunda:properties>
+              <camunda:property id="disabled" value="disabled" />
+            </camunda:properties>
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="bHivInfected" label="Is this person HIV infected?" type="boolean" defaultValue="false">
+            <camunda:properties>
+              <camunda:property id="disabled" value="disabled" />
+            </camunda:properties>
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
@@ -1185,17 +1213,17 @@ sContractUrl=object.sContractUrl;</camunda:script>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1i3c337_di" bpmnElement="SequenceFlow_1i3c337">
         <di:waypoint x="857" y="703" />
-        <di:waypoint x="857" y="1295" />
-        <di:waypoint x="909" y="1295" />
+        <di:waypoint x="857" y="1299" />
+        <di:waypoint x="909" y="1299" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="862" y="1141" width="60" height="27" />
+          <dc:Bounds x="862" y="1145" width="60" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_1ajtbg0_di" bpmnElement="Task_humanDecides">
-        <dc:Bounds x="909" y="1255" width="100" height="80" />
+        <dc:Bounds x="909" y="1259" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_125s3z0_di" bpmnElement="SequenceFlow_125s3z0">
-        <di:waypoint x="931" y="1335" />
+        <di:waypoint x="931" y="1339" />
         <di:waypoint x="931" y="1372" />
         <di:waypoint x="833" y="1372" />
         <di:waypoint x="833" y="754" />
@@ -1299,7 +1327,7 @@ sContractUrl=object.sContractUrl;</camunda:script>
         <di:waypoint x="2290" y="1033" />
         <di:waypoint x="2321" y="1033" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ServiceTask_05igniu_di" bpmnElement="Task_02ubr0z">
+      <bpmndi:BPMNShape id="ServiceTask_05igniu_di" bpmnElement="Task_updateExpirationStatus">
         <dc:Bounds x="2057" y="993" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="SubProcess_0rw4bq3_di" bpmnElement="SubProcess_124uoxx" isExpanded="true">

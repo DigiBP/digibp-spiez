@@ -109,9 +109,9 @@ The following figure shows a visualization of our overall process.
 | The following image shows a comprehensive visualization of our Calculate price subprocess. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Calculate.png) |
 
 
-| **Basic insurance decision tables** | - |
+| **Calculation of Person Factor** | - |
 | ------------------ | - |
-|The following image shows a comprehensive visualization of decision tables for calculation of npersonfactor used in calculating the price of basic and additional insurance. |![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/basicinsuranced.png) |
+|The following image shows a comprehensive visualization of decision tables for calculation of Person Factor used in calculating the price of basic and additional insurance.|![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/basicinsuranced.png) |
 
 
 | **Calculate price subprocess DRD, Decision table &Rules** | - |

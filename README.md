@@ -153,63 +153,6 @@ Once the applicant gets an email with contract for basic or additional insurance
 | ------------------ | - |
 | The following image shows a comprehensive visualization of our DRD, decision tables & rules to calculate the price for basic and additional insurance for individual customers. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Calculate%20price.png) |
 
-
-### Camunda step by step process
-
- **Step 1: Application process** 
-
-<p><img src="https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/application%20form.png" alt="alt text" style="float: right">   
-
-Customer applies for the health insurance by filling the web application form on the website:
-[we care](https://root.chi-projects.ch/digibp-spiez-web/index.html).In case of Basic health insurance, the customer is required to fill personal data and select from any of the 4 standard models on the webpage before clicking send. For additional Insurance, the customer can select from the three additional insurance models. The customer can select either one, two or all the three additional insurances depending on their needs and preferences. The price of the insurance varies based on the type of insurance or the combination of insurances selected. As soon as the application is sent with all relevant variables to herokuapp, camunda executes the assess case subprocess to check for eligibility. </p>
-
-
-
-**Step 2 : Basic Insurance process** 
-
-<p><img src="https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/basic%20insurance%20contract.png" alt="alt text" style="float: right">, 
- 
-Go to: [Heroku](https://digibp-spiez.herokuapp.com/app/welcome/default/#/login) Login with ID: demo, Password: demo, click on tasklist and select health insurance process. Camunda executes the sub process“Assess case”. For basic insurance, the input variables from the form (age, gender, zip code) are used to calculate a person factor, which is an eligibility score calculated based on output from two decision tables:calculate persondata(sPersonprofile), which assigns a value of highprice person, lowpriceperson or mediumpriceperson based on the age and gender and second decision table : calculate area(sAreatype) which assigns a value of lowpricearea, mediumprice area or highprice area based on the zipcode where a person lives. nPersonfactor is derived using sAreatype and spersonprofile as input to arrive at a value that is assigned to every Individual customer. This value is used to calculate the insurance price of basic as well as additional insurances for all customers.
-                         
-When the application is accepted, the price is calculated, and pdf of the contract is generated automatically via Eledo and an email with contract is sent through integromat to the customer. A time period of 30 days is given to the customer for signing the contract after which the contract expires. </p>
-
-
-**Step 3: Additional insurance process** 
-
-
-<p><img src="https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Additional%20health%20insurance%20process.png" alt="alt text" style="float: right"> In case of additional Insurance, the applicant selects the additional insurance option in the webpage. It is sent to digiherokuapp and camunda executes additional insurance process. An automatic email with a link is sent to the customer requesting additional details. A period of 14 days is given to fill the application. 
-As soon as the customer fills the additional details on the webpage, it is sent to digibpherokuapp and camunda starts the assess case sub process. 
-
-The assessment subprocess takes all the input variables provided such as disabilities, previous health issues, drug addictions, medical history etc.,Based on the height and weight of the applicant BMI is calculated and this is used as one of the parameters to calculate the eligibility score. A rule is used to calculate the eligibility for additional insurance.
-
-**bDisabilityOrBirthDefect+bOngoingTreatmentOrSurgery+bPastRejection+bDrugTaker+bHivInfected+bObese**
-
-A value is assigned to each of the parameter, “0” if it is true or “1” if it is false. An applicant with a score of greater than 3 is automatically rejected. If a person has a score of 3 then he is eligible for manual assessment done by an underwriter in the back office, which is shown as a human task in our process. A score of less than 3 makes an applicant eligible for additional insurance, in which case the price is calculated, and contract sent. A period of is 30 days is given to sign the document, after which the contract expires.The status in the database is updated and an email is sent to the customer informing him about the expired contract.  In case of rejection the same is notified.</p>
-
-**Step 4: Calculate price**
-
-**Basic Insurance:** The insurance premium depends on the basic insurance model selected and the preferred franchise. The end price is calculated by multiplying nPersonfactor to the nbasepricebasicInsurance selected. 
-
-                                 nBasePriceBasicInsurance*nPersonfactor
-
-**Additional insurance:** 
-
-- Dental Insurance: A customer is eligible for dental insurance, if and only if he has had a previous dental insurance coverage. The cost of the Insurance depends on the insurance coverage of CHF 2000 or CHF5000 per year. The final cost is calculated using the rule 
-
-                                  nBasePriceDentalInsurance*nPersonfactor
-
-- Alternative Insurance: The customer can benefit from applying for 3 Alternative insurance offerings: Chinese, acupuncture & a combination of both. The cost is calculated based on the model selected. 
-
-                                   nBasePriceAlternativeinsurance*nPersonfactor
-
-- Life insurance: is based on the total coverage the customer wants to select for. Two options of a total coverage of 100000 & 50000 are offered to the customer. The final price is calculated using the rule
-
-                                    nBasePriceLifeInsurance*nPersonfactor
-
-The final premium is a sum total of all the insurances selected by the customer. A contract is prepared giving the breakup of all the costs of insurances selected and the total cost. The customer can accept or reject an offer within a period of 30 days. Insurance coverage starts from start date of the contract period mentioned in the policy document and is valid as soon as the customer accepts the offer and signs the contract.
- 	
-
-
 ##  Integrations
 
 
@@ -582,6 +525,62 @@ The following tools and software have been used for implementing the Health insu
 Automation techniques and languages used:  
 
 **JavaScript and HTML**: Used in Webforms and Service tasks in Camunda. 
+
+### Camunda step by step process
+
+ **Step 1: Application process** 
+
+<p><img src="https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/application%20form.png" alt="alt text" style="float: right">   
+
+Customer applies for the health insurance by filling the web application form on the website:
+[we care](https://root.chi-projects.ch/digibp-spiez-web/index.html).In case of Basic health insurance, the customer is required to fill personal data and select from any of the 4 standard models on the webpage before clicking send. For additional Insurance, the customer can select from the three additional insurance models. The customer can select either one, two or all the three additional insurances depending on their needs and preferences. The price of the insurance varies based on the type of insurance or the combination of insurances selected. As soon as the application is sent with all relevant variables to herokuapp, camunda executes the assess case subprocess to check for eligibility. </p>
+
+
+
+**Step 2 : Basic Insurance process** 
+
+<p><img src="https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/basic%20insurance%20contract.png" alt="alt text" style="float: right">, 
+ 
+Go to: [Heroku](https://digibp-spiez.herokuapp.com/app/welcome/default/#/login) Login with ID: demo, Password: demo, click on tasklist and select health insurance process. Camunda executes the sub process“Assess case”. For basic insurance, the input variables from the form (age, gender, zip code) are used to calculate a person factor, which is an eligibility score calculated based on output from two decision tables:calculate persondata(sPersonprofile), which assigns a value of highprice person, lowpriceperson or mediumpriceperson based on the age and gender and second decision table : calculate area(sAreatype) which assigns a value of lowpricearea, mediumprice area or highprice area based on the zipcode where a person lives. nPersonfactor is derived using sAreatype and spersonprofile as input to arrive at a value that is assigned to every Individual customer. This value is used to calculate the insurance price of basic as well as additional insurances for all customers.
+                         
+When the application is accepted, the price is calculated, and pdf of the contract is generated automatically via Eledo and an email with contract is sent through integromat to the customer. A time period of 30 days is given to the customer for signing the contract after which the contract expires. </p>
+
+
+**Step 3: Additional insurance process** 
+
+
+<p><img src="https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Additional%20health%20insurance%20process.png" alt="alt text" style="float: right"> In case of additional Insurance, the applicant selects the additional insurance option in the webpage. It is sent to digiherokuapp and camunda executes additional insurance process. An automatic email with a link is sent to the customer requesting additional details. A period of 14 days is given to fill the application. 
+As soon as the customer fills the additional details on the webpage, it is sent to digibpherokuapp and camunda starts the assess case sub process. 
+
+The assessment subprocess takes all the input variables provided such as disabilities, previous health issues, drug addictions, medical history etc.,Based on the height and weight of the applicant BMI is calculated and this is used as one of the parameters to calculate the eligibility score. A rule is used to calculate the eligibility for additional insurance.
+
+**bDisabilityOrBirthDefect+bOngoingTreatmentOrSurgery+bPastRejection+bDrugTaker+bHivInfected+bObese**
+
+A value is assigned to each of the parameter, “0” if it is true or “1” if it is false. An applicant with a score of greater than 3 is automatically rejected. If a person has a score of 3 then he is eligible for manual assessment done by an underwriter in the back office, which is shown as a human task in our process. A score of less than 3 makes an applicant eligible for additional insurance, in which case the price is calculated, and contract sent. A period of is 30 days is given to sign the document, after which the contract expires.The status in the database is updated and an email is sent to the customer informing him about the expired contract.  In case of rejection the same is notified.</p>
+
+**Step 4: Calculate price**
+
+**Basic Insurance:** The insurance premium depends on the basic insurance model selected and the preferred franchise. The end price is calculated by multiplying nPersonfactor to the nbasepricebasicInsurance selected. 
+
+                                 nBasePriceBasicInsurance*nPersonfactor
+
+**Additional insurance:** 
+
+- Dental Insurance: A customer is eligible for dental insurance, if and only if he has had a previous dental insurance coverage. The cost of the Insurance depends on the insurance coverage of CHF 2000 or CHF5000 per year. The final cost is calculated using the rule 
+
+                                  nBasePriceDentalInsurance*nPersonfactor
+
+- Alternative Insurance: The customer can benefit from applying for 3 Alternative insurance offerings: Chinese, acupuncture & a combination of both. The cost is calculated based on the model selected. 
+
+                                   nBasePriceAlternativeinsurance*nPersonfactor
+
+- Life insurance: is based on the total coverage the customer wants to select for. Two options of a total coverage of 100000 & 50000 are offered to the customer. The final price is calculated using the rule
+
+                                    nBasePriceLifeInsurance*nPersonfactor
+
+The final premium is a sum total of all the insurances selected by the customer. A contract is prepared giving the breakup of all the costs of insurances selected and the total cost. The customer can accept or reject an offer within a period of 30 days. Insurance coverage starts from start date of the contract period mentioned in the policy document and is valid as soon as the customer accepts the offer and signs the contract.
+ 	
+
 
 ## License
 - [Apache License, Version 2.0](https://github.com/DigiBP/digibp-archetype-camunda-boot/blob/master/LICENSE)

@@ -111,16 +111,16 @@
             <h2>Personal Data</h2>
             <div class="row" style="padding:.5em;">
               <div class="col-md-3">
-                <input type="text" name="sFirstName" placeholder="First name" value="Christopher" required="required" />
+                <input type="text" name="sFirstName" placeholder="First name" value="" required="required" />
               </div>
               <div class="col-md-3">
-                <input type="text" name="sLastName" placeholder="Last name" value = "Vogel" required="required" />
+                <input type="text" name="sLastName" placeholder="Last name" value = "" required="required" />
               </div>
               <div class="col-md-3">
-                <input type="date" name="dBirthDate" placeholder="Birth date" value="1992-08-10" required="required" />
+                <input type="date" name="dBirthDate" placeholder="Birth date" value="" required="required" />
               </div>
               <div class="col-md-2">
-                <input type="number" name="nZipCode" placeholder="ZIP" min="1000" max="9999" value ="4242" required="required" />
+                <input type="number" name="nZipCode" placeholder="ZIP" min="1000" max="9999" value ="" required="required" />
               </div>
               <div class="col-md-1">
                 <input type="hidden" id="eGender" name="eGender" value="_m" />
@@ -313,10 +313,10 @@ Worldwide insurance cover"> <i class="fas  fa-5x fa-tooth"></i> Dental treatment
           <div class="form-box">
             <h2>Personal data</h2>
             <div class="row">
-              <div class="col-md-4">
+              <!--<div class="col-md-4">
                 <label for="exampleInputEmail1">Start date of contract</label>
                 <input type="date" name="dStartDate" placeholder="Start date" value="1999-01-01"  required="required">
-              </div>
+              </div>-->
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email address</label>
@@ -477,7 +477,7 @@ function formatDate(date) {
 									"dBirthDate" : 				{"value" : $("input[name=dBirthDate]" ).val(),			"type": "String"},
 									"eGender" : 				{"value" : $("input[name=eGender]" ).val(), 			"type": "String"},
 									"nAge" :					{"value" : nAge, 										"type": "Long"},
-									"dStartDate" : 				{"value" : $("input[name=dStartDate]" ).val(),			"type": "String"},
+									//"dStartDate" : 				{"value" : $("input[name=dStartDate]" ).val(),			"type": "String"},
 									"eCitizenShip" : 			{"value" : $("select[name=eCitizenShip]" ).val(),		"type": "String"},
 									"sStreet" : 				{"value" : $("input[name=sStreet]" ).val(), 			"type": "String"},
 									"nZipCode" : 				{"value" : $("input[name=nZipCode]" ).val(),			"type": "Long"},

@@ -92,7 +92,7 @@ The following figure shows a visualization of our overall process.
 
 | **Basic insurance decision tables** | - |
 | ------------------ | - |
-|The following image shows a comprehensive visualization of decision tables for calculation of npersonfactor used to calculate the price of basic and additional insurance. |![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/basicinsuranced.png) |
+|The following image shows a comprehensive visualization of decision tables for calculation of npersonfactor used in calculating the price of basic and additional insurance. |![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/basicinsuranced.png) |
 
 
 ### Additional insurance process
@@ -117,7 +117,7 @@ The following figure shows a visualization of our overall process.
 
 | **Calculate price subprocess DRD, Decision table &Rules** | - |
 | ------------------ | - |
-| The following image shows a comprehensive visualization of our DRD, decision tables & rules to calculate the price for individual customers. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Calculate%20price.png) |
+| The following image shows a comprehensive visualization of our DRD, decision tables & rules to calculate the price for basic and additional insurance for individual customers. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Calculate%20price.png) |
 
 
 ### Camunda step by step process

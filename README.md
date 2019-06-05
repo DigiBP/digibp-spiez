@@ -565,7 +565,7 @@ The application run on the Heroku OpenSource platform.  Google Spreadsheet  is u
 
 The business key in the database identifies the different customer applications and is the main key. 
 
-All personal contact details of applicants are stored in the database columns (A-L). Type of insurance is stored in columns (M-T) The health status of customers is shown in the columns (V-AG) . The price fo the different options of health insurance selected for each applicant are stored in columns Ah-An. every time the status of the application is updated it is stored in colums Ao to Ar and finally the policy number and the pdf of signed contract are stored in columns Ar and As respectively. 
+All personal contact details of applicants are stored in the database columns:A-L. Type of insurance is stored in columns M-T The health status of customers is shown in the columns V-AG. The price fo the different options of health insurance selected for each applicant are stored in columns AH-AN. Every time the status of the application is updated it is stored in columns AO-AR and finally the policy number and the pdf of signed contract are stored in columns AR and AS respectively. 
 [Link to Database](https://docs.google.com/spreadsheets/d/1vylyVyxa2TxJ6EUE9TZ10fDxG6PzmvdVn69UXdBo5j0/edit?usp=sharing) 
 
 

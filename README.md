@@ -71,63 +71,138 @@ Based on the type of insurance selected, the price is calculated and contract is
 
 
 ## Overall Health Insurance Process
-The figure below shows a simple visualization of our overall process. The following chapter is divided into 3 sections to give a comprehensive visualization of the digitalized health insurance process:
-- Basic insurance process
-- Additional insurance process
-- Calculate price
+The figure below shows a simple visualization of our process. The following chapter is divided into two main process branches, (Basic insurance process and Additional insurance process) which will come together for application eligibility. Afterwards, the price of the health insurances get calculated, PDF document will be generated, the contract will be sent to the customer and he or she has to confirm it. The following figure shows a visualization of our overall process. 
 
-
-## Overall process
-The following figure shows a visualization of our overall process. 
-
-| **Overall process** | 
+| **BPMN 2.0 Diagramm of our overall process** | 
 | ------------------ | 
 | ![alt text](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/health%20insurance%20process.png) |
+	
 
-### Basic insurance process
+##  Business Cases
 
-| **Basic insurance process** | - |
+There are 11 business cases implemented through the process flow of We-Care:
+
+**1. Basic Insurance Application Accepted:**
+After the candidate has filled the form for basic insurance without selecting any additional insurances,the application is accepted and a mail is sent to the applicant with the contract. An entry with applicant information and contract status “accepted” is entered in We-Care Application database (Google Sheet)
+
+**2. Basic Insurance Contract Signed:**
+After the contract is accepted in the process for basic Insurance, an email containing contract as an attachment is sent to the applicant and a link to sign the contract. On clicking the link, when applicant selects “accept", the contract status is changed from “accepted” to “signed” in application database.
+
+**3. Basic Insurance Contract Unsigned:**
+After the contract is accepted in the process for basic Insurance, an email containing the contract as an attachment is sent to the applicant, along with a link to sign the contract. On clicking the link, when applicant selects “reject", the contract status is changed from “accepted” to “unsigned” in application database.
+
+**4. Additional Insurance Application Applied:**
+In case the candidate selects Basic and Additional insurances, an email  with a link is sent to the applicant. This link opens a new webform containing additional health questions. No database entry is created at this point of time.
+
+**5. Additional insurance Application Accepted:**
+After filling the additional health questions, the eligibility of the applicant for additional insurance will be checked. If the eligibility factor has value less than “3” then the applicant is eligible. In this case,  the application is accepted and an email is sent to the applicant with the contract. An entry with applicant information and contract status “accepted” is entered in We-Care application database.
+
+**6. Additional insurance Application Non-Eligible:**
+After filling the additional health questions, the eligibility of the applicant for additional insurance will be checked. If the eligibility factor has value greater than “3” then the applicant is non-eligible. In this case, the application is rejected and an email is sent to the applicant for rejection. An entry with applicant information and contract status “non-eligible” is created in We-Care application database.
+
+**7. Additional Insurance Human Decide:**
+After filling the additional health questions, the eligibility of the applicant for additional insurance will be checked. If the eligibility factor has exactly value  “3” then the manual task “Human-Decide" is invoked. Two user roles are defined Admin and "Hans Herbert” who can claim the process in Camunda and proceed with the execution to “accept” or “reject” the application. Depending on result of the assessment, an email with contract or a rejection email will be sent to the applicant and database entry with the corresponding contract status will be created in application database.
+
+**8. Additional Insurance Contract Signed:**
+After the contract is accepted in the process for additional insurance, an email containing contract as an attachment is sent to the applicant along with a link to sign the contract. On clicking the link, when applicant selects “accept", the contract status is changed from “accepted” to “signed” in application database.
+
+**9. Additional Insurance Contract Unsigned:**
+After the contract is accepted in the process for Additional insurance, an email containing contract as an attachment is sent to the applicant and a link to sign the contract. On clicking the link, when applicant selects reject, the contract status is changed from “accepted” to “unsigned” in application database.
+
+**10. Application expiration after 14 days:**
+Once the applicant gets an email with additional questions for additional insurance, he is given a period of 14 days to click on the link and answer the questions,after which the application expires. There is no entry created in database for the same.
+
+**11. Unsigned Contract Expiration after 30 days:**
+Once the applicant gets an email with contract for basic or additional insurance,he is required to accept or reject the offer by clicking on the link and confirming the contract within a period of 30 days, after which time the contract expires. when the contact expires, contract status is changed from “accepted” to “expired"  in the application database for the same.
+
+
+# Decision Logic
+
+## Eligiblity Logic
+
+| **Assess case subprocess** | - |
 | ------------------ | - |
-|The following image shows a comprehensive visualization of Basic Insurance process. |![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Basic%20insurance%20process.png) |
+|The following image shows a comprehensive visualization of our assess case sub process which checks the case for eligibility. | ![alt text](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/assess%20case%20subprocess.png) |
 
-| **Basic insurance decision tables** | - |
+
+| **DRD to assess case used in sub process** | - |
 | ------------------ | - |
-|The following image shows a comprehensive visualization of decision tables for calculation of npersonfactor used in calculating the price of basic and additional insurance. |![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/basicinsuranced.png) |
+|The following image shows a comprehensive visualization of DRD, decision tables & rules for assessing the eligibility of the applicant. Be aware that if no supplementary insurance has been selected the application is always accepted. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/supplementary%20insurance.png) |
 
-
-### Additional insurance process
-
-| **Additional insurance process** | - |
-| ------------------ | - |
-|The following image shows a comprehensive visualization of our Additional insurance process and  the sub process- Assess case for checking eligibility. | ![alt text](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/assess%20case%20subprocess.png) |
-
-
-| **Additional insurance: DRD, Decision tables & rules** | - |
-| ------------------ | - |
-|The following image shows a comprehensive visualization of DRD, decision tables & rules for assessing the eligibility of the applicant for Additional Insurance. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/supplementary%20insurance.png) |
-
-
-
-### Calculate price subprocess
+## Calculate Price Logic
 
 | **Calculate price subprocess** | - |
 | ------------------ | - |
 | The following image shows a comprehensive visualization of our Calculate price subprocess. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Calculate.png) |
 
 
-| **Calculate price subprocess DRD, Decision table &Rules** | - |
+| **Calculation of Person Factor** | - |
+| ------------------ | - |
+|The following image shows a comprehensive visualization of decision tables for calculation of Person Factor used in calculating the price of basic and additional insurance.|![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/basicinsuranced.png) |
+
+
+| **Calculate price subprocess DRD, Decision table & Rules** | - |
 | ------------------ | - |
 | The following image shows a comprehensive visualization of our DRD, decision tables & rules to calculate the price for basic and additional insurance for individual customers. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Calculate%20price.png) |
 
 
-### Camunda step by step process
+# Roles
+
+| Role  | Camunda  | Description   | 
+|--|--|--  |
+| Agent | ApplicationAgent  | This human task role is in charge for deciding whether a applicant is eligible when our decision logic is not able to assess the application.  | 
+| IT-System| - | The IT-System handles the whole process on its own as far as the eligibilty descision logic allows it.  | 
+
+
+#  Document and Databases
+
+## Contract PDF
+to be done
+
+## Database
+The application run on the Heroku OpenSource platform.  Google Spreadsheet  is used as a database to save and read all customer data. The customer data is inserted into the database as soon the application is processed and the assessment is completed.
+
+The business key in the database identifies the different customer applications and is the main key. 
+
+All personal contact details of applicants are stored in the database columns:A-L. Type of insurance is stored in columns M-T The health status of customers is shown in the columns V-AG. The price fo the different options of health insurance selected for each applicant are stored in columns AH-AN. Every time the status of the application is updated it is stored in columns AO-AR and finally the policy number and the pdf of signed contract are stored in columns AR and AS respectively. 
+[Link to Database](https://docs.google.com/spreadsheets/d/1vylyVyxa2TxJ6EUE9TZ10fDxG6PzmvdVn69UXdBo5j0/edit?usp=sharing) 
+
+
+# Tools and Software
+The following tools and software have been used for implementing the Health insurance process
+
+| Tool / Software  | Description |
+| ------------- | ------------------ |
+| Camunda Modeler | The Camunda Modeler is used to create BPMN, CMMN and DMN models. The modeler is based on [bpmn.io] (http://bpmn.io/).  |
+| GitHub| Github is used for collaboration and versioning of the programming code as well as the models. |
+|Heroku|Heroku is a PaaS (Platform as a Services) which is used to quickly build, run, and operate the Camunda in the cloud. |
+|Integromat | Integromat is a free tool to connect apps and automate workflows using a beautiful, no-code, visual builder.
+|Eledo | Eledo helps in automating documents by mapping data to get PDF.  Once you save and activate your document template, you can load new fields in Integromat immediately. Eledo prepares Web Form and REST API automatically. 
+|Gmail | Gmail is a free email service developed by Google. Users can access Gmail on the web and using third-party programs that synchronize email content through POP or IMAPprotocols. The service is notable among website developers for its early adoption of Ajax.  
+|Google Drive & Google Spreadsheet | Google Drive and Google Spreadsheet were used to store health-insurance-application data (also see previous section 'Database'). 
+|Visual Studio Code |  To create scripts and HTML-pages 'Visual Studio Code' was used.
+
+# Data Integration
+For a smooth process several tools were used to integrate Email, Webhooks, PDF-genereator etc. A complete documentation about the APIs and fields used you find in that link here:
+[Link to Data Integration documentation](readme.integration.md)
+
+## Automation
+Automation techniques and languages used:  
+
+**JavaScript, JSON-Object and HTML**: Used in Webforms and Service tasks in Camunda. 
+
+## Reasons for no AI
+1.	First of all a chat bot is relatively slow compared to filling a form . As a chatbot requires to process every question, it breaks the process flow, which could be frustrating for the customer.
+2.	Our process is divided into basic and additional insurance. The flow in basic insurance is straightforward and automatic. But in case of additional insurance we need to ask additional questions and depending on assessment, may require human intervention. Here 	implementing AI would be over-engineering and does not make any sense.
+
+# Camunda step by step process  (example run-through)
 
  **Step 1: Application process** 
 
 <p><img src="https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/application%20form.png" alt="alt text" style="float: right">   
 
 Customer applies for the health insurance by filling the web application form on the website:
-[WE CARE](https://root.chi-projects.ch/digibp-spiez-web/index.html). In case of Basic health insurance, the customer is required to fill personal data and select from any of the 4 standard models on the webpage before clicking send. For additional Insurance, the customer can select from the three additional insurance models. The customer can select either one, two or all the three additional insurances depending on their needs and preferences. The price of the insurance varies based on the type of insurance or the combination of insurances selected. As soon as the application is sent with all relevant variables to herokuapp, camunda executes the assess case subprocess to check for eligibility. </p>
+[we care](https://root.chi-projects.ch/digibp-spiez-web/index.html).In case of Basic health insurance, the customer is required to fill personal data and select from any of the 4 standard models on the webpage before clicking send. For additional Insurance, the customer can select from the three additional insurance models. The customer can select either one, two or all the three additional insurances depending on their needs and preferences. The price of the insurance varies based on the type of insurance or the combination of insurances selected. As soon as the application is sent with all relevant variables to herokuapp, camunda executes the assess case subprocess to check for eligibility. </p>
 
 
 
@@ -135,7 +210,7 @@ Customer applies for the health insurance by filling the web application form on
 
 <p><img src="https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/basic%20insurance%20contract.png" alt="alt text" style="float: right">, 
  
-The only eligibilty criteria for basic insurance is that the applicant has to be a residing in Switzerland. The input variables from the form (age, gender, zip code) are used to calculate a person factor, which is an  score calculated based on output from two decision tables:calculate persondata(sPersonprofile), which assigns a value of highprice person, lowpriceperson or mediumpriceperson based on the age and gender and second decision table : calculate area(sAreatype) which assigns a value of lowpricearea, mediumprice area or highprice area based on the zipcode. nPersonfactor is derived using sAreatype and spersonprofile as input to arrive at a value that is assigned to every Individual customer. This value is used to calculate the insurance price of basic as well as additional insurances for all customers.
+Go to: [Heroku](https://digibp-spiez.herokuapp.com/app/welcome/default/#/login) Login with ID: demo, Password: demo, click on tasklist and select health insurance process. Camunda executes the sub process“Assess case”. For basic insurance, the input variables from the form (age, gender, zip code) are used to calculate a person factor, which is an eligibility score calculated based on output from two decision tables:calculate persondata(sPersonprofile), which assigns a value of highprice person, lowpriceperson or mediumpriceperson based on the age and gender and second decision table : calculate area(sAreatype) which assigns a value of lowpricearea, mediumprice area or highprice area based on the zipcode where a person lives. nPersonfactor is derived using sAreatype and spersonprofile as input to arrive at a value that is assigned to every Individual customer. This value is used to calculate the insurance price of basic as well as additional insurances for all customers.
                          
 When the application is accepted, the price is calculated, and pdf of the contract is generated automatically via Eledo and an email with contract is sent through integromat to the customer. A time period of 30 days is given to the customer for signing the contract after which the contract expires. </p>
 
@@ -174,418 +249,7 @@ A value is assigned to each of the parameter, “0” if it is true or “1” i
 
 The final premium is a sum total of all the insurances selected by the customer. A contract is prepared giving the breakup of all the costs of insurances selected and the total cost. The customer can accept or reject an offer within a period of 30 days. Insurance coverage starts from start date of the contract period mentioned in the policy document and is valid as soon as the customer accepts the offer and signs the contract.
  	
- ##  Business Cases
 
-There are 11 business cases implemented through the process flow of We-Care:
-
-**1. Basic Insurance Application Accepted:**
-After the candidate has filled the form for basic insurance without selecting any additional insurances,the application is accepted and a mail is sent to the applicant with the contract. An entry with applicant information and contract status “accepted” is entered in We-Care Application database (Google Sheet)
-
-**2. Basic Insurance Contract Signed:**
-After the contract is accepted in the process for basic Insurance, an email containing contract as an attachment is sent to the applicant and a link to sign the contract. On clicking the link, when applicant selects “accept", the contract status is changed from “accepted” to “signed” in application database.
-
-**3. Basic Insurance Contract Unsigned:**
-After the contract is accepted in the process for basic Insurance, an email containing the contract as an attachment is sent to the applicant, along with a link to sign the contract. On clicking the link, when applicant selects “reject", the contract status is changed from “accepted” to “unsigned” in application database.
-
-**4. Additional Insurance Application Applied:**
-In case the candidate selects Basic and Additional insurances, an email  with a link is sent to the applicant. This link opens a new webform containing additional health questions. No database entry is created at this point of time.
-
-**5. Additional insurance Application Accepted:**
-After filling the additional health questions, the eligibility of the applicant for additional insurance will be checked. If the eligibility factor has value less than “3” then the applicant is eligible. In this case,  the application is accepted and an email is sent to the applicant with the contract. An entry with applicant information and contract status “accepted” is entered in We-Care application database.
-
-**6. Additional insurance Application Non-Eligible:**
-After filling the additional health questions, the eligibility of the applicant for additional insurance will be checked. If the eligibility factor has value greater than “3” then the applicant is non-eligible. In this case, the application is rejected and an email is sent to the applicant for rejection. An entry with applicant information and contract status “non-eligible” is created in We-Care application database.
-
-**7. Additional Insurance Human Decide:**
-After filling the additional health questions, the eligibility of the applicant for additional insurance will be checked. If the eligibility factor has exactly value  “3” then the manual task “Human-Decide" is invoked. Two user roles are defined Admin and "Hans Herbert” who can claim the process in Camunda and proceed with the execution to “accept” or “reject” the application. Depending on result of the assessment, an email with contract or a rejection email will be sent to the applicant and database entry with the corresponding contract status will be created in application database.
-
-**8. Additional Insurance Contract Signed:**
-After the contract is accepted in the process for additional insurance, an email containing contract as an attachment is sent to the applicant along with a link to sign the contract. On clicking the link, when applicant selects “accept", the contract status is changed from “accepted” to “signed” in application database.
-
-
-**9. Additional Insurance Contract Unsigned:**
-After the contract is accepted in the process for Additional insurance, an email containing contract as an attachment is sent to the applicant and a link to sign the contract. On clicking the link, when applicant selects reject, the contract status is changed from “accepted” to “unsigned” in application database.
-
-
-**10. Application expiration after 14 days:**
-Once the applicant gets an email with additional questions for additional insurance, he is given a period of 14 days to click on the link and answer the questions,after which the application expires. There is no entry created in database for the same.
-
-**11. Unsigned Contract Expiration after 30 days:**
-Once the applicant gets an email with contract for basic or additional insurance,he is required to accept or reject the offer by clicking on the link and confirming the contract within a period of 30 days, after which time the contract expires. when the contact expires, contract status is changed from “accepted” to “expired"  in the application database for the same.
-
-
-##  Integrations
-
-
-**The process starts with a web application form filled which is sent via AJAX sending JSON element to:**
- 
-https://digibp-spiez.herokuapp.com/rest/process-definition/key/Process_HealthInsurance/submit-form
-
-```
-{ 
-	"variables": 
-	{
-	"sFirstName" : {"value" : $("input[name=sFirstName]" ).val(),	"type": "String"},
-	"sLastName" : 	{"value" : $("input[name=sLastName]" ).val(),	"type": "String"},
-	"dBirthDate" : 	{"value" : $("input[name=dBirthDate]" ).val(),	"type": "String"},
-	"eGender" : 	{"value" : $("input[name=eGender]" ).val(), 	"type": "String"},
-	"nAge" :	{"value" : nAge, 	"type": "Long"},
-	"dStartDate" : 	{"value" : $("input[name=dStartDate]" ).val(),	"type": "String"},
-	"eCitizenShip" : 	{"value" : $("select[name=eCitizenShip]" ).val(),	"type": "String"},
-	"sStreet" : 	{"value" : $("input[name=sStreet]" ).val(), 	"type": "String"},
-	"nZipCode" : 	{"value" : $("input[name=nZipCode]" ).val(),	"type": "Long"},
-	"sCity" : 	{"value" : $("input[name=sCity]" ).val(), 	"type": "String"},
-	"sEmail" : 	{"value" : $("input[name=sEmail]" ).val(), 	"type": "String"},
-	"eBaseInsuranceType" : 	{"value" : $("input[name=eBasicInsuranceType]" ).val(), 	"type": "String"},
-	"eFranchise" : 	{"value" : $("select[name=eFranchise]" ).val(), 	"type": "String"},
-	"bAccidentCoverage" : 	{"value" : ($("input[name=bAccidentCoverage]:checked" ).val()=="on"),	"type": "Boolean"},
-	"bAlternativeInsurance" : 	{"value" :($("input[name=bAlternativeInsurance]" ).val()=="1"), 	"type": "Boolean"},
-	"eAlternativeInsuranceType":{"value" : $("select[name=eAlternativeInsuranceType]" ).val(),	"type": "String"},
-	"bDentalTreatment" : 	{"value": ($("input[name=bDentalTreatment]" ).val()=="1"), 	"type": "Boolean"},
-	"eDentalTreatmentCoverage": {"value": $("select[name=eDentalTreatmentCoverage]" ).val(), 	"type": "String"},
-	"bLifeInsurance" : 	{"value" :( $("input[name=bLifeInsurance]" ).val()=="1"), 	"type": "Boolean"},
-	"eLifeInsuranceCoverage" : 	{"value" : $("select[name=eLifeInsuranceCoverage]" ).val(), 	"type": "String"}
-	},
-	 "businessKey" : "thisIsMyDefaultBusinessKey"
-};
-	
-```
-
-![ApplicationForm](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Integration%201.png)
-
-
-
-
-**For Additional Insurance, an email requesting additional health questions is sent. email is defined in Integromat**
-
-https://hook.integromat.com/o73at2rbiaijc5ck5k9ia12j14rd2sqq
-
-![ApplicationForm JSON](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/expiration.png)
-
-```
-{
-"sLastName": sLastName,
-"eGender": eGender,
-"sEmail": sEmail,
-"sQuestionUrl": "http://root.chi-projects.ch/digibp-spiez-web/insurance-additional- questions.html?processInstanceId="+execution.processInstanceId+""
-} 
-```
-
-
-
-
-**Sending answers of additional health questions from web form to waiting message trigger of a specific process instance done via:**
-
-https://digibp-spiez.herokuapp.com/rest/message
-
-```
-{
-	"messageName" : "Message_38tpcvo",
-	"processInstanceId" : getUrlParameter("processInstanceId"),
-	"processVariables" : {
-		"bDisabilityOrBirthDefect" : 	{"value" : $("select[name=bDisabilityOrBirthDefect]" ).val()=="true", "type": "Boolean"},
-		"bOngoingTreatmentOrSurgery" : 	{"value" : $("select[name=bOngoingTreatmentOrSurgery]" ).val()=="true", "type": "Boolean"},
-		"bPastRejection" : 	{"value" :$("select[name=bPastRejection]" ).val()=="true", "type": "Boolean"},
-		"bDrugTaker" : 	{"value": $("select[name=bDrugTaker]" ).val()=="true", "type": "Boolean"},
-		"bHivInfected" : 	{"value" : $("select[name=bHivInfected]" ).val()=="true", "type": "Boolean"},
-		"fHeight" : 	{"value" : $("input[name=fHeight]" ).val(), "type": "Long"},
-		"fWeight" : 	{"value" : $("input[name=fWeight]" ).val(), "type": "Long"},
-		"bBodybuilder" : 	{"value" : $("select[name=bBodybuilder]" ).val()=="true", "type": "Boolean"}
-}
-	
-```
-
-
-
-
-**When the assessment of the application is done, the accepted or rejected data is going to be saved in our database, google drive table sheet persistently via an integromat service. The integromat service is triggered by:**
-
-https://hook.integromat.com/aulm3jmewet9rvlicpzzdr01aq40ce7n
-
-```
-
-{
-	"sFirstName": sFirstName,
-	"sLastName": sLastName,
-	"eGender": eGender,
-	"sEmail": sEmail,
-	"sApplicationID": execution.processInstanceId,
-	"sStatus": "accepted/rejected",
-	"dBirthDate"	:	dBirthDate	,
-	"eGender"	:	eGender	,
-	"nAge"	:	nAge	,
-	"eCitizenShip"	:	eCitizenShip	,
-	"sStreet"	:	sStreet	,
-	"nZipCode"	:	nZipCode	,
-	"sCity"	:	sCity	,
-	"sEmail"	:	sEmail	,
-	"eBaseInsuranceType"	:	eBaseInsuranceType	,
-	"eFranchise"	:	eFranchise	,
-	"bAccidentCoverage"	:	bAccidentCoverage	,
-	"bAlternativeInsurance"	:	bAlternativeInsurance	,
-	"eAlternativeInsuranceType"	:	eAlternativeInsuranceType	,
-	"bDentalTreatment"	:	bDentalTreatment	,
-	"eDentalTreatmentCoverage"	:	eDentalTreatmentCoverage	,
-	"bLifeInsurance"	:	bLifeInsurance	,
-	"eLifeInsuranceCoverage"	:	eLifeInsuranceCoverage	,
-	"bDisabilityOrBirthDefect"	:	bDisabilityOrBirthDefect	,
-	"bOngoingTreatmentOrSurgery"	:	bOngoingTreatmentOrSurgery	,
-	"bPastRejection"	:	bPastRejection	,
-	"bDrugTaker"	:	bDrugTaker	,
-	"bHivInfected"	:	bHivInfected	,
-	"fHeight"	:	fHeight	,
-	"fWeight"	:	fWeight	,
-	"bBodybuilder"	:	bBodybuilder	,
-	"fBMI"	:	fBMI	,
-	"sAreaType"	:	sAreaType	, //if rejected this field is empty
-	"nPersonFactor"	:	nPersonFactor	, //if rejected this field is empty
-	"sPersonProfile"	:	sPersonProfile	, //if rejected this field is empty
-	"nEndPriceDentalInsurance"	:	nEndPriceDentalInsurance	, //if rejected this field is empty
-	"nEndPriceBasicInsurance"	:	nEndPriceBasicInsurance	, //if rejected this field is empty
-	"nEndPriceAlternativeInsurance"	:	nEndPriceAlternativeInsurance	, //if rejected this field is empty
-	"nEndPriceLifeInsurance"	:	nEndPriceLifeInsurance	, //if rejected this field is empty
-	"nBasePriceBasicInsurance"	:	nBasePriceBasicInsurance	, //if rejected this field is empty
-	"nBasePriceDentalInsurance"	:	nBasePriceDentalInsurance	, //if rejected this field is empty
-	"nBasePriceLifeInsurance"	:	nBasePriceLifeInsurance	, //if rejected this field is empty
-	"nBasePriceAlternativeInsurance"	:	nBasePriceAlternativeInsurance	,
-	"dtCreated"	:	formatDate(new Date())	,
-	"dtModified"	:	formatDate(new Date())	,
-	"processVersion"	:	execution.version	
-});
-
-
-```
-The output is row number: 
-
-```
-
-{
-"nRowNumber: " 12
-}} 
-
-```
-For our further procedure we add 9770000 to calculate the policy number:
-nPolicyNumber=9770000+nRowNumber
-
-![Database](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/integration2.png)
-
-
-
-
-**Create PDF and save PDF-URL to database 
-The following JSON element is sent to integromat to create a PDF via Eledo and send an update to our database with a url to the created pdf**
-
-![Eledo JSON](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/pdfeledo.png)
-
-https://hook.integromat.com/cen1nmnjc8fl8rwa2fhhdjfs5s84d8rp
-
-```
-{
-	"sFirstName": sFirstName,
-	"sLastName": sLastName,
-	"eGender": eGender,
-	"sEmail": sEmail,
-	"sApplicationID": execution.processInstanceId,
-	"sStatus": "accepted",
-	"dBirthDate"	:	dBirthDate	,
-	"eGender"	:	eGender	,
-	"nAge"	:	nAge	,
-	"eCitizenShip"	:	eCitizenShip	,
-	"sStreet"	:	sStreet	,
-	"nZipCode"	:	nZipCode	,
-	"sCity"	:	sCity	,
-	"sEmail"	:	sEmail	,
-	"eBaseInsuranceType"	:	eBaseInsuranceType	,
-	"eFranchise"	:	eFranchise	,
-	"bAccidentCoverage"	:	bAccidentCoverage	,
-	"bAlternativeInsurance"	:	bAlternativeInsurance	,
-	"eAlternativeInsuranceType"	:	eAlternativeInsuranceType	,
-	"bDentalTreatment"	:	bDentalTreatment	,
-	"eDentalTreatmentCoverage"	:	eDentalTreatmentCoverage	,
-	"bLifeInsurance"	:	bLifeInsurance	,
-	"eLifeInsuranceCoverage"	:	eLifeInsuranceCoverage	,
-	"bDisabilityOrBirthDefect"	:	bDisabilityOrBirthDefect	,
-	"bOngoingTreatmentOrSurgery"	:	bOngoingTreatmentOrSurgery	,
-	"bPastRejection"	:	bPastRejection	,
-	"bDrugTaker"	:	bDrugTaker	,
-	"bHivInfected"	:	bHivInfected	,
-	"fHeight"	:	fHeight	,
-	"fWeight"	:	fWeight	,
-	"bBodybuilder"	:	bBodybuilder	,
-	"fBMI"	:	fBMI	,
-	"sAreaType"	:	sAreaType	,
-	"nPersonFactor"	:	nPersonFactor	,
-	"sPersonProfile"	:	sPersonProfile	,
-	"nEndPriceDentalInsurance"	:	nEndPriceDentalInsurance	,
-	"nEndPriceBasicInsurance"	:	nEndPriceBasicInsurance	,
-	"nEndPriceAlternativeInsurance"	:	nEndPriceAlternativeInsurance	,
-	"nEndPriceLifeInsurance"	:	nEndPriceLifeInsurance	,
-	"nBasePriceBasicInsurance"	:	nBasePriceBasicInsurance	,
-	"nBasePriceDentalInsurance"	:	nBasePriceDentalInsurance	,
-	"nBasePriceLifeInsurance"	:	nBasePriceLifeInsurance	,
-	"nBasePriceAlternativeInsurance"	:	nBasePriceAlternativeInsurance	,
-	"dtCreated"	:	formatDate(new Date())	,
-	"dtModified"	:	formatDate(new Date())	,
-	"processVersion"	:	execution.version,
-	"nPolicyNumber": nPolicyNumber,
-        "sYearMonthDay": formatDate2(new Date()),
-	"dToday": formatDate3(new Date())
-}
-
-```
-The output sends back the URL :
-
-
-```
-{
-sContractUrl:
-https://drive.google.com/uc?export=download&id=1d2FwjgLpgEUsTBobrsDVBqH6ACs5hH1b
-} 
-
-```
-
-
-
-
-**The contract is sent to customer via:**
-
-https://hook.integromat.com/9pok51uratqwjukfnswiy52wzcnby2w8
-
-```
-{
-"sLastName": sLastName, "
-"eGender": eGender,
-"sEmail": sEmail,
-"sQuestionUrl": "http://root.chi-projects.ch/digibp-spiez-web/insurance-confirm- contract.html?processInstanceId="+execution.processInstanceId+"", 
-"sContractUrl": sContractUrl
-} 
-
-```
-
-
-
-
-**Send contract signature to camunda:
-Sending decision whether contract gets accepted to Camunda from web form to waiting message trigger of a specific process instance via:**
-
-![contractsign](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/contractsign.png)
-
-
-https://digibp-spiez.herokuapp.com/rest/message
-
-```
-{
-"messageName" : "Message_1eea03e", 
-"processInstanceId" : getUrlParameter("processInstanceId"), 
-"processVariables" : { 
-"bContractSigned" : {"value" : $("#contractSigned").val()=="true", "type": "Boolean"}, 
-     } 
-}
-
-```
-
-
-
-
-**The following message is sent by integromat service to update application status of an already inserted data row in our application database. Currently it is only used to set for the stati: unsigned/signed/SignatureTimeExpired**
-
-![Updating Database](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/setnewstatus.png)
-
-```
-{
-"processInstanceId": execution.processInstanceId, 
-"sStatus": "unsigned/signed/SignatureTimeExpired" 
-} 
-
-```
-
-
-
-
-**Send contract information to customer:**
-
-![Contract](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/expiration.png)
-
-https://hook.integromat.com/127ydyn8b6ikfghacoxam8t4v9dft11u
-
-input:
-
-```
-{"sLastName": sLastName, 
-"eGender": eGender, 
-"sEmail": sEmail
-
-};
-
-```
-
-
-
-
-**Send application rejection to customer:**
-
-![send rejection](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/expiration.png)
-
-https://hook.integromat.com/2hs8inluvcgsg79vvcsqtd70znhrs65t 
-
-input:
-
-```
-{"sLastName": sLastName,
- "eGender": eGender, 
-"sEmail": sEmail
-};
-
-```
-
-
-
-
-**Send expiration email to customer:**
-
-![send expiration](https://github.com/DigiBP/digibp-spiez/blob/master/documentation/expiration.png)
-
-https://hook.integromat.com/nrxuk1b677b8fu8ui7i52t8y36rwwvck
-
-input:
-
-```
-{"sLastName": sLastName, 
-"eGender": eGender, 
-"sEmail": sEmail
-} 
-```
-
-
-
-
-##  Database
-
-The application run on the Heroku OpenSource platform.  Google Spreadsheet  is used as a database to save and read all customer data. The customer data is inserted into the database as soon the application is processed and the assessment is completed.
-
-The business key in the database identifies the different customer applications and is the main key. 
-
-All personal contact details of applicants are stored in the database columns:A-L. Type of insurance is stored in columns M-T The health status of customers is shown in the columns V-AG. The price fo the different options of health insurance selected for each applicant are stored in columns AH-AN. Every time the status of the application is updated it is stored in columns AO-AR and finally the policy number and the pdf of signed contract are stored in columns AR and AS respectively. 
-[Link to Database](https://docs.google.com/spreadsheets/d/1vylyVyxa2TxJ6EUE9TZ10fDxG6PzmvdVn69UXdBo5j0/edit?usp=sharing) 
-
-
-## Tools and Software
-The following tools and software have been used for implementing the Health insurance process
-
-| Tool / Software  | Description |
-| ------------- | ------------------ |
-| Camunda Modeler | The Camunda Modeler is used to create BPMN, CMMN and DMN models. The modeler is based on [bpmn.io] (http://bpmn.io/).  |
-| GitHub| Github is used for collaboration and versioning of the programming code as well as the models. |
-|Heroku|Heroku is a PaaS (Platform as a Services) which is used to quickly build, run, and operate the Camunda in the cloud. |
-|Integromat | Integromat is a free tool to connect apps and automate workflows using a beautiful, no-code, visual builder.
-|Eledo | Eledo helps in automating documents by mapping data to get PDF.  Once you save and activate your document template, you can load new fields in Integromat immediately. Eledo prepares Web Form and REST API automatically. 
-|Gmail | Gmail is a free email service developed by Google. Users can access Gmail on the web and using third-party programs that synchronize email content through POP or IMAPprotocols. The service is notable among website developers for its early adoption of Ajax.  
-
-
-## Automation
-Automation techniques and languages used:  
-
-**JavaScript and HTML**: Used in Webforms and Service tasks in Camunda. 
 
 ## License
 - [Apache License, Version 2.0](https://github.com/DigiBP/digibp-archetype-camunda-boot/blob/master/LICENSE)

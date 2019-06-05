@@ -45,7 +45,7 @@ For this small team an agile project management approach was chosen (weekly meet
 - Swapna: Documentation
 
 
-# Process Description (We Care: Health Insurance Offering Service)
+# We Care: Health Insurance Offering Services
 
 ![Process flow](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Highlevel%20orocess%20flow.png)
 
@@ -58,7 +58,7 @@ The following chapter describes the basic idea behind the health insurance proce
 Based on the type of insurance selected, the price is calculated and contract is sent to the customer. When the customer signs the contract and sends it back to the company through email, it is saved in the database and the application process is closed.
 
 
-## AS-IS Process
+# AS-IS Process
 
  The following image shows a comprehensive visualization of AS-IS process. 
 
@@ -71,14 +71,10 @@ Based on the type of insurance selected, the price is calculated and contract is
 3. If the customer accepts the offer, a contract is created by an employee and sent to the customer by post. As soon as the signed contract is received from the customer, a copy of the same is stored in the database.
 
 
-## Overall Health Insurance Process
-The figure below shows a simple visualization of our process. The following chapter is divided into two main main process branches (Basic insurance process and Additional insurance process) which will come together for application eligibility. Afterwards, the price of the health insurances get calculated, PDF document will be generated, the contract will be sent to the customer and he or she has to confirm it.
+# Overall Health Insurance Process
+The figure below shows a simple visualization of our process. The following chapter is divided into two main main process branches (Basic insurance process and Additional insurance process) which will come together for application eligibility. Afterwards, the price of the health insurances get calculated, PDF document will be generated, the contract will be sent to the customer and he or she has to confirm it. The following figure shows a visualization of our overall process. 
 
-
-## Overall process
-The following figure shows a visualization of our overall process. 
-
-| **Overall process** | 
+| **BPMN 2.0 Diagramm of our overall process** | 
 | ------------------ | 
 | ![alt text](https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/health%20insurance%20process.png) |
 
@@ -110,10 +106,8 @@ After filling the additional health questions, the eligibility of the applicant 
 **8. Additional Insurance Contract Signed:**
 After the contract is accepted in the process for additional insurance, an email containing contract as an attachment is sent to the applicant along with a link to sign the contract. On clicking the link, when applicant selects “accept", the contract status is changed from “accepted” to “signed” in application database.
 
-
 **9. Additional Insurance Contract Unsigned:**
 After the contract is accepted in the process for Additional insurance, an email containing contract as an attachment is sent to the applicant and a link to sign the contract. On clicking the link, when applicant selects reject, the contract status is changed from “accepted” to “unsigned” in application database.
-
 
 **10. Application expiration after 14 days:**
 Once the applicant gets an email with additional questions for additional insurance, he is given a period of 14 days to click on the link and answer the questions,after which the application expires. There is no entry created in database for the same.
@@ -122,9 +116,9 @@ Once the applicant gets an email with additional questions for additional insura
 Once the applicant gets an email with contract for basic or additional insurance,he is required to accept or reject the offer by clicking on the link and confirming the contract within a period of 30 days, after which time the contract expires. when the contact expires, contract status is changed from “accepted” to “expired"  in the application database for the same.
 
 
-## Descision Logic
+# Descision Logic
 
-### Eligiblity Logic
+## Eligiblity Logic
 
 | **Assess case subprocess** | - |
 | ------------------ | - |
@@ -135,9 +129,13 @@ Once the applicant gets an email with contract for basic or additional insurance
 | ------------------ | - |
 |The following image shows a comprehensive visualization of DRD, decision tables & rules for assessing the eligibility of the applicant. Be aware that if no supplementary insurance has been selected the application is always accepted. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/supplementary%20insurance.png) |
 
+## Roles
 
+| Role  | Camunda Group | Description |
+| Agent | ApplicationAgent   | This human task role is in charge for deciding whether a applicant is eligible when our decision logic is not able to assess the application. |
+| IT-System | - | The IT-System handles the whole process on its own as far as the eligibilty descision logic allows it. |
 
-### Calculate Price Logic
+## Calculate Price Logic
 
 | **Calculate price subprocess** | - |
 | ------------------ | - |
@@ -154,14 +152,7 @@ Once the applicant gets an email with contract for basic or additional insurance
 | The following image shows a comprehensive visualization of our DRD, decision tables & rules to calculate the price for basic and additional insurance for individual customers. | ![alt text]( https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/Calculate%20price.png) |
 
 
-
-## Data Integration
-For a smooth process several tools were used to integrate Email, Webhooks, PDF-genereator etc. A complete documentation about the APIs and fields used you find in that link here:
-[Link to Data Integration documentation](readme.integration.md)
-
-
 ##  Database
-
 The application run on the Heroku OpenSource platform.  Google Spreadsheet  is used as a database to save and read all customer data. The customer data is inserted into the database as soon the application is processed and the assessment is completed.
 
 The business key in the database identifies the different customer applications and is the main key. 
@@ -170,7 +161,7 @@ All personal contact details of applicants are stored in the database columns:A-
 [Link to Database](https://docs.google.com/spreadsheets/d/1vylyVyxa2TxJ6EUE9TZ10fDxG6PzmvdVn69UXdBo5j0/edit?usp=sharing) 
 
 
-## Tools and Software
+# Tools and Software
 The following tools and software have been used for implementing the Health insurance process
 
 | Tool / Software  | Description |
@@ -184,13 +175,17 @@ The following tools and software have been used for implementing the Health insu
 |Google Drive & Google Spreadsheet | Google Drive and Google Spreadsheet were used to store health-insurance-application data (also see previous section 'Database'). 
 |Visual Studio Code |  To create scripts and HTML-pages 'Visual Studio Code' was used.
 
+## Data Integration
+For a smooth process several tools were used to integrate Email, Webhooks, PDF-genereator etc. A complete documentation about the APIs and fields used you find in that link here:
+[Link to Data Integration documentation](readme.integration.md)
+
 ## Automation
 Automation techniques and languages used:  
 
 **JavaScript, JSON-Object and HTML**: Used in Webforms and Service tasks in Camunda. 
 
 
-## Camunda step by step process  (example run-through)
+# Camunda step by step process  (example run-through)
 
  **Step 1: Application process** 
 

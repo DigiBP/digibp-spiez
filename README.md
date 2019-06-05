@@ -54,7 +54,7 @@ The following chapter describes the basic idea behind the health insurance proce
 
 **Additional insurance:** If a customer wishes to apply for a supplementary insurance he can select from different models : Alterative, Dental and Life insurance by answering additional health questions.
 
-Based on the type of insurance selected, the price is calculated and contract is sent to the customer.when the customer signs the contract and sends it back to the company through email, it is saved in the database and the application process is closed.
+Based on the type of insurance selected, the price is calculated and contract is sent to the customer. When the customer signs the contract and sends it back to the company through email, it is saved in the database and the application process is closed.
 
 
 ## AS-IS Process
@@ -71,7 +71,7 @@ Based on the type of insurance selected, the price is calculated and contract is
 
 
 ## Overall Health Insurance Process
-The figure below shows a simple visualization of our overall process. The following chapter is divided into 3 sections to give a comprehensive visualization of the digitalized Health insurance process:
+The figure below shows a simple visualization of our overall process. The following chapter is divided into 3 sections to give a comprehensive visualization of the digitalized health insurance process:
 - Basic insurance process
 - Additional insurance process
 - Calculate price
@@ -135,7 +135,7 @@ Customer applies for the health insurance by filling the web application form on
 
 <p><img src="https://github.com/DigiBP/digibp-spiez/blob/Swapna/documentation/basic%20insurance%20contract.png" alt="alt text" style="float: right">, 
  
-Go to: [Heroku](https://digibp-spiez.herokuapp.com/app/welcome/default/#/login) Login with ID: demo, Password: demo, click on tasklist and select health insurance process. Camunda executes the sub process“Assess case”. For basic insurance, the input variables from the form (age, gender, zip code) are used to calculate a person factor, which is an eligibility score calculated based on output from two decision tables:calculate persondata(sPersonprofile), which assigns a value of highprice person, lowpriceperson or mediumpriceperson based on the age and gender and calculate area(sAreatype) which assigns a value of lowpricearea, mediumprice area or highprice area based on the zipcode where a person lives. nPersonfactor is derived using sAreatype and spersonprofile as input to arrive at a value that is assigned to every Individual customer. This value is used to calculate the insurance price of basic as well as additional insurances for all customers.
+Go to: [Heroku](https://digibp-spiez.herokuapp.com/app/welcome/default/#/login) Login with ID: demo, Password: demo, click on tasklist and select health insurance process. Camunda executes the sub process“Assess case”. For basic insurance, the input variables from the form (age, gender, zip code) are used to calculate a person factor, which is an eligibility score calculated based on output from two decision tables:calculate persondata(sPersonprofile), which assigns a value of highprice person, lowpriceperson or mediumpriceperson based on the age and gender and second decision table : calculate area(sAreatype) which assigns a value of lowpricearea, mediumprice area or highprice area based on the zipcode where a person lives. nPersonfactor is derived using sAreatype and spersonprofile as input to arrive at a value that is assigned to every Individual customer. This value is used to calculate the insurance price of basic as well as additional insurances for all customers.
                          
 When the application is accepted, the price is calculated, and pdf of the contract is generated automatically via Eledo and an email with contract is sent through integromat to the customer. A time period of 30 days is given to the customer for signing the contract after which the contract expires. </p>
 
@@ -150,7 +150,7 @@ The assessment subprocess takes all the input variables provided such as disabil
 
 **bDisabilityOrBirthDefect+bOngoingTreatmentOrSurgery+bPastRejection+bDrugTaker+bHivInfected+bObese**
 
-A value is assigned to each of the parameter, “0” if it is true or “1” if it is false. An applicant with a score of greater than 3 is automatically rejected. If a person has 3 then he is eligible for manual assessment done by an underwriter in the back office, which is shown as a human task in our process. A score of less than 3 makes an applicant eligible for additional insurance, in which case the price is calculated, and contract sent. A period of is 30 days is given to sign the document, after which the contract expires.The status in the database is updated and an email is sent to the customer informing him about the expired contract.  In case of rejection the same is notified.</p>
+A value is assigned to each of the parameter, “0” if it is true or “1” if it is false. An applicant with a score of greater than 3 is automatically rejected. If a person has a score of 3 then he is eligible for manual assessment done by an underwriter in the back office, which is shown as a human task in our process. A score of less than 3 makes an applicant eligible for additional insurance, in which case the price is calculated, and contract sent. A period of is 30 days is given to sign the document, after which the contract expires.The status in the database is updated and an email is sent to the customer informing him about the expired contract.  In case of rejection the same is notified.</p>
 
 **Step 4: Calculate price**
 

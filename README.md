@@ -157,7 +157,7 @@ Once the applicant gets an email with contract for basic or additional insurance
 #  Document and Databases
 
 ## Contract PDF
-When a customer's application get accepted the customer will receive an email with the contract in form of a pdf document. This pdf document includes all insurances services inclusive all selected options he or she applied for. For each service the prices can be viewed as well. How the creation procedure works can be viewed in chapter "Integration".
+When a customer's application gets accepted the customer receives an email with contract in the form of a pdf document. This pdf document includes insurance services containing basic insurance as well as additional insurances the customer applied for. The price break up For each Insurance selected and the total can be viewed as well in the document. PDF is generated via Eledo and the procedure for creating a pdf and how it works can be viewed in chapter "Integration".
 
 ## Database
 The application run on the Heroku OpenSource platform.  Google Spreadsheet  is used as a database to save and read all customer data. The customer data is inserted into the database as soon the application is processed and the assessment is completed.
